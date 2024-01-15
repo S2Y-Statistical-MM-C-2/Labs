@@ -1,0 +1,34 @@
+--- 
+title: "S2Y Statistical Methods, Models and Computing 2"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, eval=TRUE, comment=NA)
+library(webexercises)
+```
+
+# Links to S2Y Labs{-}
+
+* [S2Y Lab 1](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab1/docs)
+
+* [S2Y Lab 2](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab2/docs)
+
+* [S2Y Lab 3](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab3/docs)
+
+* [S2Y Lab 4](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab4/docs)
+
+* [S2Y Lab 5](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab5/docs)
+
+* [S2Y Lab 6](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab6/docs)
+
+* [S2Y Lab 7](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab7/docs)
+
+* [S2Y Lab 8](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab8/docs)
+
+* [S2Y Lab 9](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab9/docs)
+
+* [S2Y Lab 10](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab10/docs)
