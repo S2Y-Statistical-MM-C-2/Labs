@@ -1,85 +1,36 @@
----
-title: "Lab 1 -Exploring Hypothesis Testing"
+--- 
+title: "S2Y Statistical Methods, Models and Computing 2"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-biblio-style: apalike
 link-citations: yes
-rmd_files: ["index.Rmd", "AllAboutHypothesisTesting.Rmd", "Example1.Rmd", "Example2.Rmd", "Exercise1.Rmd"]
-
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, eval=TRUE, comment=NA)
 library(webexercises)
-library(tinytex)
-library(dplyr)
-library(knitr)
-library(ggplot2)
-library(tidyverse)
-library(PASWR2)
-library(MASS)
-RUBBER<- Rubber
-FERTILIZE <- FERTILIZE
-
 ```
 
+# Links to S2Y Labs{-}
 
-```{r include=FALSE, echo=FALSE}
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+* [S2Y Induction Lab](https://s2y-statistical-mm-c-2.github.io/Labs/S2Induction/docs)
 
-# Welcome to Lab 1
+* [S2Y Lab 1](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab1/docs)
 
-Intended Learning Outcomes:
+* [S2Y Lab 2](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab2/docs)
 
-1. Complete a one-sample hypothesis test of the mean in R with a step-by-step guide.
-2. Explore further significance levels and the power of a test.
-3. Complete a one-sample hypothesis test of the mean in R by yourself.
+* [S2Y Lab 3](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab3/docs)
 
-## A Summary of the Type of the Hypothesis Test Used Today 
+* [S2Y Lab 4](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab4/docs)
 
-![](Images/Summary_tobs.png)
+* [S2Y Lab 5](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab5/docs)
 
+* [S2Y Lab 6](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab6/docs)
 
+* [S2Y Lab 7](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab7/docs)
 
+* [S2Y Lab 8](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab8/docs)
 
-<div style="color: dimgrey;">
+* [S2Y Lab 9](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab9/docs)
 
-## Optional: RStudio Quickstart Guide
-
-This course assumes basic knowledge of `R` and RStudio. The starting point is opening RStudio by going to:
-
-<center> Maths & Stats Apps > RStudio </center>
-
-To access the data in this course, it is best to open and save a new script file to work in within RStudio and to set the working directory. This will enable you to save your R commands and comments on your work as you go through each of the examples.
-
-To open a new script go to:
-
-<center> `File > New > R script` </center>
-
-This will open a new screen for you to type into.
-
-Go to:
-
-<center> `File > Save as` </center>
-
-and save the script file into your home directory. Now, start by setting the working directory in RStudio to the directory in which you have stored both the data and `R` script. One way of doing this is to go to:
-
-<center> `Session > Set Working Directory > To Source File Location` </center>
-
-This will point RStudio towards this directory to enable us to use files within that directory.
-
-It is useful to annotate your script file using comments so that you know what has been done when you look at it in the future. Comments can be added to a script file by starting the line with a # symbol.
-
-</div>
-
-## Credit where credit is due
-
-The labs in S2 incorporate and adapt materials from:
-
-Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
-
-The materials were converted into interactive labs on Hypothesis Testing using `Bookdown` and `webexercises` in Summer 2023 by summer project student, Megan Ruffle.
+* [S2Y Lab 10](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab10/docs)
