@@ -1,0 +1,87 @@
+---
+title: |
+    | S2Y Lab 1
+    | Exploring Hypothesis Testing
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "AllAboutHypothesisTesting.Rmd", "Example1.Rmd", "Example2.Rmd", "Exercise1.Rmd"]
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+RUBBER<- Rubber
+FERTILIZE <- FERTILIZE
+
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# Welcome to S2Y Lab 1
+
+Intended Learning Outcomes:
+
+* Conduct one-sample $t$-test (testing the mean when sampling from a normal distribution with unknown variance) in `R` with a step-by-step guide.
+* Conduct one-sample $t$-test in `R` with the built-in function.
+* Explore further the significance level and the power of a test.
+
+## Summary for testing the mean when sampling from a normal distribution with unknown variance (one-sample $t$-test)
+
+![](Images/Summary_tobs.png)
+
+
+
+
+<div style="color: dimgrey;">
+
+## Optional: RStudio Quickstart Guide
+
+This course assumes basic knowledge of `R` and RStudio. The starting point is opening RStudio by going to:
+
+<center> Maths & Stats Apps > RStudio </center>
+
+To access the data in this course, it is best to open and save a new script file to work in within RStudio and to set the working directory. This will enable you to save your R commands and comments on your work as you go through each of the examples.
+
+To open a new script go to:
+
+<center> `File > New > R script` </center>
+
+This will open a new screen for you to type into.
+
+Go to:
+
+<center> `File > Save as` </center>
+
+and save the script file into your home directory. Now, start by setting the working directory in RStudio to the directory in which you have stored both the data and `R` script. One way of doing this is to go to:
+
+<center> `Session > Set Working Directory > To Source File Location` </center>
+
+This will point RStudio towards this directory to enable us to use files within that directory.
+
+It is useful to annotate your script file using comments so that you know what has been done when you look at it in the future. Comments can be added to a script file by starting the line with a # symbol.
+
+</div>
+
+## Credit where credit is due
+
+The labs in S2Y incorporate and adapt materials from:
+
+Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
+
+The materials were converted into interactive labs on Hypothesis Testing using `Bookdown` and `webexercises` in Summer 2023 by summer project student, Megan Ruffle.
