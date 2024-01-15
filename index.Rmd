@@ -13,8 +13,6 @@ library(webexercises)
 
 # Links to S2Y Labs{-}
 
-* [S2Y Induction Lab](https://s2y-statistical-mm-c-2.github.io/Labs/S2Induction/docs)
-
 * [S2Y Lab 1](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab1/docs)
 
 * [S2Y Lab 2](https://s2y-statistical-mm-c-2.github.io/Labs/S2Y_lab2/docs)
