@@ -242,7 +242,7 @@ Solution
 <li><p>As the sample size is 15, the standardised test statistic is distributed <span class="math inline">\(t_{14}\)</span>. Moreover, since <span class="math inline">\(H_1\)</span> is an upper one-sided hypothesis, the rejection region is the <span class="math inline">\(t_{obs} &gt; t_{1-0.05; 14} = t_{0.95; 14}.\)</span></p></li>
 <li><p>From the statistical table, the <span class="math inline">\(t\)</span>-value that corresponds to the chosen significance level (i.e., the critical value) is <span class="math inline">\(t_{0.95; 14} = 1.7613\)</span>. Remember this is positive because we are discussing the upper tail of the <span class="math inline">\(t\)</span>-distribution.</p></li>
 </ol>
-<p>This same <span class="math inline">\(t\)</span>-value can be found in <code>R</code> by using:</p>
+<p>This same <span class="math inline">\(t\)</span>-value can be found in R by using:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="exercise-1-plant-height-hypothesis-test.html#cb30-1" tabindex="-1"></a>RR <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">14</span>)</span>
 <span id="cb30-2"><a href="exercise-1-plant-height-hypothesis-test.html#cb30-2" tabindex="-1"></a>RR</span></code></pre></div>
 <pre><code>## [1] 1.76131</code></pre>
@@ -264,7 +264,7 @@ Solution
 </button>
 <ol style="list-style-type: lower-roman">
 <li>Our standardised test statistic is given by <span class="math inline">\(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = \frac{17.575−17}{S/\sqrt{n}}\)</span>.
-The standard deviation <span class="math inline">\(S\)</span> and the sample size <span class="math inline">\(n\)</span> can be obtained in <code>R</code> by using:</li>
+The standard deviation <span class="math inline">\(S\)</span> and the sample size <span class="math inline">\(n\)</span> can be obtained in R by using:</li>
 </ol>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="exercise-1-plant-height-hypothesis-test.html#cb32-1" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">sd</span>(FERTILIZE<span class="sc">$</span>self)</span>
 <span id="cb32-2"><a href="exercise-1-plant-height-hypothesis-test.html#cb32-2" tabindex="-1"></a>S</span></code></pre></div>

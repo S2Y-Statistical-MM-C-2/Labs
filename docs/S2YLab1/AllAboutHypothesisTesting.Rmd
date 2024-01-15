@@ -63,7 +63,7 @@ In the next few labs we will look through different scenarios where we might con
 
 In your textbook and lectures you have seen these tests broken into 5 steps. 
 
-Often when undertaking hypothesis tests in `R`, we find the Standardised Test Statistic and $p$4-value in one action such as when using `t.test()`. In the labs the 5 steps will therefore be arranged as follows:
+Often when undertaking hypothesis tests in R, we find the Standardised Test Statistic and $p$-value in one action such as when using `t.test()`. In the labs the 5 steps will therefore be arranged as follows:
 
 1. **Hypotheses**
     - Set up the null and alternative hypotheses to answer your question
@@ -79,6 +79,6 @@ Often when undertaking hypothesis tests in `R`, we find the Standardised Test St
 5. **English Conclusion**
     - Giving the meaning of statistical conclusion in context of the question.
   
-(Note this is slightly different to the the wording in the textbook just for simplicity of grouping together all calculations in `R` within Step 3.)
+(Note this is slightly different to the the wording in the textbook just for simplicity of grouping together all calculations in R within Step 3.)
 
 We shall consistently find the Rejection Region and then analyse our observed data to compare it to that region.

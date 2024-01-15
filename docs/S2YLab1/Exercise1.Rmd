@@ -66,7 +66,7 @@ i) As the sample size is 15, the standardised test statistic is distributed \(t_
 
 ii) From the statistical table, the $t$-value that corresponds to the chosen significance level (i.e., the critical value) is \( t_{0.95; 14} = 1.7613\). Remember this is positive because we are discussing the upper tail of the $t$-distribution.
 
-This same $t$-value can be found in `R` by using:
+This same $t$-value can be found in R by using:
 ```{r, eval=TRUE, echo=TRUE}
 RR <- qt(0.95, df = 14)
 RR
@@ -87,7 +87,7 @@ The standardised test statistic under the assumption that \(H_0\) is true and it
 
 `r hide()`
 i) Our standardised test statistic is given by  \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = \frac{17.575−17}{S/\sqrt{n}}\).
-The standard deviation \(S\) and the sample size \(n\) can be obtained in `R` by using:
+The standard deviation \(S\) and the sample size \(n\) can be obtained in R by using:
 
 ```{r, eval=TRUE, eval=TRUE}
 S <- sd(FERTILIZE$self)

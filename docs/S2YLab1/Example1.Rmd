@@ -77,7 +77,7 @@ Because the standardised test statistic is distributed \(t_{29}\) and \(H_1\) is
 
 From the statistical tables, the $t$-value that corresponds to our significance level (critical value) is \( t_{0.05; 29} = −1.6991\). Remember this is negative because we are discussing the lower tail of the $t$-distribution.
 
-This same $t$-value can be found using `R`:
+This same $t$-value can be found using R:
 ```{r, eval=TRUE, echo=TRUE}
 RR <- qt(0.05, df = 29)
 RR
@@ -122,7 +122,7 @@ To reject the null hypothesis in this case we need our standardisd test statisti
 ### **Finding the standardised test statistic and $p$-value**
 
 The value of the standardised test statistic is given by  \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = \frac{175.4333−170}{S/\sqrt{n}}\).
-We can obtain \(S\) and \(n\) in `R` by using:
+We can obtain \(S\) and \(n\) in R by using:
 
 ```{r}
 S <- sd(RUBBER$loss)
