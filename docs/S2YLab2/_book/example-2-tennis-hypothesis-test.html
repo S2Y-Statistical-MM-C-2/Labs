@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Example 2: Tennis Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means</title>
+  <meta name="description" content="3 Example 2: Tennis Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Example 2: Tennis Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Example 2: Tennis Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="example-1---refrigerator-hypothesis-test.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#optional-rstudio-quickstart-guide"><i class="fa fa-check"></i><b>1.1</b> Optional: RStudio Quickstart Guide</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.2</b> Credit where credit is due</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Refrigerator Hypothesis Test</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>2.1</b> Verifying normality</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-1---hypotheses"><i class="fa fa-check"></i><b>2.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="2.3" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-2---choosing-a-test-statistic"><i class="fa fa-check"></i><b>2.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="2.4" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-3---hypothesis-test-calculations"><i class="fa fa-check"></i><b>2.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#finding-your-rejection-region"><i class="fa fa-check"></i><b>2.4.1</b> Finding your Rejection Region</a></li>
+<li class="chapter" data-level="2.4.2" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#finding-your-standardised-test-statistic-and-p-value"><i class="fa fa-check"></i><b>2.4.2</b> Finding your standardised test statistic and p-value</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-4---statistical-conclusion"><i class="fa fa-check"></i><b>2.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="2.6" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-5---english-conclusion"><i class="fa fa-check"></i><b>2.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html"><i class="fa fa-check"></i><b>3</b> Example 2: Tennis Hypothesis Test</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#verifying-normality-1"><i class="fa fa-check"></i><b>3.1</b> Verifying normality</a></li>
+<li class="chapter" data-level="3.2" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-1---hypotheses-1"><i class="fa fa-check"></i><b>3.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="3.3" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-2---choosing-a-test-statistic-1"><i class="fa fa-check"></i><b>3.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="3.4" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-3---hypothesis-test-calculations-1"><i class="fa fa-check"></i><b>3.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#finding-your-rejection-region-1"><i class="fa fa-check"></i><b>3.4.1</b> Finding your Rejection Region</a></li>
+<li class="chapter" data-level="3.4.2" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#finding-your-standardised-test-statistic-and-p-value-1"><i class="fa fa-check"></i><b>3.4.2</b> Finding your standardised test statistic and p-value</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-4---statistical-conclusion-1"><i class="fa fa-check"></i><b>3.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="3.6" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-5---english-conclusion-1"><i class="fa fa-check"></i><b>3.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 2 - Hypothesis Testing For the Difference in Means</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-2-tennis-hypothesis-test" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Example 2: Tennis Hypothesis Test<a href="example-2-tennis-hypothesis-test.html#example-2-tennis-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The Yonalasee tennis club has two systems to measure the speed of a tennis ball. The local tennis pros suspects one system (speed1) consistently records faster speeds. To test her suspicions, she sets up both systems and records the speeds of 12 serves (three serves from each side of the court). The values can be found saved <em>TENNIS</em> in RSTUDIO. with the variables <em>speed1</em> and <em>speed2</em>. The recorded speeds are in kilometers per hour.</p>
+<p>Does the evidence support the tennis pro’s suspicion? Use <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+<div class="webex-solution">
+<button>
+Reminder of how to access data
+</button>
+<p>Save the data that is built into R, to your environment. E.g:
+<code>TENNIS &lt;- TENNIS</code></p>
+</div>
+<div id="verifying-normality-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Verifying normality<a href="example-2-tennis-hypothesis-test.html#verifying-normality-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Note before we start that each system records the same 12 serves. Consequently, the serve times recorded by each system are dependent. Start the analysis by verifying the normality assumption required to use a paired t-test.</p>
+<p>As this is paired data, we could do this using exploratory data analysis (<code>EDA()</code>).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="example-2-tennis-hypothesis-test.html#cb7-1" tabindex="-1"></a>Diff <span class="ot">&lt;-</span> TENNIS<span class="sc">$</span>speed1 <span class="sc">-</span> TENNIS<span class="sc">$</span>speed2</span>
+<span id="cb7-2"><a href="example-2-tennis-hypothesis-test.html#cb7-2" tabindex="-1"></a><span class="fu">eda</span>(Diff)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>## Size (n)  Missing  Minimum   1st Qu     Mean   Median   TrMean   3rd Qu 
+##   12.000    0.000  -23.820  -10.060   -1.329   -6.410   -1.329   11.670 
+##      Max    Stdev      Var  SE Mean   I.Q.R.    Range Kurtosis Skewness 
+##   23.150   16.421  269.643    4.740   21.730   46.970   -1.443    0.304 
+## SW p-val 
+##    0.211</code></pre>
+<p>The results from applying the function eda() to the differences between speed1 and speed2 suggest it is not unreasonable to assume the serve speed differences between speed1 and speed2 follow a normal distribution. Now, proceed with the five-step procedure.</p>
+</div>
+<div id="step-1---hypotheses-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> <strong>Step 1 - Hypotheses</strong><a href="example-2-tennis-hypothesis-test.html#step-1---hypotheses-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hypotheses — To test the average difference (<em>speed1 - speed2</em>) in recorded speeds, the hypotheses are</p>
+<p><span class="math display">\[H_0 : \mu_D = 0 \quad \text{versus} \quad H_1 : \mu_D &gt; 0\]</span></p>
+<div class="webex-solution">
+<button>
+Notation
+</button>
+<p>We use <span class="math inline">\(\mu_D\)</span> here as this is paired data so every point from <em>speed2</em> can be subtracted from a matching point in <em>speed1</em>.</p>
+</div>
+</div>
+<div id="step-2---choosing-a-test-statistic-1" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> <strong>Step 2 - Choosing a Test Statistic</strong><a href="example-2-tennis-hypothesis-test.html#step-2---choosing-a-test-statistic-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The test statistic chosen is <span class="math inline">\(\bar{D}\)</span> because <span class="math inline">\(E[\bar{D}] = \mu_D\)</span></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="example-2-tennis-hypothesis-test.html#cb9-1" tabindex="-1"></a>dbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(Diff)</span>
+<span id="cb9-2"><a href="example-2-tennis-hypothesis-test.html#cb9-2" tabindex="-1"></a>dbar</span></code></pre></div>
+<pre><code>## [1] -1.329167</code></pre>
+<p>The value of this test statistic is <span class="math inline">\(\bar{d} = −1.3292\)</span>.</p>
+<p>We will determine the probability of obtaining this test statistic when the null hypothesis is true. We do this with standardisation and the probability is called the p-value.</p>
+<p>The standardized test statistic is calculated under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are <span class="math display">\[\frac{\bar{D}−\delta_0}{S_D/\sqrt{n_D}} \sim t_{12−1}\]</span></p>
+<p>This is what will be used to complete the test.</p>
+</div>
+<div id="step-3---hypothesis-test-calculations-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> <strong>Step 3 - Hypothesis Test Calculations</strong><a href="example-2-tennis-hypothesis-test.html#step-3---hypothesis-test-calculations-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="finding-your-rejection-region-1" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Finding your Rejection Region<a href="example-2-tennis-hypothesis-test.html#finding-your-rejection-region-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we analyse our data we must find the rejection region:</p>
+<p>Because the standardized test statistic is distributed <span class="math inline">\(t_11\)</span> and <span class="math inline">\(H_1\)</span> is a upper one-sided hypothesis, the rejection region is the <span class="math inline">\(t_{obs} &gt; t_{0.90; 11}\)</span></p>
+<p>From the statistical tables, or from R, the t-value that corresponds to our significance level (critical value) is <span class="math inline">\(t_{0.90; 11} = 1.3634\)</span>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-2-tennis-hypothesis-test.html#cb11-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(Diff)</span>
+<span id="cb11-2"><a href="example-2-tennis-hypothesis-test.html#cb11-2" tabindex="-1"></a>n</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-2-tennis-hypothesis-test.html#cb13-1" tabindex="-1"></a>RR <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.90</span>, n<span class="dv">-1</span>)</span>
+<span id="cb13-2"><a href="example-2-tennis-hypothesis-test.html#cb13-2" tabindex="-1"></a>RR</span></code></pre></div>
+<pre><code>## [1] 1.36343</code></pre>
+<p>This gives us the critical value and the significance level which make up the rejection region (what we will compare our result to).</p>
+</div>
+<div id="finding-your-standardised-test-statistic-and-p-value-1" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Finding your standardised test statistic and p-value<a href="example-2-tennis-hypothesis-test.html#finding-your-standardised-test-statistic-and-p-value-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The test we are running here is a one-sample t-test on the differences or a Paired t-test. In R this is:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-2-tennis-hypothesis-test.html#cb15-1" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Diff, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb15-2"><a href="example-2-tennis-hypothesis-test.html#cb15-2" tabindex="-1"></a>TR</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  Diff
+## t = -0.2804, df = 11, p-value = 0.6078
+## alternative hypothesis: true mean is greater than 0
+## 95 percent confidence interval:
+##  -9.842155       Inf
+## sample estimates:
+## mean of x 
+## -1.329167</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="example-2-tennis-hypothesis-test.html#cb17-1" tabindex="-1"></a><span class="co">#OR</span></span>
+<span id="cb17-2"><a href="example-2-tennis-hypothesis-test.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="example-2-tennis-hypothesis-test.html#cb17-3" tabindex="-1"></a><span class="fu">with</span>(<span class="at">data =</span> TENNIS, <span class="fu">t.test</span>(speed1, speed2, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  speed1 and speed2
+## t = -0.2804, df = 11, p-value = 0.6078
+## alternative hypothesis: true mean difference is greater than 0
+## 95 percent confidence interval:
+##  -9.842155       Inf
+## sample estimates:
+## mean difference 
+##       -1.329167</code></pre>
+<p>This gives our standardized test statistic <span class="math inline">\(t_{obs} = \frac{\bar{d}−\delta_0}{s_D/\sqrt{n_D}} = -0.2804\)</span> and the corresponding p-value <span class="math inline">\(\mathrm{P}(t_{11} \geq -0.2804) = 0.6078\)</span>.</p>
+<p>-0.2804 is less than 1.3634 and our p-value is therefore greater than <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+</div>
+</div>
+<div id="step-4---statistical-conclusion-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> <strong>Step 4 - Statistical Conclusion</strong><a href="example-2-tennis-hypothesis-test.html#step-4---statistical-conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To draw our conclusions we need to consider our rejection region.
+<em>Remember this is at the upper end of the t-distribtion for this one-sided test.</em></p>
+<p>Is our standardised test statistic inside the rejection region?
+Is our p-value smaller than 0.05?
+<em>Sketch the test and results on the distribution if it helps you</em></p>
+<p><strong>QUESTION</strong>: Do we reject our null hypothesis?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>I. From the rejection region, we fail to reject <span class="math inline">\(H_0\)</span> because the standardised test statistic is less than the critical value and hence in the rejection region i.e <span class="math inline">\(t_{obs} = -0.2804 &lt; 1.3634\)</span>.</p>
+<p>OR</p>
+<ol start="2" style="list-style-type: upper-roman">
+<li>From the p-value, we fail to reject <span class="math inline">\(H_0\)</span> because the p-value<span class="math inline">\(0.6078 &gt; 0.1\)</span>.</li>
+</ol>
+<p>Whichever method we use, we fail to reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</div>
+<div id="step-5---english-conclusion-1" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> <strong>Step 5 - English Conclusion</strong><a href="example-2-tennis-hypothesis-test.html#step-5---english-conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What does our statistical conclusion mean for the data and the purpose of the test?</p>
+<p>Is there statistical evidence to suggest the the mean difference between tennis ball speeds is greater than zero?</p>
+<p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
+<div id="radio_JXYYRLFSOX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JXYYRLFSOX" value=""></input> <span>There is not sufficient evidence to suggest there is a difference between the mean speeds.</span></label><label><input type="radio" autocomplete="off" name="radio_JXYYRLFSOX" value="answer"></input> <span>There is not sufficient evidence to suggest the mean difference between speeds is greater than zero.</span></label><label><input type="radio" autocomplete="off" name="radio_JXYYRLFSOX" value=""></input> <span>There is sufficient evidence to suggest the mean difference between speeds is greater than zero.</span></label><label><input type="radio" autocomplete="off" name="radio_JXYYRLFSOX" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the mean difference between speeds is greater than zero.</span></label>
+</div>
+
+<p>The Hubble Space Telescope was put into orbit on April 25, 1990. Unfortunately, on June 25, 1990, a spherical aberration was discovered in Hubble’s primary mirror. To correct this, astronauts had to work in space. To prepare for the mission, two teams of astronauts practiced making repairs under simulated space conditions. Each team of astronauts went through 15 identical scenarios. The times to complete each scenario were recorded in days. The data are stored in the data frame <em>HUBBLE</em> in thr <code>PASWR2</code> package.</p>
+<p>We will aim to answer the questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>Is one team better than the other?</p></li>
+<li><p>And if not, can both teams complete the mission in less than 3 days?</p></li>
+</ol>
+<p><em>Use a 5% significance level for all tests.</em></p>
+<p>1a). Should we undertake a Welch two-sample t-test or a Paired t-test for this data?</p>
+<div id="radio_AWOYQYBHYI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AWOYQYBHYI" value=""></input> <span>Welch two-sample t-test</span></label><label><input type="radio" autocomplete="off" name="radio_AWOYQYBHYI" value="answer"></input> <span>Paired t-test </span></label>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>Each team of astronauts went through 15 identical scenarios. Consequently, the repair times for the two teams are dependent. Start the analysis by verifying the normality assumption required to use a paired t-test.</p>
+</div>
+<p>1b) Does this data fit the required assumption of normality to perform a hypothesis test?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>1b) We can verify the normality assumption of the data using exploratory data analysis (<code>EDA()</code>).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="example-2-tennis-hypothesis-test.html#cb19-1" tabindex="-1"></a><span class="fu">library</span>(PASWR2)</span>
+<span id="cb19-2"><a href="example-2-tennis-hypothesis-test.html#cb19-2" tabindex="-1"></a>HUBBLE <span class="ot">&lt;-</span> HUBBLE</span>
+<span id="cb19-3"><a href="example-2-tennis-hypothesis-test.html#cb19-3" tabindex="-1"></a>Diff <span class="ot">&lt;-</span> HUBBLE<span class="sc">$</span>team1 <span class="sc">-</span> HUBBLE<span class="sc">$</span>team2</span>
+<span id="cb19-4"><a href="example-2-tennis-hypothesis-test.html#cb19-4" tabindex="-1"></a><span class="fu">eda</span>(Diff)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre><code>## Size (n)  Missing  Minimum   1st Qu     Mean   Median   TrMean   3rd Qu 
+##   15.000    0.000   -2.400   -0.850   -0.100   -0.400   -0.100    1.300 
+##      Max    Stdev      Var  SE Mean   I.Q.R.    Range Kurtosis Skewness 
+##    2.600    1.499    2.247    0.387    2.150    5.000   -1.193    0.198 
+## SW p-val 
+##    0.462</code></pre>
+<p>The results from applying the function eda() to the differences between team1 and team2 suggest it is not unreasonable to assume the repair time differences between team1 and team2 follow a normal distribution.</p>
+</div>
+<p>1c) Which set of hypotheses below is correct here?</p>
+<p>To test if the average difference in repair times for team1 and team2 are different, the correct null and alternative hypotheses are:</p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>2</option><option value='answer'>3</option><option value=''>4</option><option value=''>5</option></select></p>
+<p>$$ <span class="math display">\[\begin{align}
+1&amp;. \quad H_0 : \mu_{T_1} - \mu_{T_2} = 0 \quad \text{verses} \quad H_1 : \mu_{T_1} - \mu_{T_2} &lt; 0\\
+2&amp;. \quad H_0 : \mu_{T_1} - \mu_{T_2} = 0 \quad \text{verses} \quad H_1 : \mu_{T_1} - \mu_{T_2} &gt; 0\\
+3&amp;. \quad H_0 : \mu_{D}=0 \quad \text{verses} \quad H_1 : \mu_{D} \neq 0\\
+4&amp;. \quad H_0 : \mu_{D}=0 \quad \text{verses} \quad H_1 : \mu_{D} &gt; 0\\
+5&amp;. \quad H_0 : \mu_{D}=0 \quad \text{verses} \quad H_1 : \mu_{D} &lt; 0
+
+\end{align}\]</span>$$</p>
+<p>1c) What is the test statistic (before standardisation)?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>1c) The test statistic chosen is <span class="math inline">\(\bar{D}\)</span> because <span class="math inline">\(E[\bar{D}] = \mu_D\)</span>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="example-2-tennis-hypothesis-test.html#cb21-1" tabindex="-1"></a>dbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(Diff)</span>
+<span id="cb21-2"><a href="example-2-tennis-hypothesis-test.html#cb21-2" tabindex="-1"></a>dbar</span></code></pre></div>
+<pre><code>## [1] -0.1</code></pre>
+<p>The value of this test statistic is <span class="math inline">\(\bar{d} = -0.1\)</span></p>
+</div>
+<p>1d) Step 3 - Rejection Region</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Calculate the degrees of freedom,<span class="math inline">\(df\)</span>.</p></li>
+<li><p>Calculate the critical value for this test.</p></li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>1di) <span class="math inline">\(df = n-1 = 15-1\)</span> so the standardized test statistic is distributed <span class="math inline">\(t_{14}\)</span> and <span class="math inline">\(H_1\)</span> is a two-sided hypothesis, the rejection region is the <span class="math inline">\(|t_{obs}| &gt; t_{0.975; 14}\)</span></p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>1dii) From the statistical tables, the critical value (t-value that corresponds to our significance level), <span class="math inline">\(t_{0.975; 14} = 2.1448\)</span>.</p>
+<p>This can be found using R:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="example-2-tennis-hypothesis-test.html#cb23-1" tabindex="-1"></a>RR <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)</span>
+<span id="cb23-2"><a href="example-2-tennis-hypothesis-test.html#cb23-2" tabindex="-1"></a>RR</span></code></pre></div>
+<pre><code>## [1] 2.144787</code></pre>
+</div>
+<p>1e) The standardized test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are <span class="math inline">\(\frac{\bar{d}−\delta_0}{s_d/\sqrt{n_D}} \sim t_{df}\)</span>.</p>
+<p>Find the standardized test statistic and p-value using <code>t.test()</code>.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>1e) Our standardised test statistic = <span class="math inline">\(t_{obs}=\frac{\bar{d}−\delta_0}{s_d/\sqrt{n_D}}\)</span>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="example-2-tennis-hypothesis-test.html#cb25-1" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Diff)</span>
+<span id="cb25-2"><a href="example-2-tennis-hypothesis-test.html#cb25-2" tabindex="-1"></a>TR</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  Diff
+## t = -0.25836, df = 14, p-value = 0.7999
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.9301447  0.7301447
+## sample estimates:
+## mean of x 
+##      -0.1</code></pre>
+<p>This gives our standardised test statistic as -0.25836 and the p-value as 0.7999.
+This code provides the p-value fully adjusted for a two-tailed test.</p>
+</div>
+<p>1f) Step 4 - Statistical Conclusion</p>
+<p>Do we reject our null hypothesis?</p>
+<div id="radio_FIWNDDRVKK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FIWNDDRVKK" value=""></input> <span>From the rejection region, reject our null hypothesis because our observed t-value, 0.2584, is less than 2.1448.</span></label><label><input type="radio" autocomplete="off" name="radio_FIWNDDRVKK" value="answer"></input> <span>From the rejection region, fail to reject our null hypothesis because our observed t-value,0.2584, is less than 2.1448.</span></label>
+</div>
+<div id="radio_FJVAHWDQSK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FJVAHWDQSK" value=""></input> <span>From the p-value, we reject our null hyphotesis because the p-value 0.7999 is greater than 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_FJVAHWDQSK" value="answer"></input> <span>From the p-value, we fail to reject our null hyphotesis because the p-value 0.7999 is greater than 0.05</span></label>
+</div>
+<p>1g) Step 5 - English Conclusion</p>
+<p>Is there sufficient evidence to suggest one team is better than the other?</p>
+<div id="radio_DKTHUGLXQE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DKTHUGLXQE" value=""></input> <span>There is sufficient evidence to suggest the mean difference in repair times is not equal to zero. In other words, there is evidence to suggest one team is better than the other.</span></label><label><input type="radio" autocomplete="off" name="radio_DKTHUGLXQE" value=""></input> <span>There is sufficient evidence to suggest the mean difference in repair times is equal to zero. In other words, there is no evidence to suggest one team is better than the other.</span></label><label><input type="radio" autocomplete="off" name="radio_DKTHUGLXQE" value="answer"></input> <span>There is not sufficient evidence to suggest the mean difference in repair times is not equal to zero. In other words, there is no evidence to suggest one team is better than the other.</span></label><label><input type="radio" autocomplete="off" name="radio_DKTHUGLXQE" value=""></input> <span>There is not sufficient evidence to suggest the mean difference in repair times is equal to zero. In other words, there is evidence
+to suggest one team is better than the other.</span></label>
+</div>
+<p>2ai) Does team1 fit the normality assumptions required?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2ai) We can verify the normality assumption of the data for team1 using exploratory data analysis (<code>EDA()</code>).</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="example-2-tennis-hypothesis-test.html#cb27-1" tabindex="-1"></a><span class="fu">with</span>(<span class="at">data =</span> HUBBLE,<span class="fu">eda</span>(team1))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre><code>## Size (n)  Missing  Minimum   1st Qu     Mean   Median   TrMean   3rd Qu 
+##   15.000    0.000    1.000    1.500    2.220    2.400    2.220    2.850 
+##      Max    Stdev      Var  SE Mean   I.Q.R.    Range Kurtosis Skewness 
+##    3.600    0.800    0.640    0.207    1.350    2.600   -1.352   -0.052 
+## SW p-val 
+##    0.613</code></pre>
+<p>The results from applying the function eda() to the repair times for team1 suggest it is not unreasonable to assume the repair times for team1 follow a normal distribution. Now, proceed with the five-step procedure.</p>
+</div>
+<p>2aii) Which set of hypotheses below is correct here?</p>
+<p>To test if team1 repair time is less than 3 days, the hypotheses are:</p>
+<p>$$ <span class="math display">\[\begin{align}
+1&amp;. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu &gt; 3\\
+2&amp;. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu \neq 3\\
+3&amp;. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu &lt; 3\\
+
+\end{align}\]</span>$$</p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>2</option><option value='answer'>3</option></select></p>
+<p>2aiii) What is the test statistic (before standardisation)?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2aiii) The test statistic chosen is <span class="math inline">\(\bar{X}\)</span> because <span class="math inline">\(E[\bar{X}] = \mu\)</span>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="example-2-tennis-hypothesis-test.html#cb29-1" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(HUBBLE<span class="sc">$</span>team1)</span>
+<span id="cb29-2"><a href="example-2-tennis-hypothesis-test.html#cb29-2" tabindex="-1"></a>xbar</span></code></pre></div>
+<pre><code>## [1] 2.22</code></pre>
+<p>The value of this test statistic is <span class="math inline">\(\bar{x} = \frac{\sum^n_{i=1}x_i}{n}= 2.22\)</span></p>
+</div>
+<p>2aiv) Step 3 - Rejection Region</p>
+<p>Calculate the degrees of freedom,<span class="math inline">\(df\)</span> and the critical value for this test.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2aiv) <span class="math inline">\(df = n-1 = 15-1\)</span> so the standardized test statistic is distributed <span class="math inline">\(t_{14}\)</span> and <span class="math inline">\(H_1\)</span> is a lower one-sided hypothesis, the rejection region is the <span class="math inline">\(t_{obs} &gt; t_{0.05; 14}\)</span></p>
+<p>From the statistical tables, the critical value (t-value that corresponds to our significance level), <span class="math inline">\(t_{0.05; 14} = -1.7613\)</span>.</p>
+<p>This can be found using R:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="example-2-tennis-hypothesis-test.html#cb31-1" tabindex="-1"></a>RR <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df =</span> <span class="dv">14</span>)</span>
+<span id="cb31-2"><a href="example-2-tennis-hypothesis-test.html#cb31-2" tabindex="-1"></a>RR</span></code></pre></div>
+<pre><code>## [1] -1.76131</code></pre>
+</div>
+<p>2av) The standardized test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are <span class="math inline">\(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{df}\)</span>.</p>
+<p>Find the standardized test statistic and p-value using <code>t.test()</code>.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2av) Our standardised test statistic = <span class="math inline">\(t_{obs}=\frac{\bar{x}−\mu_0}{s/\sqrt{n}}\)</span>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="example-2-tennis-hypothesis-test.html#cb33-1" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="at">data =</span> HUBBLE, <span class="fu">t.test</span>(team1, <span class="at">mu =</span> <span class="dv">3</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>))</span>
+<span id="cb33-2"><a href="example-2-tennis-hypothesis-test.html#cb33-2" tabindex="-1"></a>TR</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  team1
+## t = -3.7753, df = 14, p-value = 0.001024
+## alternative hypothesis: true mean is less than 3
+## 95 percent confidence interval:
+##      -Inf 2.583896
+## sample estimates:
+## mean of x 
+##      2.22</code></pre>
+<p>This gives our standardised test statistic as -3.7757 and the p-value <span class="math inline">\(\mathrm{P}(t_{14} \leq -3.7753)\)</span> = 0.001024.</p>
+</div>
+<p>2avi) Step 4 - Statistical Conclusion</p>
+<p>Do we reject our null hypothesis?</p>
+<div id="radio_ZLHHZMAOWN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZLHHZMAOWN" value="answer"></input> <span>From the rejection region, we reject the null hypothesis because the observed t-value −3.7753 is less than -1.7613.</span></label><label><input type="radio" autocomplete="off" name="radio_ZLHHZMAOWN" value=""></input> <span>From the rejection region, we fail to reject the null hypothesis because the observed t-value −3.7753 is less than -1.7613.</span></label>
+</div>
+<div id="radio_AQBVSGUCGF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AQBVSGUCGF" value="answer"></input> <span>From the p-value, we reject our null hyphotesis because the p-value 0.0010 is less than 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_AQBVSGUCGF" value=""></input> <span>From the p-value, we fail to reject our null hyphotesis because the p-value 0.0010 is less than 0.05</span></label>
+</div>
+<p>2avii) Step 5 - English Conclusion</p>
+<p>Is there sufficient evidence that the team1 average mission repair time in less than 3 days?</p>
+<div id="radio_BQWUGKZHPS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BQWUGKZHPS" value=""></input> <span>There is sufficient evidence to suggest that the team1 average mission repair time is 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_BQWUGKZHPS" value=""></input> <span>There is not enough evidence to suggest that the team1 average mission repair time is less than 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_BQWUGKZHPS" value="answer"></input> <span>There is sufficient evidence to suggest that the team1 average mission repair time is less than 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_BQWUGKZHPS" value=""></input> <span>There is not enough evidence to suggest that the team1 average mission repair time is 3 days.</span></label>
+</div>
+<p>Now for team2:</p>
+<p>2bi) Does team2 fit the normality assumptions required?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2bi) We can verify the normality assumption of the data for team2 using exploratory data analysis (<code>EDA()</code>).</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="example-2-tennis-hypothesis-test.html#cb35-1" tabindex="-1"></a><span class="fu">with</span>(<span class="at">data =</span> HUBBLE,<span class="fu">eda</span>(team2))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<pre><code>## Size (n)  Missing  Minimum   1st Qu     Mean   Median   TrMean   3rd Qu 
+##   15.000    0.000    0.400    1.650    2.320    2.600    2.320    2.950 
+##      Max    Stdev      Var  SE Mean   I.Q.R.    Range Kurtosis Skewness 
+##    3.800    0.981    0.963    0.253    1.300    3.400   -1.074   -0.350 
+## SW p-val 
+##    0.848</code></pre>
+<p>The results from applying the function eda() to the repair times for team2 suggest it is not unreasonable to assume the repair times for team2 follow a normal distribution. Now, proceed with the five-step procedure.</p>
+</div>
+<p>2bii) Which set of hypotheses below is correct here?</p>
+<p>To test if team2 repair time is less than 3 days, the hypotheses are:</p>
+<p>$$ <span class="math display">\[\begin{align}
+1&amp;. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu &gt; 3\\
+2&amp;. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu \neq 3\\
+3&amp;. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu &lt; 3\\
+
+\end{align}\]</span>$$</p>
+<p><select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>2</option><option value='answer'>3</option></select></p>
+<p>2biii) What is the test statistic (before standardisation)?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2biii) The test statistic chosen is <span class="math inline">\(\bar{X}\)</span> because <span class="math inline">\(E[\bar{X}] = \mu\)</span>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="example-2-tennis-hypothesis-test.html#cb37-1" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(HUBBLE<span class="sc">$</span>team2)</span>
+<span id="cb37-2"><a href="example-2-tennis-hypothesis-test.html#cb37-2" tabindex="-1"></a>xbar</span></code></pre></div>
+<pre><code>## [1] 2.32</code></pre>
+<p>The value of this test statistic is <span class="math inline">\(\bar{x} = \frac{\sum^n_{i=1}x_i}{n}= 2.32\)</span></p>
+</div>
+<p>2biv) Step 3 - Rejection Region</p>
+<p>Calculate the degrees of freedom,<span class="math inline">\(df\)</span> and the critical value for this test.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2biv) <span class="math inline">\(df = n-1 = 15-1\)</span> so the standardized test statistic is distributed <span class="math inline">\(t_{14}\)</span> and <span class="math inline">\(H_1\)</span> is a lower one-sided hypothesis, the rejection region is the <span class="math inline">\(t_{obs} &gt; t_{0.05; 14}\)</span></p>
+<p>From the statistical tables, the critical value (t-value that corresponds to our significance level), <span class="math inline">\(t_{0.05; 14} = -1.7613\)</span>.</p>
+<p>This can be found using R:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="example-2-tennis-hypothesis-test.html#cb39-1" tabindex="-1"></a>RR <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df =</span> <span class="dv">14</span>)</span>
+<span id="cb39-2"><a href="example-2-tennis-hypothesis-test.html#cb39-2" tabindex="-1"></a>RR</span></code></pre></div>
+<pre><code>## [1] -1.76131</code></pre>
+</div>
+<p>2bv) The standardized test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are <span class="math inline">\(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{df}\)</span>.</p>
+<p>Find the standardized test statistic and p-value using <code>t.test()</code>.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>2bv) Our standardised test statistic = <span class="math inline">\(t_{obs}=\frac{\bar{x}−\mu_0}{s/\sqrt{n}}\)</span>.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="example-2-tennis-hypothesis-test.html#cb41-1" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="at">data =</span> HUBBLE, <span class="fu">t.test</span>(team2, <span class="at">mu =</span> <span class="dv">3</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>))</span>
+<span id="cb41-2"><a href="example-2-tennis-hypothesis-test.html#cb41-2" tabindex="-1"></a>TR</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  team2
+## t = -2.6835, df = 14, p-value = 0.008911
+## alternative hypothesis: true mean is less than 3
+## 95 percent confidence interval:
+##      -Inf 2.766309
+## sample estimates:
+## mean of x 
+##      2.32</code></pre>
+<p>This gives our standardised test statistic as -2.6835 and the p-value <span class="math inline">\(\mathrm{P}(t_{14} \leq -2.6835)\)</span> = 0.008911.</p>
+</div>
+<p>2bvi) Step 4 - Statistical Conclusion</p>
+<p>Do we reject our null hypothesis?</p>
+<div id="radio_VROHRAMYAW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VROHRAMYAW" value="answer"></input> <span>From the rejection region, we reject the null hypothesis because the observed t-value -2.6835 is less than -1.7613.</span></label><label><input type="radio" autocomplete="off" name="radio_VROHRAMYAW" value=""></input> <span>From the rejection region, we fail to reject the null hypothesis because the observed t-value -2.6835 is less than -1.7613.</span></label>
+</div>
+<div id="radio_GYHFKVZMSQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GYHFKVZMSQ" value="answer"></input> <span>From the p-value, we reject our null hyphotesis because the p-value 0.0089 is less than 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_GYHFKVZMSQ" value=""></input> <span>From the p-value, we fail to reject our null hyphotesis because the p-value 0.0089 is less than 0.05</span></label>
+</div>
+<p>2avii) Step 5 - English Conclusion</p>
+<p>Is there sufficient evidence that the team1 average mission repair time in less than 3 days?</p>
+<div id="radio_PDZGHGZDVY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PDZGHGZDVY" value=""></input> <span>There is sufficient evidence to suggest that the team2 average mission repair time is 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_PDZGHGZDVY" value=""></input> <span>There is not enough evidence to suggest that the team2 average mission repair time is less than 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_PDZGHGZDVY" value="answer"></input> <span>There is sufficient evidence to suggest that the team2 average mission repair time is less than 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_PDZGHGZDVY" value=""></input> <span>There is not enough evidence to suggest that the team2 average mission repair time is 3 days.</span></label>
+</div>
+<p>This means that for Team 1 and Team 2:</p>
+<div id="radio_BCKROGEHXS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BCKROGEHXS" value=""></input> <span>There is sufficient evidence to suggest that neither Team 1 or Team 2 complete their average mission repair time in less than 3 days.</span></label><label><input type="radio" autocomplete="off" name="radio_BCKROGEHXS" value=""></input> <span>There is sufficient evidence to suggest that Team 1 can complete their average mission repair time in less than 3 days while Team 2 cannot.</span></label><label><input type="radio" autocomplete="off" name="radio_BCKROGEHXS" value=""></input> <span>There is sufficient evidence to suggest that Team 2 can complete their average mission repair time in less than 3 days while Team 1 cannot.</span></label><label><input type="radio" autocomplete="off" name="radio_BCKROGEHXS" value="answer"></input> <span>There is sufficient evidence to suggest that both Team 1 and Team 2 can complete their average mission repair time in less than 3 days.</span></label>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="example-1---refrigerator-hypothesis-test.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

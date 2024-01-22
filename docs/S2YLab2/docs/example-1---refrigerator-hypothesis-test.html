@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Example 1 - Refrigerator Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means</title>
+  <meta name="description" content="2 Example 1 - Refrigerator Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Example 1 - Refrigerator Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Example 1 - Refrigerator Hypothesis Test | Lab 2 - Hypothesis Testing For the Difference in Means" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="example-2-tennis-hypothesis-test.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 2</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-used-today"><i class="fa fa-check"></i><b>1.1</b> A Summary of the Type of the Hypothesis Test Used Today</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.2</b> Credit where credit is due</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Refrigerator Hypothesis Test</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>2.1</b> <strong>Verifying normality</strong></a></li>
+<li class="chapter" data-level="2.2" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-1---hypotheses"><i class="fa fa-check"></i><b>2.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="2.3" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-2---choosing-a-test-statistic"><i class="fa fa-check"></i><b>2.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="2.4" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-3---hypothesis-test-calculations"><i class="fa fa-check"></i><b>2.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#finding-your-rejection-region"><i class="fa fa-check"></i><b>2.4.1</b> Finding your Rejection Region</a></li>
+<li class="chapter" data-level="2.4.2" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#finding-your-standardised-test-statistic-and-p-value"><i class="fa fa-check"></i><b>2.4.2</b> Finding your standardised test statistic and p-value</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-4---statistical-conclusion"><i class="fa fa-check"></i><b>2.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="2.6" data-path="example-1---refrigerator-hypothesis-test.html"><a href="example-1---refrigerator-hypothesis-test.html#step-5---english-conclusion"><i class="fa fa-check"></i><b>2.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html"><i class="fa fa-check"></i><b>3</b> Example 2: Tennis Hypothesis Test</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#verifying-normality-1"><i class="fa fa-check"></i><b>3.1</b> <strong>Verifying normality</strong></a></li>
+<li class="chapter" data-level="3.2" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-1---hypotheses-1"><i class="fa fa-check"></i><b>3.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="3.3" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-2---choosing-a-test-statistic-1"><i class="fa fa-check"></i><b>3.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="3.4" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-3---hypothesis-test-calculations-1"><i class="fa fa-check"></i><b>3.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#finding-your-rejection-region-1"><i class="fa fa-check"></i><b>3.4.1</b> Finding your Rejection Region</a></li>
+<li class="chapter" data-level="3.4.2" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#finding-your-standardised-test-statistic-and-p-value-1"><i class="fa fa-check"></i><b>3.4.2</b> Finding your standardised test statistic and p-value</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-4---statistical-conclusion-1"><i class="fa fa-check"></i><b>3.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="3.6" data-path="example-2-tennis-hypothesis-test.html"><a href="example-2-tennis-hypothesis-test.html#step-5---english-conclusion-1"><i class="fa fa-check"></i><b>3.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercise-1-hubble-telescope-hypothesis-test.html"><a href="exercise-1-hubble-telescope-hypothesis-test.html"><i class="fa fa-check"></i><b>4</b> Exercise 1: Hubble Telescope Hypothesis Test</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 2 - Hypothesis Testing For the Difference in Means</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-1---refrigerator-hypothesis-test" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Example 1 - Refrigerator Hypothesis Test<a href="example-1---refrigerator-hypothesis-test.html#example-1---refrigerator-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The research and development department of an appliance company suspects the energy consumption required of their 18-cubic-foot refrigerator can be reduced by a slight modification to the current motor.</p>
+<p>Sixty 18-cubic-foot refrigerators were randomly selected from the company’s warehouse. The first 30 had their motors modified while the last 30 were left intact. The energy consumption (kilowatts) for a 24-hour period for each refrigerator was recorded and stored in the data frame <em>REFRIGERATOR</em> from the <code>PASWR2</code> package.</p>
+<p>Is there evidence that the design modification reduces the refrigerators’ average energy consumption?</p>
+<div class="webex-solution">
+<button>
+Reminder of how to access data
+</button>
+<p>Install or libraray() the package and then save the data to your environment. E.g:
+<code>library(PASWR2)</code>
+<code>REFRIGERATOR &lt;- REFRIGERATOR</code></p>
+</div>
+<div id="verifying-normality" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> <strong>Verifying normality</strong><a href="example-1---refrigerator-hypothesis-test.html#verifying-normality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To solve this problem, start by verifying the reasonableness of the normality assumption. We can do this with <code>ggplot()</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="example-1---refrigerator-hypothesis-test.html#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> REFRIGERATOR, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> kilowatts, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="example-1---refrigerator-hypothesis-test.html#cb1-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1-3"><a href="example-1---refrigerator-hypothesis-test.html#cb1-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="example-1---refrigerator-hypothesis-test.html#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> REFRIGERATOR, <span class="fu">aes</span>(<span class="at">sample =</span> kilowatts, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="example-1---refrigerator-hypothesis-test.html#cb2-2" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a href="example-1---refrigerator-hypothesis-test.html#cb2-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-6-2.png" width="672" />
+The side-by-side boxplots and normal quantile-quantile plots suggest it is reasonable to assume the energy consumption for both models follows a normal distribution. Now, proceed with the five-step procedure.</p>
+</div>
+<div id="step-1---hypotheses" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> <strong>Step 1 - Hypotheses</strong><a href="example-1---refrigerator-hypothesis-test.html#step-1---hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hypotheses — Since the problem wants to test to see if the mean energy consumption for modified refrigerators is less than the mean energy consumption for original refrigerators, use a lower one-sided alternative hypothesis.</p>
+<p><span class="math display">\[H_0 : \mu_{modified} - \mu_{original} = 0 \quad \text{versus} \quad H_1 : \mu_{modified} - \mu_{original} &lt; 0\]</span></p>
+<div class="webex-solution">
+<button>
+Learn More
+</button>
+<p>This is a one-tail test as as we want to know if the difference between the means is less than 0 rather looking to observe any difference which would give a two-tail hypotheses <span class="math inline">\(H_0 : \mu_{modified} - \mu_{original} = 0\)</span> versus <span class="math inline">\(H_1 : \mu_{modified} - \mu_{original} \neq 0\)</span>.</p>
+</div>
+</div>
+<div id="step-2---choosing-a-test-statistic" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> <strong>Step 2 - Choosing a Test Statistic</strong><a href="example-1---refrigerator-hypothesis-test.html#step-2---choosing-a-test-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The test statistic chosen is <span class="math inline">\(\bar{X}−\bar{Y}\)</span> because <span class="math inline">\(E[\bar{X}−\bar{Y}] = \mu_X − \mu_Y\)</span>.</p>
+<div class="webex-solution">
+<button>
+Learn More
+</button>
+<p>We have this as our test statistic because we want to evaluate the expected difference between the means.</p>
+<p>We will determine the probability of obtaining that test statistic when the null hypothesis is true. We do this with standardisation and the probability is called the p-value which we will find soon.</p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="example-1---refrigerator-hypothesis-test.html#cb3-1" tabindex="-1"></a>Means <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="at">data =</span> REFRIGERATOR, <span class="fu">tapply</span>(kilowatts, group, mean))</span>
+<span id="cb3-2"><a href="example-1---refrigerator-hypothesis-test.html#cb3-2" tabindex="-1"></a>Means</span></code></pre></div>
+<pre><code>## modified original 
+## 1.535800 1.760067</code></pre>
+<p>The value of this test statistic is <span class="math inline">\(1.5358 − 1.7601 = −0.2243\)</span>. The standardized test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its approximate distribution are:</p>
+<p><span class="math display">\[ \frac{\left[ (\bar{X}-\bar{Y}) - \delta_0 \right]}{\sqrt{\left( \frac{S^2_X}{n_X}+\frac{S^2_Y}{n_Y} \right)} }\quad \dot{\sim} \quad t_v
+\]</span>
+This is what will be used to complete the test.</p>
+</div>
+<div id="step-3---hypothesis-test-calculations" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> <strong>Step 3 - Hypothesis Test Calculations</strong><a href="example-1---refrigerator-hypothesis-test.html#step-3---hypothesis-test-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="finding-your-rejection-region" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Finding your Rejection Region<a href="example-1---refrigerator-hypothesis-test.html#finding-your-rejection-region" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The degrees of freedom for this test are:</p>
+<p><span class="math display">\[ v = \frac{\left( \frac{s^2_X}{n_X} + \frac{s^2_Y}{n_Y} \right)^2}{\frac{s^2_X/n_X}{n_X-1} + \frac{s^2_Y/n_Y}{n_Y-1}} = 54.7888
+\]</span></p>
+<p>Because the standardized test statistic is distributed <span class="math inline">\(t_v\)</span> and <span class="math inline">\(H_1\)</span> is a lower one-sided hypothesis, the rejection region is the <span class="math inline">\(t_{obs} &lt; t_{0.05; 54.7888}\)</span></p>
+<p>From the statistical tables, the t-value that corresponds to our significance level (critical value) is <span class="math inline">\(t_{0.05; 54.7888} = -1.6731\)</span>. Remember this is negative because we are discussing the lower tail of the t-distribution.</p>
+<p>Remember this same t-value can be found using the R function <code>qt(0.05, 54.7888)</code></p>
+<p>This gives us the critical value and the significance level which make up the rejection region (what we will compare our result to).
+Remember sketching or graphing this might help.</p>
+<div class="webex-solution">
+<button>
+Rejection Regions
+</button>
+<p>The rejection region is the area in which we would reject our null hypothesis.
+The critical value is the t value that corresponds to p = 0.05, and hence is the top limit of our rejection region.</p>
+<p>The probability of observing our test statistic (our sample mean) under the null hypothesis is the p-value.</p>
+<p>To reject a null-hypothesis in this case we need our standardisd test statistic to be less than our critical value and hence our p-value &lt; 0.05</p>
+</div>
+</div>
+<div id="finding-your-standardised-test-statistic-and-p-value" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Finding your standardised test statistic and p-value<a href="example-1---refrigerator-hypothesis-test.html#finding-your-standardised-test-statistic-and-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our standardised test statistic = <span class="math inline">\(\frac{\bar{x}−\bar{y}-\delta_0}{\sqrt{\frac{s^2_X}{n_X}+\frac{s^2_Y}{n_Y} }} = -2.5128\)</span>.</p>
+<p>We should use r to find the corresponding p-value.</p>
+<p>The test we are actually running here is a Welch Two-Sample t-test as we are comparing two samples without assuming they have equal variances. In R this is automatically chosen within the t.test() function:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="example-1---refrigerator-hypothesis-test.html#cb5-1" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="fu">t.test</span>(kilowatts <span class="sc">~</span> group, <span class="at">data =</span> REFRIGERATOR, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb5-2"><a href="example-1---refrigerator-hypothesis-test.html#cb5-2" tabindex="-1"></a>TR</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  kilowatts by group
+## t = -2.5128, df = 54.789, p-value = 0.007475
+## alternative hypothesis: true difference in means between group modified and group original is less than 0
+## 95 percent confidence interval:
+##         -Inf -0.07494116
+## sample estimates:
+## mean in group modified mean in group original 
+##               1.535800               1.760067</code></pre>
+<p>This gives again t = -2.5128 and the p-value as 0.0075.</p>
+<div class="webex-solution">
+<button>
+Learn More
+</button>
+<p>Last week we saw this graphically.You may want to revisit if you need help making a visual comparison between this (our data) and the rejection region we found above.</p>
+</div>
+<p>-2.5128 is less than -1.6731 and our p-value <span class="math inline">\(\mathrm{P}(t_{54.7888} \leq -2.5128) = 0.0075\)</span> is therefore less than <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+</div>
+</div>
+<div id="step-4---statistical-conclusion" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> <strong>Step 4 - Statistical Conclusion</strong><a href="example-1---refrigerator-hypothesis-test.html#step-4---statistical-conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To draw our conclusions we need to consider our rejection region.
+<em>Remember this is at the lower end of the t-distribtion for this one-sided test.</em></p>
+<p>Is our standardised test statistic inside the rejection region?
+Is our p-value smaller than 0.05?</p>
+<p><strong>QUESTION</strong>: Do we reject our null hypothesis?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>I. From the rejection region, we reject <span class="math inline">\(H_0\)</span> because the standardised test statistic is less than the critical value and hence in the rejection region i.e <span class="math inline">\(t_{obs} = -2.5128 &lt; -1.6731\)</span>.</p>
+<p>OR</p>
+<ol start="2" style="list-style-type: upper-roman">
+<li>From the p-value, we reject <span class="math inline">\(H_0\)</span> because the p-value<span class="math inline">\(0.0075 &lt; 0.05\)</span>.</li>
+</ol>
+<p>Whichever method we use, we reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</div>
+<div id="step-5---english-conclusion" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> <strong>Step 5 - English Conclusion</strong><a href="example-1---refrigerator-hypothesis-test.html#step-5---english-conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What does our statistical conclusion mean for the data and the purpose of the test?</p>
+<p>Is there statistical evidence to suggest the mean for modified refrigerators is less than of original refrigerators?</p>
+<p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
+<div id="radio_CXJYQRDQWF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CXJYQRDQWF" value=""></input> <span>There is not enough evidence to suggest the average energy consumption for modified refrigerators is less than the average energy consumption for unmodified (original) refrigerators.</span></label><label><input type="radio" autocomplete="off" name="radio_CXJYQRDQWF" value=""></input> <span>There is evidence to suggest the average energy consumption for modified refrigerators is greater than the average energy consumption for unmodified (original) refrigerators.</span></label><label><input type="radio" autocomplete="off" name="radio_CXJYQRDQWF" value="answer"></input> <span>There is evidence to suggest the average energy consumption for modified refrigerators is less than the average energy consumption for unmodified (original) refrigerators.</span></label><label><input type="radio" autocomplete="off" name="radio_CXJYQRDQWF" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the average energy consumption for modified refrigerators is less than the average energy consumption for unmodified (original) refrigerators.</span></label>
+</div>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="example-2-tennis-hypothesis-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
