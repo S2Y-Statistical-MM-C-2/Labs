@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # Example 2: Tennis Hypothesis Test
 The Yonalasee tennis club has two systems to measure the speed of a tennis ball. The local tennis pros suspects one system (speed1) consistently records faster speeds. To test her suspicions, she sets up both systems and records the speeds of 12 serves (three serves from each side of the court). The values can be found saved as *TENNIS* from the `PASWR2` package with the variables *speed1* and *speed2*. The recorded speeds are in kilometers per hour. 
 
-Does the evidence support the tennis pro’s suspicion? Use \(\alpha = 0.10\).
+**Question of interest**: Does the evidence support the tennis pro’s suspicion? Use \(\alpha = 0.10\).
 
 `r hide("Reminder of how to access data")` 
 Save the data that is built into R, to your environment. E.g:
@@ -15,7 +15,7 @@ Save the data that is built into R, to your environment. E.g:
 
 ## **Verifying normality**
 
-Note before we start that each system records the same 12 serves. Consequently, the serve times recorded by each system are dependent. Start the analysis by verifying the normality assumption required to use a paired t-test.
+Note that each system records the same 12 serves. Consequently, the serve times recorded by each system are dependent. Start the analysis by verifying the normality assumption required to use a paired $t$-test.
 
 As this is paired data, we could do this using exploratory data analysis (`EDA()`).
 
@@ -41,7 +41,7 @@ We use \(\mu_D\) here as this is paired data so every point from *speed2* can be
 
 ## **Step 2 - Choosing a Test Statistic**
 
-The test statistic chosen is \(\bar{D}\) because \(E[\bar{D}] = \mu_D\)
+The test statistic chosen is \(\bar{D}\) because \(E[\bar{D}] = \mu_D\).
 
 
 ```{r, eval=TRUE, echo=TRUE} 
@@ -51,10 +51,7 @@ dbar
 
 The value of this test statistic is \(\bar{d} = −1.3292\). 
 
-We will determine the probability of obtaining this test statistic when the null hypothesis is true. We do this with standardisation and the probability is called the p-value.
-
-
-The standardized test statistic is calculated under the assumption that \(H_0\) is true and its distribution are $$\frac{\bar{D}−\delta_0}{S_D/\sqrt{n_D}} \sim t_{12−1}$$
+The standardised test statistic is calculated under the assumption that \(H_0\) is true and its distribution is $$\frac{\bar{D}−\delta_0}{S_D/\sqrt{n_D}} \sim t_{12−1}$$
 
 
 This is what will be used to complete the test.
@@ -67,9 +64,9 @@ This is what will be used to complete the test.
 
 Before we analyse our data we must find the rejection region:
 
-Because the standardized test statistic is distributed \(t_{11}\) and \(H_1\) is a upper one-sided hypothesis, the rejection region is the \(t_{obs} > t_{0.90; 11}\)
+Because the standardised test statistic is distributed \(t_{11}\) and \(H_1\) is a upper one-sided hypothesis, the rejection region is the \(t_{obs} > t_{0.90; 11}\)
 
-From the statistical tables, or from R, the t-value that corresponds to our significance level (critical value) is \( t_{0.90; 11} = 1.3634\).
+From the statistical tables, or from R, the $t$-value that corresponds to our significance level (critical value) is \( t_{0.90; 11} = 1.3634\).
 
 ```{r, eval=TRUE, echo=TRUE}
 
@@ -79,25 +76,22 @@ RR <- qt(0.90, n-1)
 RR
 ```
 
-This gives us the critical value and the significance level which make up the rejection region (what we will compare our result to).
+This gives us the critical value which makes up the rejection region (what we will compare our result to).
 
 
-### Finding your standardised test statistic and p-value
+### Finding your standardised test statistic and $p$-value
 
-The test we are running here is a one-sample t-test on the differences or a Paired t-test. In R this is:
+The test we are running here is a paired $t$-test, which can be seen as a one-sample $t$-test on the differences. In R this is:
 
 ``` {r, eval=TRUE, echo=TRUE}
-TR <- t.test(Diff, alternative = "greater")
-TR
+with(data = TENNIS, t.test(speed1, speed2, paired = TRUE, alternative = "greater"))
 
 #OR
 
-with(data = TENNIS, t.test(speed1, speed2, paired = TRUE, alternative = "greater"))
+t.test(Diff, alternative = "greater")
 ```
 
-This gives our standardized test statistic \(t_{obs} = \frac{\bar{d}−\delta_0}{s_D/\sqrt{n_D}} = -0.2804\) and the corresponding p-value \(\mathrm{P}(t_{11} \geq -0.2804) = 0.6078\).
-
--0.2804 is less than 1.3634 and our p-value is therefore greater than \(\alpha = 0.10\).
+This gives our standardised test statistic \(t_{obs} = \frac{\bar{d}−\delta_0}{s_D/\sqrt{n_D}} = -0.2804\) and the corresponding $p$-value \(\mathrm{P}(t_{11} \geq -0.2804) = 0.6078\).
 
 
 ## **Step 4 - Statistical Conclusion**
@@ -106,19 +100,19 @@ To draw our conclusions we need to consider our rejection region.
 *Remember this is at the upper end of the t-distribtion for this one-sided test.*
 
 Is our standardised test statistic inside the rejection region? 
-Is our p-value smaller than 0.05?
-*Sketch the test and results on the distribution if it helps you*
+Is our $p$-value smaller than 0.05?
+*Sketch the test and results on the distribution if it helps you.*
 
 
 **QUESTION**: Do we reject our null hypothesis?
 
 `r hide()`
 
-I. From the rejection region, we fail to reject \(H_0\) because the standardised test statistic is less than the critical value and hence in the rejection region i.e \(t_{obs} = -0.2804 < 1.3634\).
+I. From the rejection region, we fail to reject \(H_0\) because the standardised test statistic is less than the critical value and hence in the rejection region i.e. \(t_{obs} = -0.2804 < 1.3634\).
 
 OR
 
-II. From the p-value, we fail to reject \(H_0\) because the p-value\( 0.6078 > 0.1\).
+II. From the $p$-value, we fail to reject \(H_0\) because the $p$-value \( 0.6078 > 0.1\).
 
 
 Whichever method we use, we fail to reject \(H_0\).
@@ -127,7 +121,7 @@ Whichever method we use, we fail to reject \(H_0\).
 
 ## **Step 5 - English Conclusion**
 
-What does our statistical conclusion mean for the data and the purpose of the test? 
+What does the previous statistical conclusion mean for the data and the purpose of the test? 
 
 Is there statistical evidence to suggest the the mean difference between tennis ball speeds is greater than zero?
 

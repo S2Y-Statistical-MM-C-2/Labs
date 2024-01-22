@@ -1,5 +1,5 @@
 ---
-title: "Lab 2 - Hypothesis Testing For the Difference in Means"
+title: "Lab 2 - Hypothesis Testing for the Difference in Means"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -36,19 +36,12 @@ knitr::write_bib(c(
 
 Intended Learning Outcomes:
 
-1. Complete a two-sample t-test for the difference in the means assuming unequal variances in R with a step-by-step guide.
-2. Complete a paired t-test for the difference in the means in R with a step-by-step guide.
-3. Complete a paired hypothesis test for the difference in the means in R by yourself.
+1. Conduct a Welch test for the difference in the means in `R` with a step-by-step guide.
+2. Conduct a paired $t$-test for the difference in the means in R with a step-by-step guide.
+3. Conduct a paired $t$-test test for the difference in the means with the built-in function.
 
-## A Summary of the Type of the Hypothesis Test Used Today 
+## A Summary of the type of the hypothesis test used today 
 
 ![](Images/welch.png)
 ![](Images/paired.png)
 
-## Credit where credit is due
-
-The labs in S2 incorporate and adapt materials from:
-
-Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
-
-The materials were converted into interactive labs on Hypothesis Testing using `Bookdown` and `webexercises` in Summer 2023 by summer project student, Megan Ruffle.

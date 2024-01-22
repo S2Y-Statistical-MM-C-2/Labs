@@ -9,12 +9,14 @@ The research and development department of an appliance company suspects the ene
 
 Sixty 18-cubic-foot refrigerators were randomly selected from the company’s warehouse. The first 30 had their motors modified while the last 30 were left intact. The energy consumption (kilowatts) for a 24-hour period for each refrigerator was recorded and stored in the data frame *REFRIGERATOR* from the `PASWR2` package. 
 
-Is there evidence that the design modification reduces the refrigerators’ average energy consumption?
+**Question of interest**: Is there evidence that the design modification reduces the refrigerators’ average energy consumption?
 
 `r hide("Reminder of how to access data")` 
-Install or libraray() the package and then save the data to your environment. E.g:
-`library(PASWR2)` 
-`REFRIGERATOR <- REFRIGERATOR`
+Install or load the package and then save the data to your environment. E.g:
+```{r echo=TRUE, eval=FALSE}
+library(PASWR2)
+REFRIGERATOR <- REFRIGERATOR
+```
 `r unhide()`
 
 
@@ -27,9 +29,11 @@ ggplot(data = REFRIGERATOR, aes(x = group, y = kilowatts, fill = group)) +
   geom_boxplot() +
   theme_bw()
 ggplot(data = REFRIGERATOR, aes(sample = kilowatts, color = group)) +
+  ggtitle("Normal Q-Q Plot") +
   stat_qq() +
   theme_bw()
 ```
+
 The side-by-side boxplots and normal quantile-quantile plots suggest it is reasonable to assume the energy consumption for both models follows a normal distribution. Now, proceed with the five-step procedure.
 
 
@@ -52,7 +56,7 @@ The test statistic chosen is \(\bar{X}−\bar{Y}\) because \(E[\bar{X}−\bar{Y}
 `r hide("Learn More")` 
 We have this as our test statistic because we want to evaluate the expected difference between the means.
 
-We will determine the probability of obtaining that test statistic when the null hypothesis is true. We do this with standardisation and the probability is called the p-value which we will find soon.
+We will determine the probability of obtaining that test statistic when the null hypothesis is true. We do this with standardisation and the probability is called the $p$-value which we will find soon.
 `r unhide()`
 
 ```{r, eval=TRUE, echo=TRUE} 
@@ -60,10 +64,10 @@ Means <- with(data = REFRIGERATOR, tapply(kilowatts, group, mean))
 Means
 ```
 
-The value of this test statistic is \(1.5358 − 1.7601 = −0.2243\). The standardized test statistic under the assumption that \(H_0\) is true and its approximate distribution are:
+The value of this test statistic is \(1.5358 − 1.7601 = −0.2243\). The standardised test statistic under the assumption that \(H_0\) is true and its approximate distribution are:
 
 
-$$ \frac{\left[ (\bar{X}-\bar{Y}) - \delta_0 \right]}{\sqrt{\left( \frac{S^2_X}{n_X}+\frac{S^2_Y}{n_Y} \right)} }\quad \dot{\sim} \quad t_v
+$$ \frac{\left[ (\bar{X}-\bar{Y}) - \delta_0 \right]}{\sqrt{\left( \frac{S^2_X}{n_X}+\frac{S^2_Y}{n_Y} \right)} }\quad \dot{\sim} \quad t_\nu.
 $$
 This is what will be used to complete the test.
 
@@ -74,49 +78,48 @@ This is what will be used to complete the test.
 
 The degrees of freedom for this test are:
 
-$$ v = \frac{\left( \frac{s^2_X}{n_X} + \frac{s^2_Y}{n_Y} \right)^2}{\frac{s^2_X/n_X}{n_X-1} + \frac{s^2_Y/n_Y}{n_Y-1}} = 54.7888
+$$ \nu = \frac{\left( \frac{s^2_X}{n_X} + \frac{s^2_Y}{n_Y} \right)^2}{\frac{s^2_X/n_X}{n_X-1} + \frac{s^2_Y/n_Y}{n_Y-1}} = 54.7888
 $$
 
-Because the standardized test statistic is distributed \(t_v\) and \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} < t_{0.05; 54.7888}\)
+Because the standardised test statistic is distributed \(t_\nu\) and \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} < t_{0.05; 54.7888}\).
 
-From the statistical tables, the t-value that corresponds to our significance level (critical value) is \( t_{0.05; 54.7888} = -1.6731\). Remember this is negative because we are discussing the lower tail of the t-distribution.
+From the statistical tables, the $t$-value that corresponds to our significance level (critical value) is \( t_{0.05; 54.7888} = -1.6731\). Remember this is negative because we are discussing the lower tail of the $t$-distribution.
 
-Remember this same t-value can be found using the R function `qt(0.05, 54.7888)`
+Remember this same $t$-value can be found using the R function `qt(0.05, 54.7888)`.
 
 This gives us the critical value and the significance level which make up the rejection region (what we will compare our result to).
 Remember sketching or graphing this might help.
 
 `r hide("Rejection Regions")` 
 The rejection region is the area in which we would reject our null hypothesis.
-The critical value is the t value that corresponds to p = 0.05, and hence is the top limit of our rejection region.
+The critical value is the $t$ value that corresponds to the significance level of 0.05, and hence is the top limit of our rejection region.
 
-The probability of observing our test statistic (our sample mean) under the null hypothesis is the p-value.
+The probability of observing our test statistic (difference in sample means) or more extreme values under the null hypothesis is the $p$-value.
 
-To reject a null-hypothesis in this case we need our standardisd test statistic to be less than our critical value and hence our p-value < 0.05
+To reject a null hypothesis in this case we need our standardisd test statistic to be less than our critical value and hence our $p$-value < 0.05.
 `r unhide()`
 
-### Finding your standardised test statistic and p-value
+### Finding your standardised test statistic and $p$-value
 
-Our standardised test statistic =  \(\frac{\bar{x}−\bar{y}-\delta_0}{\sqrt{\frac{s^2_X}{n_X}+\frac{s^2_Y}{n_Y} }} = -2.5128\).
+Our standardised test statistic   \(=\frac{\bar{x}−\bar{y}-\delta_0}{\sqrt{\frac{s^2_X}{n_X}+\frac{s^2_Y}{n_Y} }} = -2.5128\).
 
-We should use r to find the corresponding p-value.
+We should use R to find the corresponding $p$-value.
 
-The test we are actually running here is a Welch Two-Sample t-test as we are comparing two samples without assuming they have equal variances. In R this is automatically chosen within the t.test() function:
+The test we are actually running here is a Welch test as we are comparing two independent samples from normal distributions without assuming they have equal variances. In R this is automatically chosen within the `t.test()` function:
 
 ``` {r, eval=TRUE, echo=TRUE}
 TR <- t.test(kilowatts ~ group, data = REFRIGERATOR, alternative = "less")
 TR
 ```
 
-This gives again t = -2.5128 and the p-value as 0.0075.
+This gives again $t = -2.5128$ and the $p$-value as 0.0075.
 
 
 
 `r hide("Learn More")` 
-Last week we saw this graphically.You may want to revisit if you need help making a visual comparison between this (our data) and the rejection region we found above.
+Last week we saw this graphically.You may want to revisit if you need help make a visual comparison between the value of test statistic and the rejection region we found above.
 `r unhide()`
 
--2.5128 is less than -1.6731 and our p-value \( \mathrm{P}(t_{54.7888} \leq -2.5128) = 0.0075\) is therefore less than \(\alpha = 0.05\).
 
 
 ## **Step 4 - Statistical Conclusion**
@@ -125,18 +128,18 @@ To draw our conclusions we need to consider our rejection region.
 *Remember this is at the lower end of the t-distribtion for this one-sided test.*
 
 Is our standardised test statistic inside the rejection region? 
-Is our p-value smaller than 0.05?
+Is our $p$-value smaller than 0.05?
 
 
 **QUESTION**: Do we reject our null hypothesis?
 
 `r hide()`
 
-I. From the rejection region, we reject \(H_0\) because the standardised test statistic is less than the critical value and hence in the rejection region i.e \(t_{obs} = -2.5128 < -1.6731\).
+I. From the rejection region, we reject \(H_0\) because the standardised test statistic is less than the critical value and hence in the rejection region i.e. \(t_{obs} = -2.5128 < -1.6731\).
 
 OR
 
-II. From the p-value, we reject \(H_0\) because the p-value\( 0.0075 < 0.05\).
+II. From the $p$-value, we reject \(H_0\) because the $p$-value \( 0.0075 < 0.05\).
 
 
 Whichever method we use, we reject \(H_0\).
@@ -145,7 +148,7 @@ Whichever method we use, we reject \(H_0\).
 
 ## **Step 5 - English Conclusion**
 
-What does our statistical conclusion mean for the data and the purpose of the test? 
+What does the previous statistical conclusion mean for the data and the purpose of the test? 
 
 Is there statistical evidence to suggest the mean for modified refrigerators is less than of original refrigerators?
 

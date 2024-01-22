@@ -1,6 +1,5 @@
 welcome-to-lab-2
 a-summary-of-the-type-of-the-hypothesis-test-used-today
-credit-where-credit-is-due
 example-1---refrigerator-hypothesis-test
 verifying-normality
 step-1---hypotheses
@@ -20,3 +19,6 @@ finding-your-standardised-test-statistic-and-p-value-1
 step-4---statistical-conclusion-1
 step-5---english-conclusion-1
 exercise-1-hubble-telescope-hypothesis-test
+question-is-one-team-better-than-the-other
+question-can-team1-complete-the-mission-in-less-than-3-days
+question-can-team2-complete-the-mission-in-less-than-3-days

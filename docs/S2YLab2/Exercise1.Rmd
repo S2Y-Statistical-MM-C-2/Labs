@@ -13,17 +13,17 @@ We will aim to answer the questions:
 
 *Use a 5\% significance level for all tests.* 
 
+## Question: Is one team better than the other? 
 
-
-**1a). Should we undertake a Welch two-sample t-test or a Paired t-test for this data?**
+**1a). To answer this question, should we undertake a Welch two-sample $t$-test or a paired $t$-test?**
 
 ```{r, echo = FALSE}
-mcq1 <- c("Welch two-sample t-test", answer="Paired t-test ")
+mcq1 <- c("Welch test", answer="paired $t$-test ")
 ```
 `r longmcq(mcq1)`
 
 `r hide()`
-Each team of astronauts went through 15 identical scenarios. Consequently, the repair times for the two teams are dependent. Start the analysis by verifying the normality assumption required to use a paired t-test.
+Each team of astronauts went through 15 identical scenarios. Consequently, the repair times for the two teams are dependent. Start the analysis by verifying the normality assumption required to use a paired $t$-test.
 `r unhide()`
 
 
@@ -31,7 +31,7 @@ Each team of astronauts went through 15 identical scenarios. Consequently, the r
 
 `r hide()`
 
-1b) We can verify the normality assumption of the data using exploratory data analysis (`EDA()`).
+We can verify the normality assumption of the data using exploratory data analysis (`EDA()`).
 
 ```{r, eval=TRUE, echo=TRUE}
 library(PASWR2)
@@ -45,15 +45,20 @@ The results from applying the function eda() to the differences between team1 an
 
 
 
-**1c) Which set of hypotheses below is correct here?**
+**1c) For this question, which set of hypotheses below is correct?**
 
+Let $\mu_{T_1}$ denote the mean repair times for team1, $\mu_{T_2}$ denote the mean repair times for team2, and $\mu_D=\mu_{T_1}-\mu_{T_2}$ denote the difference in mean repair times.  
 
-To test if the average difference in repair times for team1 and team2 are different, the correct null and alternative hypotheses are:
+The correct null and alternative hypotheses are:
 
 ```{r, echo = FALSE}
 mcq2 <- c("1","2",answer="3", "4","5")
 ```
 `r mcq(mcq2)`
+
+`r hide("Solution")`
+The question is "Is one team better than the other?" Since we do not know which one is better, the question is equivalent to testing if the average difference in repair times for team1 and team2 are different.
+`r unhide()`
 
 \begin{align} 
 1&. \quad H_0 : \mu_{T_1} - \mu_{T_2} = 0 \quad \text{verses} \quad H_1 : \mu_{T_1} - \mu_{T_2} < 0\\
@@ -70,13 +75,13 @@ mcq2 <- c("1","2",answer="3", "4","5")
 
 `r hide()`
 
-1d) The test statistic chosen is \(\bar{D}\) because \(E[\bar{D}] = \mu_D\).
+d) The test statistic chosen is \(\bar{D}\) because \(E[\bar{D}] = \mu_D\).
 
 ```{r}
 dbar <- mean(Diff)
 dbar
 ```
-The value of this test statistic is \(\bar{d} = -0.1\)
+The value of this test statistic is \(\bar{d} = -0.1\).
 
 `r unhide()`
 
@@ -88,11 +93,11 @@ i) Calculate the degrees of freedom,\(df\).
 ii) Calculate the critical value for this test.
 
 `r hide()`
-1ei) \(df = n-1 = 15-1\) so the standardized test statistic is distributed \(t_{14}\) and \(H_1\) is a two-sided hypothesis, the rejection region is the \(|t_{obs}| > t_{0.975; 14}\)
+i) \(df = n-1 = 15-1\) so the standardised test statistic is distributed \(t_{14}\). Moreover, since \(H_1\) is a two-sided hypothesis, the rejection region is the \(|t_{obs}| > t_{0.975; 14}\).
 `r unhide()`
 
 `r hide()`
-1eii) From the statistical tables, the critical value (t-value that corresponds to our significance level), \( t_{0.975; 14} = 2.1448\).
+ii) From the statistical tables, the critical value ($t$-value that corresponds to our significance level), \( t_{0.975; 14} = 2.1448\).
 
 This can be found using R:
 ```{r, eval=TRUE, echo=TRUE}
@@ -101,21 +106,20 @@ RR
 ```
 `r unhide()`
 
-**1f) The standardized test statistic under the assumption that \(H_0\) is true and its distribution are \(\frac{\bar{d}−\delta_0}{s_d/\sqrt{n_D}} \sim t_{df}\).**
+**1f) The standardised test statistic under the assumption that \(H_0\) is true and its distribution are \(\frac{\bar{d}−\delta_0}{s_d/\sqrt{n_D}} \sim t_{df}\).**
 
-Find the standardized test statistic and p-value using `t.test()`.
+Find the value of standardised test statistic and $p$-value using `t.test()`.
 
 
 `r hide()`
-1f) Our standardised test statistic =  \( t_{obs}=\frac{\bar{d}−\delta_0}{s_d/\sqrt{n_D}}\).
 
 ```{r, eval}
 TR <- t.test(Diff)
 TR
 ```
 
-This gives our standardised test statistic as -0.25836 and the p-value as 0.7999.
-This code provides the p-value fully adjusted for a two-tailed test.
+This gives the value of standardised test statistic as $-0.25836$ and the $p$-value as $0.7999$. 
+This code provides the $p$-value fully adjusted for a two-tailed test.
 
 `r unhide()`
 
@@ -124,14 +128,14 @@ This code provides the p-value fully adjusted for a two-tailed test.
 Do we reject our null hypothesis?
 
 ```{r, echo = FALSE}
-mcq3 <- c("From the rejection region, reject our null hypothesis because our observed t-value, 0.2584, is less than 2.1448.",
-answer = "From the rejection region, fail to reject our null hypothesis because our observed t-value,0.2584, is less than 2.1448.")
+mcq3 <- c("From the rejection region, reject the null hypothesis because our observed $t$-value, 0.2584, is less than 2.1448.",
+answer = "From the rejection region, fail to reject the null hypothesis because our observed $t$-value, 0.2584, is less than 2.1448.")
 ```
 `r longmcq(mcq3)`
 
 ```{r, echo = FALSE}
-mcq4 <- c("From the p-value, we reject our null hyphotesis because the p-value 0.7999 is greater than 0.05",
-answer = "From the p-value, we fail to reject our null hyphotesis because the p-value 0.7999 is greater than 0.05")
+mcq4 <- c("From the $p$-value, reject our null hyphotesis because the $p$-value 0.7999 is greater than 0.05",
+answer = "From the $p$-value, fail to reject our null hyphotesis because the $p$-value 0.7999 is greater than 0.05")
 ```
 `r longmcq(mcq4)`
 
@@ -149,26 +153,24 @@ to suggest one team is better than the other.")
 ```
 `r longmcq(mcqconc1)`
 
+## Question: Can team1 complete the mission in less than 3 days 
 
-**2ai) Does team1 fit the normality assumptions required?**
+**2a) Does team1 fit the normality assumptions required?**
 
 `r hide()`
 
-2ai) We can verify the normality assumption of the data for team1 using exploratory data analysis (`EDA()`).
+We can verify the normality assumption of the data for team1 using exploratory data analysis (`EDA()`).
 
 ```{r, eval=TRUE, echo=TRUE}
 with(data = HUBBLE,eda(team1))
 ```
 
-The results from applying the function eda() to  the repair times for team1 suggest it is not unreasonable to assume the repair times for team1 follow a normal distribution. Now, proceed with the five-step procedure.
+The results from applying the function eda() to  the repair times for team1 suggest it is not unreasonable to assume the repair times for team1 follow a normal distribution.
 `r unhide()`
 
 
 
-**2aii) Which set of hypotheses below is correct here?**
-
-
-To test if team1 repair time is less than 3 days, the hypotheses are:
+**2b) For this question, which set of hypotheses below is correct?**
 
 \begin{align} 
 1&. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu > 3\\
@@ -182,11 +184,11 @@ mcq5 <- c("1","2",answer="3")
 `r mcq(mcq5)`
 
 
-**2aiii) What is the test statistic (before standardisation)?**
+**2c) What is the test statistic (before standardisation)?**
 
 `r hide()`
 
-2aiii) The test statistic chosen is \(\bar{X}\) because \(E[\bar{X}] = \mu\).
+The test statistic chosen is \(\bar{X}\) because \(E[\bar{X}] = \mu\).
 
 ```{r}
 xbar <- mean(HUBBLE$team1)
@@ -197,14 +199,14 @@ The value of this test statistic is \(\bar{x} = \frac{\sum^n_{i=1}x_i}{n}= 2.22\
 `r unhide()`
 
 
-**2aiv) Step 3 - Rejection Region**
+**2d) Step 3 - Rejection Region**
 
 Calculate the degrees of freedom,\(df\) and  the critical value for this test.
 
 `r hide()`
-2aiv) \(df = n-1 = 15-1\) so the standardized test statistic is distributed \(t_{14}\) and \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} > t_{0.05; 14}\)
+\(df = n-1 = 15-1\) so the standardised test statistic is distributed \(t_{14}\), and since \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} > t_{0.05; 14}\)
 
-From the statistical tables, the critical value (t-value that corresponds to our significance level), \( t_{0.05; 14} = -1.7613\).
+From the statistical tables, the critical value ($t$-value that corresponds to our significance level) is \( t_{0.05; 14} = -1.7613\).
 
 This can be found using R:
 ```{r, eval=TRUE, echo=TRUE}
@@ -213,40 +215,38 @@ RR
 ```
 `r unhide()`
 
-**2av) The standardized test statistic under the assumption that \(H_0\) is true and its distribution are \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{df}\).**
-
-Find the standardized test statistic and p-value using `t.test()`.
+**2e) Find the value of standardised test statistic and $p$-value using `t.test()`. **
 
 
 `r hide()`
-2av) Our standardised test statistic =  \( t_{obs}=\frac{\bar{x}−\mu_0}{s/\sqrt{n}}\).
+2av) Our standardised test statistic \(= \frac{\bar{x}−\mu_0}{s/\sqrt{n}}\).
 
 ```{r}
 TR <- with(data = HUBBLE, t.test(team1, mu = 3, alternative = "less"))
 TR
 ```
 
-This gives our standardised test statistic as -3.7757 and the p-value \(\mathrm{P}(t_{14} \leq -3.7753)\) = 0.001024.
+This gives the value of standardised test statistic as $-3.7757$ and the $p$-value \(\mathrm{P}(t_{14} \leq -3.7753) = 0.001024\).
 
 `r unhide()`
 
-**2avi) Step 4 - Statistical Conclusion**
+**2f) Step 4 - Statistical Conclusion**
 
 Do we reject our null hypothesis?
 
 ```{r, echo = FALSE}
-mcq6 <- c(answer = "From the rejection region, we reject the null hypothesis because the observed t-value −3.7753 is less than -1.7613.", "From the rejection region, we fail to reject the null hypothesis because the observed t-value −3.7753 is less than -1.7613.")
+mcq6 <- c(answer = "From the rejection region, we reject the null hypothesis because the observed $t$-value −3.7753 is less than -1.7613.", "From the rejection region, we fail to reject the null hypothesis because the observed $t$-value −3.7753 is less than -1.7613.")
 ```
 `r longmcq(mcq6)`
 
 ```{r, echo = FALSE}
-mcq7 <- c(answer = "From the p-value, we reject our null hyphotesis because the p-value 0.0010 is less than 0.05", "From the p-value, we fail to reject our null hyphotesis because the p-value 0.0010 is less than 0.05")
+mcq7 <- c(answer = "From the $p$-value, we reject our null hyphotesis because the $p$-value 0.0010 is less than 0.05.", "From the $p$-value, we fail to reject our null hyphotesis because the $p$-value 0.0010 is less than 0.05.")
 ```
 `r longmcq(mcq7)`
 
 
 
-**2avii) Step 5 - English Conclusion**
+**2g) Step 5 - English Conclusion**
 
 Is there sufficient evidence that the team1 average mission repair time in less than 3 days?
 
@@ -256,106 +256,49 @@ answer = "There is sufficient evidence to suggest that the team1 average mission
 ```
 `r longmcq(mcqconc2)`
 
+## Question: Can team2 complete the mission in less than 3 days 
 
-Now for team2:
-
-**2bi) Does team2 fit the normality assumptions required?**
+**3a) Does team2 fit the normality assumptions required?**
 
 `r hide()`
 
-2bi) We can verify the normality assumption of the data for team2 using exploratory data analysis (`EDA()`).
+The exploratory data analysis below suggests that it is not unreasonable to assume the repair times for team2 follow a normal distribution. 
 
 ```{r, eval=TRUE, echo=TRUE}
 with(data = HUBBLE,eda(team2))
 ```
-
-The results from applying the function eda() to  the repair times for team2 suggest it is not unreasonable to assume the repair times for team2 follow a normal distribution. Now, proceed with the five-step procedure.
 `r unhide()`
 
-
-
-**2bii) Which set of hypotheses below is correct here?**
-
-
-To test if team2 repair time is less than 3 days, the hypotheses are:
-
-\begin{align} 
-1&. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu > 3\\
-2&. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu \neq 3\\
-3&. \quad H_0 : \mu = 3 \quad \text{verses} \quad H_1 : \mu < 3\\
-
-\end{align}
-
-```{r, echo = FALSE}
-mcq8 <- c("1","2",answer="3")
-```
-`r mcq(mcq8)`
-
-**2biii) What is the test statistic (before standardisation)?**
+**3b) For this test, find the value of standardised test statistic and $p$-value using `t.test()`.**
 
 `r hide()`
-
-2biii) The test statistic chosen is \(\bar{X}\) because \(E[\bar{X}] = \mu\).
-
-```{r}
-xbar <- mean(HUBBLE$team2)
-xbar
-```
-The value of this test statistic is \(\bar{x} = \frac{\sum^n_{i=1}x_i}{n}= 2.32\)
-
-`r unhide()`
-
-
-**2biv) Step 3 - Rejection Region**
-
-Calculate the degrees of freedom,\(df\) and  the critical value for this test.
-
-`r hide()`
-2biv) \(df = n-1 = 15-1\) so the standardized test statistic is distributed \(t_{14}\) and \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} > t_{0.05; 14}\)
-
-From the statistical tables, the critical value (t-value that corresponds to our significance level), \( t_{0.05; 14} = -1.7613\).
-
-This can be found using R:
-```{r, eval=TRUE, echo=TRUE}
-RR <- qt(0.05, df = 14)
-RR
-```
-`r unhide()`
-
-**2bv) The standardized test statistic under the assumption that \(H_0\) is true and its distribution are \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{df}\).**
-
-Find the standardized test statistic and p-value using `t.test()`.
-
-
-`r hide()`
-2bv) Our standardised test statistic =  \( t_{obs}=\frac{\bar{x}−\mu_0}{s/\sqrt{n}}\).
 
 ```{r, eval=TRUE, echo=TRUE}
 TR <- with(data = HUBBLE, t.test(team2, mu = 3, alternative = "less"))
 TR
 ```
 
-This gives our standardised test statistic as -2.6835 and the p-value \(\mathrm{P}(t_{14} \leq -2.6835)\) = 0.008911.
+This gives the standardised test statistic as $-2.6835$ and the $p$-value \(\mathrm{P}(t_{14} \leq -2.6835) = 0.008911\).
 
 `r unhide()`
 
-**2bvi) Step 4 - Statistical Conclusion**
+**3f) Statistical Conclusion**
 
-Do we reject our null hypothesis?
+Do we reject the null hypothesis?
 
 ```{r, echo = FALSE}
-mcq9 <- c(answer = "From the rejection region, we reject the null hypothesis because the observed t-value -2.6835 is less than -1.7613.", "From the rejection region, we fail to reject the null hypothesis because the observed t-value -2.6835 is less than -1.7613.")
+mcq9 <- c(answer = "From the rejection region, we reject the null hypothesis because the observed $t$-value -2.6835 is less than -1.7613.", "From the rejection region, we fail to reject the null hypothesis because the observed $t$-value -2.6835 is less than -1.7613.")
 ```
 `r longmcq(mcq9)`
 
 ```{r, echo = FALSE}
-mcq10 <- c(answer = "From the p-value, we reject our null hyphotesis because the p-value 0.0089 is less than 0.05", "From the p-value, we fail to reject our null hyphotesis because the p-value 0.0089 is less than 0.05")
+mcq10 <- c(answer = "From the $p$-value, we reject our null hyphotesis because the $p$-value 0.0089 is less than 0.05", "From the $p$-value, we fail to reject our null hyphotesis because the $p$-value 0.0089 is less than 0.05")
 ```
 `r longmcq(mcq10)`
 
 
 
-**2avii) Step 5 - English Conclusion**
+**3g) English Conclusion**
 
 Is there sufficient evidence that the team1 average mission repair time in less than 3 days?
 
