@@ -14,7 +14,7 @@ DEPEND <- DEPEND
 The data frame *DEPEND* from the `PASWR2` package shows the number of dependent children (number) for 50 families (count). Use a goodness-of-fit test to see if a Poisson
 distribution with $\lambda$ = 2 can reasonably be used to model the number of dependent children. The significance level is 5%. 
 
-## Step 1: construct the observed and expected values for different categories
+## Step 0: construct the observed and expected values for different categories
 
 To start with, we look at the data to determine how many categories should be created.
 
