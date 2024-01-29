@@ -1,0 +1,77 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+
+# Example 4: Dependent children
+
+```{r echo=FALSE}
+library(PASWR2)
+DEPEND <- DEPEND
+```
+
+The data frame *DEPEND* from the `PASWR2` package shows the number of dependent children (number) for 50 families (count). Use a goodness-of-fit test to see if a Poisson
+distribution with $\lambda$ = 2 can reasonably be used to model the number of dependent children. The significance level is 5%. 
+
+## Step 1: construct the observed and expected values for different categories
+
+To start with, we look at the data to determine how many categories should be created.
+
+```{r}
+FT <- xtabs(~number, data = DEPEND)
+FT
+```
+
+Based on the frequency table for the number of dependent children, the cells with four, five, and six children are combined into a single cell for four or more children. After the merge, we get the observed number of children for five categories as follows:
+```{r}
+obs <- c(9, 13, 13, 7, 8)
+```
+
+
+Under the null hypothesis that $F_0(x)$ is a Poisson distribution with $\lambda=2$, the probabilities of 0, 1, 2, 3, and 4 or more dependent children are computed with R as follows:
+
+```{r}
+null.p <- c(dpois(0, 2), dpois(1, 2), dpois(2, 2),
+            dpois(3, 2), ppois(3, 2, lower = FALSE))
+null.p
+```
+
+Since there were a total of $n = 50$ families, the expected number of dependent children for the five categories is simply $50 \times$`null.p`. 
+
+```{r}
+EX <- 50*null.p
+EX
+```
+
+We are now ready to conduct the hypothesis test. 
+
+## Step 1 - Hypotheses
+
+The null and alternative hypotheses for using the chi-square
+goodness-of-fit test to test the hypothesis that the number of dependent children follows a Poisson distribution with $\lambda = 2$ are: 
+\[
+\begin{split}
+&H_0: F_X(x) = F_0(x) \sim Pois(\lambda = 2.5) \text{ for all } x \textit{ versus}\\
+&H_1: F_X(x) \neq F_0(x) \text{ for some }x.
+\end{split}\]
+
+## Step 2 - Choosing a Test Statistic
+
+The test statistic chosen is $\chi^2_\text{obs} = \sum_{k=1}^5 \frac{(O_k-E_k)^2}{E_k}$.
+
+## Step 3 - Rejection Region Calculations
+
+Reject $H_0$ if $\chi^2_\text{obs} > \chi^2_{1-\alpha;k-1} = \chi^2_{0.95;4}$; $k$ denotes the number of categories. 
+
+Using R, we can find the value of test statistic and the critical value as follows.
+```{r}
+chi.obs <- sum((obs - EX)^2/EX) #value of the test statistic
+chi.obs 
+
+qchisq(0.95,4)
+```
+
+## Step 4 - Statistical Conclusion
+
+

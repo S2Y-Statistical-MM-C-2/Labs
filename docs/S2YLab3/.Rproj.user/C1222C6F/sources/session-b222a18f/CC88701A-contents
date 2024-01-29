@@ -1,0 +1,84 @@
+---
+title: "Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "Exexcise1.Rmd", "Exercise2.Rmd", "Exercise3.Rmd"]
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+VIT2005 <- VIT2005
+LEDDIODE <- LEDDIODE
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# Welcome to Lab 3
+
+Intended Learning Outcomes:
+
+1. Conduct a hypothesis test for the population variance in `R` with a step-by-step guide.
+2. Conduct a hypothesis test for the population proportion in `R` with a step-by-step guide.
+
+## A summary of the type of the hypothesis test and R commands used today
+
+![](Images/chisquared.png)
+
+<br>
+
+![](Images/ftest.png)
+The $F$-test can be implemented in R by using `var.test`:
+```{r eval=FALSE}
+var.test(x, y, ratio = 1,
+         alternative = c("two.sided", "less", "greater"),
+         conf.level = 0.95)
+```
+
+* `ratio`: the hypothesised ratio of the population variances of $X$ and $Y$, i.e.  $\frac{\sigma_X^2}{\sigma_Y^2}$ under $H_0$
+* `alternative`: the type of alternative hypothesis, where `two.sided` corresponds to $\sigma_X^2 \neq \sigma_Y^2$, `greater` corresponds to $\sigma_X^2 > \sigma_Y^2$, and `less` corresponds to $\sigma_X^2 < \sigma_Y^2$.
+* `conf.level`: confidence level, which equals to $1-\alpha$ (significance level). 
+
+<br>
+
+![](Images/binom.png)
+The exact Binomial test can be implemented in R by using `binom.test`:
+```{r eval=FALSE}
+binom.test(x, n, p = 0.5,
+           alternative = c("two.sided", "less", "greater"),
+           conf.level = 0.95)
+```
+
+* `x`: number of successes
+* `n`: number of trials
+* `p`: hypothesized probability of success, i.e. $\pi$ under $H_0$
+* `alternative` and `conf.level`: same as explained in the `var.test` function. 
+
+<br>
+
+![](Images/binomnorm.png)
+
+Testing the proportion of successes in a Binomial experiment with normal approximation can be achieved by using `prop.test`:
+```{r eval=FALSE}
+prop.test(x, n, p = NULL,
+          alternative = c("two.sided", "less", "greater"),
+          conf.level = 0.95, correct = TRUE)
+```
+
+All arguments are the same as in the `binom.test()` function. 

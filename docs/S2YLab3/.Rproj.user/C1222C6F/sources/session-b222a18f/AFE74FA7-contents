@@ -1,0 +1,189 @@
+# Example 1: Multiple linear regression
+
+We briefly looked at this data in the lectures. Here 50 US states were investigated in terms of their crime rates (per 100,000 people), which includes crimes such as murder, assault, and car theft. Some demographic information about each state was also recorded, such as the number of police and prisoners per 100,000 people, the percentage of population living in poverty, and the percentage of high school dropouts (i.e. 16-19 year olds who were not in school and did not finish the 12$^\text{th}$ grade). The question of interest is whether we can predict US crime rates from the high school dropout rates and other predictors? 
+
+The data are available from the csv file `crime.csv` and contain six columns, described as follows:
+
+|C1     |C1.T        | US state
+|:-----|:------|:-----------|
+|**C2** |**Crime**   | **Crime rate per 100,000** 
+|**C3** |**Police**  | **Number of police per 100,000**
+|**C4** |**Prison**  | **Number of prisoners per 100,000**
+|**C5** |**Poverty** | **Percentage of population living in poverty**
+|**C6** |**Dropout** | **Percentage of high school dropouts**
+
+<br>
+**QUESTION 1**:  
+
+(a) Use `plot` or `pairs` to visualise the data and determine which predictors may be useful in predicting `Crime`.
+
+`r hide("Solution")`
+
+The `R` command `pairs()` may be used to see the relationships between all variables.
+
+```{r}
+crime <- read.csv("crime.csv")
+pairs(crime[,-1], lower.panel = NULL) # We add [,-1] to the end of crime to remove the first column which has non-numeric arguments (state names)
+```
+Apart from Dropout which has been discussed in the lectures, there may also be a positive linear relationship between `Crime` and `Police` and between `Crime` and `Prison`, though the relationship doesn't seem to be very strong.  
+`r unhide()`
+
+(b) Build a simple linear regression model with `Dropout` as the predictor and interpret estimated coefficients.
+
+According to the model, when Dropout is equal to 0, the crime rate would be roughly `r fitb(c(2196.5435,2196.544,2196.54,2196.5,2197))`.
+For every 1% increase in the % of high school dropouts, the expected crime rate (per 100,000) would `r mcq(c(answer="increase", "decrease"))` by `r fitb(c(281.7613,281.761,281.76,281.8,282))`.
+
+`r hide("Hint")`
+Use `lm` to build a linear regression model and `summary()` to find the coefficients. 
+`r unhide()`
+
+(c) From the lectures we know that the least squares estimates for the model parameters are
+
+$$\hat{\boldsymbol \beta} = \begin{bmatrix} \hat{\alpha} \\[0.5em] \hat{\beta} \end{bmatrix} = \begin{bmatrix} \bar{y} - \hat{\beta} \bar{x} \\[0.5em] \frac{S_{xy}}{S_{xx}} \end{bmatrix}$$
+Use this formula to compute the least squares estimates for the model parameters, $\hat{\alpha}$ and $\hat{\beta}$.
+
+<center>
+$\hat{\alpha}$ = `r fitb(c(2196.5435,2196.544,2196.54,2196.5,2197))`, 
+$\hat{\beta}$ = `r fitb(c(281.7613,281.761,281.76,281.8,282))`
+</center>
+
+`r hide("Hint")`
+
+```{r, eval=FALSE, echo=TRUE}
+x<-crime$Dropout
+y<-crime$Crime
+x_mean <- mean(x)
+y_mean <- mean(y)
+S_xx <- sum((x-x_mean)^2)  
+S_xy <- sum((x-x_mean)*(y-y_mean))
+```
+
+`r unhide()`
+
+## Least squares estimates of model parameters using vector-matrix form
+
+To use the least squares vector-matrix formula given by \@ref(eq:LSE), we first need to find the design matrix, $\mathbf{X}$. This can be done using the following `R` command:
+```{r}
+X <- model.matrix(~Dropout, data = crime)
+```
+
+This gives us the design matrix, $\mathbf{X}$, for the simple linear regression model in \@ref(eq:SLR), where we have $n = 50$
+rows corresponding to each of the 50 US states, and $p = 2$ columns corresponding to the model parameters $\alpha$ and $\beta$. More generally this is written as
+$$\mathbf{X} =\begin{bmatrix} 1 & x_1 \\1 & x_2 \\ \vdots & \vdots \\ 1 & x_n\end{bmatrix} $$
+The first column of $\mathbf{X}$ contains 1's as that is the column that multiplies the first component of the parameter vector $\boldsymbol\beta^\top = \begin{bmatrix} \alpha & \beta \end{bmatrix}$, and as can be seen from the model, the intercept term, $\alpha$, is constant across all $i$ observations. The slope parameter, $\beta$, is also constant, however, the differences in crime rates between states comes from changes in the percentage of high school dropouts, given by $x_i$, which multiplies $\beta$. The random errors, $\epsilon_i$, also differ per state.
+
+Next we need the following commands to calculate each component in the least squares vector-matrix formula:
+```{r eval=FALSE, echo=TRUE}
+t       # gets the transpose of a vector or matrix
+%*%     # multiplies matrices together
+solve   # computes the inverse of a matrix
+```
+
+Let's compute $\mathbf{X}^\top\mathbf{X}$ using the following `R` code:
+```{r}
+XtX <- t(X) %*% X
+```
+
+This gives
+
+$$\mathbf{X}^\top\mathbf{X} = \begin{bmatrix} 50.0 & 512.6 \\ 512.6 & 5538.8 \end{bmatrix}$$
+
+Recall, if 
+
+$$\mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \quad\quad \text{then} \quad\quad \mathbf{A}^{-1} = \frac{1}{\text{det}\left(\mathbf{A}\right)}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix} = \frac{1}{ad - bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}.$$
+
+Given $\mathbf{X}^\top\mathbf{X}$ above, compute its inverse $\left(\mathbf{X}^\top\mathbf{X}\right)^{-1}$:
+<br><br>
+
+$$(\mathbf{X}^\top\mathbf{X})^{-1} = \hspace{9em}$$
+<br>
+
+To find $\hat{\boldsymbol\beta}$ we also need to find $\mathbf{X}^\top\mathbf{Y}$. Using the above commands, or by hand, compute $\mathbf{X}^\top\mathbf{Y}$:
+<br><br>
+
+$$\mathbf{X}^\top\mathbf{Y} = \begin{bmatrix} & & & & \\\\ \\  \end{bmatrix}$$
+<br>
+
+Multiplying $\left(\mathbf{X}^\top\mathbf{X}\right)^{-1}$ and $\mathbf{X}^\top\mathbf{Y}$ then gives us the least squares estimates of the model parameters. By hand, compute the parameter estimates, $\hat{\boldsymbol\beta}$, such that
+
+<br>
+
+$$\boldsymbol{\hat{\beta}} = (\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{Y} = $$
+
+<br>
+**QUESTION 1**
+
+(d) Use the `R` commands given above to compute $\left(\mathbf{X}^\top\mathbf{X}\right)^{-1}$ and $\mathbf{X}^\top\mathbf{Y}$, and hence $\hat{\boldsymbol\beta}$, and compare the output with your handwritten results.
+
+`r hide("Solution")`
+
+```{r, echo=TRUE, eval=TRUE}
+XtX_inv <- solve(XtX)
+Y <- crime$Crime
+XtY <- t(X) %*% Y
+beta.hat <- solve(XtX) %*% XtY
+```
+
+`r unhide()`
+
+<br>
+
+We can also obtain the vector of random errors, $\boldsymbol \epsilon$, by taking the difference between the observed values, $\mathbf{Y}$, and the fitted values, $\hat{\mathbf{Y}} = \mathbf{X}\hat{\boldsymbol\beta}$, using the command:
+
+```{r eval=FALSE}
+residuals <- Y - X %*% param.ests
+```
+
+The residual sum of squares for the model can be obtained from formula \@ref(eq:sigma) using the following commands:
+```{r eval=FALSE}
+YtY <- t(Y) %*% Y
+RSS <- YtY - t(XtY) %*% param.ests
+```
+
+Now compute the estimate of the error variance, $\hat{\sigma}^2$:
+<br>
+
+$$\hat{\sigma}^2 = \frac{\text{RSS}}{n-p} = \hspace{10em}$$
+<br>
+
+
+The estimate of standard deviation, i.e. $\hat{\sigma}$, has been calculated by `R` when fitting the model, which is the `Residual standard error` produced from `summary(model1)`. This can also be seen using the following command: 
+```{r eval=FALSE}
+summary(model1)$sigma
+```
+
+<br>
+**QUESTION 1**
+
+(e) Use one or more predictors alongside `Dropout` to build a multiple linear regression model for explaining `Crime`.
+
+`r hide("Hint")`
+
+Use the graph found using the `pairs()` command in (a) to select predictors that appear suitable for describing Crime.
+
+Recall that a multiple linear regression model can be constructed using 
+
+<center> `model <- lm(Crime ~ Dropout + Predictor1 + Predictor2 + ..., data = crime)` </center>
+
+`r unhide()`
+
+(f) Calculate the least squares estimates of parameters in the new multiple linear regression model using the vector-matrix formulation.
+
+`r hide("Solution")`
+
+The same steps can be followed as in (d), but the design matrix `X` has to be updated accordingly. Say we want to add `Police` and `Prison` variables to our model. We would then use the following code.
+
+```{r, echo=TRUE, eval=TRUE}
+X <- model.matrix(~ Dropout + Police + Prison, data = crime)
+Y <- crime$Crime
+
+XtX <- t(X) %*% X
+XtY <- t(X) %*% Y
+
+beta.hat <- solve(XtX) %*% XtY
+beta.hat
+```
+`r unhide()`
+
+
+

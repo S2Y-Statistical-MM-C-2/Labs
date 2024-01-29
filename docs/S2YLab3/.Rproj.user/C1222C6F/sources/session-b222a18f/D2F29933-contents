@@ -1,0 +1,152 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+```
+
+# Exercise 2: Vitoria Apartment Costs
+
+An apartment appraiser in Vitoria, Spain, feels confident in his appraisals of \(90m^2\) or larger pisos (apartments) provided his variability is less than \(60,000^2\text{€}^2\). Due to constant movement in the housing market, the regional housing authority suspects the appraiser’s variability may be greater than \(60,000^2\text{€}^2\). 
+
+The appraised values of apartments in Vitoria are stored in the variable `totalprice` of the *VIT2005* data frame in the `PASWR2` package. 
+
+**Question of interest**: Is there evidence to support the suspicions of the regional housing authority? Test the appropriate hypothesis at the 5% significance level.
+
+`r hide("Reminder of how to access data")` 
+Install or load the package and then save the data to your environment. E.g:
+```{r eval=FALSE, echo=TRUE}
+library(PASWR2)
+VIT2005 <- VIT2005
+```
+
+`r unhide()`
+
+
+## Verifying normality
+
+To solve this problem, start by selecting the data we are interested in and then verify the reasonableness of the normality assumption.
+
+```{r, eval=TRUE, echo=TRUE} 
+Greater90 <- subset(x = VIT2005, subset = area >= 90)
+with(data = Greater90, eda(totalprice))
+```
+The results from applying `eda()`, suggest the appraised price for \(90m^2\) or larger pisos follows a normal distribution. Now, continue with the five-step procedure.
+
+## **Step 1 - Hypotheses**
+
+Hypotheses — The null and alternative hypotheses to test whether the variability in price for \(90m^2\) or larger pisos is greater than \(60,000^2\text{€}^2\), are
+
+$$H_0 : \sigma^2 = 60,000^2 \quad \text{versus} \quad H_1 : \sigma^2 > 60,000^2 $$
+
+
+`r hide("Learn More")` 
+This is a one-tail test as as we want to know if the variability in price of pisos that are \(90m^2\) or larger is in fact \(60,000^2\text{€}^2\) or if it is greater than that. Two-tailed would test for any difference from \(60,000^2\text{€}^2\) not just greater than.
+`r unhide()`
+
+
+
+## **Step 2 - Choosing a Test Statistic**
+
+The test statistic chosen is \(S^2\) because \(E[S^2] = \sigma^2\).
+
+
+```{r, eval=TRUE, echo=TRUE} 
+TS <- var(Greater90$totalprice)
+TS
+```
+
+The value of this test statistic is \(s^2=3822980710\). 
+
+The standardised test statistic under the assumption that \(H_0\) is true and its approximate distribution are:
+
+
+$$ \frac{(n-1)S^2}{\sigma^2_0}\quad \sim \quad \chi^2_{n-1},$$
+where $n$ denotes the sample size and $\sigma_0^2=60000^2$ in this case. This is what will be used to complete the test.
+
+
+## **Step 3 - Hypothesis Test Calculations**
+
+### Finding the rejection region
+
+In this dataset, $n = 94$ (which can be seen from `Size (n)` in the summary statistics above), so the standardised test statistic is distributed \(\chi^2_{93}\). Moreover, since \(H_1\) is an upper one-sided hypothesis, the rejection region is the \(\chi^2_{obs} > \chi^2_{0.95;93}\)
+
+Using R code or the statistical tables, the $t$-value that corresponds to our significance level (critical value) is \( \chi^2_{0.95;93} = 116.511\).
+
+```{r, eval=TRUE, echo=TRUE}
+n <- nrow(Greater90)
+RR <- qchisq(0.95, n-1)
+RR
+```
+
+This gives us the critical value and the significance level which make up the rejection region (what we will compare our result to).
+Remember sketching or graphing the $\chi^2$ distribution and regions might help.
+
+`r hide("Rejection Regions")` 
+The rejection region is the area in which we would reject the null hypothesis.
+The critical value is the $t$ value that corresponds to the significance level of 0.05, and hence is the bottom limit of our rejection region.
+
+The probability of observing our test statistic (sample variance) or more extreme values under the null hypothesis is the $p$-value.
+
+To reject a null hypothesis in this case we need the standardisd test statistic to be greater than the critical value and hence our $p$-value < 0.05.
+`r unhide()`
+
+### Finding the standardised test statistic and $p$-value
+
+The value of the standardised test statistic is given by \(\chi^2_{obs}\) = \(\frac{(n-1)s^2}{\sigma^2_0} = \frac{(94-1)*3822980710}{60,000^2} = 98.7603\).
+
+```{r}
+STS <- (n - 1)*TS/60000^2
+STS
+```
+
+We should use R to find the corresponding $p$-value \(\mathrm{P}(\chi^2_{93} \geq 98.7603)\).
+
+
+``` {r, eval=TRUE, echo=TRUE}
+pvalue <- pchisq(STS, n-1, lower = FALSE)
+pvalue
+```
+
+The $p$-value is equal to $0.3218$ in this case. 
+
+
+
+`r hide("Learn More")` 
+You may want to sketch or plot this test graphically if you need help make a visual comparison between the value of test statistic and the rejection region we found above.
+`r unhide()`
+
+## **Step 4 - Statistical Conclusion**
+
+To draw our conclusions we need to consider our rejection region.
+*Remember this is at the upper end of the $\chi^2$-distribution for this one-sided test.*
+
+
+**QUESTION**: Do we reject the null hypothesis?
+
+`r hide()`
+
+I. From the rejection region, we fail to reject \(H_0\) because the standardised test statistic is less than the critical value and hence is not in the rejection region, i.e. \(\chi^2_{obs} = 98.7603 < 116.511\).
+
+OR
+
+II. From the $p$-value, we fail to reject \(H_0\) because the $p$-value \( 0.3218 > 0.05\).
+
+
+Whichever method we use, we fail to reject \(H_0\).
+
+`r unhide()`
+
+## **Step 5 - English Conclusion**
+
+What does the previous statistical conclusion mean for the data and the purpose of the test? 
+
+Is there statistical evidence to suggest the variance for
+the appraised price of \(90m^2\) or larger pisos is greater than \(60,000^2\text{€}^2\)?
+
+**QUESTION**: Which of the following is the correct conclusion of our test?
+```{r, echo = FALSE}
+mcq <- c("There is evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.", 
+answer ="There is insufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.", "There is sufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is less than 3.6 billion Euros squared.", 
+"We cannot conclude if there is sufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.")
+```
+`r longmcq(mcq)`
+

@@ -1,0 +1,212 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+
+# Exercise 1: Vitoria Apartment Elevators
+
+The director of urban housing in Vitoria, Spain, claims that over 75% of all apartments have an elevator.
+
+Using the variable `elevator` from the dataframe *VIT2005* in the package `PASWR2`, answer the questions below:
+
+**1. Can the director’s claim about elevators be substantiated using an exact method to reach a conclusion?**
+
+**2. Can the director’s claim about elevators be substantiated using an approximate method to reach a conclusion? Is this test in agreement with the exact method test above?**
+
+*Use a 10% significance level for all tests.* 
+
+## Question 1
+
+
+### **Step 1 - Hypotheses**
+
+For this question, we will complete a one-sample exact hypothesis test using a binomial distribution.
+
+Let $\pi$ denote the probability that an apartment has an elevator. Which of the following gives the correct null and alternative hypotheses?
+
+1. $H_0: \pi=0.75 \text{ versus } H_1: \pi\neq 0.75$
+2. $H_0: \pi=0.75 \text{ versus } H_1: \pi< 0.75$
+3. $H_0: \pi=0.75 \text{ versus } H_1: \pi> 0.75$
+4. $H_0: \pi>0.75 \text{ versus } H_1: \pi\leq 0.75$
+
+`r mcq(c("1","2",answer="3","4"))`
+
+
+### **Step 2 - Choosing a Test Statistic**
+
+The test statistic is $Y$, where $Y$ is the number of apartments that have an elevator. Under the assumption that \(H_0\) is true, $Y \sim Bin(n,\pi) = Bin(218,0.75)$.
+
+What is the observed value of the test statistic? $y_\text{obs}=$`r fitb(c(174))`
+
+`r hide("Solution")`
+The value of the test statistic is simply the number of apartments that have an elevator in this data set. This can be found by using the following commands.
+```{r}
+table(VIT2005$elevator)
+#or
+xtabs(~elevator, data = VIT2005)
+```
+
+`r unhide()`
+
+### **Step 3 - Finding the $p$-value**
+
+For a binomial hypothesis test we can calculate a $p$-value straight from our test statistic and compare it with the significance level. (Typically we will not find the rejection region nor standardise the test statistic.)
+
+What is the $p$-value in this case? $p$-value$=$ `r fitb(c(0.05643458,0.0564346,0.056435,0.05643,0.0564,0.056,0.06))`
+
+`r hide("Hint")`
+For an upper-tail one-sided test, $p$-value is the probability of seeing the value of test statistic or even more extreme values under the assumption that $H_0$ is true, i.e. $p\text{-value} = P(Y\geq y_{obs}|H_0) = P(Y \geq 174|Y \sim Bin(218,0.75)$. 
+
+The $p$-value can also be calculated by using the R function `binom.test`. 
+`r unhide()`
+
+`r hide("Solution")`
+As mentioned in the hint, $p$-value can be calculated as follows:
+
+$$
+\begin{align}
+p\text{-value} = P(Y\geq y_{obs}|H_0)&=\sum^{n}_{i=y_{obs}} {n \choose i}  \pi^i_0 (1-\pi_0)^{n-i}\\
+&=\sum^{218}_{174} {218 \choose i} 0.75^i (0.25)^{218-i}\\
+&= 0.0564\\
+&\text{(Using R as a calculator to compute)}
+\end{align}
+$$
+
+```{r}
+yobs <- as.numeric(table(VIT2005$elevator)[2])
+n <- nrow(VIT2005)
+pvalue <- sum(dbinom(yobs:n, n, 0.75))
+pvalue
+```
+
+Or we can get the $p$-value by using the built-in function:
+```{r}
+binom.test(x = yobs, n = n, p = 0.75, alternative = "greater")
+```
+`r unhide()`
+
+### **Step 4 & 5 - Statistical and English Conclusion**
+
+What is the conclusion of the test?
+
+```{r, echo = FALSE}
+mcq <- c("Since p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that there is not sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.", "Since p-value is greater than 0.05, we reject the null hypothesis and conclude that there is sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.", 
+answer = "Since p-value is less than 0.1, we reject the null hypothesis and conclude that there is evidence to substantiate the claim that over 75% of all apartments have an elevator.", 
+"Since p-value is less than 0.1, we fail to reject the null hypothesis and conclude that there is not sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.")
+```
+`r longmcq(mcq)`
+
+
+## Question 2
+
+
+### **Step 1 - Hypotheses**
+
+For this question, we will complete a one-sample approximate hypothesis test using a normal distribution. In other words, we will approximate the Binomial random variable $Y$ with an appropriate normal distribution. 
+
+The null and alternative hypotheses to substantiate the housing director’s claim about the elevators are still:
+
+$$H_0 : \mu = 0.75 \quad \text{versus} \quad H_1 : \mu > 0.75.$$
+
+### **Step 2 - Choosing a Test Statistic**
+
+Let $P$ denote the test statistic, where $P$ is the population proportion of apartments that have an elevator. 
+
+Provided $H_0$ is true, what is the approximated distribution of $P$? In other words, what are the mean $\mu$ and variance $\sigma^2$ for this normal approximation $N(\mu,\sigma^2)$?
+
+1. $P \dot{\sim} N\left(\pi_0, \pi_0(1-\pi_0)\right)$
+2. $P \dot{\sim} N\left(\pi_0, \frac{\pi_0(1-\pi_0)}{n}\right)$
+3. $P \dot{\sim} N\left(\pi_0, \sqrt{\frac{\pi_0(1-\pi_0)}{n}}\right)$
+4. $P \dot{\sim} N\left(\pi_0, \frac{\pi_0(1-\pi_0)}{n-1}\right)$
+
+`r mcq(c("1",answer="2","3","4"))`
+
+Provided $H_0$ is true, what is the approximated distribution of the standardised test statistic $Z$? 
+
+1. $Z=\frac{P-\pi_0}{\sqrt{\pi_0(1-\pi_0)}} \dot{\sim} N\left(0, 1\right)$
+2. $Z= \frac{P-\pi_0}{\frac{\pi_0(1-\pi_0)}{n}} \dot{\sim} N\left(0, 1\right)$
+3. $Z= \frac{P-\pi_0}{\sqrt{\frac{\pi_0(1-\pi_0)}{n}}} \dot{\sim} N\left(0, 1\right)$
+
+`r mcq(c("1","2",answer="3"))`
+
+### **Step 3 - Hypothesis Test Calculations**
+
+One approach to performing a hypothesis test is to compare the value of standardised test statistic and the rejection region. 
+
+What is the value of the standardised test statistic with continuity correction, i.e. $z_\text{obs}$?
+$z_\text{obs}=$`r fitb(c(1.564124,1.56412,1.5641,1.564))`
+
+What is the rejection region? $z_\text{obs}$ `r mcq(c(answer=">","<"))``r fitb(c(1.281552,1.28155,1.2816,1.282,1.28))`
+
+`r hide("Solution")`
+For an upper-tail one-sided hypothesis test using the normal distribution with \(\alpha = 0.1\), the rejection region is \(z_{obs} > z_{0.9}\).
+
+From the statistical tables or from R, the critical value, \(z_{0.9}\) is 1.2816 and the rejection region is therefore \(z_{obs} > 1.2816\).
+```{r}
+qnorm(0.9)
+```
+
+
+
+With continuity correction, the standardised test statistic can be calculated as:
+$$
+\begin{align}
+z_{obs} &= \frac{p-\pi_0-\frac{1}{2n}}{\sqrt{\frac{\pi_0(1-\pi_0)}{n}}}\\
+&=\frac{\frac{174}{218}-0.75-\frac{1}{436}}{\sqrt{\frac{0.75(1-0.75)}{218}}}\\
+&=1.5641
+\end{align}
+$$
+
+```{r echo=FALSE}
+zobs <- (yobs / n -0.75 - 1/(2*n)) / sqrt(0.75*(1-0.75)/n)
+zobs
+```
+
+`r unhide()`
+
+Another approach to performing a hypothesis test is to calculate the $p$-value. 
+
+What is the $p$-value in this case? $p$-value$=$`r fitb(c(0.05889425,0.0588946,0.058894,0.05889,0.0589,0.059))`
+
+`r hide("Solution")`
+The $p$-value is the area under the normal distribution curve that corresponds to the standardised test statistics (with continuity correction) we just calculated, i.e. $P(Z \geq z_\text{obs})$. This can be found in the statistical tables or in R:
+
+```{r}
+pnorm(zobs, lower=FALSE)
+```
+`r unhide()`
+
+We can also find the value of standardised test statistic and $p$-value using the R function `prop.test`.
+
+With continuity correction: 
+```{r}
+prop.test(x = yobs, n = n, p = 0.75, alternative = "greater", correct = TRUE)
+```
+
+Without continuity correction:
+```{r}
+prop.test(x = yobs, n = n, p = 0.75, alternative = "greater", correct = FALSE)
+```
+
+Adding the continuity correction reduces the value of the standardised test statistic, so the $p$-value obtained with continuity correction will be larger than the $p$-value obtained without continuity correction. 
+
+
+### **Step 4 & 5 - Statistical and English Conclusion**
+
+Do we obtain the same conclusion as the exact test? 
+
+```{r, echo = FALSE}
+mcq <- c(answer="Yes, we reject the null hypothesis and conclude that there is sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.", "No, we fail to reject the null hypothesis and conclude that there is not sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.")
+```
+`r longmcq(mcq)`
+
+`r hide("Solution")`
+I. From the rejection region, we reject \(H_0\) because  \(z_{obs} = 1.5641\) is greater than 1.2816 and is therefore inside the rejection region when using continuity correction.
+
+OR
+
+II. From the p-value, we reject \(H_0\) because the $p$-value (with continuity correction) \(0.0589\) is less than 0.1.
+
+Whichever method we use, we reject \(H_0\).
+`r unhide()`

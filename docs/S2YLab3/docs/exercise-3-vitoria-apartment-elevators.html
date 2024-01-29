@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Exercise 3: Vitoria Apartment Elevators | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit</title>
+  <meta name="description" content="4 Exercise 3: Vitoria Apartment Elevators | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Exercise 3: Vitoria Apartment Elevators | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Exercise 3: Vitoria Apartment Elevators | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="exercise-2-vitoria-apartment-costs.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 3</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today"><i class="fa fa-check"></i><b>1.1</b> A summary of the type of the hypothesis test and R commands used today</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html"><i class="fa fa-check"></i><b>2</b> Exercise 1: Diode Diameter Hypothesis Test</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>2.1</b> Verifying normality</a></li>
+<li class="chapter" data-level="2.2" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#step-1---hypotheses"><i class="fa fa-check"></i><b>2.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="2.3" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#step-2---test-statistic"><i class="fa fa-check"></i><b>2.3</b> <strong>Step 2 - Test Statistic</strong></a></li>
+<li class="chapter" data-level="2.4" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#step-3---hypothesis-test-calculations"><i class="fa fa-check"></i><b>2.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#finding-the-rejection-region"><i class="fa fa-check"></i><b>2.4.1</b> Finding the rejection region</a></li>
+<li class="chapter" data-level="2.4.2" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#finding-the-standardised-test-statistic-and-p-value"><i class="fa fa-check"></i><b>2.4.2</b> Finding the standardised test statistic and <span class="math inline">\(p\)</span>-value</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#step-4---statistical-conclusion"><i class="fa fa-check"></i><b>2.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="2.6" data-path="exercise-1-diode-diameter-hypothesis-test.html"><a href="exercise-1-diode-diameter-hypothesis-test.html#step-5---english-conclusion"><i class="fa fa-check"></i><b>2.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html"><i class="fa fa-check"></i><b>3</b> Exercise 2: Vitoria Apartment Costs</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#verifying-normality-1"><i class="fa fa-check"></i><b>3.1</b> Verifying normality</a></li>
+<li class="chapter" data-level="3.2" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#step-1---hypotheses-1"><i class="fa fa-check"></i><b>3.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="3.3" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#step-2---choosing-a-test-statistic"><i class="fa fa-check"></i><b>3.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="3.4" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#step-3---hypothesis-test-calculations-1"><i class="fa fa-check"></i><b>3.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#finding-the-rejection-region-1"><i class="fa fa-check"></i><b>3.4.1</b> Finding the rejection region</a></li>
+<li class="chapter" data-level="3.4.2" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#finding-the-standardised-test-statistic-and-p-value-1"><i class="fa fa-check"></i><b>3.4.2</b> Finding the standardised test statistic and <span class="math inline">\(p\)</span>-value</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#step-4---statistical-conclusion-1"><i class="fa fa-check"></i><b>3.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="3.6" data-path="exercise-2-vitoria-apartment-costs.html"><a href="exercise-2-vitoria-apartment-costs.html#step-5---english-conclusion-1"><i class="fa fa-check"></i><b>3.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html"><i class="fa fa-check"></i><b>4</b> Exercise 3: Vitoria Apartment Elevators</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#question-1"><i class="fa fa-check"></i><b>4.1</b> Question 1</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-1---hypotheses-2"><i class="fa fa-check"></i><b>4.1.1</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="4.1.2" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-2---choosing-a-test-statistic-1"><i class="fa fa-check"></i><b>4.1.2</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="4.1.3" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-3---finding-the-p-value"><i class="fa fa-check"></i><b>4.1.3</b> <strong>Step 3 - Finding the <span class="math inline">\(p\)</span>-value</strong></a></li>
+<li class="chapter" data-level="4.1.4" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-4-5---statistical-and-english-conclusion"><i class="fa fa-check"></i><b>4.1.4</b> <strong>Step 4 &amp; 5 - Statistical and English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#question-2"><i class="fa fa-check"></i><b>4.2</b> Question 2</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-1---hypotheses-3"><i class="fa fa-check"></i><b>4.2.1</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="4.2.2" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-2---choosing-a-test-statistic-2"><i class="fa fa-check"></i><b>4.2.2</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="4.2.3" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-3---hypothesis-test-calculations-2"><i class="fa fa-check"></i><b>4.2.3</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a></li>
+<li class="chapter" data-level="4.2.4" data-path="exercise-3-vitoria-apartment-elevators.html"><a href="exercise-3-vitoria-apartment-elevators.html#step-4-5---statistical-and-english-conclusion-1"><i class="fa fa-check"></i><b>4.2.4</b> <strong>Step 4 &amp; 5 - Statistical and English Conclusion</strong></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise-3-vitoria-apartment-elevators" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Exercise 3: Vitoria Apartment Elevators<a href="exercise-3-vitoria-apartment-elevators.html#exercise-3-vitoria-apartment-elevators" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The director of urban housing in Vitoria, Spain, claims that over 75% of all apartments have an elevator.</p>
+<p>Using the variable <em>elevator</em> from the dataframe <em>VIT2005</em> in the package <code>PASWR2</code>, answer the questions below:</p>
+<p><strong>1. Can the director’s claim about elevators be substantiated using an exact method to reach a conclusion?</strong></p>
+<p><strong>2. Can the director’s claim about elevators be substantiated using an approximate method to reach a conclusion? Is this test in agreement with the exact method test above?</strong></p>
+<p><em>Use a 10% significance level for all tests.</em></p>
+<div id="question-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Question 1<a href="exercise-3-vitoria-apartment-elevators.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="step-1---hypotheses-2" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> <strong>Step 1 - Hypotheses</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-1---hypotheses-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For this question, we will complete a one-sample exact hypothesis test using a binomial distribution.</p>
+<p>Let <span class="math inline">\(\pi\)</span> denote the probability that an apartment has an elevator. Which of the following gives the correct null and alternative hypotheses?</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0: \pi=0.75 \text{ versus } H_1: \pi\neq 0.75\)</span></li>
+<li><span class="math inline">\(H_0: \pi=0.75 \text{ versus } H_1: \pi&lt; 0.75\)</span></li>
+<li><span class="math inline">\(H_0: \pi=0.75 \text{ versus } H_1: \pi&gt; 0.75\)</span></li>
+<li><span class="math inline">\(H_0: \pi&gt;0.75 \text{ versus } H_1: \pi\leq 0.75\)</span></li>
+</ol>
+<p><select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>2</option><option value='answer'>3</option><option value=''>4</option></select></p>
+</div>
+<div id="step-2---choosing-a-test-statistic-1" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> <strong>Step 2 - Choosing a Test Statistic</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-2---choosing-a-test-statistic-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The test statistic is <span class="math inline">\(Y\)</span>, where <span class="math inline">\(Y\)</span> is the number of apartments that have an elevator. Under the assumption that <span class="math inline">\(H_0\)</span> is true, <span class="math inline">\(Y \sim Bin(n,\pi) = Bin(218,0.75)\)</span>.</p>
+<p>What is the observed value of the test statistic? <span class="math inline">\(y_\text{obs}=\)</span><input class='webex-solveme nospaces' size='3' data-answer='["174"]'/></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>The value of the test statistic is simply the number of apartments that have an elevator in this data set. This can be found by using the following commands.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb27-1" tabindex="-1"></a><span class="fu">table</span>(VIT2005<span class="sc">$</span>elevator)</span></code></pre></div>
+<pre><code>## 
+##   0   1 
+##  44 174</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb29-1" tabindex="-1"></a><span class="co">#or</span></span>
+<span id="cb29-2"><a href="exercise-3-vitoria-apartment-elevators.html#cb29-2" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>elevator, <span class="at">data =</span> VIT2005)</span></code></pre></div>
+<pre><code>## elevator
+##   0   1 
+##  44 174</code></pre>
+</div>
+</div>
+<div id="step-3---finding-the-p-value" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> <strong>Step 3 - Finding the <span class="math inline">\(p\)</span>-value</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-3---finding-the-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a binomial hypothesis test we can calculate a <span class="math inline">\(p\)</span>-value straight from our test statistic and compare it with the significance level. (Typically we will not find the rejection region nor standardise the test statistic.)</p>
+<p>What is the <span class="math inline">\(p\)</span>-value in this case?</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>For an upper-tail one-sided test, <span class="math inline">\(p\)</span>-value is the probability of seeing the value of test statistic or even more extreme values under the assumption that <span class="math inline">\(H_0\)</span> is true, i.e. <span class="math inline">\(p\text{-value} = P(Y\geq y_{obs}|H_0) = P(Y \geq 174|Y \sim Bin(218,0.75)\)</span>.</p>
+<p>The <span class="math inline">\(p\)</span>-value can also be calculated by using the R function <code>binom.test</code>.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>As mentioned in the hint, <span class="math inline">\(p\)</span>-value can be calculated as follows:</p>
+<p><span class="math display">\[
+\begin{align}
+p\text{-value} = P(Y\geq y_{obs}|H_0)&amp;=\sum^{n}_{i=y_{obs}} {n \choose i}  \pi^i_0 (1-\pi_0)^{n-i}\\
+&amp;=\sum^{218}_{174} {218 \choose i} 0.75^i (0.25)^{218-i}\\
+&amp;= 0.0564\\
+&amp;\text{(Using R as a calculator to compute)}
+\end{align}
+\]</span></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb31-1" tabindex="-1"></a>yobs <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">table</span>(VIT2005<span class="sc">$</span>elevator)[<span class="dv">2</span>])</span>
+<span id="cb31-2"><a href="exercise-3-vitoria-apartment-elevators.html#cb31-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(VIT2005)</span>
+<span id="cb31-3"><a href="exercise-3-vitoria-apartment-elevators.html#cb31-3" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">dbinom</span>(yobs<span class="sc">:</span>n, n, <span class="fl">0.75</span>))</span>
+<span id="cb31-4"><a href="exercise-3-vitoria-apartment-elevators.html#cb31-4" tabindex="-1"></a>pvalue</span></code></pre></div>
+<pre><code>## [1] 0.05643458</code></pre>
+<p>Or we can get the <span class="math inline">\(p\)</span>-value by using the built-in function:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb33-1" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> yobs, <span class="at">n =</span> n, <span class="at">p =</span> <span class="fl">0.75</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  yobs and n
+## number of successes = 174, number of trials = 218, p-value = 0.05643
+## alternative hypothesis: true probability of success is greater than 0.75
+## 95 percent confidence interval:
+##  0.748218 1.000000
+## sample estimates:
+## probability of success 
+##              0.7981651</code></pre>
+</div>
+</div>
+<div id="step-4-5---statistical-and-english-conclusion" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> <strong>Step 4 &amp; 5 - Statistical and English Conclusion</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-4-5---statistical-and-english-conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What is the conclusion of the test?</p>
+<div id="radio_JWIESCUEMU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JWIESCUEMU" value=""></input> <span>Since p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that there is not sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.</span></label><label><input type="radio" autocomplete="off" name="radio_JWIESCUEMU" value=""></input> <span>Since p-value is greater than 0.05, we reject the null hypothesis and conclude that there is sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.</span></label><label><input type="radio" autocomplete="off" name="radio_JWIESCUEMU" value="answer"></input> <span>Since p-value is less than 0.1, we reject the null hypothesis and conclude that there is evidence to substantiate the claim that over 75% of all apartments have an elevator.</span></label><label><input type="radio" autocomplete="off" name="radio_JWIESCUEMU" value=""></input> <span>Since p-value is less than 0.1, we fail to reject the null hypothesis and conclude that there is not sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.</span></label>
+</div>
+</div>
+</div>
+<div id="question-2" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Question 2<a href="exercise-3-vitoria-apartment-elevators.html#question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="step-1---hypotheses-3" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> <strong>Step 1 - Hypotheses</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-1---hypotheses-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For this question, we will complete a one-sample approximate hypothesis test using a normal distribution. In other words, we will approximate the Binomial random variable <span class="math inline">\(Y\)</span> with an appropriate normal distribution.</p>
+<p>The null and alternative hypotheses to substantiate the housing director’s claim about the elevators are still:</p>
+<p><span class="math display">\[H_0 : \mu = 0.75 \quad \text{versus} \quad H_1 : \mu &gt; 0.75.\]</span></p>
+</div>
+<div id="step-2---choosing-a-test-statistic-2" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> <strong>Step 2 - Choosing a Test Statistic</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-2---choosing-a-test-statistic-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(P\)</span> denote the test statistic, where <span class="math inline">\(P\)</span> is the population proportion of apartments that have an elevator.</p>
+<p>Provided <span class="math inline">\(H_0\)</span> is true, what is the approximated distribution of <span class="math inline">\(P\)</span>? In other words, what are the mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> for this normal approximation <span class="math inline">\(N(\mu,\sigma^2)\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P \dot{\sim} N\left(\pi_0, \pi_0(1-\pi_0)\right)\)</span></li>
+<li><span class="math inline">\(P \dot{\sim} N\left(\pi_0, \frac{\pi_0(1-\pi_0)}{n}\right)\)</span></li>
+<li><span class="math inline">\(P \dot{\sim} N\left(\pi_0, \sqrt{\frac{\pi_0(1-\pi_0)}{n}}\right)\)</span></li>
+<li><span class="math inline">\(P \dot{\sim} N\left(\pi_0, \frac{\pi_0(1-\pi_0)}{n-1}\right)\)</span></li>
+</ol>
+<p><select class='webex-select'><option value='blank'></option><option value=''>1</option><option value='answer'>2</option><option value=''>3</option><option value=''>4</option></select></p>
+<p>Provided <span class="math inline">\(H_0\)</span> is true, what is the approximated distribution of the standardised test statistic <span class="math inline">\(Z\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(Z=\frac{P-\pi_0}{\sqrt{\pi_0(1-\pi_0)}} \dot{\sim} N\left(0, 1\right)\)</span></li>
+<li><span class="math inline">\(Z= \frac{P-\pi_0}{\frac{\pi_0(1-\pi_0)}{n}} \dot{\sim} N\left(0, 1\right)\)</span></li>
+<li><span class="math inline">\(Z= \frac{P-\pi_0}{\sqrt{\frac{\pi_0(1-\pi_0)}{n}}} \dot{\sim} N\left(0, 1\right)\)</span></li>
+</ol>
+<p><select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>2</option><option value='answer'>3</option></select></p>
+</div>
+<div id="step-3---hypothesis-test-calculations-2" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> <strong>Step 3 - Hypothesis Test Calculations</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-3---hypothesis-test-calculations-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One approach to performing a hypothesis test is to compare the value of standardised test statistic and the rejection region.</p>
+<p>What is the value of the standardised test statistic with continuity correction, i.e. $z_? <span class="math inline">\(z_\text{obs}=\)</span><input class='webex-solveme nospaces' size='8' data-answer='["1.564124","1.56412","1.5641","1.564"]'/></p>
+<p>What is the rejection region? <span class="math inline">\(z_\text{obs}\)</span> <select class='webex-select'><option value='blank'></option><option value='answer'>&gt;</option><option value=''>&lt;</option></select><input class='webex-solveme nospaces' size='8' data-answer='["1.281552","1.28155","1.2816","1.282","1.28"]'/></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>For an upper-tail one-sided hypothesis test using the normal distribution with <span class="math inline">\(\alpha = 0.1\)</span>, the rejection region is <span class="math inline">\(z_{obs} &gt; z_{0.9}\)</span>.</p>
+<p>From the statistical tables or from R, the critical value, <span class="math inline">\(z_{0.9}\)</span> is 1.2816 and the rejection region is therefore <span class="math inline">\(z_{obs} &gt; 1.2816\)</span>.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb35-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>## [1] 1.281552</code></pre>
+<p>With continuity correction, the standardised test statistic can be calculated as:
+<span class="math display">\[
+\begin{align}
+z_{obs} &amp;= \frac{p-\pi_0-\frac{1}{2n}}{\sqrt{\frac{\pi_0(1-\pi_0)}{n}}}\\
+&amp;=\frac{\frac{174}{218}-0.75-\frac{1}{436}}{\sqrt{\frac{0.75(1-0.75)}{218}}}\\
+&amp;=1.5641
+\end{align}
+\]</span></p>
+<pre><code>## [1] 1.564124</code></pre>
+</div>
+<p>Another approach to performing a hypothesis test is to calculate the <span class="math inline">\(p\)</span>-value.</p>
+<p>What is the <span class="math inline">\(p\)</span>-value in this case? <span class="math inline">\(p\)</span>-value<span class="math inline">\(=\)</span><input class='webex-solveme nospaces' size='10' data-answer='["0.05889425","0.0588946","0.058894","0.05889","0.0589","0.059",".05889425",".0588946",".058894",".05889",".0589",".059"]'/></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>The <span class="math inline">\(p\)</span>-value is the area under the normal distribution curve that corresponds to the standardised test statistics (with continuity correction) we just calculated, i.e. <span class="math inline">\(P(Z \geq z_\text{obs})\)</span>. This can be found in the statistical tables or in R:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb38-1" tabindex="-1"></a><span class="fu">pnorm</span>(zobs, <span class="at">lower=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 0.05889425</code></pre>
+</div>
+<p>We can also find the value of standardised test statistic and <span class="math inline">\(p\)</span>-value using the R function <code>prop.test</code>.</p>
+<p>With continuity correction:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb40-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> yobs, <span class="at">n =</span> n, <span class="at">p =</span> <span class="fl">0.75</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  yobs out of n, null probability 0.75
+## X-squared = 2.4465, df = 1, p-value = 0.05889
+## alternative hypothesis: true p is greater than 0.75
+## 95 percent confidence interval:
+##  0.7474708 1.0000000
+## sample estimates:
+##         p 
+## 0.7981651</code></pre>
+<p>Without continuity correction:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="exercise-3-vitoria-apartment-elevators.html#cb42-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> yobs, <span class="at">n =</span> n, <span class="at">p =</span> <span class="fl">0.75</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  yobs out of n, null probability 0.75
+## X-squared = 2.6972, df = 1, p-value = 0.05026
+## alternative hypothesis: true p is greater than 0.75
+## 95 percent confidence interval:
+##  0.7499209 1.0000000
+## sample estimates:
+##         p 
+## 0.7981651</code></pre>
+<p>Adding the continuity correction reduces the value of the standardised test statistic, so the <span class="math inline">\(p\)</span>-value obtained with continuity correction will be larger than the <span class="math inline">\(p\)</span>-value obtained without continuity correction.</p>
+</div>
+<div id="step-4-5---statistical-and-english-conclusion-1" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> <strong>Step 4 &amp; 5 - Statistical and English Conclusion</strong><a href="exercise-3-vitoria-apartment-elevators.html#step-4-5---statistical-and-english-conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Do we obtain the same conclusion as the exact test?</p>
+<div id="radio_CSPNLAXFZY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CSPNLAXFZY" value="answer"></input> <span>Yes, we reject the null hypothesis and conclude that there is sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.</span></label><label><input type="radio" autocomplete="off" name="radio_CSPNLAXFZY" value=""></input> <span>No, we fail to reject the null hypothesis and conclude that there is not sufficient evidence to substantiate the claim that over 75% of all apartments have an elevator.</span></label>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>I. From the rejection region, we reject <span class="math inline">\(H_0\)</span> because <span class="math inline">\(z_{obs} = 1.5641\)</span> is greater than 1.2816 and is therefore inside the rejection region when using continuity correction.</p>
+<p>OR</p>
+<ol start="2" style="list-style-type: upper-roman">
+<li>From the p-value, we reject <span class="math inline">\(H_0\)</span> because the <span class="math inline">\(p\)</span>-value (with continuity correction) <span class="math inline">\(0.0589\)</span> is less than 0.1.</li>
+</ol>
+<p>Whichever method we use, we reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exercise-2-vitoria-apartment-costs.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

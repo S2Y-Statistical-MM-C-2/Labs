@@ -1,0 +1,8 @@
+"0","yobs <- as.numeric(table(VIT2005$elevator)[2])"
+"0","n <- nrow(VIT2005)"
+"0","pvalue <- sum(dbinom(yobs:n, n, 0.75))"
+"0","pvalue"
+"1","[1]"
+"1"," 0.05643458"
+"1","
+"

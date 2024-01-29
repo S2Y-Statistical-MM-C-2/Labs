@@ -1,0 +1,105 @@
+---
+title: "Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+VIT2005 <- VIT2005
+LEDDIODE <- LEDDIODE
+DEPEND <- DEPEND
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# Welcome to Lab 3
+
+Intended Learning Outcomes:
+
+1. Conduct a hypothesis test for the population variance in `R` with a step-by-step guide.
+2. Conduct a hypothesis test for the population proportion in `R` with a step-by-step guide.
+2. Conduct a goodness-of-fit test in `R` with a step-by-step guide.
+
+## A summary of the type of the hypothesis test and R commands used today
+
+**Test for population variance**
+
+![](Images/chisquared.png)
+
+<br>
+
+![](Images/ftest.png)
+The $F$-test can be implemented in R by using `var.test`:
+```{r eval=FALSE}
+var.test(x, y, ratio = 1,
+         alternative = c("two.sided", "less", "greater"),
+         conf.level = 0.95)
+```
+
+* `ratio`: the hypothesised ratio of the population variances of $X$ and $Y$, i.e.  $\frac{\sigma_X^2}{\sigma_Y^2}$ under $H_0$
+* `alternative`: the type of alternative hypothesis, where `two.sided` corresponds to $\sigma_X^2 \neq \sigma_Y^2$, `greater` corresponds to $\sigma_X^2 > \sigma_Y^2$, and `less` corresponds to $\sigma_X^2 < \sigma_Y^2$.
+* `conf.level`: confidence level, which equals to $1-\alpha$ (significance level). 
+
+<br>
+
+**Test for population proportions**
+
+![](Images/binom.png)
+The exact Binomial test can be implemented in R by using `binom.test`:
+```{r eval=FALSE}
+binom.test(x, n, p = 0.5,
+           alternative = c("two.sided", "less", "greater"),
+           conf.level = 0.95)
+```
+
+* `x`: number of successes
+* `n`: number of trials
+* `p`: hypothesized probability of success, i.e. $\pi$ under $H_0$
+* `alternative` and `conf.level`: same as explained in the `var.test` function. 
+
+<br>
+
+![](Images/binomnorm.png)
+
+Testing the proportion of successes in a Binomial experiment with normal approximation can be performed by using `prop.test`:
+```{r eval=FALSE}
+prop.test(x, n, p = NULL,
+          alternative = c("two.sided", "less", "greater"),
+          conf.level = 0.95, correct = TRUE)
+```
+
+All arguments are the same as in the `binom.test()` function. 
+
+**Goodness-of-fit test**
+
+The test criterion for testing $H_0: F_X(x) = F_0(x)$ for all $x$ against the alternative $H_1: F_X(x) \neq F_0(x)$ for some $x$ when the null hypothesis is completely specified is
+\[\chi^2_\text{obs} = \sum_{k=1}^K \frac{(O_k-E_k)^2}{E_k},\]
+where $K$ is the total number of categories.
+
+For large $n$, provided all expected categories are at least 5, $\chi^2_\text{obs}$ is distributed approximately $\chi^2_{K-1}$.
+
+The test can be performed by using `chisq.test`:
+```{r eval=FALSE}
+chisq.test(x, p)
+```
+
+* `x`: a vector of observed counts in each category
+* `p`: a vector of probabilities for the observations falling into each category

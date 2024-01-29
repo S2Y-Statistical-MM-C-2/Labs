@@ -1,0 +1,54 @@
+---
+title: "Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "Example1.Rmd", "Example2.Rmd"]
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+VIT2005 <- VIT2005
+LEDDIODE <- LEDDIODE
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# Welcome to Lab 3
+
+Intended Learning Outcomes:
+
+1. Complete a hypothesis test for the variance in R with a step-by-step guide.
+2. Complete a two-sample  hypothesis test for the difference in variances in R with a step-by-step guide.
+3. Complete Assessment Problem 1 and Assessment Problem 2 in R by yourself.
+
+
+## A Summary of the Type of the Hypothesis Test Used Today 
+
+![](Images/chisquared.png)
+
+![](Images/ftest.png)
+
+## Credit where credit is due
+
+The labs in S2 incorporate and adapt materials from:
+
+Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
+
+The materials were converted into interactive labs on Hypothesis Testing using `Bookdown` and `webexercises` in Summer 2023 by summer project student, Megan Ruffle.

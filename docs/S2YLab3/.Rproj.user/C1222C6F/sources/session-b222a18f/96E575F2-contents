@@ -1,0 +1,73 @@
+---
+title: "Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "Exexcise1.Rmd", "Exercise2.Rmd", "Exercise3.Rmd"]
+
+---
+
+# Welcome to Lab 3
+
+Placeholder
+
+
+## A summary of the type of the hypothesis test and R commands used today
+
+<!--chapter:end:index.Rmd-->
+
+
+# Exercise 1: Diode Diameter Hypothesis Test
+
+Placeholder
+
+
+## Verifying normality
+## **Step 1 - Hypotheses**
+## **Step 2 - Test Statistic**
+## **Step 3 - Hypothesis Test Calculations**
+### Finding the rejection region
+### Finding the standardised test statistic and $p$-value
+## **Step 4 - Statistical Conclusion**
+## **Step 5 - English Conclusion**
+
+<!--chapter:end:Exercise1.Rmd-->
+
+
+# Exercise 2: Vitoria Apartment Costs
+
+Placeholder
+
+
+## Verifying normality
+## **Step 1 - Hypotheses**
+## **Step 2 - Choosing a Test Statistic**
+## **Step 3 - Hypothesis Test Calculations**
+### Finding the rejection region
+### Finding the standardised test statistic and $p$-value
+## **Step 4 - Statistical Conclusion**
+## **Step 5 - English Conclusion**
+
+<!--chapter:end:Exercise2.Rmd-->
+
+
+# Exercise 3: Vitoria Apartment Elevators
+
+Placeholder
+
+
+## Question 1
+### **Step 1 - Hypotheses**
+### **Step 2 - Choosing a Test Statistic**
+### **Step 3 - Finding the $p$-value**
+### **Step 4 & 5 - Statistical and English Conclusion**
+## Question 2
+### **Step 1 - Hypotheses**
+### **Step 2 - Choosing a Test Statistic**
+### **Step 3 - Hypothesis Test Calculations**
+### **Step 4 & 5 - Statistical and English Conclusion**
+
+<!--chapter:end:Exercise3.Rmd-->
+
