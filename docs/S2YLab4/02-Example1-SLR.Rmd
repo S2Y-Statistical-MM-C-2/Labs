@@ -1,0 +1,135 @@
+
+# Example 1: Simple linear regression
+
+The admissions committee of a comprehensive state university selected at random the records of 200 second-semester freshmen. The results, first-semester college GPA and SAT scores, are stored in the data set `Grades` in the package `PASWR`. The admissions committee wants to study the relationship between first-semester college grade point average (`gpa`) and scholastic aptitude test (`sat`) scores.
+
+To open this data file, type:
+```{r eval=FALSE, echo=TRUE}
+library(PASWR)
+Grades <- Grades
+```
+
+
+This will assign the data to the object `Grades`.
+
+A spreadsheet of the data can be viewed by typing: 
+
+```{r eval=FALSE}
+fix(GRADES)
+```
+
+but note that you will need to close this window before trying to excute any further commands. The spreadsheet can also be viewed by clicking on the `GRADES` object in the Workspace (top right of the screen).
+
+## Creating scatterplots
+
+The relationship between `gpa` and `sat` scores can be examined by using a scatterplot.
+This code will produce the basic scatterplot of `gpa` (y-axis) against `sat` (x-axis):
+
+```{r, echo = TRUE, eval=TRUE, fig.cap="Scatterplot of `gpa` versus `sat`."}
+plot(gpa ~ sat, data = Grades)
+```
+
+There are several options for personalising plots. First of all, you should add sensible axis labels to the plot and a main title. For example, by typing:
+
+```{r, echo = TRUE, eval=TRUE, fig.cap="Scatterplot of `gpa` versus `sat` with annotated axis labels."}
+plot(gpa ~ sat, data = Grades, xlab = "SAT score", ylab = "GPA", main="Scatterplot of GPA versus SAT scores")
+```
+
+You can also edit the points by changing the symbol type, size and colour, such as
+
+```{r, eval=TRUE, echo=TRUE}
+plot(gpa ~ sat, data = Grades, xlab = "SAT score", ylab = "GPA", main = "Scatterplot of GPA versus SAT scores", pch = 2, cex = 0.7, col = "blue")
+```
+
+The plotting character is determined by the `pch` argument, the size of the plotted characters by `cex`, and the colour by the `col` argument.
+
+
+**DISCUSSION**: Looking at your plot, what can we say about the relationship between `gpa` and `sat`?
+
+* Is the relationship linear or non-linear?
+* Is the relationship positive or negative?
+* How strong is the relationship?
+
+## Sample correlation coefficient 
+
+From the scatterplot, we can see a linear relationship between `gpa` and `sat`. To further assess the strength of linear relationship, sample correlation coefficient \(r\) may be caulculated.  
+
+The formula for the sample correlation coefficient is:
+
+\[r= \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}\]
+
+Let's first calculate $r$ by using `R` as a calculator:
+```{r}
+x <- Grades$sat
+y <- Grades$gpa
+x_mean <- mean(x)
+y_mean <- mean(y)
+r <- sum((x-x_mean) * (y-y_mean)) / sqrt(sum((x-x_mean)^2)*sum((y-y_mean)^2))
+r
+```
+
+The correlation coefficient varies from a strong negative linear association \(r=-1\), to no **LINEAR** association \(r=0\), to a strong positive linear association \(r=1\).
+
+**QUESTION**: Which of the following is the correct interpretation of the correlation coefficient?
+```{r, echo = FALSE}
+mcq2 <- c("74.9% correlation would indicate a weak negative linear relationship between GPA and SAT scores.", 
+"74.9% correlation would indicate a strong negative linear relationship between GPA and SAT scores.", "74.9% correlation would indicate a weak positive linear relationship between GPA and SAT scores.",
+answer = "74.9% correlation would indicate a strong positive linear relationship between GPA and SAT scores.")
+```
+`r longmcq(mcq2)`
+
+In `R` we can compute the sample correlation coefficient more efficiently by using the build-in function `cor()`:
+
+```{r, eval=TRUE, echo=TRUE}
+cor(x=Grades$sat,y=Grades$gpa)
+```
+
+
+## Fitting a linear model
+
+To find the equation that best describes the relationship between `gpa` and `sat`, the `lm` (abbreviation for Linear Model) function can be used:
+```{r eval=TRUE, echo=TRUE}
+model.lm<- lm(gpa ~ sat, data = Grades)
+model.lm
+```
+
+This fits a simple linear regression model with the response variable `gpa` and the explanatory variable `sat`.
+
+From the `R` output, note down the equation of the fitted line that is given: *(Enter your answers to 3 decimal places.)*
+<center> `gpa` = `r fitb(c("-1.19206381","-1.192064","-1.19206","-1.1921","-1.192","-1.19","-1.2"))` + `r fitb(c("0.003094","0.00309","0.0031","0.003"))` `sat` </center>
+
+
+This is the line of best fit, describing the effect of `sat` on `gpa`.
+
+<br>
+
+**QUESTION**: Which of the following is the correct interpretation of the regression model?
+```{r, echo = FALSE}
+mcq1 <- c("The intercept of the fitted line is -1.192, so for every unit increase in `sat`, we expect `gpa` to decrease by 1.192.", 
+"The intercept of the fitted line is -1.192, so for every unit increase in `gpa`, we expect `sat` to decrease by 1.192.",
+answer = "The slope coefficient of the fitted line is 0.0031, so for every unit increase in `sat`, we expect `gpa` to increase by 0.0031.",
+"The coefficient of the fitted line is 0.0031, so for every unit increase in `gpa`, we expect `sat` to increase by 0.0031.")
+```
+`r longmcq(mcq1)`
+
+<br>
+
+**QUESTION**: Use `R` to calculate the point estimate of the change in the mean GPA when the SAT score increases by 50 points.
+
+ANSWER = `r fitb(c(0.1547135,0.154714,0.15471,0.1547,0.155,0.16))`
+
+```{r eval = TRUE, webex.hide="Solution"}
+coef(model.lm)[2]*50
+```
+
+<br>
+
+**Plot of the data including the fitted line**
+
+A plot of the data can be re-produced as before with the fitted line added using the `abline` command. This command uses the intercept and slope information from the fitted line saved in `model.lm`. This is done using:
+
+```{r eval=TRUE, echo=TRUE}
+plot(gpa ~ sat, data = Grades, xlab = "SAT score", ylab = "GPA", main = "Scatterplot of GPA versus SAT scores", pch=20)
+abline(model.lm)
+```
+

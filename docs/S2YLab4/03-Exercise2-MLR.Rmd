@@ -1,0 +1,66 @@
+# Exercise 2: Multiple linear regression
+
+Hydrostatic weighing, also known as underwater weighing or hydrodensitometry, is one of the most accurate ways to measure body fat.
+
+The body fat of 78 high school wrestlers was measured using three separate techniques, namely hydrostatic weighing, skin fold measurements and the Tanita body fat scale. The results are stored in the data set `HSwrestler` in the `PASWR` package. 
+
+Read in the data using:
+
+```{r}
+library(PASWR)
+HSWRESTLER <- HSwrestler
+```
+
+
+The data set contains nine columns, described as follows:
+
+* `AGE`: age of wrestler in years
+* `HT`: height of wrestler in inches
+* `WT`: weight of wrestler in pounds
+* `ABS`: abdominal fat
+* `TRICEPS`: tricep fat
+* `SUBSCAP`: subscapular fat
+* `HWFAT`: hydrostatic fat
+* `TANFAT`: Tanita fat
+* `SKFAT`: skin fat
+
+This can be seen by typing:
+```{r, eval=FALSE}
+names(HSWRESTLER)
+```
+
+In this example, it is of interest to investigate how hydrostatic fat (`HWFAT`) is related to abdominal fat (`ABS`) and tricep fat (`TRICEPS`). 
+
+## Exploratory analysis
+
+**TASK 1**
+
+(a) Produce scatterplots of `HWFAT` (y) against Lactic `ABS` (x), and `HWFAT` (y) against `TRICEPS` (x).
+
+`r hide("Hint")`
+You can use `plot()` such as in the previous example with *Grades*. Or you can refer to previous weeks labs and use `ggplot()`.
+`r unhide()`
+
+(b) Describe the relationship between `HWFAT` (y), `ABS` (x) and `TRICEPS`. 
+
+## Fitting a linear model
+
+In Example 1, the function `lm()` was used to find estimates for parameters of a simple linear regression model. The same function can be used for multiple linear regression models by specifying the explanatory variables on the right side of the tilde (~) operator inside the `lm()` function. 
+
+To build a multiple linear regression model with `hwfat` as the response variable and `abs` and `triceps` (tricep fat) as explanatory variables, type: 
+
+```{r, eval=FALSE}
+lm(HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)
+```
+
+Note down the equation of the fitted line from that is given:
+
+<center> `HWFAT` = `r fitb(c("2.0590398", "2.05904", "2.0590", "2.059", "2.06"))` + `r fitb(c("0.3370839", "0.337084", "0.33708", "0.3371", "0.337", "0.34"))` `ABS` + `r fitb(c("0.50", "0.504", "0.5043", "0.50430", "0.504303", "0.5043030 "))` `TRICEPS`</center>
+
+<br>
+**QUESTION**: Interpret what each coefficient means.
+
+* For every unit increase in abdominal fat, hydrostatic fat is expected to `r mcq(c(answer="increase", "decrease"))` by `r mcq(c(answer="0.337", "0.504", "2.059"))` unit, `r mcq(c("regardless of tricep fat", answer="while holding tricep fat constant"))`. 
+
+* For every unit increase in tricep fat, hydrostatic fat is expected to `r mcq(c(answer="increase", "decrease"))` by `r mcq(c("0.337", answer="0.504", "2.059"))` unit, `r mcq(c("regardless of abdominal fat", answer="while holding abdominal fat constant"))`. 
+

@@ -1,4 +1,4 @@
-# Exercise 1 - Chi-squared test for association
+# Exercise 1: Chi-squared test for association
 
 The sinking of the Titanic occurred on the 15th of April in 1912. The data frame `TITANIC3` in the `PASWR2`package contains information regarding class, sex, and survival as well as several other variables.
 ```{r, echo=TRUE, eval=TRUE}
@@ -20,7 +20,7 @@ TABLE1
 i) male passengers’ class versus survival, and
 ii) female passengers’ class versus survival.
 
-*At the time of data collection in 1912, passenger gender was recorded as 'sex' and separated only into 'male' or 'female'*
+*At the time of data collection in 1912, passenger gender was recorded as 'sex' and separated only into 'male' or 'female'.*
 
 
 `r hide("Solution")`
@@ -42,7 +42,7 @@ TABLE3
 ```
 `r unhide()`
 
-## Hypothesis Testing
+## Hypothesis testing
 To test if there is an association between class and survival generally for all passengers or for men and/or women, we should complete Chi-Squared Hypothesis Tests.
 
 This can be done using:
@@ -51,9 +51,9 @@ TEST1 <- chisq.test(TABLE1)
 TEST1
 ```
 
-With a p-value of less than 0.05, this suggests there is a significant association between class and survival of passengers generally.
+With a $p$-value of less than 0.05, this suggests there is a significant association between class and survival of passengers generally.
 
-**Question** Test if there is an association between class and survival for men an women on the titanic:
+**Question** Test if there is an association between class and survival for men and women on the titanic:
 
 ```{r, echo = FALSE}
 mcq4<- c(answer="The p-values for both tests were less than 0.05 meaning there is an association between class and survival for men and for women.", 

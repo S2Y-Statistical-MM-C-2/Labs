@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Exercise 4: Multiple linear regression | Lab 4 - Exploring relationships and understanding correlation</title>
-  <meta name="description" content="4 Exercise 4: Multiple linear regression | Lab 4 - Exploring relationships and understanding correlation" />
+  <title>5 Example 2: Spurious correlation | Lab 4 - Exploring relationships and understanding correlation</title>
+  <meta name="description" content="5 Example 2: Spurious correlation | Lab 4 - Exploring relationships and understanding correlation" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Exercise 4: Multiple linear regression | Lab 4 - Exploring relationships and understanding correlation" />
+  <meta property="og:title" content="5 Example 2: Spurious correlation | Lab 4 - Exploring relationships and understanding correlation" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Exercise 4: Multiple linear regression | Lab 4 - Exploring relationships and understanding correlation" />
+  <meta name="twitter:title" content="5 Example 2: Spurious correlation | Lab 4 - Exploring relationships and understanding correlation" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="example-1-simple-linear-regression.html"/>
-<link rel="next" href="example-2-spurious-correlation.html"/>
+<link rel="prev" href="exercise-2-multiple-linear-regression.html"/>
+<link rel="next" href="exercise-3-identifying-relationships.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,10 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 4</a></li>
-<li class="chapter" data-level="2" data-path="exercise-2-chi-squared-test-for-association.html"><a href="exercise-2-chi-squared-test-for-association.html"><i class="fa fa-check"></i><b>2</b> Exercise 2: Chi-squared test for association</a>
+<li class="chapter" data-level="2" data-path="exercise-1-chi-squared-test-for-association.html"><a href="exercise-1-chi-squared-test-for-association.html"><i class="fa fa-check"></i><b>2</b> Exercise 1: Chi-squared test for association</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="exercise-2-chi-squared-test-for-association.html"><a href="exercise-2-chi-squared-test-for-association.html#contingency-tables"><i class="fa fa-check"></i><b>2.1</b> Contingency tables</a></li>
-<li class="chapter" data-level="2.2" data-path="exercise-2-chi-squared-test-for-association.html"><a href="exercise-2-chi-squared-test-for-association.html#hypothesis-testing"><i class="fa fa-check"></i><b>2.2</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="2.1" data-path="exercise-1-chi-squared-test-for-association.html"><a href="exercise-1-chi-squared-test-for-association.html#contingency-tables"><i class="fa fa-check"></i><b>2.1</b> Contingency tables</a></li>
+<li class="chapter" data-level="2.2" data-path="exercise-1-chi-squared-test-for-association.html"><a href="exercise-1-chi-squared-test-for-association.html#hypothesis-testing"><i class="fa fa-check"></i><b>2.2</b> Hypothesis testing</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="example-1-simple-linear-regression.html"><a href="example-1-simple-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Example 1: Simple linear regression</a>
 <ul>
@@ -148,10 +148,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="example-1-simple-linear-regression.html"><a href="example-1-simple-linear-regression.html#sample-correlation-coefficient"><i class="fa fa-check"></i><b>3.2</b> Sample correlation coefficient</a></li>
 <li class="chapter" data-level="3.3" data-path="example-1-simple-linear-regression.html"><a href="example-1-simple-linear-regression.html#fitting-a-linear-model"><i class="fa fa-check"></i><b>3.3</b> Fitting a linear model</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="exercise-4-multiple-linear-regression.html"><a href="exercise-4-multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Exercise 4: Multiple linear regression</a>
+<li class="chapter" data-level="4" data-path="exercise-2-multiple-linear-regression.html"><a href="exercise-2-multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Exercise 2: Multiple linear regression</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="exercise-4-multiple-linear-regression.html"><a href="exercise-4-multiple-linear-regression.html#exploratory-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory analysis</a></li>
-<li class="chapter" data-level="4.2" data-path="exercise-4-multiple-linear-regression.html"><a href="exercise-4-multiple-linear-regression.html#fitting-a-linear-model-1"><i class="fa fa-check"></i><b>4.2</b> Fitting a linear model</a></li>
+<li class="chapter" data-level="4.1" data-path="exercise-2-multiple-linear-regression.html"><a href="exercise-2-multiple-linear-regression.html#exploratory-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="exercise-2-multiple-linear-regression.html"><a href="exercise-2-multiple-linear-regression.html#fitting-a-linear-model-1"><i class="fa fa-check"></i><b>4.2</b> Fitting a linear model</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="example-2-spurious-correlation.html"><a href="example-2-spurious-correlation.html"><i class="fa fa-check"></i><b>5</b> Example 2: Spurious correlation</a>
 <ul>
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="example-2-spurious-correlation.html"><a href="example-2-spurious-correlation.html#further-analsyis-with-sample-correlation-coefficient"><i class="fa fa-check"></i><b>5.2</b> Further analsyis with sample correlation coefficient</a></li>
 <li class="chapter" data-level="5.3" data-path="example-2-spurious-correlation.html"><a href="example-2-spurious-correlation.html#spurious-correlation"><i class="fa fa-check"></i><b>5.3</b> Spurious Correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="exercise-5-identifying-relationships.html"><a href="exercise-5-identifying-relationships.html"><i class="fa fa-check"></i><b>6</b> Exercise 5: Identifying relationships</a></li>
+<li class="chapter" data-level="6" data-path="exercise-3-identifying-relationships.html"><a href="exercise-3-identifying-relationships.html"><i class="fa fa-check"></i><b>6</b> Exercise 3: Identifying relationships</a></li>
 </ul>
 
       </nav>
@@ -177,59 +177,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exercise-4-multiple-linear-regression" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Exercise 4: Multiple linear regression<a href="exercise-4-multiple-linear-regression.html#exercise-4-multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Hydrostatic weighing, also known as underwater weighing or hydrodensitometry, is one of the most accurate ways to measure body fat.</p>
-<p>The body fat of 78 high school wrestlers was measured using three separate techniques, namely hydrostatic weighing, skin fold measurements and the Tanita body fat scale. The results are stored in the data set <code>HSwrestler</code> in the <code>PASWR</code> package.</p>
-<p>Read in the data using:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="exercise-4-multiple-linear-regression.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
-<span id="cb28-2"><a href="exercise-4-multiple-linear-regression.html#cb28-2" tabindex="-1"></a>HSWRESTLER <span class="ot">&lt;-</span> HSwrestler</span></code></pre></div>
-<p>The data set contains nine columns, described as follows:</p>
-<ul>
-<li><code>AGE</code>: age of wrestler in years</li>
-<li><code>HT</code>: height of wrestler in inches</li>
-<li><code>WT</code>: weight of wrestler in pounds</li>
-<li><code>ABS</code>: abdominal fat</li>
-<li><code>TRICEPS</code>: tricep fat</li>
-<li><code>SUBSCAP</code>: subscapular fat</li>
-<li><code>HWFAT</code>: hydrostatic fat</li>
-<li><code>TANFAT</code>: Tanita fat</li>
-<li><code>SKFAT</code>: skin fat</li>
-</ul>
-<p>This can be seen by typing:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="exercise-4-multiple-linear-regression.html#cb29-1" tabindex="-1"></a><span class="fu">names</span>(HSWRESTLER)</span></code></pre></div>
-<p>In this example, it is of interest to investigate how hydrostatic fat (<code>HWFAT</code>) is related to abdominal fat (<code>ABS</code>) and tricep fat (<code>TRICEPS</code>).</p>
-<div id="exploratory-analysis" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Exploratory analysis<a href="exercise-4-multiple-linear-regression.html#exploratory-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>TASK 1</strong></p>
-<ol style="list-style-type: lower-alpha">
-<li>Produce scatterplots of <code>HWFAT</code> (y) against Lactic <code>ABS</code> (x), and <code>HWFAT</code> (y) against <code>TRICEPS</code> (x).</li>
-</ol>
+<div id="example-2-spurious-correlation" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Example 2: Spurious correlation<a href="example-2-spurious-correlation.html#example-2-spurious-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Hollywood legend Nicholas Cage seems to have a problem. It appears that every time he releases a new film upon the world, many people drown by falling into pools of water. Coincidence? Or, are some of his films that bad?</p>
+<p><strong>Data: Cage.csv</strong></p>
+<p><strong>Columns:</strong></p>
+<div class="line-block">              <strong>C1:   Year         Year of film releases</strong></div>
+<div class="line-block">              <strong>C2:   NumFilms      Number of Nicholas Cage films released that year</strong></div>
+<div class="line-block">              <strong>C3:   NumDrowns   Number of people who drowned falling into pools that year</strong></div>
+<p><br>
+To access the data, download the file <code>Cage.csv</code> from Moodle and make sure it is saved in an accessible file. The working directory of your RStudio Session should be set to that folder. Once this is done, read in the data using:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="example-2-spurious-correlation.html#cb31-1" tabindex="-1"></a>Cage <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Cage.csv&quot;</span>)</span></code></pre></div>
+<div id="investigating-the-relationship-with-scatterplot" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Investigating the relationship with scatterplot<a href="example-2-spurious-correlation.html#investigating-the-relationship-with-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To investigate the relationship between the number of films released in any year against the number of people drowning we should make a scatterplot.</p>
+<p><strong>TASK</strong>: Produce a scatterplot of <strong>NumDrowned</strong> against <strong>NumFilms</strong> with labels and a sensible title.</p>
 <div class="webex-solution">
 <button>
 Hint
 </button>
 <p>You can use <code>plot()</code> such as in the previous example with <em>Grades</em>. Or you can refer to previous weeks labs and use <code>ggplot()</code>.</p>
 </div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Describe the relationship between <code>HWFAT</code> (y), <code>ABS</code> (x) and <code>TRICEPS</code>.</li>
-</ol>
+<div class="webex-solution">
+<button>
+Solutions
+</button>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="example-2-spurious-correlation.html#cb32-1" tabindex="-1"></a><span class="fu">plot</span>(NumDrowned <span class="sc">~</span> NumFilms, <span class="at">data =</span> Cage, <span class="at">xlab =</span> <span class="st">&quot;Number of films released per year&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number of people drowning per year&quot;</span>, <span class="at">main=</span><span class="st">&quot;Scatterplot of the Number of People Drowning VS Number of Films Released Per Year&quot;</span>, <span class="at">pch=</span><span class="dv">20</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
-<div id="fitting-a-linear-model-1" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Fitting a linear model<a href="exercise-4-multiple-linear-regression.html#fitting-a-linear-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In Example 1, the function <code>lm()</code> was used to find estimates for parameters of a simple linear regression model. The same function can be used for multiple linear regression models by specifying the explanatory variables on the right side of the tilde (~) operator inside the <code>lm()</code> function.</p>
-<p>To build a multiple linear regression model with <code>hwfat</code> as the response variable and <code>abs</code> and <code>triceps</code> (tricep fat) as explanatory variables, type:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="exercise-4-multiple-linear-regression.html#cb30-1" tabindex="-1"></a><span class="fu">lm</span>(HWFAT <span class="sc">~</span> ABS <span class="sc">+</span> TRICEPS, <span class="at">data =</span> HSWRESTLER)</span></code></pre></div>
-<p>Note down the equation of the fitted line from that is given:</p>
-<center>
-<code>HWFAT</code> = <input class='webex-solveme nospaces' size='9' data-answer='["2.0590398","2.05904","2.0590","2.059","2.06"]'/> + <input class='webex-solveme nospaces' size='9' data-answer='["0.3370839","0.337084","0.33708","0.3371","0.337","0.34"]'/> <code>ABS</code> + <input class='webex-solveme nospaces' size='10' data-answer='["0.50","0.504","0.5043","0.50430","0.504303","0.5043030 "]'/> <code>TRICEPS</code>
-</center>
-<p><br>
-<strong>QUESTION</strong>: Interpret what each coefficient means.</p>
-<ul>
-<li><p>For every unit increase in abdominal fat, hydrostatic fat is expected to <select class='webex-select'><option value='blank'></option><option value='answer'>increase</option><option value=''>decrease</option></select> by <select class='webex-select'><option value='blank'></option><option value='answer'>0.337</option><option value=''>0.504</option><option value=''>2.059</option></select> unit, <select class='webex-select'><option value='blank'></option><option value=''>regardless of tricep fat</option><option value='answer'>while holding tricep fat constant</option></select>.</p></li>
-<li><p>For every unit increase in tricep fat, hydrostatic fat is expected to <select class='webex-select'><option value='blank'></option><option value='answer'>increase</option><option value=''>decrease</option></select> by <select class='webex-select'><option value='blank'></option><option value=''>0.337</option><option value='answer'>0.504</option><option value=''>2.059</option></select> unit, <select class='webex-select'><option value='blank'></option><option value=''>regardless of abdominal fat</option><option value='answer'>while holding abdominal fat constant</option></select>.</p></li>
-</ul>
+</div>
+<div id="further-analsyis-with-sample-correlation-coefficient" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Further analsyis with sample correlation coefficient<a href="example-2-spurious-correlation.html#further-analsyis-with-sample-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="example-2-spurious-correlation.html#cb33-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x=</span>Cage<span class="sc">$</span>NumFilms, <span class="at">y=</span>Cage<span class="sc">$</span>NumDrowned)</span></code></pre></div>
+<pre><code>## [1] 0.6660043</code></pre>
+<p><strong>QUESTION</strong>: How could we interpret this result?</p>
+<div id="radio_TXFJDKNQZL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TXFJDKNQZL" value=""></input> <span>The sample correlation coefficient is 0.666, indicating a weak positive linear relationship between NumDrowned and NumFilms.</span></label><label><input type="radio" autocomplete="off" name="radio_TXFJDKNQZL" value="answer"></input> <span>The sample correlation coefficient is 0.666, indicating a moderate positive linear relationship between NumDrowned and NumFilms.</span></label><label><input type="radio" autocomplete="off" name="radio_TXFJDKNQZL" value=""></input> <span>The sample correlation coefficient is 0.666, indicating a strong neagtive linear relationship between NumDrowned and NumFilms.</span></label><label><input type="radio" autocomplete="off" name="radio_TXFJDKNQZL" value=""></input> <span>The sample correlation coefficient is 0.666, indicating no significant linear relationship between NumDrowned and NumFilms.</span></label>
+</div>
+</div>
+<div id="spurious-correlation" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Spurious Correlation<a href="example-2-spurious-correlation.html#spurious-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Does this mean that Nicolas Cage films are causing drownings? Quite obviously, the answer to this would be no. This is only <strong>correlation not causation</strong>.</p>
+<p>In fact, this is an example of <strong>spurious correlation</strong>, where two variables that are not related to each other in any way, that is, they are independent, could be inferred as being related. The number of Nicholas Cage films released in a year is clearly not related to the number of drowning accidents in that same year, but if we just take our correlation analysis on face value, then we would think otherwise.</p>
+<p><em>Reference: Spurious Correlations, Tyler Vigen</em></p>
 
 </div>
 </div>
@@ -444,8 +434,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="example-1-simple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="example-2-spurious-correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercise-2-multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-3-identifying-relationships.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

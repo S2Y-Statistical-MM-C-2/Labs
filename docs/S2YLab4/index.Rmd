@@ -1,5 +1,5 @@
 ---
-title: "Lab 4 - Exploring relationships and Understanding correlation"
+title: "Lab 4 - Exploring relationships and understanding correlation"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -28,7 +28,7 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
-# Welcome to Lab 3
+# Welcome to Lab 4
 
 Intended Learning Outcomes:
 
@@ -38,14 +38,5 @@ Intended Learning Outcomes:
 
 - Fit linear regression models by using `lm`;
 
-- Interpret least squares estimates of model parameters.
+- Interpret estimates of model parameters.
 
-
-
-## Credit where credit is due
-
-The labs in S2 incorporate and adapt materials from:
-
-Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
-
-The materials were converted into interactive labs on Hypothesis Testing using `Bookdown` and `webexercises` in Summer 2023 by summer project student, Megan Ruffle.
