@@ -1,0 +1,79 @@
+# Exercise 3: Spurious correlation
+
+Hollywood legend Nicholas Cage seems to have a problem. It appears that every time he releases a new film upon the world, many people drown by falling into pools of water. Coincidence? Or, are some of his films that bad?
+
+**Data: Cage.csv**
+
+**Columns:**
+
+|               **C1: &emsp; Year &emsp; &emsp; &emsp; &emsp; Year of film releases**
+
+|               **C2: &emsp; NumFilms &nbsp;&ensp; &emsp; Number of Nicholas Cage films released that year**
+
+|               **C3: &emsp; NumDrowns &emsp; Number of people who drowned falling into pools that year**
+
+<br>
+To access the data, download the file `Cage.csv` from Moodle and make sure it is saved in an accessible file. The working directory of your RStudio Session should be set to that folder. Once this is done, read in the data using:
+```{r, eval=TRUE, echo=TRUE}
+Cage <- read.csv("Cage.csv")
+```
+
+## Investigating a relationship with regression
+To investigate the relationship between the number of films released in any year against the number of people drowning we should make a scatterplot.
+
+1a) Produce a scatterplot of **NumDrowned** \(y\) against **NumFilms** \(x\) with labels and a sensible title. 
+
+
+`r hide("Solutions")`
+```{r, eval=TRUE, echo=TRUE}
+plot(NumDrowned ~ NumFilms, data = Cage, xlab = "Number of films released per year", ylab = "Number of people drowning per year", main="Scatterplot of the Number of People Drowning VS Number of Films Released Per Year", pch=20)
+```
+`r unhide()`
+
+
+1b) Create a linear model for this data and add it to your scatterplot.
+
+
+`r hide("Solutions")`
+```{r, eval=TRUE, echo=TRUE}
+model <- lm(NumDrowned ~ NumFilms, data = Cage)
+model
+```
+
+```{r, eval=TRUE, echo=TRUE} 
+plot(NumDrowned ~ NumFilms, data = Cage, xlab = "Number of Nicholas Cage films released in a year", ylab = "Number of people who drowned falling into pools that year", main="Scatterplot of the number of people drowning VS number of films released per year", pch=20)
+abline(model)
+```
+`r unhide()`
+
+1c) What is a sensible interpretation of this model and the relationship between the number of films released in any year against the number of people drowning?
+
+`r hide("Solutions - 1c")`
+The relationship appears linear and positive on the plot and the coefficient of x in our model `NumDrowned = 87.134 + 5.821*NumFilms` is also positive reinforcing this suggestion.
+`r unhide()`
+
+
+## Further analsyis with a Correlation Coefficient
+
+```{r, eval=TRUE, echo=TRUE}
+cor(x=Cage$NumFilms, y=Cage$NumDrowned, method="pearson")
+```
+**How should we interpret these results?** 
+```{r, echo = FALSE}
+mcq6<- c("The sample correlation coefficient is 0.666, indicating a weak positive linear relationship between NumDrowned and NumFilms", 
+answer ="The sample correlation coefficient is 0.666, indicating a moderate positive linear relationship between NumDrowned and NumFilms", "The sample correlation coefficient is 0.666, indicating a strong neagtive linear relationship between NumDrowned and NumFilms", "The sample correlation coefficient is 0.666, indicating no significant relationship between NumDrowned and NumFilms")
+```
+`r longmcq(mcq6)`
+
+<br> 
+
+Does this mean that Nicolas Cage films are causing drownings?
+Quite obviously, the answer to this would be no. This is only **correlation not causation**. 
+Additionally these results were taken from an observational study not an experiment so causation could not be commented on here.
+
+
+
+## Spurious Correlation
+This is an example of **spurious correlation**, where two variables that are not related to each other in any way, that is, they are independent, could be inferred as being related. The number of Nicholas Cage films released in a year is clearly not related to the number of drowning accidents in that same year, but if we just take our correlation hypothesis test on face value, then we would think otherwise.
+
+*Reference: Spurious Correlations, Tyler Vigen*

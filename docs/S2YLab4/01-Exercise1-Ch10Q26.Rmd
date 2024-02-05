@@ -1,0 +1,72 @@
+# Exercise 1 - Chi-squared test for association
+
+The sinking of the Titanic occurred on the 15th of April in 1912. The data frame `TITANIC3` in the `PASWR2`package contains information regarding class, sex, and survival as well as several other variables.
+```{r, echo=TRUE, eval=TRUE}
+TITANIC3 <- TITANIC3
+```
+
+## Contingency tables
+In order to analyse the associations between these variables we should make contingency tables. 
+
+For example for a contingency table for passenger class versus survival we can use the code:
+
+```{r, echo=TRUE, eval=TRUE} 
+TABLE1 <- xtabs(~ pclass + survived, data = TITANIC3)
+TABLE1
+```
+
+**Question** Using `xtabs()` and other tools you have learnt such as `subset()` (or `[]` and `$`), subset your data and create contingency tables of:
+
+i) male passengers’ class versus survival, and
+ii) female passengers’ class versus survival.
+
+*At the time of data collection in 1912, passenger gender was recorded as 'sex' and separated only into 'male' or 'female'*
+
+
+`r hide("Solution")`
+```{r, echo=TRUE, eval=TRUE} 
+TABLE2 <- xtabs(~ pclass + survived, data = subset(TITANIC3, sex == "male"))
+TABLE3 <- xtabs(~ pclass + survived, data = subset(TITANIC3, sex == "female"))
+
+#OR 
+
+MEN <- TITANIC3[TITANIC3$sex=="male",]
+TABLE2 <- xtabs(~ pclass + survived, data = MALES)
+
+WOMEN <- TITANIC3[TITANIC3$sex=="female",]
+TABLE3 <- xtabs(~ pclass + survived, data = WOMEN)
+
+#To view the tables
+TABLE2
+TABLE3
+```
+`r unhide()`
+
+## Hypothesis Testing
+To test if there is an association between class and survival generally for all passengers or for men and/or women, we should complete Chi-Squared Hypothesis Tests.
+
+This can be done using:
+```{r, echo=TRUE, eval=TRUE}
+TEST1 <- chisq.test(TABLE1)
+TEST1
+```
+
+With a p-value of less than 0.05, this suggests there is a significant association between class and survival of passengers generally.
+
+**Question** Test if there is an association between class and survival for men an women on the titanic:
+
+```{r, echo = FALSE}
+mcq4<- c(answer="The p-values for both tests were less than 0.05 meaning there is an association between class and survival for men and for women.", 
+"The p-value for the test on male passengers was less than 0.05 while it was greater than 0.05 for women meaning there is an association between class and survival for men but not for women", "The p-value for the test on male passengers was greater than 0.05 while it was less than 0.05 for women meaning there is an association between class and survival for women but not for men", "The p-values for both tests were gretter than 0.05 meaning there was no evidence of an association between class and survival for men nor for women.")
+```
+`r longmcq(mcq4)`
+
+`r hide("Solution Code")`
+```{r}
+TEST2 <- chisq.test(TABLE2)
+TEST2
+
+TEST3 <- chisq.test(TABLE3)
+TEST3
+```
+`r unhide()`

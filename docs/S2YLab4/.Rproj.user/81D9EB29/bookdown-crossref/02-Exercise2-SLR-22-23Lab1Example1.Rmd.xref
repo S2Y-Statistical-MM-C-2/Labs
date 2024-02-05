@@ -1,0 +1,6 @@
+h1:exercise-2-simple-linear-regression-slr Exercise 2: Simple linear regression (SLR)
+h2:creating-scatterplots Creating scatterplots
+fig:echo Scatterplot of `gpa` versus `sat`.
+fig:echo Scatterplot of `gpa` versus `sat` with annotated axis labels.
+h2:fitting-a-linear-model Fitting a linear model
+
