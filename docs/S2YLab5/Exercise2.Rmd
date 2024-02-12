@@ -25,6 +25,7 @@ books <- read.csv("books.csv")
 
 ## Exploratory analysis 
 
+**TASK 3**
 
 (a) Produce a scatterplot of the data with **Number of books** on the y-axis and **Year** on the x-axis.
 

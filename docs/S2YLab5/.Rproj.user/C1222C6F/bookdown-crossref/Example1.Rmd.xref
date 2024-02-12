@@ -1,3 +1,5 @@
 h1:example-1-crime Example 1: Crime
-h2:least-squares-estimates-of-model-parameters-using-vector-matrix-form Least squares estimates of model parameters using vector-matrix form
+h2:simple-linear-regression Simple linear regression
+h3:least-squares-estimates-of-model-parameters-in-matrix-notation Least squares estimates of model parameters in matrix notation
+h2:multiple-linear-regression Multiple linear regression
 

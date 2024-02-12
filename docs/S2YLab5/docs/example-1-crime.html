@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Example 1: Crime | Lab 5 - Ordinary Least Squares</title>
-  <meta name="description" content="2 Example 1: Crime | Lab 5 - Ordinary Least Squares" />
+  <title>2 Example 1: Crime | Lab 5 - Ordinary least squares</title>
+  <meta name="description" content="2 Example 1: Crime | Lab 5 - Ordinary least squares" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Example 1: Crime | Lab 5 - Ordinary Least Squares" />
+  <meta property="og:title" content="2 Example 1: Crime | Lab 5 - Ordinary least squares" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Example 1: Crime | Lab 5 - Ordinary Least Squares" />
+  <meta name="twitter:title" content="2 Example 1: Crime | Lab 5 - Ordinary least squares" />
   
   
   
@@ -139,15 +139,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 5!</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>1.1</b> Introduction to Ordinary Least Squares (OLS)</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: Simple Linear Regression (one covariate)</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: Multiple Linear Regression (multiple predictors)</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary Least Squares</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#likely-questions"><i class="fa fa-check"></i><b>1.5</b> Likely Questions</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.6</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: simple linear regression (one covariate)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: multiple linear regression (multiple predictors)</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary least squares</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#exam-style-questions"><i class="fa fa-check"></i><b>1.5</b> Exam-style questions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-1-crime.html"><a href="example-1-crime.html"><i class="fa fa-check"></i><b>2</b> Example 1: Crime</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-using-vector-matrix-form"><i class="fa fa-check"></i><b>2.1</b> Least squares estimates of model parameters using vector-matrix form</a></li>
+<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#simple-linear-regression"><i class="fa fa-check"></i><b>2.1</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-in-matrix-notation"><i class="fa fa-check"></i><b>2.1.1</b> Least squares estimates of model parameters in matrix notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="example-1-crime.html"><a href="example-1-crime.html#multiple-linear-regression"><i class="fa fa-check"></i><b>2.2</b> Multiple linear regression</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: SLR with no intercept</a>
 <ul>
@@ -174,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary Least Squares</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary least squares</a>
           </h1>
         </div>
 
@@ -222,24 +225,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><br>
-<strong>Part 1: Simple Linear Regression</strong>:</p>
+<p><br></p>
+<div id="simple-linear-regression" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Simple linear regression<a href="example-1-crime.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>TASK 1</strong></p>
 <ol style="list-style-type: lower-alpha">
-<li>Use <code>plot</code> or <code>pairs</code> to visualise the data and determine which predictors may be useful in predicting <code>Crime</code>.</li>
-</ol>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<p>The <code>R</code> command <code>pairs()</code> may be used to see the relationships between all variables.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="example-1-crime.html#cb1-1" tabindex="-1"></a>crime <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;crime.csv&quot;</span>)</span>
-<span id="cb1-2"><a href="example-1-crime.html#cb1-2" tabindex="-1"></a><span class="fu">pairs</span>(crime[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">lower.panel =</span> <span class="cn">NULL</span>) <span class="co"># We add [,-1] to the end of crime to remove the first column which has non-numeric arguments (state names)</span></span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-5-1.png" width="672" />
-</p>
-<p>Apart from Dropout which has been discussed in the lectures, there may also be a positive linear relationship between <code>Crime</code> and <code>Police</code> and between <code>Crime</code> and <code>Prison</code>, though the relationship doesn't seem to be very strong.</p>
-</div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Build a simple linear regression model with <code>Dropout</code> as the predictor and interpret estimated coefficients.</li>
+<li><p>Use <code>plot</code> or <code>pairs</code> to visualise the data and determine which predictors may be useful in predicting <code>Crime</code>.</p></li>
+<li><p>Build a simple linear regression model with <code>Dropout</code> as the predictor and interpret estimated coefficients.</p></li>
 </ol>
 <p>According to the model, when Dropout is equal to 0, the crime rate would be roughly <input class='webex-solveme nospaces' size='9' data-answer='["2196.5435","2196.544","2196.54","2196.5","2197"]'/>.
 For every 1% increase in the % of high school dropouts, the expected crime rate (per 100,000) would <select class='webex-select'><option value='blank'></option><option value='answer'>increase</option><option value=''>decrease</option></select> by <input class='webex-solveme nospaces' size='8' data-answer='["281.7613","281.761","281.76","281.8","282"]'/>.</p>
@@ -248,31 +240,6 @@ For every 1% increase in the % of high school dropouts, the expected crime rate 
 Hint
 </button>
 <p>Use <code>lm</code> to build a linear regression model and <code>summary()</code> to find the coefficients.</p>
-</div>
-<div class="webex-solution">
-<button>
-Solution - Remove for lab
-</button>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="example-1-crime.html#cb2-1" tabindex="-1"></a>m.crime <span class="ot">&lt;-</span> <span class="fu">lm</span>(Crime <span class="sc">~</span> Dropout, <span class="at">data =</span> crime) </span>
-<span id="cb2-2"><a href="example-1-crime.html#cb2-2" tabindex="-1"></a><span class="fu">summary</span>(m.crime)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = Crime ~ Dropout, data = crime)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2657.7  -698.0   158.8   653.3  2132.3 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   2196.5      640.0   3.432  0.00124 ** 
-## Dropout        281.8       60.8   4.634 2.77e-05 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 1024 on 48 degrees of freedom
-## Multiple R-squared:  0.3091, Adjusted R-squared:  0.2947 
-## F-statistic: 21.47 on 1 and 48 DF,  p-value: 2.77e-05</code></pre>
 </div>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>From the lectures we know that the least squares estimates for the model parameters are</li>
@@ -287,38 +254,26 @@ Use this formula to compute the least squares estimates for the model parameters
 <button>
 Hint
 </button>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="example-1-crime.html#cb4-1" tabindex="-1"></a>x<span class="ot">&lt;-</span>crime<span class="sc">$</span>Dropout</span>
-<span id="cb4-2"><a href="example-1-crime.html#cb4-2" tabindex="-1"></a>y<span class="ot">&lt;-</span>crime<span class="sc">$</span>Crime</span>
-<span id="cb4-3"><a href="example-1-crime.html#cb4-3" tabindex="-1"></a>x_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb4-4"><a href="example-1-crime.html#cb4-4" tabindex="-1"></a>y_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
-<span id="cb4-5"><a href="example-1-crime.html#cb4-5" tabindex="-1"></a>S_xx <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_mean)<span class="sc">^</span><span class="dv">2</span>)  </span>
-<span id="cb4-6"><a href="example-1-crime.html#cb4-6" tabindex="-1"></a>S_xy <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_mean)<span class="sc">*</span>(y<span class="sc">-</span>y_mean))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="example-1-crime.html#cb1-1" tabindex="-1"></a>x<span class="ot">&lt;-</span>crime<span class="sc">$</span>Dropout</span>
+<span id="cb1-2"><a href="example-1-crime.html#cb1-2" tabindex="-1"></a>y<span class="ot">&lt;-</span>crime<span class="sc">$</span>Crime</span>
+<span id="cb1-3"><a href="example-1-crime.html#cb1-3" tabindex="-1"></a>x_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb1-4"><a href="example-1-crime.html#cb1-4" tabindex="-1"></a>y_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb1-5"><a href="example-1-crime.html#cb1-5" tabindex="-1"></a>S_xx <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_mean)<span class="sc">^</span><span class="dv">2</span>)  </span>
+<span id="cb1-6"><a href="example-1-crime.html#cb1-6" tabindex="-1"></a>S_xy <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_mean)<span class="sc">*</span>(y<span class="sc">-</span>y_mean))</span></code></pre></div>
 </div>
-<div class="webex-solution">
-<button>
-Solution - Remove for lab
-</button>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="example-1-crime.html#cb5-1" tabindex="-1"></a>beta1.hat <span class="ot">&lt;-</span> S_xy<span class="sc">/</span>S_xx</span>
-<span id="cb5-2"><a href="example-1-crime.html#cb5-2" tabindex="-1"></a>beta0.hat <span class="ot">&lt;-</span> y_mean <span class="sc">-</span> beta1.hat<span class="sc">*</span>x_mean </span>
-<span id="cb5-3"><a href="example-1-crime.html#cb5-3" tabindex="-1"></a>beta1.hat</span></code></pre></div>
-<pre><code>## [1] 281.7613</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="example-1-crime.html#cb7-1" tabindex="-1"></a>beta0.hat</span></code></pre></div>
-<pre><code>## [1] 2196.543</code></pre>
-</div>
-<div id="least-squares-estimates-of-model-parameters-using-vector-matrix-form" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Least squares estimates of model parameters using vector-matrix form<a href="example-1-crime.html#least-squares-estimates-of-model-parameters-using-vector-matrix-form" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To use the least squares vector-matrix formula given by <a href="index.html#eq:LSE">(1.2)</a>, we first need to find the design matrix, <span class="math inline">\(\mathbf{X}\)</span>. This can be done using the following <code>R</code> command:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="example-1-crime.html#cb9-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>Dropout, <span class="at">data =</span> crime)</span></code></pre></div>
-<p>This gives us the design matrix, <span class="math inline">\(\mathbf{X}\)</span>, for the simple linear regression model in <a href="index.html#eq:SLR">(1.1)</a>, where we have <span class="math inline">\(n = 50\)</span>
-rows corresponding to each of the 50 US states, and <span class="math inline">\(p = 2\)</span> columns corresponding to the model parameters <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. More generally this is written as
+<div id="least-squares-estimates-of-model-parameters-in-matrix-notation" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Least squares estimates of model parameters in matrix notation<a href="example-1-crime.html#least-squares-estimates-of-model-parameters-in-matrix-notation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To use the formula for least squares estimation in matrix notation given by <a href="index.html#eq:LSE">(1.2)</a>, we first need to find the design matrix, <span class="math inline">\(\mathbf{X}\)</span>. This can be done using the following <code>R</code> command:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="example-1-crime.html#cb2-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>Dropout, <span class="at">data =</span> crime)</span></code></pre></div>
+<p>This gives us the design matrix, <span class="math inline">\(\mathbf{X}\)</span>, for the simple linear regression model in <a href="index.html#eq:SLR">(1.1)</a>, where we have <span class="math inline">\(n = 50\)</span> rows corresponding to each of the 50 US states, and <span class="math inline">\(p = 2\)</span> columns corresponding to the model parameters <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. More generally this is written as
 <span class="math display">\[\mathbf{X} =\begin{bmatrix} 1 &amp; x_1 \\1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n\end{bmatrix} \]</span>
-The first column of <span class="math inline">\(\mathbf{X}\)</span> contains 1's as that is the column that multiplies the first component of the parameter vector <span class="math inline">\(\boldsymbol\beta&#39; = \begin{bmatrix} \beta_0 &amp; \beta_1 \end{bmatrix}\)</span>, and as can be seen from the model, the intercept term, <span class="math inline">\(\beta_0\)</span>, is constant across all <span class="math inline">\(i\)</span> observations. The slope parameter, <span class="math inline">\(\beta_1\)</span>, is also constant, however, the differences in crime rates between states comes from changes in the percentage of high school dropouts, given by <span class="math inline">\(x_i\)</span>, which multiplies <span class="math inline">\(\beta_1\)</span>. The random errors, <span class="math inline">\(\epsilon_i\)</span>, also differ per state.</p>
-<p>Next we need the following commands to calculate each component in the least squares vector-matrix formula:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="example-1-crime.html#cb10-1" tabindex="-1"></a>t       <span class="co"># gets the transpose of a vector or matrix</span></span>
-<span id="cb10-2"><a href="example-1-crime.html#cb10-2" tabindex="-1"></a><span class="sc">%*%</span>     <span class="co"># multiplies matrices together</span></span>
-<span id="cb10-3"><a href="example-1-crime.html#cb10-3" tabindex="-1"></a>solve   <span class="co"># computes the inverse of a matrix</span></span></code></pre></div>
+The first column of <span class="math inline">\(\mathbf{X}\)</span> contains 1's as that is the column that multiplies the first component of the parameter vector <span class="math inline">\(\boldsymbol\beta = \begin{bmatrix} \beta_0 &amp; \beta_1 \end{bmatrix}&#39;\)</span>, and as can be seen from the model, the intercept term, <span class="math inline">\(\beta_0\)</span>, is constant across all <span class="math inline">\(i\)</span> observations. The slope parameter, <span class="math inline">\(\beta_1\)</span>, is also constant, however, the differences in crime rates between states comes from changes in the percentage of high school dropouts, given by <span class="math inline">\(x_i\)</span>, which multiplies <span class="math inline">\(\beta_1\)</span>. The random errors, <span class="math inline">\(\epsilon_i\)</span>, also differ per state.</p>
+<p>Next we need the following commands to calculate each component in the matrix formula of least squares estimation:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="example-1-crime.html#cb3-1" tabindex="-1"></a>t       <span class="co"># gets the transpose of a vector or matrix</span></span>
+<span id="cb3-2"><a href="example-1-crime.html#cb3-2" tabindex="-1"></a><span class="sc">%*%</span>     <span class="co"># multiplies matrices together</span></span>
+<span id="cb3-3"><a href="example-1-crime.html#cb3-3" tabindex="-1"></a>solve   <span class="co"># computes the inverse of a matrix</span></span></code></pre></div>
 <p>Let's compute <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span> using the following <code>R</code> code:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1-crime.html#cb11-1" tabindex="-1"></a>XtX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="example-1-crime.html#cb4-1" tabindex="-1"></a>XtX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span></code></pre></div>
 <p>This gives</p>
 <p><span class="math display">\[\mathbf{X}&#39;\mathbf{X} = \begin{bmatrix} 50.0 &amp; 512.6 \\ 512.6 &amp; 5538.8 \end{bmatrix}\]</span></p>
 <p>Recall, if</p>
@@ -334,8 +289,7 @@ The first column of <span class="math inline">\(\mathbf{X}\)</span> contains 1's
 <p>Multiplying <span class="math inline">\(\left(\mathbf{X}&#39;\mathbf{X}\right)^{-1}\)</span> and <span class="math inline">\(\mathbf{X}&#39;\mathbf{Y}\)</span> then gives us the least squares estimates of the model parameters. By hand, compute the parameter estimates, <span class="math inline">\(\hat{\boldsymbol\beta}\)</span>, such that</p>
 <p><br></p>
 <p><span class="math display">\[\hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{Y} = \]</span></p>
-<p><br>
-<!-- **QUESTION 1** --></p>
+<p><br></p>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Use the <code>R</code> commands given above to compute <span class="math inline">\(\left(\mathbf{X}&#39;\mathbf{X}\right)^{-1}\)</span> and <span class="math inline">\(\mathbf{X}&#39;\mathbf{Y}\)</span>, and hence <span class="math inline">\(\hat{\boldsymbol\beta}\)</span>, and compare the output with your handwritten results.</li>
 </ol>
@@ -343,29 +297,18 @@ The first column of <span class="math inline">\(\mathbf{X}\)</span> contains 1's
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="example-1-crime.html#cb12-1" tabindex="-1"></a>XtX_inv <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX)</span>
-<span id="cb12-2"><a href="example-1-crime.html#cb12-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> crime<span class="sc">$</span>Crime</span>
-<span id="cb12-3"><a href="example-1-crime.html#cb12-3" tabindex="-1"></a>XtY <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span>
-<span id="cb12-4"><a href="example-1-crime.html#cb12-4" tabindex="-1"></a>beta.hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX) <span class="sc">%*%</span> XtY</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="example-1-crime.html#cb5-1" tabindex="-1"></a>XtX_inv <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX)</span>
+<span id="cb5-2"><a href="example-1-crime.html#cb5-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> crime<span class="sc">$</span>Crime</span>
+<span id="cb5-3"><a href="example-1-crime.html#cb5-3" tabindex="-1"></a>XtY <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span>
+<span id="cb5-4"><a href="example-1-crime.html#cb5-4" tabindex="-1"></a>beta.hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX) <span class="sc">%*%</span> XtY</span></code></pre></div>
 </div>
 <p><br></p>
 <p>We can also obtain the vector of random errors, <span class="math inline">\(\boldsymbol \epsilon\)</span>, by taking the difference between the observed values, <span class="math inline">\(\mathbf{Y}\)</span>, and the fitted values, <span class="math inline">\(\hat{\mathbf{Y}} = \mathbf{X}\hat{\boldsymbol\beta}\)</span>, using the command:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1-crime.html#cb13-1" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> Y <span class="sc">-</span> X <span class="sc">%*%</span> param.ests</span></code></pre></div>
-<!-- The residual sum of squares for the model can be obtained from formula \@ref(eq:sigma) using the following commands: -->
-<!-- ```{r eval=FALSE} -->
-<!-- YtY <- t(Y) %*% Y -->
-<!-- RSS <- YtY - t(XtY) %*% param.ests -->
-<!-- ``` -->
-<!-- Now compute the estimate of the error variance, $\hat{\sigma}^2$: -->
-<!-- <br> -->
-<!-- $$\hat{\sigma}^2 = \frac{\text{RSS}}{n-p} = \hspace{10em}$$ -->
-<!-- <br> -->
-<!-- The estimate of standard deviation, i.e. $\hat{\sigma}$, has been calculated by `R` when fitting the model, which is the `Residual standard error` produced from `summary(model1)`. This can also be seen using the following command:  -->
-<!-- ```{r eval=FALSE} -->
-<!-- summary(model1)$sigma -->
-<!-- ``` -->
-<!-- <br> -->
-<p><strong>Part 2: Multiple Linear Regression</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="example-1-crime.html#cb6-1" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> Y <span class="sc">-</span> X <span class="sc">%*%</span> param.ests</span></code></pre></div>
+</div>
+</div>
+<div id="multiple-linear-regression" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Multiple linear regression<a href="example-1-crime.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Use one or more predictors alongside <code>Dropout</code> to build a multiple linear regression model for explaining <code>Crime</code>.</li>
 </ol>
@@ -380,21 +323,21 @@ Hint
 </center>
 </div>
 <ol start="6" style="list-style-type: lower-alpha">
-<li>Calculate the least squares estimates of parameters in the new multiple linear regression model using the vector-matrix formulation.</li>
+<li>Calculate the least squares estimates of parameters in the new multiple linear regression model using the formula in matrix notation.</li>
 </ol>
 <div class="webex-solution">
 <button>
 Solution
 </button>
 <p>The same steps can be followed as in (d), but the design matrix <code>X</code> has to be updated accordingly. Say we want to add <code>Police</code> and <code>Prison</code> variables to our model. We would then use the following code.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="example-1-crime.html#cb14-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> Dropout <span class="sc">+</span> Police <span class="sc">+</span> Prison, <span class="at">data =</span> crime)</span>
-<span id="cb14-2"><a href="example-1-crime.html#cb14-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> crime<span class="sc">$</span>Crime</span>
-<span id="cb14-3"><a href="example-1-crime.html#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="example-1-crime.html#cb14-4" tabindex="-1"></a>XtX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span>
-<span id="cb14-5"><a href="example-1-crime.html#cb14-5" tabindex="-1"></a>XtY <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span>
-<span id="cb14-6"><a href="example-1-crime.html#cb14-6" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="example-1-crime.html#cb14-7" tabindex="-1"></a>beta.hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX) <span class="sc">%*%</span> XtY</span>
-<span id="cb14-8"><a href="example-1-crime.html#cb14-8" tabindex="-1"></a>beta.hat</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="example-1-crime.html#cb7-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> Dropout <span class="sc">+</span> Police <span class="sc">+</span> Prison, <span class="at">data =</span> crime)</span>
+<span id="cb7-2"><a href="example-1-crime.html#cb7-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> crime<span class="sc">$</span>Crime</span>
+<span id="cb7-3"><a href="example-1-crime.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="example-1-crime.html#cb7-4" tabindex="-1"></a>XtX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span>
+<span id="cb7-5"><a href="example-1-crime.html#cb7-5" tabindex="-1"></a>XtY <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span>
+<span id="cb7-6"><a href="example-1-crime.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="example-1-crime.html#cb7-7" tabindex="-1"></a>beta.hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX) <span class="sc">%*%</span> XtY</span>
+<span id="cb7-8"><a href="example-1-crime.html#cb7-8" tabindex="-1"></a>beta.hat</span></code></pre></div>
 <pre><code>##                    [,1]
 ## (Intercept) 1513.317509
 ## Dropout      148.343452

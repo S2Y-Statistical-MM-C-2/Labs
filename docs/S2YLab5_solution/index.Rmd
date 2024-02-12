@@ -1,0 +1,172 @@
+---
+title: "Lab 5 - Solution"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# TASK 1
+
+(a) The `R` command `pairs()` may be used to see the relationships between all variables.
+
+```{r}
+crime <- read.csv("crime.csv")
+pairs(crime[,-1], lower.panel = NULL) # We add [,-1] to the end of crime to remove the first column which has non-numeric arguments (state names)
+```
+\newline
+
+Apart from Dropout which has been discussed in the lectures, there may also be a positive linear relationship between `Crime` and `Police` and between `Crime` and `Prison`, though the relationship doesn't seem to be very strong.  
+
+(b) 
+
+```{r}
+m.crime <- lm(Crime ~ Dropout, data = crime) 
+summary(m.crime)
+```
+
+(c)
+
+```{r echo=FALSE}
+x<-crime$Dropout
+y<-crime$Crime
+x_mean <- mean(x)
+y_mean <- mean(y)
+S_xx <- sum((x-x_mean)^2)  
+S_xy <- sum((x-x_mean)*(y-y_mean))
+```
+
+
+```{r, eval=TRUE}
+beta1.hat <- S_xy/S_xx
+beta0.hat <- y_mean - beta1.hat*x_mean 
+beta1.hat
+beta0.hat
+```
+
+# TASK 2
+
+(a) Producing a scatterplot
+
+```{r echo=c(-1), eval=FALSE}
+hubble <- read.csv("hubble.csv")
+plot(Velocity ~ Distance, data = hubble, xlab="Distance", ylab="Velocity")
+```
+
+(c) Fitting a simple linear regression model
+
+```{r eval=FALSE}
+model_hubble <- lm(Velocity ~ Distance, data = hubble)
+coef((model_hubble))
+```
+
+(d) Producing a plot of the data including the fitted line
+
+```{r eval=FALSE}
+plot(Velocity ~ Distance, data = hubble)
+abline(model_hubble)
+```
+
+(e)
+
+```{r eval = FALSE}
+# Define X
+X <- model.matrix(~ Distance, data = hubble)
+# Obtain XtX
+XtX <- t(X) %*% X
+# Take the inverse
+XtX_inv <- solve(XtX)
+# Define Y
+Y <- hubble$Velocity
+# Obtain XtY
+XtY <- t(X) %*% Y
+# Estimate parameters
+beta.hat <- solve(XtX) %*% XtY
+```
+
+(f) 
+
+```{r eval = FALSE}
+# Define X
+X <- model.matrix(~ -1 + Distance, data = hubble)
+# Obtain XtX
+XtX <- t(X) %*% X
+# Take the inverse
+XtX_inv <- solve(XtX)
+# Define Y
+Y <- hubble$Velocity
+# Obtain XtY
+XtY <- t(X) %*% Y
+# Estimate parameters
+beta.hat <- solve(XtX) %*% XtY
+```
+
+# TASK 3
+
+(a) Producing a scatterplot
+
+```{r eval=FALSE}
+plot(Number.of.Books ~ Year, data = books, xlab = "Books", ylab = "Number of books")
+```
+
+
+(c) Plotting the fitted line
+
+```{r eval=FALSE}
+plot(Number.of.Books ~ Year, data = books, xlab = "Books", ylab = "Number of books")
+lines(fitted(bmodel))
+```
+
+# TASK 4
+
+(a) 
+
+```{r eval = FALSE}
+# taste vs lactic acid
+plot(Taste ~ Lactic.Acid, data = cheese, xlab = "Lactic acid concentration", ylab = "Taste score")
+# taste vs H2S
+plot(Taste ~ H2S, data = cheese, xlab = "H2S concentration", ylab = "Taste score")
+```
+
+(b)
+
+```{r eval = FALSE}
+# taste vs lactic acid
+plot(Taste ~ log(Lactic.Acid), data = cheese, xlab = " Log lactic acid concentration", ylab = "Taste score")
+# taste vs H2S
+plot(Taste ~ log(H2S), data = cheese, xlab = "Log H2S concentration", ylab = "Taste score")
+```
+
+(d)
+
+```{r eval = FALSE}
+model <- lm(Taste ~ log(H2S), data = cheese) 
+```
+
+(e)
+
+```{r eval = FALSE}
+plot(Taste ~ log(H2S), data = cheese, xlab = "Log H2S concentration", ylab = "Taste score")
+abline(model, col = "red", lwd = 1.5)
+```

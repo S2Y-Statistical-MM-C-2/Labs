@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Exercise 2: Quadratic regression | Lab 5 - Ordinary Least Squares</title>
-  <meta name="description" content="4 Exercise 2: Quadratic regression | Lab 5 - Ordinary Least Squares" />
+  <title>4 Exercise 2: Quadratic regression | Lab 5 - Ordinary least squares</title>
+  <meta name="description" content="4 Exercise 2: Quadratic regression | Lab 5 - Ordinary least squares" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Exercise 2: Quadratic regression | Lab 5 - Ordinary Least Squares" />
+  <meta property="og:title" content="4 Exercise 2: Quadratic regression | Lab 5 - Ordinary least squares" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Exercise 2: Quadratic regression | Lab 5 - Ordinary Least Squares" />
+  <meta name="twitter:title" content="4 Exercise 2: Quadratic regression | Lab 5 - Ordinary least squares" />
   
   
   
@@ -139,15 +139,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 5!</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>1.1</b> Introduction to Ordinary Least Squares (OLS)</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: Simple Linear Regression (one covariate)</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: Multiple Linear Regression (multiple predictors)</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary Least Squares</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#likely-questions"><i class="fa fa-check"></i><b>1.5</b> Likely Questions</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.6</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: simple linear regression (one covariate)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: multiple linear regression (multiple predictors)</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary least squares</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#exam-style-questions"><i class="fa fa-check"></i><b>1.5</b> Exam-style questions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-1-crime.html"><a href="example-1-crime.html"><i class="fa fa-check"></i><b>2</b> Example 1: Crime</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-using-vector-matrix-form"><i class="fa fa-check"></i><b>2.1</b> Least squares estimates of model parameters using vector-matrix form</a></li>
+<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#simple-linear-regression"><i class="fa fa-check"></i><b>2.1</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-in-matrix-notation"><i class="fa fa-check"></i><b>2.1.1</b> Least squares estimates of model parameters in matrix notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="example-1-crime.html"><a href="example-1-crime.html#multiple-linear-regression"><i class="fa fa-check"></i><b>2.2</b> Multiple linear regression</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: SLR with no intercept</a>
 <ul>
@@ -174,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary Least Squares</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary least squares</a>
           </h1>
         </div>
 
@@ -194,11 +197,12 @@ Change points in the STC.</p>
 <div class="line-block">              <strong>C1:</strong> <code>Year</code> - 1500 – 1640</div>
 <div class="line-block">              <strong>C2:</strong> <code>Number of Books</code> - Total number of books published</div>
 <p>Read in the data using:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="exercise-2-quadratic-regression.html#cb22-1" tabindex="-1"></a>books <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;books.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="exercise-2-quadratic-regression.html#cb13-1" tabindex="-1"></a>books <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;books.csv&quot;</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="exploratory-analysis-1" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Exploratory analysis<a href="exercise-2-quadratic-regression.html#exploratory-analysis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>TASK 3</strong></p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Produce a scatterplot of the data with <strong>Number of books</strong> on the y-axis and <strong>Year</strong> on the x-axis.</p></li>
 <li><p>Describe the shape of the relationship. Does it seem linear?</p></li>
@@ -207,8 +211,8 @@ Change points in the STC.</p>
 <div id="fitting-a-quadratic-regression-model" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Fitting a quadratic regression model<a href="exercise-2-quadratic-regression.html#fitting-a-quadratic-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use the commands below to fit a quadratic regression and output the model summary:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="exercise-2-quadratic-regression.html#cb23-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Number.of.Books <span class="sc">~</span> Year <span class="sc">+</span> <span class="fu">I</span>(Year<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> books)</span>
-<span id="cb23-2"><a href="exercise-2-quadratic-regression.html#cb23-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="exercise-2-quadratic-regression.html#cb14-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Number.of.Books <span class="sc">~</span> Year <span class="sc">+</span> <span class="fu">I</span>(Year<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> books)</span>
+<span id="cb14-2"><a href="exercise-2-quadratic-regression.html#cb14-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <p>Note: <code>year^2</code> needs to be 'protected' by <code>I</code>, the identity function.</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Note down the equation of the fitted quadratic line and plot the fitted line.</li>

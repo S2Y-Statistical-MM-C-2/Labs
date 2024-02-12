@@ -23,6 +23,7 @@ hubble <- read.csv("hubble.csv")
 
 ## Exploratory analysis
 
+**TASK 2**
 
 (a) Produce a scatterplot of the data with `Velocity` on the y-axis.
 
@@ -50,8 +51,7 @@ A fitted line can be added to a plot using the command `abline`.
 `r unhide()`
 
 #### Now with OLS {-}
-(c+) Fit a simple linear regression model with the response variable `Velocity` and the explanatory variable `Distance`
-and provide parameter estimates. Fit using OLS (vector-matrix notation). 
+(e) Fit a simple linear regression model with the response variable `Velocity` and the explanatory variable `Distance` and provide parameter estimates using the matrix formula of least squares estimation. 
 
 `r hide("Hint")`
 $\hat{\boldsymbol{\beta}}=(\mathbf{X}'\mathbf{X})^{-1} \mathbf{X}'\mathbf{Y}$
@@ -60,21 +60,6 @@ $\hat{\boldsymbol{\beta}}=(\mathbf{X}'\mathbf{X})^{-1} \mathbf{X}'\mathbf{Y}$
 `r hide("Hint")`
 `X <- model.matrix(~ Distance, data = hubble)`
 `r unhide()`
-
-```{r eval = FALSE, webex.hide="Solution"}
-# Define X
-X <- model.matrix(~ Distance, data = hubble)
-# Obtain XtX
-XtX <- t(X) %*% X
-# Take the inverse
-XtX_inv <- solve(XtX)
-# Define Y
-Y <- hubble$Velocity
-# Obtain XtY
-XtY <- t(X) %*% Y
-# Estimate parameters
-beta.hat <- solve(XtX) %*% XtY
-```
 
 
 ## Fitting a linear model with no intercept
@@ -110,27 +95,13 @@ The `lty` argument in `abline` changes the type/style of the line plotted, which
 A `legend` is also added to distinguish between the lines plotted.
 
 
-#### Now with LSE {-}
-(c+) Fit a simple linear regression model with the response variable `Velocity` and the explanatory variable `Distance` but with no intercept. Fit using OLS (vector-matrix notation). 
+#### Now with OLS {-}
+(f) Fit a simple linear regression model with the response variable `Velocity` and the explanatory variable `Distance` but with no intercept. Again use the matrix formula of least squares estimation. 
 
 `r hide("Hint")`
 `X <- model.matrix(~ -1 + Distance, data = hubble)`
 `r unhide()`
 
-```{r eval = FALSE, webex.hide="Solution"}
-# Define X
-X <- model.matrix(~ -1 + Distance, data = hubble)
-# Obtain XtX
-XtX <- t(X) %*% X
-# Take the inverse
-XtX_inv <- solve(XtX)
-# Define Y
-Y <- hubble$Velocity
-# Obtain XtY
-XtY <- t(X) %*% Y
-# Estimate parameters
-beta.hat <- solve(XtX) %*% XtY
-```
 
 **DISCUSSION**: Comparing the two fitted lines, is the model that passes through the origin plausible?
 

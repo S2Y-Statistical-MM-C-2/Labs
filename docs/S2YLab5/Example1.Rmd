@@ -14,22 +14,12 @@ The data are available from the csv file `crime.csv` and contain six columns, de
 |**C6** |**Dropout** | **Percentage of high school dropouts**
 
 <br>
-**Part 1: Simple Linear Regression**:  
+
+## Simple linear regression  
+
+**TASK 1**
 
 (a) Use `plot` or `pairs` to visualise the data and determine which predictors may be useful in predicting `Crime`.
-
-`r hide("Solution")`
-
-The `R` command `pairs()` may be used to see the relationships between all variables.
-
-```{r}
-crime <- read.csv("crime.csv")
-pairs(crime[,-1], lower.panel = NULL) # We add [,-1] to the end of crime to remove the first column which has non-numeric arguments (state names)
-```
-\newline
-
-Apart from Dropout which has been discussed in the lectures, there may also be a positive linear relationship between `Crime` and `Police` and between `Crime` and `Prison`, though the relationship doesn't seem to be very strong.  
-`r unhide()`
 
 (b) Build a simple linear regression model with `Dropout` as the predictor and interpret estimated coefficients.
 
@@ -39,14 +29,6 @@ For every 1% increase in the % of high school dropouts, the expected crime rate 
 
 `r hide("Hint")`
 Use `lm` to build a linear regression model and `summary()` to find the coefficients. 
-`r unhide()`
-
-`r hide("Solution - Remove for lab")`
-
-```{r}
-m.crime <- lm(Crime ~ Dropout, data = crime) 
-summary(m.crime)
-```
 `r unhide()`
 
 (c) From the lectures we know that the least squares estimates for the model parameters are
@@ -72,29 +54,18 @@ S_xy <- sum((x-x_mean)*(y-y_mean))
 
 `r unhide()`
 
-`r hide("Solution - Remove for lab")`
+### Least squares estimates of model parameters in matrix notation
 
-```{r, eval=TRUE}
-beta1.hat <- S_xy/S_xx
-beta0.hat <- y_mean - beta1.hat*x_mean 
-beta1.hat
-beta0.hat
-```
-`r unhide()`
-
-## Least squares estimates of model parameters using vector-matrix form
-
-To use the least squares vector-matrix formula given by \@ref(eq:LSE), we first need to find the design matrix, $\mathbf{X}$. This can be done using the following `R` command:
+To use the formula for least squares estimation in matrix notation given by \@ref(eq:LSE), we first need to find the design matrix, $\mathbf{X}$. This can be done using the following `R` command:
 ```{r}
 X <- model.matrix(~Dropout, data = crime)
 ```
 
-This gives us the design matrix, $\mathbf{X}$, for the simple linear regression model in \@ref(eq:SLR), where we have $n = 50$
-rows corresponding to each of the 50 US states, and $p = 2$ columns corresponding to the model parameters $\beta_0$ and $\beta_1$. More generally this is written as
+This gives us the design matrix, $\mathbf{X}$, for the simple linear regression model in \@ref(eq:SLR), where we have $n = 50$ rows corresponding to each of the 50 US states, and $p = 2$ columns corresponding to the model parameters $\beta_0$ and $\beta_1$. More generally this is written as
 $$\mathbf{X} =\begin{bmatrix} 1 & x_1 \\1 & x_2 \\ \vdots & \vdots \\ 1 & x_n\end{bmatrix} $$
-The first column of $\mathbf{X}$ contains 1's as that is the column that multiplies the first component of the parameter vector $\boldsymbol\beta' = \begin{bmatrix} \beta_0 & \beta_1 \end{bmatrix}$, and as can be seen from the model, the intercept term, $\beta_0$, is constant across all $i$ observations. The slope parameter, $\beta_1$, is also constant, however, the differences in crime rates between states comes from changes in the percentage of high school dropouts, given by $x_i$, which multiplies $\beta_1$. The random errors, $\epsilon_i$, also differ per state.
+The first column of $\mathbf{X}$ contains 1's as that is the column that multiplies the first component of the parameter vector $\boldsymbol\beta = \begin{bmatrix} \beta_0 & \beta_1 \end{bmatrix}'$, and as can be seen from the model, the intercept term, $\beta_0$, is constant across all $i$ observations. The slope parameter, $\beta_1$, is also constant, however, the differences in crime rates between states comes from changes in the percentage of high school dropouts, given by $x_i$, which multiplies $\beta_1$. The random errors, $\epsilon_i$, also differ per state.
 
-Next we need the following commands to calculate each component in the least squares vector-matrix formula:
+Next we need the following commands to calculate each component in the matrix formula of least squares estimation:
 ```{r eval=FALSE, echo=TRUE}
 t       # gets the transpose of a vector or matrix
 %*%     # multiplies matrices together
@@ -133,7 +104,6 @@ Multiplying $\left(\mathbf{X}'\mathbf{X}\right)^{-1}$ and $\mathbf{X}'\mathbf{Y}
 $$\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y} = $$
 
 <br>
-<!-- **QUESTION 1** -->
 
 (d) Use the `R` commands given above to compute $\left(\mathbf{X}'\mathbf{X}\right)^{-1}$ and $\mathbf{X}'\mathbf{Y}$, and hence $\hat{\boldsymbol\beta}$, and compare the output with your handwritten results.
 
@@ -156,26 +126,8 @@ We can also obtain the vector of random errors, $\boldsymbol \epsilon$, by takin
 residuals <- Y - X %*% param.ests
 ```
 
-<!-- The residual sum of squares for the model can be obtained from formula \@ref(eq:sigma) using the following commands: -->
-<!-- ```{r eval=FALSE} -->
-<!-- YtY <- t(Y) %*% Y -->
-<!-- RSS <- YtY - t(XtY) %*% param.ests -->
-<!-- ``` -->
 
-<!-- Now compute the estimate of the error variance, $\hat{\sigma}^2$: -->
-<!-- <br> -->
-
-<!-- $$\hat{\sigma}^2 = \frac{\text{RSS}}{n-p} = \hspace{10em}$$ -->
-<!-- <br> -->
-
-
-<!-- The estimate of standard deviation, i.e. $\hat{\sigma}$, has been calculated by `R` when fitting the model, which is the `Residual standard error` produced from `summary(model1)`. This can also be seen using the following command:  -->
-<!-- ```{r eval=FALSE} -->
-<!-- summary(model1)$sigma -->
-<!-- ``` -->
-
-<!-- <br> -->
-**Part 2: Multiple Linear Regression**
+## Multiple linear regression
 
 (e) Use one or more predictors alongside `Dropout` to build a multiple linear regression model for explaining `Crime`.
 
@@ -189,7 +141,7 @@ Recall that a multiple linear regression model can be constructed using
 
 `r unhide()`
 
-(f) Calculate the least squares estimates of parameters in the new multiple linear regression model using the vector-matrix formulation.
+(f) Calculate the least squares estimates of parameters in the new multiple linear regression model using the formula in matrix notation.
 
 `r hide("Solution")`
 

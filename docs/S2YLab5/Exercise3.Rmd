@@ -1,6 +1,5 @@
 # Exercise 3: The taste of cheese
 
-<!-- **Data:** ($y_i$, $x_i$) $i = 1,...,30$ -->
 **Context:** This model might be considered for an experiment involving the chemical constituents of cheese and its taste. The dataset contains the concentrations of acetic acid, hydrogen sulphide ($H_2S$) and lactic acid, as well as a subjective taste score. It is of interest to investigate the effects of the different acids on the taste score.
 
 **Model:** $\mathbb{E}(Y_i) = \alpha + \beta x_i$, $Var(Y_i) = \sigma^2$
@@ -28,23 +27,11 @@ cheese <- read.csv("cheese.csv")
 
 ## Exploratory analysis
 
+**TASK 4**
+
 (a) Produce scatterplots of `Taste` ($y$-axis) against `Lactic.Acid` ($x$-axis), and `Taste` ($y$-axis) against `H2S` ($x$-axis).
 
-```{r eval = FALSE, webex.hide="Hint"}
-# taste vs lactic acid
-plot(Taste ~ Lactic.Acid, data = cheese, xlab = "Lactic acid concentration", ylab = "Taste score")
-# taste vs H2S
-plot(Taste ~ H2S, data = cheese, xlab = "H2S concentration", ylab = "Taste score")
-```
-
 (b) Now plot `Taste` against log(`H2S`), and against log(`Lactic.Acid`). The command in `R` to perform a natural logarithmic transform is, for example, `log(H2S)`.
-
-```{r eval = FALSE, webex.hide="Hint"}
-# taste vs lactic acid
-plot(Taste ~ log(Lactic.Acid), data = cheese, xlab = " Log lactic acid concentration", ylab = "Taste score")
-# taste vs H2S
-plot(Taste ~ log(H2S), data = cheese, xlab = "Log H2S concentration", ylab = "Taste score")
-```
 
 (c) Which of the 4 variables (`H2S`, log(`H2S`), `Lactic.Acid`, log(`Lactic.Acid`)) seems best for describing a linear relationship with `Taste`?
 
@@ -58,16 +45,7 @@ Which of the four plots shows a straight/close-to-straight line similar to the l
 
 (d) Fit a linear regression (using the `lm` command) with `Taste` as the response variable and the explanatory variable you selected from part (c). Make a note of the fitted model. 
 
-```{r eval = FALSE, webex.hide="Hint"}
-model <- lm(Taste ~ log(H2S), data = cheese)
-```
-
 (e) Produce a plot with a line from your fitted model in (d) using the `abline` command.
-
-```{r eval = FALSE, webex.hide="Hint"}
-plot(Taste ~ log(H2S), data = cheese, xlab = "Log H2S concentration", ylab = "Taste score")
-abline(model, col = "red", lwd = 1.5)
-```
 
 (f) How well do you think the model and the data agree?
 

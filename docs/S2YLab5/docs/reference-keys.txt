@@ -6,10 +6,11 @@ introduction-to-ordinary-least-squares-ols
 the-simplest-regression-model-simple-linear-regression-one-covariate
 the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors
 ordinary-least-squares
-likely-questions
-credit-where-credit-is-due
+exam-style-questions
 example-1-crime
-least-squares-estimates-of-model-parameters-using-vector-matrix-form
+simple-linear-regression
+least-squares-estimates-of-model-parameters-in-matrix-notation
+multiple-linear-regression
 exercise-1-slr-with-no-intercept
 exploratory-analysis
 fitting-a-simple-linear-regression-model

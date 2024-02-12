@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 5 - Ordinary Least Squares</title>
-  <meta name="description" content="Lab 5 - Ordinary Least Squares" />
+  <title>Lab 5 - Ordinary least squares</title>
+  <meta name="description" content="Lab 5 - Ordinary least squares" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 5 - Ordinary Least Squares" />
+  <meta property="og:title" content="Lab 5 - Ordinary least squares" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 5 - Ordinary Least Squares" />
+  <meta name="twitter:title" content="Lab 5 - Ordinary least squares" />
   
   
   
@@ -139,15 +139,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 5!</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>1.1</b> Introduction to Ordinary Least Squares (OLS)</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: Simple Linear Regression (one covariate)</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: Multiple Linear Regression (multiple predictors)</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary Least Squares</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#likely-questions"><i class="fa fa-check"></i><b>1.5</b> Likely Questions</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.6</b> Credit where credit is due</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: simple linear regression (one covariate)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: multiple linear regression (multiple predictors)</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary least squares</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#exam-style-questions"><i class="fa fa-check"></i><b>1.5</b> Exam-style questions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-1-crime.html"><a href="example-1-crime.html"><i class="fa fa-check"></i><b>2</b> Example 1: Crime</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-using-vector-matrix-form"><i class="fa fa-check"></i><b>2.1</b> Least squares estimates of model parameters using vector-matrix form</a></li>
+<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#simple-linear-regression"><i class="fa fa-check"></i><b>2.1</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-in-matrix-notation"><i class="fa fa-check"></i><b>2.1.1</b> Least squares estimates of model parameters in matrix notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="example-1-crime.html"><a href="example-1-crime.html#multiple-linear-regression"><i class="fa fa-check"></i><b>2.2</b> Multiple linear regression</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: SLR with no intercept</a>
 <ul>
@@ -174,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary Least Squares</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary least squares</a>
           </h1>
         </div>
 
@@ -183,24 +186,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Lab 5 - Ordinary Least Squares</h1>
+<h1 class="title">Lab 5 - Ordinary least squares</h1>
 </div>
 <div id="welcome-to-lab-5" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Welcome to Lab 5!<a href="index.html#welcome-to-lab-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Intended Learning Outcomes:</p>
-<ol style="list-style-type: decimal">
+<ul>
 <li>Introduce and understand the matrix notation of linear models.</li>
-<li>Obtain model parameters using ordinary least squares (OLS) and using matrix notation in <code>R</code>.
-<!-- 3. Complete a one-sample hypothesis test of the mean in R by yourself. --></li>
-</ol>
+<li>Obtain model parameters using ordinary least squares (OLS) and using matrix notation in <code>R</code>.</li>
+</ul>
 <div id="introduction-to-ordinary-least-squares-ols" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Introduction to Ordinary Least Squares (OLS)<a href="index.html#introduction-to-ordinary-least-squares-ols" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The primary tool used to model associations among variables is regression (linear or otherwise).
-Regression analysis is used to model the relationship between a single variable <span class="math inline">\(Y\)</span> , called
+Regression analysis is used to model the relationship between a single variable <span class="math inline">\(Y\)</span>, called
 the <strong>response</strong> or <strong>dependent variable</strong>, and one or more <strong>explanatory variables</strong>, also called
 <strong>predictor(s)</strong>, <strong>covariates</strong>, or <strong>independent variable(s)</strong>, <span class="math inline">\(x_1, x_2,...,x_p\)</span>.</p>
 <p>As a first step, the response variable will be continuous, but the predictor variables can be either continuous, discrete, or
-categorical. You can predict non-numeric (continuous) variables using regression models, but they will be called <strong>generalised</strong> regression models. Here, we stick to the classical regression models. Parameter estimation for linear models can be carried out via OLS or maximum likelihood (MLE). In this lab, we will look at OLS.</p>
+categorical. You can predict non-numeric (continuous) variables using regression models, but they will be called <strong>generalised</strong> regression models. Here, we stick to the classical regression models. Parameter estimation for linear models can be carried out via OLS or maximum likelihood estimation. In this lab, we will look at OLS.</p>
 <p>The word “regression” is due to Sir Francis Galton, who in 1885 demonstrated that
 offspring do not tend toward the size of the parents; rather, offspring size tends toward the
 mean of the population. That is, there is a “regression toward mediocrity.”</p>
@@ -210,7 +212,7 @@ mean of the population. That is, there is a “regression toward mediocrity.”<
 <center>
 </div>
 <div id="the-simplest-regression-model-simple-linear-regression-one-covariate" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> The simplest regression model: Simple Linear Regression (one covariate)<a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">1.2</span> The simplest regression model: simple linear regression (one covariate)<a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The simple linear regression model is defined as</p>
 <p><span class="math display" id="eq:SLR">\[\begin{equation}
 Y_i = \beta_0 + \beta_1x_i + \epsilon_i,
@@ -224,7 +226,7 @@ Y_i = \beta_0 + \beta_1x_i + \epsilon_i,
 <li><span class="math inline">\(\beta_0\)</span> is known as the intercept.</li>
 <li><span class="math inline">\(\beta_1\)</span> is the regression coefficient of <span class="math inline">\(x\)</span> (the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(Y\)</span>).</li>
 </ul></li>
-<li><span class="math inline">\(\epsilon_i\)</span> is a random error term that is assumed to have a <span class="math inline">\(N(o,\sigma^2)\)</span> distribution.</li>
+<li><span class="math inline">\(\epsilon_i\)</span> is a random error term that is assumed to have a <span class="math inline">\(N(0,\sigma^2)\)</span> distribution.</li>
 </ul>
 <p>The "modelling" bit refers to estimating model parameters, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> for the <span class="math inline">\(n\)</span> measurements. It looks like</p>
 <p><span class="math display">\[
@@ -242,13 +244,12 @@ where</p>
 Note that <span class="math inline">\(\epsilon \sim N(\mathbf{0}, \sigma^2\mathbf{I})\)</span> where <span class="math inline">\(\sigma^2 \mathbf{I}\)</span> is the variance-covariance matrix of the vector of errors. Given that <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix, <span class="math inline">\(\sigma^2\)</span> is only along the diagonals, indicating that <span class="math inline">\(\epsilon_i\)</span> are independent from each other.</p>
 </div>
 <div id="the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> The next-simplest regression model: Multiple Linear Regression (multiple predictors)<a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Multiple linear regression is an extension of simple linear regression, where we have more than one coefficient <span class="math inline">\(x\)</span>. <span class="math inline">\(Y\)</span> is still the dependent variable, <span class="math inline">\(\beta_0\)</span> the intercept, but <span class="math inline">\(\beta_1\)</span> is generalised to <span class="math inline">\(\beta_j\)</span> which is now the coefficeint of <span class="math inline">\(x_ij\)</span>. The model is written as</p>
+<h2><span class="header-section-number">1.3</span> The next-simplest regression model: multiple linear regression (multiple predictors)<a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multiple linear regression is an extension of simple linear regression, where we have more than one coefficient <span class="math inline">\(x\)</span>. <span class="math inline">\(Y\)</span> is still the dependent variable, <span class="math inline">\(\beta_0\)</span> the intercept, but <span class="math inline">\(\beta_1\)</span> is generalised to <span class="math inline">\(\beta_j\)</span> which is now the coefficeint of <span class="math inline">\(x_{ij}\)</span>. The model is written as</p>
 <p><span class="math display">\[
-Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_{(p-1)}x_{i(p-1)} \epsilon_i, \text{ for } i = 1, 2,...,n.
+Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_{p-1}x_{i(p-1)} + \epsilon_i, \text{ for } i = 1, 2,...,n.
 \]</span>
-The matrix notation is</p>
-<p>The model can be written in matrix notation as
+The model can be written in matrix notation as
 <span class="math display">\[
 \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{\epsilon},
 \]</span></p>
@@ -256,22 +257,19 @@ The matrix notation is</p>
 <p><span class="math display">\[\mathbf{Y} = \left[\begin{matrix} Y_1\\Y2\\ \vdots \\Y_n \end{matrix}\right] \text{ as a } (n \times 1) \text{ matrix, } \mathbf{X} = \left[\begin{matrix} 1 &amp; x_{11} &amp; \cdots&amp; x_{1(p-1)}\\1 &amp; x_{21} &amp; \cdots&amp; x_{2(p-1)} \\ \vdots&amp;\vdots&amp;&amp;\vdots \\ 1 &amp; x_{n1} &amp; \cdots&amp; x_{n(p-1)} \end{matrix}\right] \text{ as } (n \times p) \text{, } \boldsymbol{\beta} =\left[\begin{matrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_n \end{matrix} \right] \text{ as } (p \times 1), \text{ and } \mathbf{\epsilon} = \left[\begin{matrix} \epsilon_0 \\ \epsilon_1 \\ \vdots \\ \epsilon_n \end{matrix} \right] \text{ as } (n \times 1) \text{.} \]</span></p>
 <p>Note some things</p>
 <ul>
-<li><span class="math inline">\(\mathbf{X}\)</span> contains the values of particular independent variables (predictors).
-<ul>
-<li><span class="math inline">\(\mathbf{X}\)</span> is assumed to be known constants.</li>
-</ul></li>
+<li><span class="math inline">\(\mathbf{X}\)</span> is a matrix of known constants, containing the values of particular predictors.</li>
 <li><span class="math inline">\(\mathbf{Y}\)</span> and <span class="math inline">\(\mathbf{\epsilon}\)</span> are random vectors whose elements are random variables.</li>
 <li><span class="math inline">\(\boldsymbol{\beta}\)</span> is a vector of unknown coefficients (what we have to estimate!).</li>
 </ul>
 </div>
 <div id="ordinary-least-squares" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Ordinary Least Squares<a href="index.html#ordinary-least-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Parameter estimation can be carried out using OLS or MLE. The ordinary least squares method of estimating parameters minimizes the sum of the
-squared deviations of the <span class="math inline">\(Y_i\)</span>s from their expected values such that</p>
-<p><span class="math display">\[
-\epsilon_i = Y_i - E(Y_i) \text{ same as saying } = Y_i - (\beta_0 + \beta_1 x_i).
-\]</span>
-The estimates <span class="math inline">\(\hat{\beta}_0\)</span> of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> of <span class="math inline">\(\beta_1\)</span> seek to minimise the quantity <span class="math inline">\(\mathcal{Q}\)</span>, which represents the sum of the squared residuals (differences) as</p>
+<h2><span class="header-section-number">1.4</span> Ordinary least squares<a href="index.html#ordinary-least-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ordinary least squares method of estimating parameters minimises the sum of the squared deviations of the <span class="math inline">\(Y_i\)</span>s from their expected values such that</p>
+<p><span class="math display">\[\begin{split}
+\epsilon_i &amp;= Y_i - E(Y_i)\\
+&amp;= Y_i - (\beta_0 + \beta_1 x_i)\quad \text{in the case of simple linear regression}.
+\end{split}\]</span></p>
+<p>The estimates <span class="math inline">\(\hat{\beta}_0\)</span> of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> of <span class="math inline">\(\beta_1\)</span> seek to minimise the quantity <span class="math inline">\(\mathcal{Q}\)</span>, which represents the sum of the squared residuals (differences) as</p>
 <p><span class="math display">\[
 \mathcal{Q} = \sum_{i=1}^{n}\epsilon_i^2 = \sum_{i=1}^n\left((Y_i - (\beta_0 + \beta_{1}x_i)\right)^2,
 \]</span>
@@ -279,7 +277,7 @@ which, in matrix notation, is the same as saying
 <span class="math display">\[
 \mathcal{Q} = \epsilon&#39;\epsilon = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})&#39;(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}).
 \]</span>
-If we want parameter estimates that minimise <span class="math inline">\(\mathcal{Q}\)</span>, we take the derivative with respect to our parameter</p>
+If we want parameter estimates that minimise <span class="math inline">\(\mathcal{Q}\)</span>, we take the derivative with respect to our parameters</p>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{\delta \mathcal{Q}}{\delta \beta_0} &amp; =2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right)(-1) \\
@@ -288,60 +286,43 @@ If we want parameter estimates that minimise <span class="math inline">\(\mathca
 &amp; =-2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right)\left(x_i\right),
 \end{aligned}
 \]</span>
-set it to zero, and solve for our parameter <span class="math inline">\(\hat{\beta}_j\)</span>. The solutions for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> are</p>
+set it to zero, and solve for <span class="math inline">\(\hat{\beta}_j\)</span>. The solutions for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> are</p>
 <p><span class="math display">\[
 \begin{aligned}
 \hat{\beta}_0 &amp; = \overline{Y} - \hat{\beta}_1\overline{x} \\
 \hat{\beta}_1 &amp; = \frac{\sum_{i=1}^n(x_i - \overline{x})(Y_i - \overline{Y})}{\sum_{i=1}^{n}(x_i - \overline{x})^2} = \frac{S_{XY}}{S_{XX}}.
 \end{aligned}
 \]</span></p>
-<p>In matrix notation, the estimation we can generalise the estimation of <span class="math inline">\(\boldsymbol{\beta}\)</span> as</p>
+<p>In matrix notation, we can generalise the estimation of <span class="math inline">\(\boldsymbol{\beta}\)</span> as</p>
 <p><span class="math display" id="eq:LSE">\[\begin{equation}
 \hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{Y}.
 \tag{1.2}
 \end{equation}\]</span></p>
-<!-- and estimate of the error variance, which is given as -->
-<!-- \begin{equation} -->
-<!-- \hat{\sigma}^2=\frac{\text{RSS}}{n-p} =\frac{\mathbf{Y}'\mathbf{Y}-\mathbf{Y}'\mathbf{X}\boldsymbol{\hat{\beta}}}{n-p} -->
-<!-- (\#eq:sigma) -->
-<!-- \end{equation} -->
-<p>Deterministically speaking, these equations will give you the values for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> (or <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>) that minimise <span class="math inline">\(\mathcal{Q}\)</span>. If you would like the proof, let me know!</p>
 </div>
-<div id="likely-questions" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Likely Questions<a href="index.html#likely-questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The exam for the course will contain questions on regression models. Below are example questions from a past exams. As you go through the lab, think of how each each part can be used to address the exam-style questions.</p>
-<!-- \begin{enumerate} -->
+<div id="exam-style-questions" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Exam-style questions<a href="index.html#exam-style-questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Below are example questions from past exam papers. As you go through the lab, think of how each part can be used to address the exam-style questions.</p>
 <ol style="list-style-type: decimal">
 <li>For the Crimes example discussed in the lecture, consider the following model:</li>
 </ol>
 <div class="line-block">            <strong>Data</strong>: <span class="math inline">\((y_i, x_i) \quad i=1,\dots,50\)</span></div>
 <div class="line-block">            <strong>Model</strong>: <span class="math inline">\(\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i, \quad \text{Var}(Y_i) = \sigma^2\)</span></div>
 <p><br />
-where <span class="math inline">\(x_i\)</span> denotes the % high school dropouts in state <span class="math inline">\(i\)</span> and <span class="math inline">\(y_i\)</span> denotes the crime rate in state <span class="math inline">\(i\)</span>.
-<!-- \begin{enumerate} --></p>
+where <span class="math inline">\(x_i\)</span> denotes the % high school dropouts in state <span class="math inline">\(i\)</span> and <span class="math inline">\(y_i\)</span> denotes the crime rate in state <span class="math inline">\(i\)</span>.</p>
 <div class="line-block">     a. Using the sum of squares function, <span class="math inline">\(\mathcal{Q}(\beta_0, \beta_1) = \sum_{i=1}^{50}(Y_i-\beta_0-\beta_1 x_i)^2\)</span>, derive the least squares estimators for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.<br />
      b. Use the summary statistics below to calculate the least squares estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</div>
-<!-- \end{enumerate} -->
 <p><span class="math display">\[ \sum_{i=1}^{50}Y_i =254258, \quad\, \sum_{i=1}^{50}x_i =512.6, \quad\,   \sum_{i=1}^{50}x_i^2 = 5538.8,\quad\,  \sum_{i=1}^{50}y_i^2 = 1365790732,\quad\, \sum_{i=1}^{50} x_iy_i= 2686567.5\]</span></p>
-<!-- \vsp -->
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Consider the following model:<br />
-</li>
+<li>Consider the following model:</li>
 </ol>
 <div class="line-block">            <strong>Data</strong>: <span class="math inline">\((y_i, x_i) \quad i=1,\dots,n\)</span></div>
 <div class="line-block">            <strong>Model</strong>: <span class="math inline">\(\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i+\beta_2 x_i^2,\quad \text{Var}(Y_i) = \sigma^2\)</span></div>
 <p><br />
 This model has been proposed for the potato example used in the lectures.<br />
 </p>
-<div class="line-block">     a. Write this model in vector-matrix form, <span class="math inline">\(\mathbb{E}(\mathbf{Y}\)</span>) = <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span>, clearly identifying the elements of <span class="math inline">\(\mathbf{Y}\)</span>, <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\boldsymbol{\beta}\)</span>.</div>
+<div class="line-block">     a. Write this model in matrix notation, <span class="math inline">\(\mathbb{E}(\mathbf{Y}\)</span>) = <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span>, clearly identifying the elements of <span class="math inline">\(\mathbf{Y}\)</span>, <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\boldsymbol{\beta}\)</span>.</div>
 <div class="line-block">     b. Identify formulae (in terms of the <span class="math inline">\(Y_i\)</span>'s and <span class="math inline">\(x_i\)</span>'s) for the elements of <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{X}&#39;\mathbf{y}\)</span>.</div>
-<!-- \end{enumerate} -->
-</div>
-<div id="credit-where-credit-is-due" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> Credit where credit is due<a href="index.html#credit-where-credit-is-due" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The labs in S2 incorporate and adapt materials from:</p>
-<p>Ugarte, M. D., Militino, A. F., &amp; Arnholt, A. T. (2008). <a href="https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596">Probability and Statistics with R</a>. CRC press.</p>
 
 </div>
 </div>

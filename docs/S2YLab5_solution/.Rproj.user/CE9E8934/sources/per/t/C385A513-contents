@@ -1,0 +1,51 @@
+# Exercise 2: Quadratic regression
+
+#### Introducing the data: Publishing history {-}
+
+**Source:** Tweedie, F. J., Bank, D. A. and McIntyre, B. (1998) Modelling Publishing History, 1475–1640:
+Change points in the STC.
+
+**Context:** The Short Title Catalogue (STC) is a list of all the books that were published in Scotland, England and Ireland between 1475 and 1640. We are interested in finding out if there are any changes in the number of books published between 1500 and 1640.
+
+**Data: books.csv**
+
+**Columns:**
+
+|               **C1: Year (1500 – 1640)**
+
+|               **C2: Total number of books published**
+
+Read in the data using: 
+
+```{r}
+books <- read.csv("books.csv")
+```
+
+<br>
+
+#### Exploratory analysis {-}
+
+**TASK 3**
+
+(a) Produce a scatterplot of the data with **Number of books** on the y-axis and **Year** on the x-axis.
+
+(b) Describe the shape of the relationship. Does it seem linear?
+
+## Fitting a quadratic regression model
+
+Use the commands below to fit a quadratic regression and output the model summary: 
+```{r, eval=FALSE}
+model <- lm(Number.of.Books ~ Year + I(Year^2), data = books)
+summary(model)
+```
+
+Note: `year^2` needs to be 'protected' by `I`, the identity function.
+
+(c) Note down the equation of the fitted quadratic line and plot the fitted line.
+
+<center> **Total number of books =**  `r fitb(c("59.9779612","59.977961","59.97796","59.9780","59.978","59.98","60.0","60"))` **+** `r fitb(c("-0.491710","-0.49171","-0.4917","-0.492","-0.49","-0.5"))` **Year +** `r fitb(c("0.033940","0.03394","0.0339","0.034","0.03"))` **Year^2**</center>
+
+`r hide("Hint")`
+The `R` command `lines()` can be used to plot the points obtained by using `fitted()` on the model.
+`r unhide()`
+

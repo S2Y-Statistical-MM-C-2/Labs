@@ -1,5 +1,5 @@
 ---
-title: "Lab 5 - Ordinary Least Squares"
+title: "Lab 5 - Ordinary least squares"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -19,9 +19,8 @@ library(ggplot2)
 library(tidyverse)
 library(PASWR2)
 library(MASS)
-# RUBBER<- Rubber
-# FERTILIZE <- FERTILIZE
 
+crime <- read.csv("crime.csv")
 ```
 
 
@@ -35,18 +34,17 @@ knitr::write_bib(c(
 
 Intended Learning Outcomes:
 
-1. Introduce and understand the matrix notation of linear models.
-2. Obtain model parameters using ordinary least squares (OLS) and using matrix notation in `R`. 
-<!-- 3. Complete a one-sample hypothesis test of the mean in R by yourself. -->
+* Introduce and understand the matrix notation of linear models.
+* Obtain model parameters using ordinary least squares (OLS) and using matrix notation in `R`. 
 
 ## Introduction to Ordinary Least Squares (OLS)
 The primary tool used to model associations among variables is regression (linear or otherwise).
-Regression analysis is used to model the relationship between a single variable $Y$ , called
+Regression analysis is used to model the relationship between a single variable $Y$, called
 the **response** or **dependent variable**, and one or more **explanatory variables**, also called
 **predictor(s)**, **covariates**, or **independent variable(s)**, $x_1, x_2,...,x_p$.
 
 As a first step, the response variable will be continuous, but the predictor variables can be either continuous, discrete, or
-categorical. You can predict non-numeric (continuous) variables using regression models, but they will be called **generalised** regression models. Here, we stick to the classical regression models. Parameter estimation for linear models can be carried out via OLS or maximum likelihood (MLE). In this lab, we will look at OLS.  
+categorical. You can predict non-numeric (continuous) variables using regression models, but they will be called **generalised** regression models. Here, we stick to the classical regression models. Parameter estimation for linear models can be carried out via OLS or maximum likelihood estimation. In this lab, we will look at OLS.  
 
 The word “regression” is due to Sir Francis Galton, who in 1885 demonstrated that
 offspring do not tend toward the size of the parents; rather, offspring size tends toward the
@@ -58,7 +56,7 @@ What else is Francis famous for? **"Whenever you can, count"**, **"Nature vs nur
 ![](Images/sir_francis.png){width=300px}
 <center>
 
-## The simplest regression model: Simple Linear Regression (one covariate)##
+## The simplest regression model: simple linear regression (one covariate)##
 
 The simple linear regression model is defined as 
 
@@ -73,7 +71,7 @@ where
 * $\beta_0$ and $\beta_1$ are regression parameters.
   + $\beta_0$ is known as the intercept.
   + $\beta_1$ is the regression coefficient of $x$ (the effect of $x$ on $Y$).
-* $\epsilon_i$ is a random error term that is assumed to have a $N(o,\sigma^2)$ distribution. 
+* $\epsilon_i$ is a random error term that is assumed to have a $N(0,\sigma^2)$ distribution. 
 
 The "modelling" bit refers to estimating model parameters, $\beta_0$ and $\beta_1$ for the $n$ measurements. It looks like
 
@@ -92,15 +90,13 @@ where
 $$\mathbf{Y} = \left[\begin{matrix} Y_1\\Y2\\ \vdots \\Y_n \end{matrix}\right] \text{ as a } (n \times 1) \text{ matrix, } \mathbf{X} = \left[\begin{matrix} 1 & x_1\\1 & x2 \\ \vdots&\vdots \\ 1 & x_n \end{matrix}\right] \text{ as } (n \times 2) \text{, } \boldsymbol{\beta} =\left[\begin{matrix} \beta_0 \\ \beta_1 \end{matrix} \right] \text{ as } (2 \times 1) \text{.} $$
 Note that $\epsilon \sim N(\mathbf{0}, \sigma^2\mathbf{I})$ where $\sigma^2 \mathbf{I}$ is the variance-covariance matrix of the vector of errors. Given that $\mathbf{I}$ is the identity matrix, $\sigma^2$ is only along the diagonals, indicating that $\epsilon_i$ are independent from each other. 
 
-## The next-simplest regression model: Multiple Linear Regression (multiple predictors)##
+## The next-simplest regression model: multiple linear regression (multiple predictors)##
 
-Multiple linear regression is an extension of simple linear regression, where we have more than one coefficient $x$. $Y$ is still the dependent variable, $\beta_0$ the intercept, but $\beta_1$ is generalised to $\beta_j$ which is now the coefficeint of $x_ij$. The model is written as 
+Multiple linear regression is an extension of simple linear regression, where we have more than one coefficient $x$. $Y$ is still the dependent variable, $\beta_0$ the intercept, but $\beta_1$ is generalised to $\beta_j$ which is now the coefficeint of $x_{ij}$. The model is written as 
 
 $$
-Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_{(p-1)}x_{i(p-1)} \epsilon_i, \text{ for } i = 1, 2,...,n.
+Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_{p-1}x_{i(p-1)} + \epsilon_i, \text{ for } i = 1, 2,...,n.
 $$
-The matrix notation is
-
 The model can be written in matrix notation as 
 $$
 \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{\epsilon},
@@ -112,19 +108,19 @@ $$\mathbf{Y} = \left[\begin{matrix} Y_1\\Y2\\ \vdots \\Y_n \end{matrix}\right] \
 
 Note some things
 
-* $\mathbf{X}$ contains the values of particular independent variables (predictors). 
-  + $\mathbf{X}$ is assumed to be known constants.
+* $\mathbf{X}$ is a matrix of known constants, containing the values of particular predictors. 
 * $\mathbf{Y}$ and $\mathbf{\epsilon}$ are random vectors whose elements are random variables. 
 * $\boldsymbol{\beta}$ is a vector of unknown coefficients (what we have to estimate!). 
 
-## Ordinary Least Squares ##
+## Ordinary least squares ##
 
-Parameter estimation can be carried out using OLS or MLE. The ordinary least squares method of estimating parameters minimizes the sum of the
-squared deviations of the $Y_i$s from their expected values such that
+The ordinary least squares method of estimating parameters minimises the sum of the squared deviations of the $Y_i$s from their expected values such that
 
-$$
-\epsilon_i = Y_i - E(Y_i) \text{ same as saying } = Y_i - (\beta_0 + \beta_1 x_i). 
-$$
+$$\begin{split}
+\epsilon_i &= Y_i - E(Y_i)\\
+&= Y_i - (\beta_0 + \beta_1 x_i)\quad \text{in the case of simple linear regression}. 
+\end{split}$$
+
 The estimates $\hat{\beta}_0$ of $\beta_0$ and $\hat{\beta_1}$ of $\beta_1$ seek to minimise the quantity $\mathcal{Q}$, which represents the sum of the squared residuals (differences) as 
 
 $$
@@ -134,7 +130,7 @@ which, in matrix notation, is the same as saying
 $$
 \mathcal{Q} = \epsilon'\epsilon = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}). 
 $$
-If we want parameter estimates that minimise $\mathcal{Q}$, we take the derivative with respect to our parameter
+If we want parameter estimates that minimise $\mathcal{Q}$, we take the derivative with respect to our parameters
 
 $$
 \begin{aligned}
@@ -144,7 +140,7 @@ $$
 & =-2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right)\left(x_i\right), 
 \end{aligned}
 $$
- set it to zero, and solve for our parameter $\hat{\beta}_j$. The solutions for $\hat{\beta}_0$ and $\hat{\beta}_1$ are
+ set it to zero, and solve for $\hat{\beta}_j$. The solutions for $\hat{\beta}_0$ and $\hat{\beta}_1$ are
  
  $$
  \begin{aligned}
@@ -154,26 +150,17 @@ $$
  $$
  
  
-In matrix notation, the estimation we can generalise the estimation of $\boldsymbol{\beta}$ as 
+In matrix notation, we can generalise the estimation of $\boldsymbol{\beta}$ as 
 
 \begin{equation}
 \hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}. 
 (\#eq:LSE)
 \end{equation}
 
-<!-- and estimate of the error variance, which is given as -->
-<!-- \begin{equation} -->
-<!-- \hat{\sigma}^2=\frac{\text{RSS}}{n-p} =\frac{\mathbf{Y}'\mathbf{Y}-\mathbf{Y}'\mathbf{X}\boldsymbol{\hat{\beta}}}{n-p} -->
-<!-- (\#eq:sigma) -->
-<!-- \end{equation} -->
 
-Deterministically speaking, these equations will give you the values for $\hat{\beta}_0$ and $\hat{\beta}_1$ (or $\hat{\boldsymbol{\beta}}$) that minimise $\mathcal{Q}$. If you would like the proof, let me know!
-
-
-## Likely Questions
-The exam for the course will contain questions on regression models. Below are example questions from a past exams. As you go through the lab, think of how each each part can be used to address the exam-style questions. 
+## Exam-style questions
+Below are example questions from past exam papers. As you go through the lab, think of how each part can be used to address the exam-style questions. 
  
-<!-- \begin{enumerate} -->
 1. For the Crimes example discussed in the lecture, consider the following model:
 
 |             **Data**: $(y_i, x_i) \quad i=1,\dots,50$
@@ -181,19 +168,16 @@ The exam for the course will contain questions on regression models. Below are e
 |             **Model**: $\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i, \quad \text{Var}(Y_i) = \sigma^2$
 \
 where $x_i$ denotes the \% high school dropouts in state $i$ and $y_i$ denotes the crime rate in state $i$.
-<!-- \begin{enumerate} -->
 
 |      a. Using the sum of squares function, $\mathcal{Q}(\beta_0, \beta_1) = \sum_{i=1}^{50}(Y_i-\beta_0-\beta_1 x_i)^2$, derive the least squares estimators for $\beta_0$ and $\beta_1$.
 |      b. Use the summary statistics below to calculate the least squares estimates for $\beta_0$ and $\beta_1$.
-<!-- \end{enumerate} -->
 
  \[ \sum_{i=1}^{50}Y_i =254258, \quad\, \sum_{i=1}^{50}x_i =512.6, \quad\,   \sum_{i=1}^{50}x_i^2 = 5538.8,\quad\,  \sum_{i=1}^{50}y_i^2 = 1365790732,\quad\, \sum_{i=1}^{50} x_iy_i= 2686567.5\]
 
-<!-- \vsp -->
 
 <br> 
 
-2.  Consider the following model:\
+2.  Consider the following model:
 
 |             **Data**: $(y_i, x_i) \quad i=1,\dots,n$
 
@@ -202,17 +186,6 @@ where $x_i$ denotes the \% high school dropouts in state $i$ and $y_i$ denotes t
 \
 This model has been proposed for the potato example used in the lectures.\
 
-|      a. Write this model in vector-matrix form, $\mathbb{E}(\mathbf{Y}$) = $\mathbf{X}\boldsymbol{\beta}$,  clearly identifying the elements of $\mathbf{Y}$, $\mathbf{X}$ and $\boldsymbol{\beta}$.
+|      a. Write this model in matrix notation, $\mathbb{E}(\mathbf{Y}$) = $\mathbf{X}\boldsymbol{\beta}$,  clearly identifying the elements of $\mathbf{Y}$, $\mathbf{X}$ and $\boldsymbol{\beta}$.
 
 |      b. Identify formulae (in terms of the $Y_i$'s and $x_i$'s) for the elements of $\mathbf{X}'\mathbf{X}$ and $\mathbf{X}'\mathbf{y}$.
-<!-- \end{enumerate} -->
-
-
-
-
-## Credit where credit is due
-
-The labs in S2 incorporate and adapt materials from:
-
-Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
-
