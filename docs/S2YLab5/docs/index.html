@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 5 - Ordinary Least Squares</title>
+  <meta name="description" content="Lab 5 - Ordinary Least Squares" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 5 - Ordinary Least Squares" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 5 - Ordinary Least Squares" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="example-1-crime.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 5!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>1.1</b> Introduction to Ordinary Least Squares (OLS)</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate"><i class="fa fa-check"></i><b>1.2</b> The simplest regression model: Simple Linear Regression (one covariate)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors"><i class="fa fa-check"></i><b>1.3</b> The next-simplest regression model: Multiple Linear Regression (multiple predictors)</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#ordinary-least-squares"><i class="fa fa-check"></i><b>1.4</b> Ordinary Least Squares</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#likely-questions"><i class="fa fa-check"></i><b>1.5</b> Likely Questions</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.6</b> Credit where credit is due</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1-crime.html"><a href="example-1-crime.html"><i class="fa fa-check"></i><b>2</b> Example 1: Crime</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1-crime.html"><a href="example-1-crime.html#least-squares-estimates-of-model-parameters-using-vector-matrix-form"><i class="fa fa-check"></i><b>2.1</b> Least squares estimates of model parameters using vector-matrix form</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: SLR with no intercept</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html#exploratory-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html#fitting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>3.2</b> Fitting a simple linear regression model</a></li>
+<li class="chapter" data-level="3.3" data-path="exercise-1-slr-with-no-intercept.html"><a href="exercise-1-slr-with-no-intercept.html#fitting-a-linear-model-with-no-intercept"><i class="fa fa-check"></i><b>3.3</b> Fitting a linear model with no intercept</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercise-2-quadratic-regression.html"><a href="exercise-2-quadratic-regression.html"><i class="fa fa-check"></i><b>4</b> Exercise 2: Quadratic regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exercise-2-quadratic-regression.html"><a href="exercise-2-quadratic-regression.html#exploratory-analysis-1"><i class="fa fa-check"></i><b>4.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="exercise-2-quadratic-regression.html"><a href="exercise-2-quadratic-regression.html#fitting-a-quadratic-regression-model"><i class="fa fa-check"></i><b>4.2</b> Fitting a quadratic regression model</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exercise-3-the-taste-of-cheese.html"><a href="exercise-3-the-taste-of-cheese.html"><i class="fa fa-check"></i><b>5</b> Exercise 3: The taste of cheese</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exercise-3-the-taste-of-cheese.html"><a href="exercise-3-the-taste-of-cheese.html#exploratory-analysis-2"><i class="fa fa-check"></i><b>5.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="exercise-3-the-taste-of-cheese.html"><a href="exercise-3-the-taste-of-cheese.html#fitting-a-model-with-a-transformation"><i class="fa fa-check"></i><b>5.2</b> Fitting a model with a transformation</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 5 - Ordinary Least Squares</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Lab 5 - Ordinary Least Squares</h1>
+</div>
+<div id="welcome-to-lab-5" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Welcome to Lab 5!<a href="index.html#welcome-to-lab-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Intended Learning Outcomes:</p>
+<ol style="list-style-type: decimal">
+<li>Introduce and understand the matrix notation of linear models.</li>
+<li>Obtain model parameters using ordinary least squares (OLS) and using matrix notation in <code>R</code>.
+<!-- 3. Complete a one-sample hypothesis test of the mean in R by yourself. --></li>
+</ol>
+<div id="introduction-to-ordinary-least-squares-ols" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction to Ordinary Least Squares (OLS)<a href="index.html#introduction-to-ordinary-least-squares-ols" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The primary tool used to model associations among variables is regression (linear or otherwise).
+Regression analysis is used to model the relationship between a single variable <span class="math inline">\(Y\)</span> , called
+the <strong>response</strong> or <strong>dependent variable</strong>, and one or more <strong>explanatory variables</strong>, also called
+<strong>predictor(s)</strong>, <strong>covariates</strong>, or <strong>independent variable(s)</strong>, <span class="math inline">\(x_1, x_2,...,x_p\)</span>.</p>
+<p>As a first step, the response variable will be continuous, but the predictor variables can be either continuous, discrete, or
+categorical. You can predict non-numeric (continuous) variables using regression models, but they will be called <strong>generalised</strong> regression models. Here, we stick to the classical regression models. Parameter estimation for linear models can be carried out via OLS or maximum likelihood (MLE). In this lab, we will look at OLS.</p>
+<p>The word “regression” is due to Sir Francis Galton, who in 1885 demonstrated that
+offspring do not tend toward the size of the parents; rather, offspring size tends toward the
+mean of the population. That is, there is a “regression toward mediocrity.”</p>
+<p>What else is Francis famous for? <strong>"Whenever you can, count"</strong>, <strong>"Nature vs nurture"</strong> and <strong>"London is the epicenter of female beauty, Aberdeen is the opposite..."</strong>. Also, eugenics. Fun guy.</p>
+<center>
+<img src="Images/sir_francis.png" width="300" />
+<center>
+</div>
+<div id="the-simplest-regression-model-simple-linear-regression-one-covariate" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> The simplest regression model: Simple Linear Regression (one covariate)<a href="index.html#the-simplest-regression-model-simple-linear-regression-one-covariate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The simple linear regression model is defined as</p>
+<p><span class="math display" id="eq:SLR">\[\begin{equation}
+Y_i = \beta_0 + \beta_1x_i + \epsilon_i,
+\tag{1.1}
+\end{equation}\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> is the value of the response variable for the <span class="math inline">\(i\)</span>th observation.</li>
+<li><span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are regression parameters.
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> is known as the intercept.</li>
+<li><span class="math inline">\(\beta_1\)</span> is the regression coefficient of <span class="math inline">\(x\)</span> (the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(Y\)</span>).</li>
+</ul></li>
+<li><span class="math inline">\(\epsilon_i\)</span> is a random error term that is assumed to have a <span class="math inline">\(N(o,\sigma^2)\)</span> distribution.</li>
+</ul>
+<p>The "modelling" bit refers to estimating model parameters, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> for the <span class="math inline">\(n\)</span> measurements. It looks like</p>
+<p><span class="math display">\[
+Y_1 = \beta_0 + \beta_1x_1 + \epsilon_1\\
+Y_2 = \beta_0 + \beta_1x_2 + \epsilon_2\\
+\vdots\\
+Y_n = \beta_0 + \beta_1x_n + \epsilon_n.\\
+\]</span>
+The model can be written in matrix notation as
+<span class="math display">\[
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{\epsilon},
+\]</span>
+where</p>
+<p><span class="math display">\[\mathbf{Y} = \left[\begin{matrix} Y_1\\Y2\\ \vdots \\Y_n \end{matrix}\right] \text{ as a } (n \times 1) \text{ matrix, } \mathbf{X} = \left[\begin{matrix} 1 &amp; x_1\\1 &amp; x2 \\ \vdots&amp;\vdots \\ 1 &amp; x_n \end{matrix}\right] \text{ as } (n \times 2) \text{, } \boldsymbol{\beta} =\left[\begin{matrix} \beta_0 \\ \beta_1 \end{matrix} \right] \text{ as } (2 \times 1) \text{.} \]</span>
+Note that <span class="math inline">\(\epsilon \sim N(\mathbf{0}, \sigma^2\mathbf{I})\)</span> where <span class="math inline">\(\sigma^2 \mathbf{I}\)</span> is the variance-covariance matrix of the vector of errors. Given that <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix, <span class="math inline">\(\sigma^2\)</span> is only along the diagonals, indicating that <span class="math inline">\(\epsilon_i\)</span> are independent from each other.</p>
+</div>
+<div id="the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> The next-simplest regression model: Multiple Linear Regression (multiple predictors)<a href="index.html#the-next-simplest-regression-model-multiple-linear-regression-multiple-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multiple linear regression is an extension of simple linear regression, where we have more than one coefficient <span class="math inline">\(x\)</span>. <span class="math inline">\(Y\)</span> is still the dependent variable, <span class="math inline">\(\beta_0\)</span> the intercept, but <span class="math inline">\(\beta_1\)</span> is generalised to <span class="math inline">\(\beta_j\)</span> which is now the coefficeint of <span class="math inline">\(x_ij\)</span>. The model is written as</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_{(p-1)}x_{i(p-1)} \epsilon_i, \text{ for } i = 1, 2,...,n.
+\]</span>
+The matrix notation is</p>
+<p>The model can be written in matrix notation as
+<span class="math display">\[
+\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{\epsilon},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[\mathbf{Y} = \left[\begin{matrix} Y_1\\Y2\\ \vdots \\Y_n \end{matrix}\right] \text{ as a } (n \times 1) \text{ matrix, } \mathbf{X} = \left[\begin{matrix} 1 &amp; x_{11} &amp; \cdots&amp; x_{1(p-1)}\\1 &amp; x_{21} &amp; \cdots&amp; x_{2(p-1)} \\ \vdots&amp;\vdots&amp;&amp;\vdots \\ 1 &amp; x_{n1} &amp; \cdots&amp; x_{n(p-1)} \end{matrix}\right] \text{ as } (n \times p) \text{, } \boldsymbol{\beta} =\left[\begin{matrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_n \end{matrix} \right] \text{ as } (p \times 1), \text{ and } \mathbf{\epsilon} = \left[\begin{matrix} \epsilon_0 \\ \epsilon_1 \\ \vdots \\ \epsilon_n \end{matrix} \right] \text{ as } (n \times 1) \text{.} \]</span></p>
+<p>Note some things</p>
+<ul>
+<li><span class="math inline">\(\mathbf{X}\)</span> contains the values of particular independent variables (predictors).
+<ul>
+<li><span class="math inline">\(\mathbf{X}\)</span> is assumed to be known constants.</li>
+</ul></li>
+<li><span class="math inline">\(\mathbf{Y}\)</span> and <span class="math inline">\(\mathbf{\epsilon}\)</span> are random vectors whose elements are random variables.</li>
+<li><span class="math inline">\(\boldsymbol{\beta}\)</span> is a vector of unknown coefficients (what we have to estimate!).</li>
+</ul>
+</div>
+<div id="ordinary-least-squares" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Ordinary Least Squares<a href="index.html#ordinary-least-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Parameter estimation can be carried out using OLS or MLE. The ordinary least squares method of estimating parameters minimizes the sum of the
+squared deviations of the <span class="math inline">\(Y_i\)</span>s from their expected values such that</p>
+<p><span class="math display">\[
+\epsilon_i = Y_i - E(Y_i) \text{ same as saying } = Y_i - (\beta_0 + \beta_1 x_i).
+\]</span>
+The estimates <span class="math inline">\(\hat{\beta}_0\)</span> of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> of <span class="math inline">\(\beta_1\)</span> seek to minimise the quantity <span class="math inline">\(\mathcal{Q}\)</span>, which represents the sum of the squared residuals (differences) as</p>
+<p><span class="math display">\[
+\mathcal{Q} = \sum_{i=1}^{n}\epsilon_i^2 = \sum_{i=1}^n\left((Y_i - (\beta_0 + \beta_{1}x_i)\right)^2,
+\]</span>
+which, in matrix notation, is the same as saying
+<span class="math display">\[
+\mathcal{Q} = \epsilon&#39;\epsilon = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})&#39;(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}).
+\]</span>
+If we want parameter estimates that minimise <span class="math inline">\(\mathcal{Q}\)</span>, we take the derivative with respect to our parameter</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\delta \mathcal{Q}}{\delta \beta_0} &amp; =2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right)(-1) \\
+&amp; =-2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right) . \\
+\frac{\delta \mathcal{Q}}{\delta \beta_1} &amp; =2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right)\left(-x_i\right) \\
+&amp; =-2 \sum_{i=1}^n\left(Y_i-\beta_0-\beta_1 x_i\right)\left(x_i\right),
+\end{aligned}
+\]</span>
+set it to zero, and solve for our parameter <span class="math inline">\(\hat{\beta}_j\)</span>. The solutions for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> are</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\beta}_0 &amp; = \overline{Y} - \hat{\beta}_1\overline{x} \\
+\hat{\beta}_1 &amp; = \frac{\sum_{i=1}^n(x_i - \overline{x})(Y_i - \overline{Y})}{\sum_{i=1}^{n}(x_i - \overline{x})^2} = \frac{S_{XY}}{S_{XX}}.
+\end{aligned}
+\]</span></p>
+<p>In matrix notation, the estimation we can generalise the estimation of <span class="math inline">\(\boldsymbol{\beta}\)</span> as</p>
+<p><span class="math display" id="eq:LSE">\[\begin{equation}
+\hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{Y}.
+\tag{1.2}
+\end{equation}\]</span></p>
+<!-- and estimate of the error variance, which is given as -->
+<!-- \begin{equation} -->
+<!-- \hat{\sigma}^2=\frac{\text{RSS}}{n-p} =\frac{\mathbf{Y}'\mathbf{Y}-\mathbf{Y}'\mathbf{X}\boldsymbol{\hat{\beta}}}{n-p} -->
+<!-- (\#eq:sigma) -->
+<!-- \end{equation} -->
+<p>Deterministically speaking, these equations will give you the values for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> (or <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>) that minimise <span class="math inline">\(\mathcal{Q}\)</span>. If you would like the proof, let me know!</p>
+</div>
+<div id="likely-questions" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Likely Questions<a href="index.html#likely-questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The exam for the course will contain questions on regression models. Below are example questions from a past exams. As you go through the lab, think of how each each part can be used to address the exam-style questions.</p>
+<!-- \begin{enumerate} -->
+<ol style="list-style-type: decimal">
+<li>For the Crimes example discussed in the lecture, consider the following model:</li>
+</ol>
+<div class="line-block">            <strong>Data</strong>: <span class="math inline">\((y_i, x_i) \quad i=1,\dots,50\)</span></div>
+<div class="line-block">            <strong>Model</strong>: <span class="math inline">\(\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i, \quad \text{Var}(Y_i) = \sigma^2\)</span></div>
+<p><br />
+where <span class="math inline">\(x_i\)</span> denotes the % high school dropouts in state <span class="math inline">\(i\)</span> and <span class="math inline">\(y_i\)</span> denotes the crime rate in state <span class="math inline">\(i\)</span>.
+<!-- \begin{enumerate} --></p>
+<div class="line-block">     a. Using the sum of squares function, <span class="math inline">\(\mathcal{Q}(\beta_0, \beta_1) = \sum_{i=1}^{50}(Y_i-\beta_0-\beta_1 x_i)^2\)</span>, derive the least squares estimators for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.<br />
+     b. Use the summary statistics below to calculate the least squares estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</div>
+<!-- \end{enumerate} -->
+<p><span class="math display">\[ \sum_{i=1}^{50}Y_i =254258, \quad\, \sum_{i=1}^{50}x_i =512.6, \quad\,   \sum_{i=1}^{50}x_i^2 = 5538.8,\quad\,  \sum_{i=1}^{50}y_i^2 = 1365790732,\quad\, \sum_{i=1}^{50} x_iy_i= 2686567.5\]</span></p>
+<!-- \vsp -->
+<p><br></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Consider the following model:<br />
+</li>
+</ol>
+<div class="line-block">            <strong>Data</strong>: <span class="math inline">\((y_i, x_i) \quad i=1,\dots,n\)</span></div>
+<div class="line-block">            <strong>Model</strong>: <span class="math inline">\(\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i+\beta_2 x_i^2,\quad \text{Var}(Y_i) = \sigma^2\)</span></div>
+<p><br />
+This model has been proposed for the potato example used in the lectures.<br />
+</p>
+<div class="line-block">     a. Write this model in vector-matrix form, <span class="math inline">\(\mathbb{E}(\mathbf{Y}\)</span>) = <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span>, clearly identifying the elements of <span class="math inline">\(\mathbf{Y}\)</span>, <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\boldsymbol{\beta}\)</span>.</div>
+<div class="line-block">     b. Identify formulae (in terms of the <span class="math inline">\(Y_i\)</span>'s and <span class="math inline">\(x_i\)</span>'s) for the elements of <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{X}&#39;\mathbf{y}\)</span>.</div>
+<!-- \end{enumerate} -->
+</div>
+<div id="credit-where-credit-is-due" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Credit where credit is due<a href="index.html#credit-where-credit-is-due" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The labs in S2 incorporate and adapt materials from:</p>
+<p>Ugarte, M. D., Militino, A. F., &amp; Arnholt, A. T. (2008). <a href="https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596">Probability and Statistics with R</a>. CRC press.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="example-1-crime.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

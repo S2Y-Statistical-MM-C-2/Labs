@@ -1,0 +1,9 @@
+h1:exercise-1-slr-with-no-intercept Exercise 1: SLR with no intercept
+h4:introducing-the-data-hubbles-constant Introducing the data: Hubble’s Constant
+h2:exploratory-analysis Exploratory analysis
+h2:fitting-a-simple-linear-regression-model Fitting a simple linear regression model
+h4:now-with-lse Now with LSE
+h2:fitting-a-linear-model-with-no-intercept Fitting a linear model with no intercept
+fig:hubble-plot Scatterplot of `Velocity` versus `Distance` with two fitted models - simple linear regression model with and without the intercept.
+h4:now-with-lse-1 Now with LSE
+
