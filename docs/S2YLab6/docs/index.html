@@ -149,9 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Modelling College Grades</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#building-the-model"><i class="fa fa-check"></i><b>2.1</b> Building the Model</a></li>
-<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#model-fitting-assumptions"><i class="fa fa-check"></i><b>2.2</b> Model Fitting Assumptions</a></li>
-<li class="chapter" data-level="2.3" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.3</b> Hypothsis Testing for Regression Models</a></li>
-<li class="chapter" data-level="2.4" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.4</b> Confidence intervals for model terms</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.2</b> Hypothsis Testing for Regression Models</a></li>
+<li class="chapter" data-level="2.3" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.3</b> Confidence intervals for model terms</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html"><i class="fa fa-check"></i><b>3</b> Example 2: Cherry trees</a>
 <ul>
@@ -284,10 +283,7 @@ II. From the p-value...</p>
 <h2><span class="header-section-number">1.3</span> Confidence Intervals for Linear Model Estimators<a href="index.html#confidence-intervals-for-linear-model-estimators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We may also want to build confidence intervals (CI) for our model estimators. The CI for estimator <span class="math inline">\(\beta_k\)</span> with confidence level <span class="math inline">\(1-\alpha\)</span> is:</p>
 <p><span class="math display">\[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right)\]</span></p>
-<p>or</p>
-<p><span class="math display">\[ \mathbf{b}^\top\boldsymbol{\hat{\beta}}\pm t\left(n-p; 0.975\right)\sqrt{\frac{\text{RSS}}{n-p}\mathbf{b}^\top(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{b}}\]</span></p>
-<p>where the degrees of freedom is <span class="math inline">\(n-p\)</span> because <span class="math inline">\(\sigma^2\)</span> is esimated using <span class="math inline">\(MSE=\frac{SSE}{n-p}\)</span>. <em>Note that Sum of Squared Errors (SSE) is sometimes called Residual Sum of Squares (RSS)</em></p>
-<p>The second formula is particularly useful for working in matrix form or when producing a confidence interval for a linear combination of the model parameters such as for <span class="math inline">\(\beta_1-\beta_2\)</span>.</p>
+<p>where the degrees of freedom is <span class="math inline">\(n-p\)</span> because <span class="math inline">\(\sigma^2\)</span> is esimated using <span class="math inline">\(MSE=\frac{SSE}{n-p}\)</span>.</p>
 <p>The values needed for the CI can again be found using:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span>
 <span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a><span class="fu">summary</span>(model)<span class="sc">$</span>coef</span>

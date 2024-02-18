@@ -9,7 +9,6 @@ steps-of-the-hyphotesis-test
 confidence-intervals-for-linear-model-estimators
 example-1---modelling-college-grades
 building-the-model
-model-fitting-assumptions
 hypothsis-testing-for-regression-models
 confidence-intervals-for-model-terms
 example-2-cherry-trees

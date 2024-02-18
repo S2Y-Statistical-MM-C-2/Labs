@@ -149,9 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Modelling College Grades</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#building-the-model"><i class="fa fa-check"></i><b>2.1</b> Building the Model</a></li>
-<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#model-fitting-assumptions"><i class="fa fa-check"></i><b>2.2</b> Model Fitting Assumptions</a></li>
-<li class="chapter" data-level="2.3" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.3</b> Hypothsis Testing for Regression Models</a></li>
-<li class="chapter" data-level="2.4" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.4</b> Confidence intervals for model terms</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.2</b> Hypothsis Testing for Regression Models</a></li>
+<li class="chapter" data-level="2.3" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.3</b> Confidence intervals for model terms</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html"><i class="fa fa-check"></i><b>3</b> Example 2: Cherry trees</a>
 <ul>
@@ -249,55 +248,8 @@ Solution
 <p><img src="main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 </div>
-<div id="model-fitting-assumptions" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Model Fitting Assumptions<a href="example-1---modelling-college-grades.html#model-fitting-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we want to fit a regression model in this course we need to check the required assumptions that the errors in the model are approximately independent and normally distributed. They also approximately need a mean of zero and constant variance.</p>
-<p>The plots we need to check this are:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1---modelling-college-grades.html#cb11-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstandard</span>(Model2) <span class="sc">~</span> <span class="fu">fitted</span>(Model2))</span>
-<span id="cb11-2"><a href="example-1---modelling-college-grades.html#cb11-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
-<div class="webex-solution">
-<button>
-See plot
-</button>
-<p><img src="main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-</div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="example-1---modelling-college-grades.html#cb12-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(Model2))</span>
-<span id="cb12-2"><a href="example-1---modelling-college-grades.html#cb12-2" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">rstandard</span>(Model2))</span></code></pre></div>
-<div class="webex-solution">
-<button>
-See plot
-</button>
-<p><img src="main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-</div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1---modelling-college-grades.html#cb13-1" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(Model2))</span></code></pre></div>
-<div class="webex-solution">
-<button>
-See plot
-</button>
-<p><img src="main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-</div>
-<p><strong>QUESTION 2</strong>: Which of the following are the correct interpretations of the above plots?</p>
-<ol style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<div id="radio_EBOHGPSSGA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value="answer"></input> <span>In the standardised residuals versus fitted values plot, we see that the points are scattered both above and below the zero line evenly, which suggests it is reasonable to assume that the random errors have mean zero.</span></label><label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value=""></input> <span>In the standardised residuals versus fitted values plot, we see that the points are scattered both above and below the zero line evenly, which suggests it is reasonable to assume that the random errors are normally distributed.</span></label>
-</div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<div id="radio_NHKRCFSMIJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NHKRCFSMIJ" value=""></input> <span>The variation of the residuals is slightly inconsistant along the fitted values. The residuals seem to be small for both small and large fitted values but larger for fitted values in the middle. This raises slight concerns on the mean zero assumption.</span></label><label><input type="radio" autocomplete="off" name="radio_NHKRCFSMIJ" value="answer"></input> <span>The variation of the residuals is slightly inconsistant along the fitted values. The residuals seem to be small for both small and large fitted values but larger for fitted values in the middle. This raises slight concerns on constant variability, though we should also take into account that there are less observations in both ends.</span></label>
-</div>
-<ol start="3" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<div id="radio_VTDMCTXJWL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VTDMCTXJWL" value="answer"></input> <span>The normal probability plot or 'Quantile-Quantile (Q-Q) plot' shows points roughly lying on the diagonal line. There is minimal deviation at the extremes so we may conclude that the normality assumption holds with some caution. The histogram also appears to be approximately normal.</span></label><label><input type="radio" autocomplete="off" name="radio_VTDMCTXJWL" value=""></input> <span>The normal probability plot or 'Quantile-Quantile (Q-Q) plot' shows points roughly lying on the diagonal line. There is minimal deviation at the extremes so we may conclude that the there is a strong positive assosiation in the data. The histogram agrees with this.</span></label>
-</div>
-</div>
-<div id="hypothsis-testing-for-regression-models" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Hypothsis Testing for Regression Models<a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hypothsis-testing-for-regression-models" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Hypothsis Testing for Regression Models<a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We want to test whether there is a statistical linear relationship between GPA and SAT scores at the <span class="math inline">\(\alpha = 0.10\)</span> significance level rather than drawing these conclusions from graphical interpretations.</p>
 <p>We should complete the 5-step hypothesis test procedure on the slope of the model.</p>
 <p><strong>Step 1 - Hypotheses</strong></p>
@@ -319,12 +271,12 @@ Learn More
 <p><strong>Finding your Rejection Region</strong></p>
 <p>Because the standardized test statistic is distributed <span class="math inline">\(t_{198}\)</span> and <span class="math inline">\(H_1\)</span> is a two-sided hypothesis, the rejection region is the <span class="math inline">\(|t_{obs}| &gt; t_{0.95;198}=1.6526\)</span></p>
 <p>This Critical Value (the t-value that corresponds to our significance level) above can be found using:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="example-1---modelling-college-grades.html#cb14-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>,<span class="dv">198</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1---modelling-college-grades.html#cb11-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>,<span class="dv">198</span>)</span></code></pre></div>
 <pre><code>## [1] 1.652586</code></pre>
 <p><strong>Finding your standardised test statistic and p-value</strong></p>
 <p>Our standardised test statistic <span class="math inline">\(t_{obs}=\frac{\hat{\beta_1}-\beta_{1}}{s_{\hat{\beta}_1}} = \frac{0.0031-0}{2\times10^{-4}}=15.9117\)</span></p>
 <p><span class="math inline">\(s^2_{\hat{\beta}_1}\)</span> was the Variance-Covariance Matrix:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="example-1---modelling-college-grades.html#cb16-1" tabindex="-1"></a><span class="fu">vcov</span>(Model2)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1---modelling-college-grades.html#cb13-1" tabindex="-1"></a><span class="fu">vcov</span>(Model2)</span></code></pre></div>
 <pre><code>##               (Intercept)           sat
 ## (Intercept)  4.948408e-02 -4.290866e-05
 ## sat         -4.290866e-05  3.781665e-08</code></pre>
@@ -332,8 +284,8 @@ Learn More
 This number is also in the Model Summary as 'SAT Standard Error'.</p>
 <p>We should use r to find the p-value corresponding to the calculated Standardised Test Statistic (STS) <span class="math inline">\(2 \times \mathrm{P}(t_{0.95;198} \geq 15.9117)\)</span>.</p>
 <p>For the area to the right of our STS, we use lower.tail=FALSE</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="example-1---modelling-college-grades.html#cb18-1" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="fl">15.9117</span>,<span class="dv">198</span>, <span class="at">lower =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-2"><a href="example-1---modelling-college-grades.html#cb18-2" tabindex="-1"></a>pvalue</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-1---modelling-college-grades.html#cb15-1" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="fl">15.9117</span>,<span class="dv">198</span>, <span class="at">lower =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-2"><a href="example-1---modelling-college-grades.html#cb15-2" tabindex="-1"></a>pvalue</span></code></pre></div>
 <pre><code>## [1] 1.46156e-37</code></pre>
 <p>This gives the p-value as <span class="math inline">\(2 \times 1.46156\times10^{-37} \approx 0\)</span> .</p>
 <p>15.9117 is greater than 1.6526 and our p-value, 0, is less than <span class="math inline">\(\alpha = 0.10\)</span>.</p>
@@ -357,17 +309,17 @@ Solution
 <p>What does our statistical conclusion mean for the data and the purpose of the test?</p>
 <p>Is there statistical evidence to suggest a linear relationship between <code>GPA</code> and <code>SAT</code> scores?</p>
 <p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
-<div id="radio_UTJAGOVCGS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value=""></input> <span>There is not enough evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value=""></input> <span>There is evidence to suggest a non-linear relationship between
-sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value="answer"></input> <span>There is evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest to suggest a linear relationship between sat and gpa.</span></label>
+<div id="radio_EBOHGPSSGA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value=""></input> <span>There is not enough evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value=""></input> <span>There is evidence to suggest a non-linear relationship between
+sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value="answer"></input> <span>There is evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest to suggest a linear relationship between sat and gpa.</span></label>
 </div>
 </div>
-<div id="confidence-intervals-for-model-terms" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Confidence intervals for model terms<a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="confidence-intervals-for-model-terms" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Confidence intervals for model terms<a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will practice constructing 90% confidence intervals for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p>
 <p>These 90% CIs will take the format of <span class="math inline">\(\left( \hat{\beta}_k - t_{0.95;198} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{0.95;198} \cdot s_{\hat{\beta}_k}\right)\)</span></p>
 <p>The <span class="math inline">\(\hat{\beta}_k\)</span> estimates can be found in the model summary and <span class="math inline">\(s_{\beta_k}\)</span> from the Variance-Covariance Matrix again or from the Model Summary.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="example-1---modelling-college-grades.html#cb20-1" tabindex="-1"></a><span class="fu">summary</span>(Model2)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="example-1---modelling-college-grades.html#cb17-1" tabindex="-1"></a><span class="fu">summary</span>(Model2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = gpa ~ sat, data = GRADES)
@@ -386,19 +338,19 @@ sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="r
 ## Residual standard error: 0.3994 on 198 degrees of freedom
 ## Multiple R-squared:  0.5612, Adjusted R-squared:  0.5589 
 ## F-statistic: 253.2 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="example-1---modelling-college-grades.html#cb22-1" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">1</span>]</span>
-<span id="cb22-2"><a href="example-1---modelling-college-grades.html#cb22-2" tabindex="-1"></a>s.b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb22-3"><a href="example-1---modelling-college-grades.html#cb22-3" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">1</span>]</span>
-<span id="cb22-4"><a href="example-1---modelling-college-grades.html#cb22-4" tabindex="-1"></a>s.b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">2</span>]</span>
-<span id="cb22-5"><a href="example-1---modelling-college-grades.html#cb22-5" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">198</span>) <span class="co"># alpha = 0.10</span></span>
-<span id="cb22-6"><a href="example-1---modelling-college-grades.html#cb22-6" tabindex="-1"></a>CI.B0 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b0</span>
-<span id="cb22-7"><a href="example-1---modelling-college-grades.html#cb22-7" tabindex="-1"></a>CI.B1 <span class="ot">&lt;-</span> b1 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b1</span>
-<span id="cb22-8"><a href="example-1---modelling-college-grades.html#cb22-8" tabindex="-1"></a>CI.B0</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="example-1---modelling-college-grades.html#cb19-1" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb19-2"><a href="example-1---modelling-college-grades.html#cb19-2" tabindex="-1"></a>s.b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb19-3"><a href="example-1---modelling-college-grades.html#cb19-3" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb19-4"><a href="example-1---modelling-college-grades.html#cb19-4" tabindex="-1"></a>s.b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb19-5"><a href="example-1---modelling-college-grades.html#cb19-5" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">198</span>) <span class="co"># alpha = 0.10</span></span>
+<span id="cb19-6"><a href="example-1---modelling-college-grades.html#cb19-6" tabindex="-1"></a>CI.B0 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b0</span>
+<span id="cb19-7"><a href="example-1---modelling-college-grades.html#cb19-7" tabindex="-1"></a>CI.B1 <span class="ot">&lt;-</span> b1 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b1</span>
+<span id="cb19-8"><a href="example-1---modelling-college-grades.html#cb19-8" tabindex="-1"></a>CI.B0</span></code></pre></div>
 <pre><code>## [1] -1.5596818 -0.8244458</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="example-1---modelling-college-grades.html#cb24-1" tabindex="-1"></a>CI.B1</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="example-1---modelling-college-grades.html#cb21-1" tabindex="-1"></a>CI.B1</span></code></pre></div>
 <pre><code>## [1] 0.00277290 0.00341564</code></pre>
 <p>Or by using the model command:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="example-1---modelling-college-grades.html#cb26-1" tabindex="-1"></a><span class="fu">confint</span>(Model2, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="example-1---modelling-college-grades.html#cb23-1" tabindex="-1"></a><span class="fu">confint</span>(Model2, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
 <pre><code>##                    5 %        95 %
 ## (Intercept) -1.5596818 -0.82444581
 ## sat          0.0027729  0.00341564</code></pre>
