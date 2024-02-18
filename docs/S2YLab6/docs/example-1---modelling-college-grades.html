@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Example 1 - Modelling College Grades | Lab 6 - Hypothesis testing and interval estimation</title>
+  <meta name="description" content="2 Example 1 - Modelling College Grades | Lab 6 - Hypothesis testing and interval estimation" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Example 1 - Modelling College Grades | Lab 6 - Hypothesis testing and interval estimation" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Example 1 - Modelling College Grades | Lab 6 - Hypothesis testing and interval estimation" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="example-2-cherry-trees.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 6</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-summary-function-for-regression-models"><i class="fa fa-check"></i><b>1.1</b> The <code>summary()</code> function for regression models</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#hypothesis-testing-for-linear-relationships"><i class="fa fa-check"></i><b>1.2</b> Hypothesis Testing for Linear Relationships</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#finding-the-varaince"><i class="fa fa-check"></i><b>1.2.1</b> Finding the Varaince</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#steps-of-the-hyphotesis-test"><i class="fa fa-check"></i><b>1.2.2</b> Steps of the Hyphotesis Test</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#confidence-intervals-for-linear-model-estimators"><i class="fa fa-check"></i><b>1.3</b> Confidence Intervals for Linear Model Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Modelling College Grades</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#building-the-model"><i class="fa fa-check"></i><b>2.1</b> Building the Model</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#model-fitting-assumptions"><i class="fa fa-check"></i><b>2.2</b> Model Fitting Assumptions</a></li>
+<li class="chapter" data-level="2.3" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.3</b> Hypothsis Testing for Regression Models</a></li>
+<li class="chapter" data-level="2.4" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.4</b> Confidence intervals for model terms</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html"><i class="fa fa-check"></i><b>3</b> Example 2: Cherry trees</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#exploratory-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#statistical-analysis"><i class="fa fa-check"></i><b>3.2</b> Statistical analysis</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#regression-output"><i class="fa fa-check"></i><b>3.2.1</b> Regression output</a></li>
+<li class="chapter" data-level="3.2.2" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.2</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="3.2.3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#confidence-interval-for-mathbfbtop-boldsymbolbeta"><i class="fa fa-check"></i><b>3.2.3</b> Confidence interval for <span class="math inline">\(\mathbf{b}^\top \boldsymbol\beta\)</span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response"><i class="fa fa-check"></i><b>3.2.4</b> Confidence interval for the population mean response and prediction interval for a future response</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercise-1-body-fat.html"><a href="exercise-1-body-fat.html"><i class="fa fa-check"></i><b>4</b> Exercise 1: Body fat</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 6 - Hypothesis testing and interval estimation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-1---modelling-college-grades" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Example 1 - Modelling College Grades<a href="example-1---modelling-college-grades.html#example-1---modelling-college-grades" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In Lab 4, we looked at the <code>Grades</code> dataset from the <code>PASWR</code> package, which records the first-semester college GPA and SAT scores for 200 freshmen. The question of interest is to check whether there is a linear relationship between GPA and SAT scores.</p>
+<p>To open the dataset, type:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="example-1---modelling-college-grades.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
+<span id="cb6-2"><a href="example-1---modelling-college-grades.html#cb6-2" tabindex="-1"></a>GRADES <span class="ot">&lt;-</span> Grades</span></code></pre></div>
+<div id="building-the-model" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Building the Model<a href="example-1---modelling-college-grades.html#building-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Lab 4, we viewed the data in scatterplots, built a linear model, and calculated correlation to learn more about the relationship between SAT and GPA scores. Today, we will look at checking the assumptions for building this regression model.</p>
+<p><strong>Task 1</strong> Build the simple linear regression model for how GPA scores change with SAT scores again:</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>Remember the function <code>lm(y~x, data=)</code>.
+It will be helpful to save this output using <code>&lt;-</code> for future analysis</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>To find the equation that best describes the relationship between <code>gpa</code> and <code>sat</code> use:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="example-1---modelling-college-grades.html#cb7-1" tabindex="-1"></a>Model2<span class="ot">&lt;-</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> GRADES)</span>
+<span id="cb7-2"><a href="example-1---modelling-college-grades.html#cb7-2" tabindex="-1"></a><span class="fu">summary</span>(Model2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = gpa ~ sat, data = GRADES)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.04954 -0.25960 -0.00655  0.26044  1.09328 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.1920638  0.2224502  -5.359 2.32e-07 ***
+## sat          0.0030943  0.0001945  15.912  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3994 on 198 degrees of freedom
+## Multiple R-squared:  0.5612, Adjusted R-squared:  0.5589 
+## F-statistic: 253.2 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This fits a simple linear regression model with the response variable <code>gpa</code> and the explanatory variable <code>sat</code>.</p>
+</div>
+<p><strong>Question 1</strong></p>
+What is the equation of the regression line?
+<em>Hint: You will need to use the</em> <code>summary()</code> <em>function. (Enter your answers to 3 decimal places.)</em>
+<center>
+<code>gpa</code> = <input class='webex-solveme nospaces' size='11' data-answer='["-1.19206381","-1.192064","-1.19206","-1.1921","-1.192","-1.19","-1.2"]'/> + <input class='webex-solveme nospaces' size='8' data-answer='["0.003094","0.00309","0.0031","0.003"]'/> <code>sat</code>
+</center>
+<p><strong>Task 2</strong> Plot the data on a scatterplot with the the simple linear regression line added :</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="example-1---modelling-college-grades.html#cb9-1" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">data =</span> , <span class="at">xlab =</span> <span class="st">&quot; &quot;</span>, <span class="at">ylab =</span> <span class="st">&quot; &quot;</span>, <span class="at">main =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb9-2"><a href="example-1---modelling-college-grades.html#cb9-2" tabindex="-1"></a><span class="fu">abline</span>()</span></code></pre></div>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="example-1---modelling-college-grades.html#cb10-1" tabindex="-1"></a><span class="fu">plot</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> Grades, <span class="at">xlab =</span> <span class="st">&quot;SAT score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Scatterplot of GPA versus SAT scores&quot;</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb10-2"><a href="example-1---modelling-college-grades.html#cb10-2" tabindex="-1"></a><span class="fu">abline</span>(Model2)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="model-fitting-assumptions" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Model Fitting Assumptions<a href="example-1---modelling-college-grades.html#model-fitting-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we want to fit a regression model in this course we need to check the required assumptions that the errors in the model are approximately independent and normally distributed. They also approximately need a mean of zero and constant variance.</p>
+<p>The plots we need to check this are:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1---modelling-college-grades.html#cb11-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstandard</span>(Model2) <span class="sc">~</span> <span class="fu">fitted</span>(Model2))</span>
+<span id="cb11-2"><a href="example-1---modelling-college-grades.html#cb11-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="webex-solution">
+<button>
+See plot
+</button>
+<p><img src="main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="example-1---modelling-college-grades.html#cb12-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(Model2))</span>
+<span id="cb12-2"><a href="example-1---modelling-college-grades.html#cb12-2" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">rstandard</span>(Model2))</span></code></pre></div>
+<div class="webex-solution">
+<button>
+See plot
+</button>
+<p><img src="main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1---modelling-college-grades.html#cb13-1" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(Model2))</span></code></pre></div>
+<div class="webex-solution">
+<button>
+See plot
+</button>
+<p><img src="main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<p><strong>QUESTION 2</strong>: Which of the following are the correct interpretations of the above plots?</p>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div id="radio_EBOHGPSSGA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value="answer"></input> <span>In the standardised residuals versus fitted values plot, we see that the points are scattered both above and below the zero line evenly, which suggests it is reasonable to assume that the random errors have mean zero.</span></label><label><input type="radio" autocomplete="off" name="radio_EBOHGPSSGA" value=""></input> <span>In the standardised residuals versus fitted values plot, we see that the points are scattered both above and below the zero line evenly, which suggests it is reasonable to assume that the random errors are normally distributed.</span></label>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div id="radio_NHKRCFSMIJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NHKRCFSMIJ" value=""></input> <span>The variation of the residuals is slightly inconsistant along the fitted values. The residuals seem to be small for both small and large fitted values but larger for fitted values in the middle. This raises slight concerns on the mean zero assumption.</span></label><label><input type="radio" autocomplete="off" name="radio_NHKRCFSMIJ" value="answer"></input> <span>The variation of the residuals is slightly inconsistant along the fitted values. The residuals seem to be small for both small and large fitted values but larger for fitted values in the middle. This raises slight concerns on constant variability, though we should also take into account that there are less observations in both ends.</span></label>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div id="radio_VTDMCTXJWL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VTDMCTXJWL" value="answer"></input> <span>The normal probability plot or 'Quantile-Quantile (Q-Q) plot' shows points roughly lying on the diagonal line. There is minimal deviation at the extremes so we may conclude that the normality assumption holds with some caution. The histogram also appears to be approximately normal.</span></label><label><input type="radio" autocomplete="off" name="radio_VTDMCTXJWL" value=""></input> <span>The normal probability plot or 'Quantile-Quantile (Q-Q) plot' shows points roughly lying on the diagonal line. There is minimal deviation at the extremes so we may conclude that the there is a strong positive assosiation in the data. The histogram agrees with this.</span></label>
+</div>
+</div>
+<div id="hypothsis-testing-for-regression-models" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Hypothsis Testing for Regression Models<a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to test whether there is a statistical linear relationship between GPA and SAT scores at the <span class="math inline">\(\alpha = 0.10\)</span> significance level rather than drawing these conclusions from graphical interpretations.</p>
+<p>We should complete the 5-step hypothesis test procedure on the slope of the model.</p>
+<p><strong>Step 1 - Hypotheses</strong></p>
+<p><span class="math display">\[H_0 : \beta_1 = 0 \quad \text{versus} \quad H_1 : \beta_1 \neq 0\]</span></p>
+<div class="webex-solution">
+<button>
+Learn More
+</button>
+<p>A regression equation with slope <span class="math inline">\(\beta_1 = 0\)</span> would indicate no gradient and hence no relationship as <span class="math inline">\(y\)</span> does not change as <span class="math inline">\(x\)</span> changes. To test for a relationship, we see if the slope is different from 0.</p>
+</div>
+<p><strong>Step 2 - Test Statistic</strong></p>
+<p>The test statistic is <span class="math inline">\(\hat{\beta}_1 = 0.0031\)</span> from the Model2 summary above.</p>
+<p>Assuming the assumptions of Model are satisfied then:
+<span class="math display">\[\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\hat{\beta_1}})\]</span></p>
+<p>The standardized test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true, and its approximate distribution are:</p>
+<p><span class="math display">\[\frac{\hat{\beta_1}-\beta_{1}}{s_{\hat{\beta}_1}} \sim t_{200-2}\]</span></p>
+<p>This is what will be used to complete the test.</p>
+<p><strong>Step 3 - Hypothesis Test Calculations</strong></p>
+<p><strong>Finding your Rejection Region</strong></p>
+<p>Because the standardized test statistic is distributed <span class="math inline">\(t_{198}\)</span> and <span class="math inline">\(H_1\)</span> is a two-sided hypothesis, the rejection region is the <span class="math inline">\(|t_{obs}| &gt; t_{0.95;198}=1.6526\)</span></p>
+<p>This Critical Value (the t-value that corresponds to our significance level) above can be found using:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="example-1---modelling-college-grades.html#cb14-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>,<span class="dv">198</span>)</span></code></pre></div>
+<pre><code>## [1] 1.652586</code></pre>
+<p><strong>Finding your standardised test statistic and p-value</strong></p>
+<p>Our standardised test statistic <span class="math inline">\(t_{obs}=\frac{\hat{\beta_1}-\beta_{1}}{s_{\hat{\beta}_1}} = \frac{0.0031-0}{2\times10^{-4}}=15.9117\)</span></p>
+<p><span class="math inline">\(s^2_{\hat{\beta}_1}\)</span> was the Variance-Covariance Matrix:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="example-1---modelling-college-grades.html#cb16-1" tabindex="-1"></a><span class="fu">vcov</span>(Model2)</span></code></pre></div>
+<pre><code>##               (Intercept)           sat
+## (Intercept)  4.948408e-02 -4.290866e-05
+## sat         -4.290866e-05  3.781665e-08</code></pre>
+<p>and therefore <span class="math inline">\(s_{\hat{\beta}_1} = \sqrt{3.782\times10^{-8}} = 2\times10^{-4}\)</span>.
+This number is also in the Model Summary as 'SAT Standard Error'.</p>
+<p>We should use r to find the p-value corresponding to the calculated Standardised Test Statistic (STS) <span class="math inline">\(2 \times \mathrm{P}(t_{0.95;198} \geq 15.9117)\)</span>.</p>
+<p>For the area to the right of our STS, we use lower.tail=FALSE</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="example-1---modelling-college-grades.html#cb18-1" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="fl">15.9117</span>,<span class="dv">198</span>, <span class="at">lower =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-2"><a href="example-1---modelling-college-grades.html#cb18-2" tabindex="-1"></a>pvalue</span></code></pre></div>
+<pre><code>## [1] 1.46156e-37</code></pre>
+<p>This gives the p-value as <span class="math inline">\(2 \times 1.46156\times10^{-37} \approx 0\)</span> .</p>
+<p>15.9117 is greater than 1.6526 and our p-value, 0, is less than <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+<p><strong>Step 4 - Statistical Conclusion</strong></p>
+<p>To draw our conclusions we need to consider our rejection region.</p>
+<p>Is our standardised test statistic inside the rejection region?</p>
+<p>Is our p-value smaller than 0.05?</p>
+<p><strong>QUESTION</strong>: Do we reject our null hypothesis?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>I. From the rejection region, we reject <span class="math inline">\(H_0\)</span> because the standardised test statistic is greater than the critical value and hence is in the rejection region i.e <span class="math inline">\(t_{obs} = 15.9117 \geq 1.6526\)</span>.</p>
+<p>OR</p>
+<ol start="2" style="list-style-type: upper-roman">
+<li>From the p-value, we fail to reject <span class="math inline">\(H_0\)</span> because the p-value<span class="math inline">\(0 &lt; 0.10\)</span>.</li>
+</ol>
+<p>Whichever method we use, we reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+<p><strong>Step 5 - English Conclusion</strong></p>
+<p>What does our statistical conclusion mean for the data and the purpose of the test?</p>
+<p>Is there statistical evidence to suggest a linear relationship between <code>GPA</code> and <code>SAT</code> scores?</p>
+<p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
+<div id="radio_UTJAGOVCGS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value=""></input> <span>There is not enough evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value=""></input> <span>There is evidence to suggest a non-linear relationship between
+sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value="answer"></input> <span>There is evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_UTJAGOVCGS" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest to suggest a linear relationship between sat and gpa.</span></label>
+</div>
+</div>
+<div id="confidence-intervals-for-model-terms" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Confidence intervals for model terms<a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will practice constructing 90% confidence intervals for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p>
+<p>These 90% CIs will take the format of <span class="math inline">\(\left( \hat{\beta}_k - t_{0.95;198} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{0.95;198} \cdot s_{\hat{\beta}_k}\right)\)</span></p>
+<p>The <span class="math inline">\(\hat{\beta}_k\)</span> estimates can be found in the model summary and <span class="math inline">\(s_{\beta_k}\)</span> from the Variance-Covariance Matrix again or from the Model Summary.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="example-1---modelling-college-grades.html#cb20-1" tabindex="-1"></a><span class="fu">summary</span>(Model2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = gpa ~ sat, data = GRADES)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.04954 -0.25960 -0.00655  0.26044  1.09328 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.1920638  0.2224502  -5.359 2.32e-07 ***
+## sat          0.0030943  0.0001945  15.912  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3994 on 198 degrees of freedom
+## Multiple R-squared:  0.5612, Adjusted R-squared:  0.5589 
+## F-statistic: 253.2 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="example-1---modelling-college-grades.html#cb22-1" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb22-2"><a href="example-1---modelling-college-grades.html#cb22-2" tabindex="-1"></a>s.b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb22-3"><a href="example-1---modelling-college-grades.html#cb22-3" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb22-4"><a href="example-1---modelling-college-grades.html#cb22-4" tabindex="-1"></a>s.b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb22-5"><a href="example-1---modelling-college-grades.html#cb22-5" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">198</span>) <span class="co"># alpha = 0.10</span></span>
+<span id="cb22-6"><a href="example-1---modelling-college-grades.html#cb22-6" tabindex="-1"></a>CI.B0 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b0</span>
+<span id="cb22-7"><a href="example-1---modelling-college-grades.html#cb22-7" tabindex="-1"></a>CI.B1 <span class="ot">&lt;-</span> b1 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b1</span>
+<span id="cb22-8"><a href="example-1---modelling-college-grades.html#cb22-8" tabindex="-1"></a>CI.B0</span></code></pre></div>
+<pre><code>## [1] -1.5596818 -0.8244458</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="example-1---modelling-college-grades.html#cb24-1" tabindex="-1"></a>CI.B1</span></code></pre></div>
+<pre><code>## [1] 0.00277290 0.00341564</code></pre>
+<p>Or by using the model command:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="example-1---modelling-college-grades.html#cb26-1" tabindex="-1"></a><span class="fu">confint</span>(Model2, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>##                    5 %        95 %
+## (Intercept) -1.5596818 -0.82444581
+## sat          0.0027729  0.00341564</code></pre>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="example-2-cherry-trees.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

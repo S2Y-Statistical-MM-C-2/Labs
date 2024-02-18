@@ -1,0 +1,184 @@
+---
+title: "Lab 6 - Hypothesis testing and interval estimation"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd"]
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(PASWR)
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+# Welcome to Lab 6
+
+**Intended Learning Outcomes:**
+
+- use R to produce hypothesis tests for parameters in a linear model;
+
+- use various summary statistics and R output to compute confidence and prediction intervals;
+
+- interpret hypothesis tests, confidence intervals and prediction intervals.
+
+## The `summary()` function for regression models
+
+Before discussing hypothesis testing and confidence intervals for regression models, let's first revise the output of `summary()` function.
+
+Recall the model we created in Lab 4, where we try to predict the hydrostatic fat measurement of a wrestler from abomnimal fat and tricep fat measurements.
+```{r}
+library(PASWR)
+HSWRESTLER <- HSwrestler
+Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)
+```
+
+We apply the summary function, which gives the following output:
+```{r}
+summary(Model1)
+```
+As you can see from this output there are a few different elements displayed. A brief description is stated below:
+
+**Call**: This shows the formula that we used in our regression model.
+
+**Residuals**: This lists the five-number summary of the residuals from our regression model.
+
+**Coefficients**: This shows us a summary of estimated coefficients of the regression model.
+
+Within this section the column headers are:
+
+* **Estimate**: The estimated parameter. These can be used to write down the fitted regression model.
+
+* **Std. Error**: This is the estimated standard error of the parameter estimate.
+
+* **t value**: This is the $t$-statistic for the parameter, calculated as `Estimate` / `Std. Error`.
+
+* **Pr(>|t|)**: This is the $p$-value that corresponds to the $t$-statistic, i.e. $Pr(X>|t|)$ for $X \sim t(n-p)$, where $t$ is the `t value` computed above, $n$ is the sample size, and $p$ is the number of parameters.
+
+**Significance codes**: This is the key for the starts next to the $p$-value. It gives you a first glance of which estimators are significant at hat standard significance level for ease of conclusion drawing.
+
+**Residual standard error**: This is the square root of residual mean squares, which can be linked to the output from an `anova()` table (`Residuals Mean Sq`).
+
+**Multiple R-squared**: This gives coefficient of determination, $R^2$.
+
+**Adjusted R-squared**: This gives the adjusted coefficient of determination, $R^2$ (adj), which adjusts for the number of predictors in the model.
+
+**F-statistic**: The $F$-statistic is the test statistic for the hypothesis test
+<p align='center'>
+H$_0$: all $p-1$ parameters $= 0$ versus H$_1$: at least one parameter $\neq 0$
+</p>
+
+**p-value**: $p$-value corresponding to the $F$-test, i.e. $Pr(X>|F|)$ for $X \sim F(\text{DF}_\text{model},\text{DF}_\text{residual})$.
+
+
+Here we can interpret things such as both Abdominal Fat and Tricep Fat measurements are significant in predicting the Hydrostatic fat measurement  to a significance level of \(\approx 0\) from looking at the $t$-test $p$-values.
+Also from the $F$-test $p$-value, we can see that we reject \(H_0\) and say that at least one parameter is $\neq 0$
+
+We could also look at the fact that the estimates of the model coefficients \(\hat{\beta}_k\) are positive so both `Abs` and `Tri` have a positive relationship with Hydrostatic fat. 
+The \(R^2_{adj}\) is also high meaning the model explains the data well. 
+
+
+## Hypothesis Testing for Linear Relationships
+
+So far, we have seen how to show models in Matrix form.
+
+Under this new notation, a linear model \(\bf{Y} \sim N (\bf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\) assumes \(\bf{\epsilon} \sim N (0,\sigma^2 \bf{I})\) and has \(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \bf{(X'X)}^{-1})\).
+
+### Finding the Varaince
+We know that \(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\)
+
+and \(\bf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \sigma^2 \bf{(X'X)}^{-1} = \begin{bmatrix}
+s^2_{{\hat{\beta}_0}} & s_{\hat{\beta}_0,\hat{\beta}_1} &...& s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\
+s_{\hat{\beta}_1,\hat{\beta}_0} & s^2_{\hat{\beta}_1} &...& s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\
+\vdots & \vdots & \ddots & \vdots \\
+s_{\hat{\beta}_{p-1},\hat{\beta}_0} & s_{\hat{\beta}_{p-1},\hat{\beta}_1} &...& s^2_{\hat{\beta}_{p-1}}
+\end{bmatrix} \)
+
+**In R this matrix can be found using** `vcov()` **on a linear model object.**
+
+### Steps of the Hyphotesis Test
+
+If we want to test an model coefficient/estimator against a hypothesized value
+\[H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}\]
+
+we can use the Standardised Test Statistic:
+
+\[\frac{\text{unbiased estimator - hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\]
+
+
+**Step 1: Hypotheses** - for the estimate you would like to test.
+
+\[H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad  H_1: \beta_k \neq \beta_{k_0}\]
+
+**Step 2: Test Statistic** 
+
+\(\hat{\beta_k}\) is the test statistic. The assumptions \(\hat{\beta_k} \sim N(\beta_k, \sigma^2_{\hat{\beta_k}})\)
+
+**Step 3: Hypothesis Test Calculations** 
+
+The Standardised Test Statistic \(\frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p} \text{   and so   } t_{obs} = \frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}}\). This can be compared to the Critical Value, \(t_{1-\alpha,\text{ df}}\), which can be found from the statistical tables (if completing the test by hand).
+
+In `R` the test can be run using the function `lm()`. For example:
+
+```{r, echo=TRUE, eval=FALSE}
+model <- lm()
+summary(model)$coef
+```
+This will give the observed t-value and the corresponding p-value which can then be compared to \(\alpha\).
+
+**Step 4: Statistical Conclusion**
+
+I. From the rejection region...
+or
+II. From the p-value...
+
+**Step 5: English Conclusion** 
+
+There is evidence/not enough evidence to suggest a linear relationship between...
+
+
+## Confidence Intervals for Linear Model Estimators
+
+
+We may also want to build confidence intervals (CI) for our model estimators. The CI for estimator \(\beta_k\) with confidence level \(1-\alpha\) is:
+
+\[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right)\]
+
+or 
+
+\[ \mathbf{b}^\top\boldsymbol{\hat{\beta}}\pm t\left(n-p; 0.975\right)\sqrt{\frac{\text{RSS}}{n-p}\mathbf{b}^\top(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{b}}\]
+
+where the degrees of freedom is \(n-p\) because \(\sigma^2\) is esimated using \(MSE=\frac{SSE}{n-p}\). *Note that Sum of Squared Errors (SSE) is sometimes called Residual Sum of Squares (RSS)*
+
+The second formula is particularly useful for working in matrix form or when producing a confidence interval for a linear combination of the model parameters such as for \(\beta_1-\beta_2\).
+
+
+The values needed for the CI can again be found using: 
+```{r, echo=TRUE, eval=FALSE}
+model <- lm()
+summary(model)$coef
+
+#and/or
+model.matrix()
+
+#and
+qt(p,df)
+#where p=1-alpha/2
+```
+
+We will see how these are used in today's lab examples. 

@@ -1,0 +1,2 @@
+"0","trees1 <- read.csv(""trees1.csv"")"
+"0","pairs(trees1, lower.panel = NULL)"

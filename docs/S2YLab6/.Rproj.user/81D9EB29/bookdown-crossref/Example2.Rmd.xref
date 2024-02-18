@@ -1,0 +1,10 @@
+h1:example-2-cherry-trees Example 2: Cherry trees
+h2:exploratory-analysis Exploratory analysis
+fig:TreesPlot1 Scatterplot displaying the relationships between the three variables.
+h2:statistical-analysis Statistical analysis
+fig:TreesRes Residuals vs. fitted values (left) and normal Q-Q plot (right) from model (2.1) fitted to `trees`.
+h3:regression-output Regression output
+h3:hypothesis-testing Hypothesis testing
+h3:confidence-interval-for-mathbfbtop-boldsymbolbeta Confidence interval for 
+h3:confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response Confidence interval for the population mean response and prediction interval for a future response
+

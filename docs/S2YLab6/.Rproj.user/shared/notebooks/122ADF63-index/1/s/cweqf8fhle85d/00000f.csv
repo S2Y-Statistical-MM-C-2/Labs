@@ -1,0 +1,3 @@
+"0","library(PASWR)"
+"0","HSWRESTLER <- HSwrestler"
+"0","Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)"

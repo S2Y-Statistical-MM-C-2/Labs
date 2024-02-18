@@ -1,0 +1,1 @@
+"0","Model3 <- lm(logvol ~ logdiam + loght, data = trees1)"

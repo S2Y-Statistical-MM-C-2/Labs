@@ -1,0 +1,258 @@
+# Example 1 - Modelling College Grades
+
+
+In Lab 4, we looked at the `Grades` dataset from the `PASWR` package, which records the first-semester college GPA and SAT scores for 200 freshmen. The question of interest is to check whether there is a linear relationship between GPA and SAT scores. 
+
+To open the dataset, type:
+```{r message=FALSE}
+library(PASWR)
+GRADES <- Grades
+```
+
+## Building the Model
+
+In Lab 4, we viewed the data in scatterplots, built a linear model, and calculated correlation to learn more about the relationship between SAT and GPA scores. Today, we will look at checking the assumptions for building this regression model.
+
+**Task 1** Build the simple linear regression model for how GPA scores change with SAT scores again:
+
+`r hide("Hint")`
+Remember the function `lm(y~x, data=)`.
+It will be helpful to save this output using `<-` for future analysis 
+`r unhide()`
+
+`r hide("Solution")`
+To find the equation that best describes the relationship between `gpa` and `sat` use:
+```{r eval=TRUE, echo=TRUE}
+Model2<- lm(gpa ~ sat, data = GRADES)
+summary(Model2)
+```
+
+This fits a simple linear regression model with the response variable `gpa` and the explanatory variable `sat`.
+`r unhide()`
+
+**Question 1**
+
+What is the equation of the regression line?
+*Hint: You will need to use the* `summary()` *function. (Enter your answers to 3 decimal places.)*
+<center> `gpa` = `r fitb(c("-1.19206381","-1.192064","-1.19206","-1.1921","-1.192","-1.19","-1.2"))` + `r fitb(c("0.003094","0.00309","0.0031","0.003"))` `sat` </center>
+
+
+**Task 2** Plot the data on a scatterplot with the the simple linear regression line added :
+
+`r hide("Hint")`
+```{r eval=FALSE, echo=TRUE}
+plot(y ~ x, data = , xlab = " ", ylab = " ", main = " ")
+abline()
+```
+`r unhide()`
+
+`r hide("Solution")`
+```{r eval=TRUE, echo=TRUE}
+plot(gpa ~ sat, data = Grades, xlab = "SAT score", ylab = "GPA", main = "Scatterplot of GPA versus SAT scores", pch=20)
+abline(Model2)
+```
+`r unhide()`
+
+## Modle Fitting Assumptions
+
+When we want to fit a regression model in this course we need to check the required assumptions that the errors in the model are approximately independent and normally distributed. They also approximately need a mean of zero and constant variance.
+
+The plots we need to check this are: 
+
+```{r, eval=FALSE, echo=TRUE}
+plot(rstandard(Model2) ~ fitted(Model2))
+abline(h=0, lty=3)
+```
+
+`r hide("See plot")`
+```{r, eval=TRUE, echo=FALSE}
+plot(rstandard(Model2) ~ fitted(Model2))
+abline(h=0, lty=3)
+```
+`r unhide()`
+
+```{r,eval=FALSE, echo=TRUE}
+qqnorm(rstandard(Model2))
+qqline(rstandard(Model2))
+```
+
+`r hide("See plot")`
+```{r, eval=TRUE, echo=FALSE}
+qqnorm(rstandard(Model2))
+qqline(rstandard(Model2))
+```
+`r unhide()`
+
+```{r, eval=FALSE, echo=TRUE}
+hist(rstandard(Model2))
+```
+`r hide("See plot")`
+```{r, eval=TRUE, echo=FALSE}
+hist(rstandard(Model2))
+```
+`r unhide()`
+
+**QUESTION 2**: Which of the following are the correct interpretations of the above plots?
+
+
+a. 
+```{r, echo = FALSE}
+mcq1 <- c(answer="In the standardised residuals versus fitted values plot, we see that the points are scattered both above and below the zero line evenly, which suggests it is reasonable to assume that the random errors have mean zero.", 
+"In the standardised residuals versus fitted values plot, we see that the points are scattered both above and below the zero line evenly, which suggests it is reasonable to assume that the random errors are normally distributed.")
+```
+`r longmcq(mcq1)`
+
+
+b.
+```{r, echo = FALSE}
+mcq2 <- c("The variation of the residuals is slightly inconsistant along the fitted values. The residuals seem to be small for both small and large fitted values but larger for fitted values in the middle. This raises slight concerns on the mean zero assumption.", 
+answer = "The variation of the residuals is slightly inconsistant along the fitted values. The residuals seem to be small for both small and large fitted values but larger for fitted values in the middle. This raises slight concerns on constant variability, though we should also take into account that there are less observations in both ends.")
+```
+`r longmcq(mcq2)`
+
+
+
+c.
+```{r, echo = FALSE}
+mcq3 <- c(answer="The normal probability plot or 'Quantile-Quantile (Q-Q) plot' shows points roughly lying on the diagonal line. There is minimal deviation at the extremes so we may conclude that the normality assumption holds with some caution. The histogram also appears to be approximately normal.", "The normal probability plot or 'Quantile-Quantile (Q-Q) plot' shows points roughly lying on the diagonal line. There is minimal deviation at the extremes so we may conclude that the there is a strong positive assosiation in the data. The histogram agrees with this.")
+```
+`r longmcq(mcq3)`
+
+
+## Hypothsis Testing for Regression Models
+
+We want to test whether there is a statistical linear relationship between GPA and SAT scores at the \(\alpha = 0.10\) significance level rather than drawing these conclusions from graphical interpretations.
+
+We should complete the 5-step hypothesis test procedure on the slope of the model.
+
+**Step 1 - Hypotheses**
+
+
+$$H_0 : \beta_1 = 0 \quad \text{versus} \quad H_1 : \beta_1 \neq 0$$
+
+
+`r hide("Learn More")` 
+A regression equation with slope \(\beta_1 = 0\) would indicate no gradient and hence no relationship as \(y\) does not change as \(x\) changes. To test for a relationship, we see if the slope is different from 0.
+`r unhide()`
+
+
+
+**Step 2 - Test Statistic**
+
+The test statistic is \(\hat{\beta}_1 = 0.0031\) from the Model2 summary above.
+
+Assuming the assumptions of Model are satisfied then:
+\[\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\hat{\beta_1}})\]
+
+
+The standardized test statistic under the assumption that \(H_0\) is true, and its approximate distribution are:
+
+\[\frac{\hat{\beta_1}-\beta_{1}}{s_{\hat{\beta}_1}} \sim t_{200-2}\]
+
+This is what will be used to complete the test.
+
+
+**Step 3 - Hypothesis Test Calculations**
+
+**Finding your Rejection Region**
+
+Because the standardized test statistic is distributed \(t_{198}\) and \(H_1\) is a two-sided hypothesis, the rejection region is the \(|t_{obs}| > t_{0.95;198}=1.6526\)
+
+This Critical Value (the t-value that corresponds to our significance level) above can be found using:
+```{r}
+qt(0.95,198)
+```
+
+**Finding your standardised test statistic and p-value**
+
+Our standardised test statistic \(t_{obs}=\frac{\hat{\beta_1}-\beta_{1}}{s_{\hat{\beta}_1}} = \frac{0.0031-0}{2\times10^{-4}}=15.9117\)
+
+\(s^2_{\hat{\beta}_1}\) was the Variance-Covariance Matrix:
+```{r}
+vcov(Model2)
+```
+
+and therefore \(s_{\hat{\beta}_1} = \sqrt{3.782\times10^{-8}} = 2\times10^{-4}\). 
+This number is also in the Model Summary as 'SAT Standard Error'.
+
+We should use r to find the p-value corresponding to the calculated Standardised Test Statistic (STS) \(2 \times \mathrm{P}(t_{0.95;198} \geq  15.9117)\).
+
+For the area to the right of our STS, we use lower.tail=FALSE
+``` {r, eval=TRUE, echo=TRUE}
+pvalue <- pt(15.9117,198, lower = FALSE)
+pvalue
+```
+
+This gives the p-value as \(2 \times 1.46156\times10^{-37} \approx 0\) .
+
+
+15.9117 is greater than 1.6526 and our p-value, 0, is less than \(\alpha = 0.10\).
+
+
+**Step 4 - Statistical Conclusion**
+
+To draw our conclusions we need to consider our rejection region.
+
+Is our standardised test statistic inside the rejection region? 
+
+Is our p-value smaller than 0.05?
+
+
+**QUESTION**: Do we reject our null hypothesis?
+
+`r hide()`
+
+I. From the rejection region, we reject \(H_0\) because the standardised test statistic is greater than the critical value and hence is in the rejection region i.e \(t_{obs} = 15.9117 \geq 1.6526\).
+
+OR
+
+II. From the p-value, we fail to reject \(H_0\) because the p-value\( 0 < 0.10\).
+
+
+Whichever method we use, we reject \(H_0\).
+
+`r unhide()`
+
+**Step 5 - English Conclusion**
+
+What does our statistical conclusion mean for the data and the purpose of the test? 
+
+Is there statistical evidence to suggest a linear relationship between `GPA` and `SAT` scores?
+
+**QUESTION**: Which of the following is the correct conclusion of our test?
+```{r, echo = FALSE}
+mcq4 <- c("There is not enough evidence to suggest a linear relationship between sat and gpa.", "There is evidence to suggest a non-linear relationship between
+sat and gpa.", answer ="There is evidence to suggest a linear relationship between sat and gpa.", 
+"We cannot conclude if there is sufficient evidence to suggest to suggest a linear relationship between sat and gpa.")
+```
+`r longmcq(mcq4)`
+
+
+### Confidence intervals for model terms
+
+We will practice constructing 90% confidence intervals for \(\beta_0\) and \(\beta_1\).
+
+These 90% CIs will take the format of \(\left( \hat{\beta}_k - t_{0.95;198} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{0.95;198} \cdot s_{\hat{\beta}_k}\right)\)
+
+The \(\hat{\beta}_k\) estimates can be found in the model summary and \(s_{\beta_k}\) from the Variance-Covariance Matrix again or from the Model Summary.
+
+```{r}
+summary(Model2)
+```
+
+```{r}
+b0 <- coef(summary(Model2))[1, 1]
+s.b0 <- coef(summary(Model2))[1, 2]
+b1 <- coef(summary(Model2))[2, 1]
+s.b1 <- coef(summary(Model2))[2, 2]
+ct <- qt(1 - 0.1/2, 198) # alpha = 0.10
+CI.B0 <- b0 + c(-1, 1) * ct * s.b0
+CI.B1 <- b1 + c(-1, 1) * ct * s.b1
+CI.B0
+CI.B1
+```
+Or by using the model command:
+
+```{r}
+confint(Model2, level = 0.9)
+```

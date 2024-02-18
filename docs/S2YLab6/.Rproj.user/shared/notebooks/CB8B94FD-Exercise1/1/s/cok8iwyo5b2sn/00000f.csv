@@ -1,0 +1,1 @@
+"0","modelfat <- lm(Fat ~ Triceps + Midarm, data=bf)"
