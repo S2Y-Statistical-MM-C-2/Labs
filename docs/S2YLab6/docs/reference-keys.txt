@@ -1,1 +1,6 @@
-welcome-to-s1z-lab-4
+welcome-to-lab-6
+the-summary-function-for-regression-models
+hypothesis-testing-for-linear-relationships
+finding-the-estimate-of-error-variance
+steps-of-the-hypothesis-test
+confidence-intervals-for-the-model-parameters
