@@ -1,2 +1,1 @@
 welcome-to-lab-6
-the-summary-function-for-regression-models
