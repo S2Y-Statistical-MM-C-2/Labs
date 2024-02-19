@@ -171,16 +171,16 @@ where $\mathbf{X}_h = [1, x_{h,1}, x_{h,2}, \ldots, x_{h,p-1}]$ is the vector of
 
 In addition to the point estimate, it is also important to compute the confidence interval for the mean response for this new $\mathbf{X}_h$ and the prediction interval on a single, new observation. 
 
-The confidence interval for the mean response is given by
+The $100 \cdot (1-\alpha)$\% confidence interval for the mean response is given by
 \begin{equation}
-\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k}\right). (\#eq:CImean)
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_h},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_h}\right). (\#eq:CImean)
 \end{equation}
 
 $$\small \left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')}\right)$$
 
-The prediction interval for a single new observation is given by
+The $100 \cdot (1-\alpha)$\% prediction interval for a single new observation is given by
 \begin{equation}
-\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k}\right). (\#eq:PI)
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_{h(\text{new})}},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_{h(\text{new})}}\right). (\#eq:PI)
 \end{equation}
 
 $$\small \left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h'))},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h'))}\right)$$
