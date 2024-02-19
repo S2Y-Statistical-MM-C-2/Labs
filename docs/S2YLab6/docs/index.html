@@ -139,12 +139,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="#welcome-to-lab-6"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 6</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="#the-summary-function-for-regression-models"><i class="fa fa-check"></i><b>1.1</b> The <code>summary()</code> function for regression models</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="#hypothesis-testing-for-linear-relationships"><i class="fa fa-check"></i><b>1.2</b> Hypothesis testing for linear relationships</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="#finding-the-estimate-of-error-variance"><i class="fa fa-check"></i><b>1.2.1</b> Finding the estimate of error variance</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="#steps-of-the-hypothesis-test"><i class="fa fa-check"></i><b>1.2.2</b> Steps of the hypothesis test</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="#confidence-intervals-for-the-model-parameters"><i class="fa fa-check"></i><b>1.3</b> Confidence intervals for the model parameters</a></li>
 </ul></li>
 </ul>
 
@@ -249,53 +243,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The remaining terms, <code>Multiple R-squared</code>, <code>Adjusted R-squared</code> and <code>F-statistic</code>, will be explained in subsequent labs.</p>
 <p>Here we can look at the estimates of the model coefficients <span class="math inline">\(\hat{\beta}_k\)</span>, which are both positive, indicating both <code>Abs</code> and <code>Tri</code> have a positive relationship with Hydrostatic fat.</p>
 <p>We can also state that both Abdominal Fat and Tricep Fat measurements are significant in predicting the Hydrostatic fat measurement to a significance level of <span class="math inline">\(\approx 0\)</span> by looking at the <span class="math inline">\(p\)</span>-values associated with the <span class="math inline">\(t\)</span>-tests.</p>
-</div>
-<div id="hypothesis-testing-for-linear-relationships" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Hypothesis testing for linear relationships<a href="#hypothesis-testing-for-linear-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Recall a linear regression model can be written in the matrix form as
-<span class="math display">\[\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol \epsilon.\]</span>
-Assuming <span class="math inline">\(\boldsymbol{\epsilon} \sim N (\mathbf{0},\sigma^2 \bf{I})\)</span>, we have shown that <span class="math inline">\(\mathbf{Y} \sim N (\mathbf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\)</span> and <span class="math inline">\(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \mathbf{(X&#39;X)}^{-1})\)</span>.</p>
-<div id="finding-the-estimate-of-error-variance" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Finding the estimate of error variance<a href="#finding-the-estimate-of-error-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We know that <span class="math inline">\(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\)</span> and</p>
-<p><span class="math display">\[\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \hat{\sigma}^2 \mathbf{(X&#39;X)}^{-1} = \begin{bmatrix}
-s^2_{{\hat{\beta}_0}} &amp; s_{\hat{\beta}_0,\hat{\beta}_1} &amp;...&amp; s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\
-s_{\hat{\beta}_1,\hat{\beta}_0} &amp; s^2_{\hat{\beta}_1} &amp;...&amp; s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-s_{\hat{\beta}_{p-1},\hat{\beta}_0} &amp; s_{\hat{\beta}_{p-1},\hat{\beta}_1} &amp;...&amp; s^2_{\hat{\beta}_{p-1}}
-\end{bmatrix} \]</span></p>
-<p>In R the matrices of <span class="math inline">\(\mathbf{(X&#39;X)}^{-1}\)</span> and <span class="math inline">\(\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}}\)</span> can be found using <code>summary(lm.object)$cov.unscaled</code> and <code>vcov(lm.object)</code> respectively, where <code>lm.object</code> is the linear model object built by using <code>lm()</code>.</p>
-</div>
-<div id="steps-of-the-hypothesis-test" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Steps of the hypothesis test<a href="#steps-of-the-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Step 1: Hypotheses</strong></p>
-<p>If we want to test a model coefficient against a hypothesised value. the null and alternative hypotheses are:
-<span class="math display">\[H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}\]</span></p>
-<p><strong>Step 2: Test Statistic</strong></p>
-<p>The test statistic is <span class="math inline">\(\hat{\beta_k}\)</span>. Assuming the error terms are distributed normally,</p>
-<p><span class="math display">\[\hat{\beta_k} \sim N(\beta_k, \sigma^2_{\hat{\beta_k}}).\]</span></p>
-<p>The standardised test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are:</p>
-<p><span class="math display">\[\frac{\text{unbiased estimator} - \text{hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\]</span></p>
-<p><strong>Step 3: Rejection region calculations</strong></p>
-<p>The standardised test statistic is <span class="math inline">\(\frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\)</span>, and so <span class="math inline">\(t_\text{obs} = \frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}}\)</span>. This can be compared to the critical value, <span class="math inline">\(t_{1-\alpha,n-p}\)</span>, which can be found from the statistical table or using R.</p>
-<p>In R the test can be run using the function <code>lm()</code>. For example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">summary</span>(model)<span class="sc">$</span>coef</span></code></pre></div>
-<p>This will give the observed <span class="math inline">\(t\)</span>-value and the corresponding <span class="math inline">\(p\)</span>-value which can then be compared to the significance level <span class="math inline">\(\alpha\)</span>.</p>
-<p><strong>Step 4: Statistical conclusion</strong></p>
-<ul>
-<li><p>From the rejection region, reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_\text{obs}\)</span> is greater than the critical value.</p></li>
-<li><p>From the <span class="math inline">\(p\)</span>-value, reject <span class="math inline">\(H_0\)</span> if the <span class="math inline">\(p\)</span>-value is less than <span class="math inline">\(\alpha\)</span>.</p></li>
-</ul>
-<p><strong>Step 5: English conclusion</strong></p>
-<p>Depending on whether <span class="math inline">\(H_0\)</span> is rejected or not, conclude whether there is sufficient or insufficient evidence evidence to suggest a linear relationship between the response variable and the predictor variable.</p>
-</div>
-</div>
-<div id="confidence-intervals-for-the-model-parameters" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Confidence intervals for the model parameters<a href="#confidence-intervals-for-the-model-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter <span class="math inline">\(\beta_k\)</span> with confidence level <span class="math inline">\(1-\alpha\)</span> is:</p>
-<p><span class="math display">\[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right),\]</span></p>
-<p>where the degrees of freedom is <span class="math inline">\(n-p\)</span> because <span class="math inline">\(\sigma^2\)</span> is estimated using <span class="math inline">\(MSE=\frac{SSE}{n-p}\)</span>.</p>
+<!-- ## Hypothesis testing for linear relationships -->
+<!-- Recall a linear regression model can be written in the matrix form as  -->
+<!-- $$\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol \epsilon.$$ -->
+<!-- Assuming \(\boldsymbol{\epsilon} \sim N (\mathbf{0},\sigma^2 \bf{I})\), we have shown that \(\mathbf{Y} \sim N (\mathbf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\)  and \(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \mathbf{(X'X)}^{-1})\). -->
+<!-- ### Finding the estimate of error variance -->
+<!-- We know that \(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\) and  -->
+<!-- $$\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \hat{\sigma}^2 \mathbf{(X'X)}^{-1} = \begin{bmatrix} -->
+<!-- s^2_{{\hat{\beta}_0}} & s_{\hat{\beta}_0,\hat{\beta}_1} &...& s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\ -->
+<!-- s_{\hat{\beta}_1,\hat{\beta}_0} & s^2_{\hat{\beta}_1} &...& s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\ -->
+<!-- \vdots & \vdots & \ddots & \vdots \\ -->
+<!-- s_{\hat{\beta}_{p-1},\hat{\beta}_0} & s_{\hat{\beta}_{p-1},\hat{\beta}_1} &...& s^2_{\hat{\beta}_{p-1}} -->
+<!-- \end{bmatrix} $$ -->
+<!-- In R the matrices of $\mathbf{(X'X)}^{-1}$ and $\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}}$ can be found using `summary(lm.object)$cov.unscaled` and `vcov(lm.object)` respectively, where `lm.object` is the linear model object built by using `lm()`. -->
+<!-- ### Steps of the hypothesis test -->
+<!-- **Step 1: Hypotheses**  -->
+<!-- If we want to test a model coefficient against a hypothesised value. the null and alternative hypotheses are: -->
+<!-- $$H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}$$ -->
+<!-- **Step 2: Test Statistic**  -->
+<!-- The test statistic is \(\hat{\beta_k}\). Assuming the error terms are distributed normally,  -->
+<!-- $$\hat{\beta_k} \sim N(\beta_k, \sigma^2_{\hat{\beta_k}}).$$ -->
+<!-- The standardised test statistic under the assumption that $H_0$ is true and its distribution are: -->
+<!-- \[\frac{\text{unbiased estimator} - \text{hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\] -->
+<!-- **Step 3: Rejection region calculations**  -->
+<!-- The standardised test statistic is $\frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}$, and so $t_\text{obs} = \frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}}$. This can be compared to the critical value, \(t_{1-\alpha,n-p}\), which can be found from the statistical table or using R.  -->
+<!-- In R the test can be run using the function `lm()`. For example: -->
+<!-- ```{r, echo=TRUE, eval=FALSE} -->
+<!-- model <- lm() -->
+<!-- summary(model)$coef -->
+<!-- ``` -->
+<!-- This will give the observed $t$-value and the corresponding $p$-value which can then be compared to the significance level \(\alpha\). -->
+<!-- **Step 4: Statistical conclusion** -->
+<!-- * From the rejection region, reject $H_0$ if $|t_\text{obs}$ is greater than the critical value. -->
+<!-- * From the $p$-value, reject $H_0$ if the $p$-value is less than \(\alpha\). -->
+<!-- **Step 5: English conclusion**  -->
+<!-- Depending on whether $H_0$ is rejected or not, conclude whether there is sufficient or insufficient evidence evidence to suggest a linear relationship between the response variable and the predictor variable.  -->
+<!-- ## Confidence intervals for the model parameters -->
+<!-- We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter \(\beta_k\) with confidence level \(1-\alpha\) is: -->
+<!-- \[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right),\] -->
+<!-- where the degrees of freedom is \(n-p\) because \(\sigma^2\) is estimated using \(MSE=\frac{SSE}{n-p}\).  -->
 
 </div>
 </div>
