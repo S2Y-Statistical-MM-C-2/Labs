@@ -1,11 +1,12 @@
 ---
-title: "Lab 6 - Hypothesis testing and interval estimation"
+title: |
+    | S2Y Lab 6
+    | Hypothesis testing and interval estimation
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 biblio-style: apalike
 link-citations: yes
-
 ---
 
 ```{r, include = FALSE}
@@ -17,7 +18,7 @@ library(knitr)
 library(ggplot2)
 library(tidyverse)
 library(PASWR2)
-library(PASWR)
+library(MASS)
 ```
 
 
@@ -26,17 +27,15 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
-# Welcome to Lab 6
 
-**Intended Learning Outcomes:**
+# Welcome to S2Y Lab 6
 
-- use `R` to conduct hypothesis tests for parameters in a linear model;
+Intended Learning Outcomes:
 
-- use various summary statistics and `R` output to compute confidence and prediction intervals;
-
-- use the built-in `R` function to compute confidence and prediction intervals;
-
-- interpret hypothesis tests, confidence intervals and prediction intervals.
+* use `R` to conduct hypothesis tests for parameters in a linear model;
+* use various summary statistics and `R` output to compute confidence and prediction intervals;
+* use the built-in `R` function to compute confidence and prediction intervals;
+* interpret hypothesis tests, confidence intervals and prediction intervals.
 
 <!-- ## The `summary()` function for regression models -->
 
