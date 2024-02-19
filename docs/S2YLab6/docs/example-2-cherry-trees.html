@@ -244,11 +244,11 @@ Solution
 <p>To decide if the predictors are useful, we perform a hypothesis test for each of the parameters:</p>
 <p><span class="math display">\[H_0: \beta = 0 \ /\ \gamma = 0 \quad \text{vs.} \quad H_1: \beta \ne 0 \ / \ \gamma \ne 0\]</span></p>
 <p><strong>QUESTION</strong>: Based on the model summary produced in <code>R</code>, what can you conclude about the usefulness of log(diameter) and log(height) in predicting log(volume)?</p>
-<div id="radio_ZBSARYRHCM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZBSARYRHCM" value=""></input> <span>log(diameter) is a statistically significant predictor of log(volume)</span></label><label><input type="radio" autocomplete="off" name="radio_ZBSARYRHCM" value="answer"></input> <span>log(diameter) is a statistically significant predictor of log(volume) in addition to log(height).</span></label><label><input type="radio" autocomplete="off" name="radio_ZBSARYRHCM" value=""></input> <span>log(diameter) is not a statistically significant predictor of log(volume).</span></label><label><input type="radio" autocomplete="off" name="radio_ZBSARYRHCM" value=""></input> <span>We cannot conclude if log(diameter) is a statistically significant predictor of log(volume).</span></label>
+<div id="radio_NUENARMTCS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NUENARMTCS" value=""></input> <span>log(diameter) is a statistically significant predictor of log(volume)</span></label><label><input type="radio" autocomplete="off" name="radio_NUENARMTCS" value="answer"></input> <span>log(diameter) is a statistically significant predictor of log(volume) in addition to log(height).</span></label><label><input type="radio" autocomplete="off" name="radio_NUENARMTCS" value=""></input> <span>log(diameter) is not a statistically significant predictor of log(volume).</span></label><label><input type="radio" autocomplete="off" name="radio_NUENARMTCS" value=""></input> <span>We cannot conclude if log(diameter) is a statistically significant predictor of log(volume).</span></label>
 </div>
-<div id="radio_UQDUWEMUKZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UQDUWEMUKZ" value=""></input> <span>log(height) is a statistically significant predictor of log(volume).</span></label><label><input type="radio" autocomplete="off" name="radio_UQDUWEMUKZ" value="answer"></input> <span>log(height) is a statistically significant predictor of log(volume) in addition to log(diameter).</span></label><label><input type="radio" autocomplete="off" name="radio_UQDUWEMUKZ" value=""></input> <span>log(height) is not a statistically significant predictor of log(volume) in addition to log(diameter).</span></label><label><input type="radio" autocomplete="off" name="radio_UQDUWEMUKZ" value=""></input> <span>We cannot conclude if log(height) is a statistically significant predictor of log(volume).</span></label>
+<div id="radio_WCGIWXIOGC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WCGIWXIOGC" value=""></input> <span>log(height) is a statistically significant predictor of log(volume).</span></label><label><input type="radio" autocomplete="off" name="radio_WCGIWXIOGC" value="answer"></input> <span>log(height) is a statistically significant predictor of log(volume) in addition to log(diameter).</span></label><label><input type="radio" autocomplete="off" name="radio_WCGIWXIOGC" value=""></input> <span>log(height) is not a statistically significant predictor of log(volume) in addition to log(diameter).</span></label><label><input type="radio" autocomplete="off" name="radio_WCGIWXIOGC" value=""></input> <span>We cannot conclude if log(height) is a statistically significant predictor of log(volume).</span></label>
 </div>
 <div class="webex-solution">
 <button>
@@ -325,28 +325,25 @@ Solution
 <div id="confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response-1" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Confidence interval for the population mean response and prediction interval for a future response<a href="example-2-cherry-trees.html#confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once we have fitted the model of interest it may also be useful to compute further confidence and prediction intervals from the fitted model. For example,</p>
-<ul>
-<li>95% confidence interval for the population mean response; and</li>
-<li>95% prediction interval for the response of an individual member of the population.</li>
-</ul>
-<p><strong>QUESTIONS</strong></p>
 <ol style="list-style-type: decimal">
 <li>Suppose that we consider a population of cherry trees for which the log(diameter) is 2.4 and the log(height) is 4.3. Provide a 95% confidence interval for the mean log(volume) in this population of cherry trees. Interpret the interval.</li>
 <li>Suppose, now, that we wish to obtain a 95% prediction interval for an individual cherry tree in the population which has a log(diameter) of 2.4 and a log(height) of 4.3. Interpret the interval.</li>
 </ol>
 <p>We use <code>R</code> to compute the required intervals.</p>
-<p><strong>Question 1 - 95% confidence interval for the population mean:</strong></p>
+<p><strong>95% confidence interval for the population mean:</strong></p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="example-2-cherry-trees.html#cb35-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">logdiam =</span> <span class="fl">2.4</span>, <span class="at">loght =</span> <span class="fl">4.3</span>)</span>
 <span id="cb35-2"><a href="example-2-cherry-trees.html#cb35-2" tabindex="-1"></a><span class="fu">predict</span>(Model3, <span class="at">int =</span> <span class="st">&quot;c&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 2.930373 2.894059 2.966686</code></pre>
 <p>The <code>data.frame</code> command creates a table; each column represents one variable and each row contains one set of values from each column. The <code>predict</code> command can produce both a confidence interval and a prediction interval. To obtain a confidence interval we use the argument <code>int = "c"</code>.</p>
 <p>Therefore we conclude that in a population of cherry trees for which the log(diameter) is 2.4 and the log(height) is 4.3 it is highly likely that the log(volume) would lie, on average, somewhere between 2.89 and 2.97.</p>
-<p><strong>Question 2 - 95% prediction interval for a future tree:</strong></p>
+<p><strong>95% prediction interval for a future tree:</strong></p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="example-2-cherry-trees.html#cb37-1" tabindex="-1"></a><span class="fu">predict</span>(Model3, <span class="at">int =</span> <span class="st">&quot;p&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 2.930373 2.759752 3.100994</code></pre>
 <p>The argument <code>int = "p"</code> in the <code>predict</code> command provides a prediction interval based on the specified values in the new dataframe <code>predframe</code>. Therefore if a cherry tree with a log(diameter) of 2.4 and a log(height) of 4.3 were selected randomly from the population of cherry trees, it is highly likely that it would have a log volume of somewhere between 2.76 and 3.10. Comparing with the 95% confidence interval, the 95% prediction interval has a wider range.</p>
+<p><strong>TASK</strong> (challenging): Verify that the above results are correct by computing the confidence interval and prediction interval using formulas <a href="index.html#eq:CImean">(1.2)</a> and <a href="index.html#eq:PI">(1.3)</a>.</p>
+<p>Feel free to ask tutors for help if you can't solve this task.</p>
 
 </div>
 </div>

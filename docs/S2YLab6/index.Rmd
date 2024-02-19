@@ -173,7 +173,7 @@ In addition to the point estimate, it is also important to compute the confidenc
 
 The confidence interval for the mean response is given by
 \begin{equation}
-\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k}\right). (\#eq:CI_mean)
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k}\right). (\#eq:CImean)
 \end{equation}
 
 $$\small \left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')}\right)$$

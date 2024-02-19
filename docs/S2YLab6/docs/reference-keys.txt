@@ -1,4 +1,5 @@
 eq:CI
+eq:CImean
 eq:PI
 eq:TreesMLR
 fig:TreesPlot1

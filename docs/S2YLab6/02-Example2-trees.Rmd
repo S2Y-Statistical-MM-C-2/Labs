@@ -149,17 +149,12 @@ The coefficient for log(height) is highly likely to lie between 0.70 and 1.54. A
 
 Once we have fitted the model of interest it may also be useful to compute further confidence and prediction intervals from the fitted model. For example,
 
-* 95% confidence interval for the population mean response; and
-* 95% prediction interval for the response of an individual member of the population.
-
-**QUESTIONS**
-
 1. Suppose that we consider a population of cherry trees for which the log(diameter) is 2.4 and the log(height) is 4.3. Provide a 95% confidence interval for the mean log(volume) in this population of cherry trees. Interpret the interval.
 2. Suppose, now, that we wish to obtain a 95% prediction interval for an individual cherry tree in the population which has a log(diameter) of 2.4 and a log(height) of 4.3. Interpret the interval.
 
 We use `R` to compute the required intervals.
 
-**Question 1 - 95% confidence interval for the population mean:**
+**95% confidence interval for the population mean:**
 
 ```{r}
 predframe <- data.frame(logdiam = 2.4, loght = 4.3)
@@ -170,10 +165,15 @@ The `data.frame` command creates a table; each column represents one variable an
 
 Therefore we conclude that in a population of cherry trees for which the log(diameter) is 2.4 and the log(height) is 4.3 it is highly likely that the log(volume) would lie, on average, somewhere between 2.89 and 2.97.
 
-**Question 2 - 95% prediction interval for a future tree:**
+**95% prediction interval for a future tree:**
 ```{r}
 predict(Model3, int = "p", newdata = predframe)
 ```
 
 The argument `int = "p"` in the `predict` command provides a prediction interval based on the specified values in the new dataframe `predframe`. Therefore if a cherry tree with a log(diameter) of 2.4 and a log(height) of 4.3 were selected randomly from the population of cherry trees, it is highly likely that it would have a log volume of somewhere between 2.76 and 3.10. Comparing with the 95% confidence interval, the 95% prediction interval has a wider range. 
+
+**TASK** (challenging): Verify that the above results are correct by computing the confidence interval and prediction interval using formulas \@ref(eq:CImean) and \@ref(eq:PI). 
+
+Feel free to ask tutors for help if you can't solve this task. 
+
 
