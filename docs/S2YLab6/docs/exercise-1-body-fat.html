@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Example 1: Modelling College Grades | main.knit</title>
+  <title>4 Exercise 1: Body fat | main.knit</title>
   <meta name="description" content="S2Y Lab 6<br />
 Hypothesis testing and interval estimation</div>" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Example 1: Modelling College Grades | main.knit" />
+  <meta property="og:title" content="4 Exercise 1: Body fat | main.knit" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Example 1: Modelling College Grades | main.knit" />
+  <meta name="twitter:title" content="4 Exercise 1: Body fat | main.knit" />
   
   
   
@@ -29,8 +29,8 @@ Hypothesis testing and interval estimation</div>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="example-2-cherry-trees.html"/>
+<link rel="prev" href="example-2-cherry-trees.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -182,116 +182,84 @@ Hypothesis testing and interval estimation</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="example-1-modelling-college-grades" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Example 1: Modelling College Grades<a href="example-1-modelling-college-grades.html#example-1-modelling-college-grades" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In Lab 4, we looked at the <code>Grades</code> dataset from the <code>PASWR</code> package, which records the first-semester college GPA and SAT scores for 200 freshmen. The question of interest is to check whether there is a linear relationship between GPA and SAT scores. Last time, we viewed the data in scatterplots, built a linear model, and calculated correlation to learn more about the relationship between SAT and GPA scores. Today, we will formally assess if the SAT is a useful variable in predicting GPA.</p>
-<p>To open the dataset, type:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="example-1-modelling-college-grades.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
-<span id="cb5-2"><a href="example-1-modelling-college-grades.html#cb5-2" tabindex="-1"></a>GRADES <span class="ot">&lt;-</span> Grades</span></code></pre></div>
-<p><strong>TASK</strong>: Build the simple linear regression model for how GPA scores change with SAT scores and print the model summary.</p>
-<div class="webex-solution">
-<button>
-Hint
-</button>
-<p>Remember the function <code>lm(y~x, data=)</code>.
-It will be helpful to save this output using <code>&lt;-</code> for future analysis.</p>
-</div>
-<div id="hypothsis-testing-for-regression-models" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Hypothsis Testing for Regression Models<a href="example-1-modelling-college-grades.html#hypothsis-testing-for-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We want to test whether there is a linear relationship between GPA and SAT scores at the <span class="math inline">\(\alpha = 0.10\)</span> significance level. While this is automatically done in R, we will practice conducting the hypothesis test using the five-step procedure, during which you will become more familiar with the R output.</p>
-<p><strong>Step 1 - Hypotheses</strong></p>
-<p>As we are interested in the predictive power of SAT, we will perform a hypothesis test on the slope of the model. Suppose the model has the form of <span class="math inline">\(Y_i=\beta_0+\beta_1 x_i +\epsilon_i\)</span>.</p>
-<p><span class="math display">\[H_0 : \beta_1 = 0 \quad \text{versus} \quad H_1 : \beta_1 \neq 0\]</span></p>
-<div class="webex-solution">
-<button>
-Learn More
-</button>
-<p>A regression equation with slope <span class="math inline">\(\beta_1 = 0\)</span> would indicate no influence of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>. Thus, to assess whether <span class="math inline">\(x\)</span> is a useful predictor, we test if the slope is different from 0.</p>
-</div>
-<p><strong>Step 2 - Test statistic</strong></p>
-<p>Looking at the model summary below, we find that the value of test statistic is <span class="math inline">\(\hat{\beta}_1 = 0.0031\)</span>.</p>
-<pre><code>## 
-## Call:
-## lm(formula = gpa ~ sat, data = GRADES)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.04954 -0.25960 -0.00655  0.26044  1.09328 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.1920638  0.2224502  -5.359 2.32e-07 ***
-## sat          0.0030943  0.0001945  15.912  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.3994 on 198 degrees of freedom
-## Multiple R-squared:  0.5612, Adjusted R-squared:  0.5589 
-## F-statistic: 253.2 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Assuming the assumptions of a linear model are satisfied then:
-<span class="math display">\[\hat{\beta}_1 \sim N(\beta_1, \sigma^2_{\hat{\beta}_1})\]</span></p>
-<p>The standardised test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are:</p>
-<p><span class="math display">\[\frac{\hat{\beta}_1-\beta_1}{s_{\hat{\beta}_1}} \sim t_{200-2}\]</span></p>
-<p><strong>Step 3 - Rejection region calculations</strong></p>
-<p><strong>Finding the rejection region</strong></p>
-<p>Because the standardised test statistic is distributed <span class="math inline">\(t_{198}\)</span> and <span class="math inline">\(H_1\)</span> is a two-sided hypothesis, the rejection region is the <span class="math inline">\(|t_\text{obs}| &gt; t_{1-\alpha;n-p} = t_{0.95;198}\)</span>.</p>
-<p>The value of standardised test statistic is given in the R output as 15.912 (<code>t value</code> associated with the predictor <code>sat</code>). Let's verify this is correct:</p>
-<p><span class="math display">\[t_\text{obs}=\frac{\hat{\beta}_1-\beta_1}{s_{\hat{\beta}_1}} = \frac{0.0031-0}{0.0001945}=15.9117\]</span></p>
-<p><span class="math inline">\(s_{\hat{\beta}_1}\)</span> can be found by either looking at <code>Std. Error</code> associated with <code>sat</code>, or taking the square root of the (2,2) entry of the variance-covariance matrix of <span class="math inline">\(\mathbf{s}^2_{\boldsymbol \beta}\)</span>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="example-1-modelling-college-grades.html#cb7-1" tabindex="-1"></a>s2_beta <span class="ot">&lt;-</span> <span class="fu">vcov</span>(Model2) <span class="co">#the variance-covariance matrix</span></span>
-<span id="cb7-2"><a href="example-1-modelling-college-grades.html#cb7-2" tabindex="-1"></a>s2_beta</span></code></pre></div>
-<pre><code>##               (Intercept)           sat
-## (Intercept)  4.948408e-02 -4.290866e-05
-## sat         -4.290866e-05  3.781665e-08</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="example-1-modelling-college-grades.html#cb9-1" tabindex="-1"></a><span class="fu">sqrt</span>(s2_beta[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
-<pre><code>## [1] 0.000194465</code></pre>
-<p>The critical value (the <span class="math inline">\(t\)</span>-value that corresponds to the significance level of 0.01), <span class="math inline">\(t_{0.95;198}\)</span>, can be found using:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1-modelling-college-grades.html#cb11-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>,<span class="dv">198</span>)</span></code></pre></div>
-<pre><code>## [1] 1.652586</code></pre>
-<p><strong>Step 4 - Statistical Conclusion</strong></p>
-<p><strong>QUESTION</strong>: Based on the value of standardised test statistic and critical value, do we reject the null hypothesis?</p>
+<div id="exercise-1-body-fat" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Exercise 1: Body fat<a href="exercise-1-body-fat.html#exercise-1-body-fat" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The dataset <code>femalebodyfat.csv</code> gives the % body fat, triceps skinfold thickness (taken at the midpoint of the upperarm) and the midarm circumference (the circumference of the non-dominant arm midway between the shoulder and the elbow) for twenty healthy females aged 20 to 34. The % body fat for each person was obtained by a cumbersome and expensive procedure requiring the immersion of the person in water. It would therefore be very helpful if a regression model with tricep skinfold thickness and midarm circumference could provide reliable predictions of the amount of body fat, since the measurements needed for the predictor variables are straightforward to obtain.</p>
+<p>Read in the data using:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="exercise-1-body-fat.html#cb39-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;femalebodyfat.csv&quot;</span>)</span></code></pre></div>
+<p><strong>QUESTION</strong></p>
+<ol style="list-style-type: decimal">
+<li>Use an appropriate exploratory analysis to explore the relationships between % body fat, triceps skinfold thickness and midarm circumference.</li>
+</ol>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<p>We reject <span class="math inline">\(H_0\)</span> because the value of standardised test statistic is greater than the critical value and hence is in the rejection region, i.e. <span class="math inline">\(t_{obs} = 15.9117 \geq 1.6526\)</span>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="exercise-1-body-fat.html#cb40-1" tabindex="-1"></a><span class="fu">pairs</span>(bf, <span class="at">lower.panel =</span> <span class="cn">NULL</span>) </span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+This shows a moderate positive linear relationship between % body fat and triceps skinfold thickness.</p>
+<p>There doesn't seem to be much of a relationship between % body fat and midarm circumference but we will continue to explore whether it is useful to the model.</p>
 </div>
-<p>Alternatively, we can compute the <span class="math inline">\(p\)</span>-value associated with this <span class="math inline">\(t\)</span>-test, which is equal to <span class="math inline">\(2 \times \mathbb{P}(t_{0.95;198} \geq 15.9117)\)</span>.</p>
-<p>For the area to the right of the observed value of standardised test statistic, use <code>lower.tail=FALSE</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1-modelling-college-grades.html#cb13-1" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">15.9117</span>, <span class="dv">198</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-2"><a href="example-1-modelling-college-grades.html#cb13-2" tabindex="-1"></a>pvalue</span></code></pre></div>
-<pre><code>## [1] 2.923121e-37</code></pre>
-<p>This gives the <span class="math inline">\(p\)</span>-value nearly 0.</p>
-<p><strong>Step 5 - English conclusion</strong></p>
-<p><strong>QUESTION</strong>: What does the previoius statistical conclusion tell you about the relationship between <code>GPA</code> and <code>SAT</code> scores?</p>
-<div id="radio_ZCNKVGJIQN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZCNKVGJIQN" value=""></input> <span>There is insufficient evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_ZCNKVGJIQN" value=""></input> <span>There is sufficient evidence to suggest a non-linear relationship between
-sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_ZCNKVGJIQN" value="answer"></input> <span>There is sufficient evidence to suggest a linear relationship between sat and gpa.</span></label><label><input type="radio" autocomplete="off" name="radio_ZCNKVGJIQN" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest a linear relationship between sat and gpa.</span></label>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit a multiple linear regression model to the data in order to predict % body fat from triceps skinfold thickness and midarm circumference.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exercise-1-body-fat.html#cb41-1" tabindex="-1"></a>modelfat <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fat <span class="sc">~</span> Triceps <span class="sc">+</span> Midarm, <span class="at">data=</span>bf)</span></code></pre></div>
 </div>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>Use <code>R</code> to compute a 95% confidence interval for the coefficient of each predictor in the model.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="exercise-1-body-fat.html#cb42-1" tabindex="-1"></a><span class="fu">confint</span>(modelfat)</span></code></pre></div>
+<pre><code>##                   2.5 %       97.5 %
+## (Intercept) -2.67783060 16.261085426
+## Triceps      0.73003885  1.271130967
+## Midarm      -0.08040683 -0.005881575</code></pre>
 </div>
-<div id="confidence-intervals-for-model-parameters" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Confidence intervals for model parameters<a href="example-1-modelling-college-grades.html#confidence-intervals-for-model-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will practice constructing 90% confidence intervals for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p>
-<p>These 90% CIs will take the format of <span class="math inline">\(\left( \hat{\beta}_k - t_{0.95;198} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{0.95;198} \cdot s_{\hat{\beta}_k}\right)\)</span></p>
-<p>The parameter estimates <span class="math inline">\(\hat{\beta}_k\)</span> can be found in the model summary and their estimated standard errors <span class="math inline">\(s_{\hat{\beta}_k}\)</span> can be found from the variance-covariance matrix or from the model summary as well.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-1-modelling-college-grades.html#cb15-1" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">1</span>]</span>
-<span id="cb15-2"><a href="example-1-modelling-college-grades.html#cb15-2" tabindex="-1"></a>s.b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">1</span>, <span class="dv">2</span>] <span class="co">#or s.bo &lt;- sqrt(vcov(Model2)[1,1])</span></span>
-<span id="cb15-3"><a href="example-1-modelling-college-grades.html#cb15-3" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">1</span>]</span>
-<span id="cb15-4"><a href="example-1-modelling-college-grades.html#cb15-4" tabindex="-1"></a>s.b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(Model2))[<span class="dv">2</span>, <span class="dv">2</span>] <span class="co">#or s.bo &lt;- sqrt(vcov(Model2)[2.2])</span></span>
-<span id="cb15-5"><a href="example-1-modelling-college-grades.html#cb15-5" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">198</span>) <span class="co"># alpha = 0.10</span></span>
-<span id="cb15-6"><a href="example-1-modelling-college-grades.html#cb15-6" tabindex="-1"></a>CI.B0 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b0</span>
-<span id="cb15-7"><a href="example-1-modelling-college-grades.html#cb15-7" tabindex="-1"></a>CI.B1 <span class="ot">&lt;-</span> b1 <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> ct <span class="sc">*</span> s.b1</span>
-<span id="cb15-8"><a href="example-1-modelling-college-grades.html#cb15-8" tabindex="-1"></a>CI.B0</span></code></pre></div>
-<pre><code>## [1] -1.5596818 -0.8244458</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="example-1-modelling-college-grades.html#cb17-1" tabindex="-1"></a>CI.B1</span></code></pre></div>
-<pre><code>## [1] 0.00277290 0.00341564</code></pre>
-<p>R also has a built-in function <code>confint</code> to compute the confidence interval:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="example-1-modelling-college-grades.html#cb19-1" tabindex="-1"></a><span class="fu">confint</span>(Model2, <span class="at">level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
-<pre><code>##                    5 %        95 %
-## (Intercept) -1.5596818 -0.82444581
-## sat          0.0027729  0.00341564</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Comment on your intervals.</li>
+</ol>
+<p>The confidence interval for the variable <code>Triceps</code> <select class='webex-select'><option value='blank'></option><option value=''>contains</option><option value='answer'>does not contain</option></select> zero so we conclude it <select class='webex-select'><option value='blank'></option><option value=''>makes</option><option value='answer'>does not make</option></select> a statistically significant contribution in addition to the predictor <code>Midarm</code> in explaining the variability in <code>Fat</code>. Therefore <code>Triceps</code> should be <select class='webex-select'><option value='blank'></option><option value=''>retained in</option><option value='answer'>removed from</option></select> the model. The coefficient for <code>Triceps</code> is highly likely to lie between <input class='webex-solveme nospaces' size='4' data-answer='["0.73",".73"]'/> and <input class='webex-solveme nospaces' size='4' data-answer='["1.27"]'/> (<em>Enter your answer by rounding to two decimal places</em>).</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Find a 95% confidence interval for the mean % body fat for a female (aged 20 to 34) whose triceps skinfold thickness is 25mm and midarm circumference is 310mm. Interpret the interval.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>Define the prediction dataframe for the given predictor values and use the <code>predict()</code> function with that dataframe. Be careful to use the correct parameter to get a confidence interval not a prediction interval.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="exercise-1-body-fat.html#cb44-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">25</span>, <span class="at">Midarm =</span> <span class="dv">310</span>)</span>
+<span id="cb44-2"><a href="exercise-1-body-fat.html#cb44-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;c&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 18.43155 16.67794 20.18516</code></pre>
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li>Find a 95% prediction interval for the % body fat of a future female with skinfold thickness and midarm circumference values of your choice. Interpret the interval.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="exercise-1-body-fat.html#cb46-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">20</span>, <span class="at">Midarm =</span> <span class="dv">250</span>)</span>
+<span id="cb46-2"><a href="exercise-1-body-fat.html#cb46-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;p&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 16.01728 10.46253 21.57202</code></pre>
+</div>
 
-</div>
 </div>
 <script>
 
@@ -469,8 +437,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="example-2-cherry-trees.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="example-2-cherry-trees.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

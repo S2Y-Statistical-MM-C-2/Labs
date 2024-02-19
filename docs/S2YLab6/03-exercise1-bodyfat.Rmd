@@ -1,0 +1,62 @@
+# Exercise 1: Body fat
+
+The dataset `femalebodyfat.csv` gives the % body fat, triceps skinfold thickness (taken at the midpoint of the upperarm) and the midarm circumference (the circumference of the non-dominant arm midway between the shoulder and the elbow) for twenty healthy females aged 20 to 34. The % body fat for each person was obtained by a cumbersome and expensive procedure requiring the immersion of the person in water. It would therefore be very helpful if a regression model with tricep skinfold thickness and midarm circumference could provide reliable predictions of the amount of body fat, since the measurements needed for the predictor variables are straightforward to obtain.
+
+Read in the data using:
+```{r}
+bf <- read.csv("femalebodyfat.csv")
+```
+
+**QUESTION**
+
+1. Use an appropriate exploratory analysis to explore the relationships between % body fat, triceps skinfold thickness and midarm circumference.
+
+`r hide("Solution")`
+```{r}
+pairs(bf, lower.panel = NULL) 
+```
+This shows a moderate positive linear relationship between % body fat and triceps skinfold thickness.
+
+There doesn't seem to be much of a relationship between % body fat and midarm circumference but we will continue to explore whether it is useful to the model.
+`r unhide()`
+
+2. Fit a multiple linear regression model to the data in order to predict % body fat from triceps skinfold thickness and midarm circumference. 
+`r hide("Solution")`
+```{r}
+modelfat <- lm(Fat ~ Triceps + Midarm, data=bf)
+```
+`r unhide()`
+
+
+3. 
+
+i. Use `R` to compute a 95% confidence interval for the coefficient of each predictor in the model. 
+```{r webex.hide="Solution"}
+confint(modelfat)
+```
+
+ii. Comment on your intervals.
+
+The confidence interval for the variable `Triceps` `r mcq(c("contains",answer="does not contain"))` zero so we conclude it `r mcq(c("makes",answer="does not make"))` a statistically significant contribution in addition to the predictor `Midarm` in explaining the variability in `Fat`. Therefore `Triceps` should be `r mcq(c("retained in",answer="removed from"))` the model. The coefficient for `Triceps` is highly likely to lie between `r fitb(0.73)` and `r fitb(1.27)` (*Enter your answer by rounding to two decimal places*). 
+
+4. Find a 95% confidence interval for the mean % body fat for a female (aged 20 to 34) whose triceps skinfold thickness is 25mm and midarm circumference is 310mm. Interpret the interval.
+
+`r hide("Hint")`
+Define the prediction dataframe for the given predictor values and use the `predict()` function with that dataframe. Be careful to use the correct parameter to get a confidence interval not a prediction interval.
+`r unhide()`
+
+`r hide("Solution")`
+```{r}
+predframe <- data.frame(Triceps = 25, Midarm = 310)
+predict(modelfat, int = "c", newdata = predframe)
+```
+`r unhide()`
+
+5. Find a 95% prediction interval for the % body fat of a future female with skinfold thickness and midarm circumference values of your choice. Interpret the interval.
+
+`r hide("Solution")`
+```{r}
+predframe <- data.frame(Triceps = 20, Midarm = 250)
+predict(modelfat, int = "p", newdata = predframe)
+```
+`r unhide()`

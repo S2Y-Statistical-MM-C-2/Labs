@@ -19,3 +19,4 @@ statistical-analysis
 hypothesis-testing-on-model-parameters
 confidence-interval-on-model-parameters
 confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response-1
+exercise-1-body-fat
