@@ -1,23 +1,23 @@
 ---
-title: "Lab 6 - Hypothesis testing and interval estimation"
+title: "S1Z Lab 4"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 biblio-style: apalike
 link-citations: yes
-
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```{r setup, include = FALSE}
 library(webexercises)
 library(tinytex)
 library(dplyr)
 library(knitr)
-library(ggplot2)
-library(tidyverse)
-library(PASWR2)
-library(PASWR)
+knitr::opts_chunk$set(echo = TRUE)
+
+# More packages can be added here.
+
+# Datasets used throughout the project can be loaded here, e.g.
+# hubble <- read.csv("hubble.csv")
 ```
 
 
@@ -26,139 +26,8 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
-# Welcome to Lab 6
-
-**Intended Learning Outcomes:**
-
-- use `R` to conduct hypothesis tests for parameters in a linear model;
-
-- use various summary statistics and `R` output to compute confidence and prediction intervals;
-
-- use the built-in `R` function to compute confidence and prediction intervals;
-
-- interpret hypothesis tests, confidence intervals and prediction intervals.
-
-## The `summary()` function for regression models
-
-Before discussing hypothesis testing and confidence intervals for regression models, let's first revise the output of `summary()` function.
-
-Recall the model we created in Lab 4, where we try to predict the hydrostatic fat measurement of a wrestler from abomnimal fat and tricep fat measurements.
-```{r}
-library(PASWR)
-HSWRESTLER <- HSwrestler
-Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)
-```
-
-We apply the summary function, which gives the following output:
-```{r}
-summary(Model1)
-```
-The above `R` output displays a few elements, which were briefly explained below.
-
-**Call**: This shows the formula that was used in the regression model.
-
-**Residuals**: This lists the five-number summary of the residuals from the regression model.
-
-**Coefficients**: This shows a summary of estimated coefficients of the regression model.
-
-Within this section the column headers are:
-
-* **Estimate**: The estimated parameter. These can be used to write down the fitted regression model.
-
-* **Std. Error**: This is the estimated standard error of the parameter estimate.
-
-* **t value**: This is the $t$-statistic for the parameter, calculated as `Estimate` / `Std. Error`.
-
-* **Pr(>|t|)**: This is the $p$-value that corresponds to the $t$-statistic, i.e. $2\cdot \mathbb{P}(X>|t|)$ for $X \sim t(n-p)$, where $t$ is the `t value` computed above, $n$ is the sample size, and $p$ is the number of parameters.
-
-**Significance codes**: These codes in asterisks are appended to the $p$-values in regression analysis results. They provide a quick indication of the level of significance of the predictors in the model. The most commonly used significance levels and their corresponding codes are:
-
-```{r echo=FALSE}
-significance <- data.frame(
-  significance_code = c("***", "**", "*", ".", ""),
-  p_value = c("< 0.001", "0.001 - 0.01", "0.01 - 0.05", "0.05 - 0.1", "≥ 0.1"))
-
-colnames(significance) <- c("significance code", "p-value")
-
-kable(significance, align = c("c", "r"))
-```
 
 
-**Residual standard error**: This is the square root of mean squared error (MSE), where $MSE=\frac{\sum_{i=1}^n \epsilon_i^2}{n-p}$ is calculated as the sum of squared residuals divided by the degrees of freedom in the model.
+# Welcome to S1Z Lab 4
 
-The remaining terms, `Multiple R-squared`, `Adjusted R-squared` and `F-statistic`, will be explained in subsequent labs. 
-
-Here we can look at the estimates of the model coefficients \(\hat{\beta}_k\), which are both positive, indicating both `Abs` and `Tri` have a positive relationship with Hydrostatic fat. 
-
-We can also state that both Abdominal Fat and Tricep Fat measurements are significant in predicting the Hydrostatic fat measurement to a significance level of \(\approx 0\) by looking at the $p$-values associated with the $t$-tests.
-
-
-
-## Hypothesis testing for linear relationships
-
-Recall a linear regression model can be written in the matrix form as 
-$$\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol \epsilon.$$
-Assuming \(\boldsymbol{\epsilon} \sim N (\mathbf{0},\sigma^2 \bf{I})\), we have shown that \(\mathbf{Y} \sim N (\mathbf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\)  and \(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \mathbf{(X'X)}^{-1})\).
-
-### Finding the estimate of error variance
-We know that \(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\) and 
-
-$$\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \hat{\sigma}^2 \mathbf{(X'X)}^{-1} = \begin{bmatrix}
-s^2_{{\hat{\beta}_0}} & s_{\hat{\beta}_0,\hat{\beta}_1} &...& s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\
-s_{\hat{\beta}_1,\hat{\beta}_0} & s^2_{\hat{\beta}_1} &...& s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\
-\vdots & \vdots & \ddots & \vdots \\
-s_{\hat{\beta}_{p-1},\hat{\beta}_0} & s_{\hat{\beta}_{p-1},\hat{\beta}_1} &...& s^2_{\hat{\beta}_{p-1}}
-\end{bmatrix} $$
-
-In R the matrices of $\mathbf{(X'X)}^{-1}$ and $\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}}$ can be found using `summary(lm.object)$cov.unscaled` and `vcov(lm.object)` respectively, where `lm.object` is the linear model object built by using `lm()`.
-
-### Steps of the hypothesis test
-
-
-**Step 1: Hypotheses** 
-
-If we want to test a model coefficient against a hypothesised value. the null and alternative hypotheses are:
-$$H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}$$
-
-**Step 2: Test Statistic** 
-
-The test statistic is \(\hat{\beta_k}\). Assuming the error terms are distributed normally, 
-
-$$\hat{\beta_k} \sim N(\beta_k, \sigma^2_{\hat{\beta_k}}).$$
-
-The standardised test statistic under the assumption that $H_0$ is true and its distribution are:
-
-\[\frac{\text{unbiased estimator} - \text{hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\]
-
-**Step 3: Rejection region calculations** 
-
-The standardised test statistic is $\frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}$, and so $t_\text{obs} = \frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}}$. This can be compared to the critical value, \(t_{1-\alpha,n-p}\), which can be found from the statistical table or using R. 
-
-In R the test can be run using the function `lm()`. For example:
-
-```{r, echo=TRUE, eval=FALSE}
-model <- lm()
-summary(model)$coef
-```
-This will give the observed $t$-value and the corresponding $p$-value which can then be compared to the significance level \(\alpha\).
-
-**Step 4: Statistical conclusion**
-
-* From the rejection region, reject $H_0$ if $|t_\text{obs}$ is greater than the critical value.
-
-* From the $p$-value, reject $H_0$ if the $p$-value is less than \(\alpha\).
-
-**Step 5: English conclusion** 
-
-Depending on whether $H_0$ is rejected or not, conclude whether there is sufficient or insufficient evidence evidence to suggest a linear relationship between the response variable and the predictor variable. 
-
-
-## Confidence intervals for the model parameters
-
-
-We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter \(\beta_k\) with confidence level \(1-\alpha\) is:
-
-\[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right),\]
-
-where the degrees of freedom is \(n-p\) because \(\sigma^2\) is estimated using \(MSE=\frac{SSE}{n-p}\). 
-
+<!-- Content starts from here -->

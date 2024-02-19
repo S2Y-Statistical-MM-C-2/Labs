@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 6 - Hypothesis testing and interval estimation</title>
-  <meta name="description" content="Lab 6 - Hypothesis testing and interval estimation" />
+  <title>S1Z Lab 4</title>
+  <meta name="description" content="S1Z Lab 4" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 6 - Hypothesis testing and interval estimation" />
+  <meta property="og:title" content="S1Z Lab 4" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 6 - Hypothesis testing and interval estimation" />
+  <meta name="twitter:title" content="S1Z Lab 4" />
   
   
   
@@ -29,7 +29,7 @@
   
   
 
-<link rel="next" href="example-1---modelling-college-grades.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,70 +52,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
   
@@ -136,21 +72,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 6</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-summary-function-for-regression-models"><i class="fa fa-check"></i><b>1.1</b> The <code>summary()</code> function for regression models</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#hypothesis-testing-for-linear-relationships"><i class="fa fa-check"></i><b>1.2</b> Hypothesis testing for linear relationships</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#finding-the-estimate-of-error-variance"><i class="fa fa-check"></i><b>1.2.1</b> Finding the estimate of error variance</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#steps-of-the-hypothesis-test"><i class="fa fa-check"></i><b>1.2.2</b> Steps of the hypothesis test</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#confidence-intervals-for-the-model-parameters"><i class="fa fa-check"></i><b>1.3</b> Confidence intervals for the model parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Modelling College Grades</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.1</b> Hypothsis Testing for Regression Models</a></li>
-<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-parameters"><i class="fa fa-check"></i><b>2.2</b> Confidence intervals for model parameters</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="#welcome-to-s1z-lab-4"><i class="fa fa-check"></i><b>1</b> Welcome to S1Z Lab 4</a></li>
 </ul>
 
       </nav>
@@ -160,7 +82,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 6 - Hypothesis testing and interval estimation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">S1Z Lab 4</a>
           </h1>
         </div>
 
@@ -169,140 +91,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Lab 6 - Hypothesis testing and interval estimation</h1>
+<h1 class="title">S1Z Lab 4</h1>
 </div>
-<div id="welcome-to-lab-6" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 6<a href="index.html#welcome-to-lab-6" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>Intended Learning Outcomes:</strong></p>
-<ul>
-<li><p>use <code>R</code> to conduct hypothesis tests for parameters in a linear model;</p></li>
-<li><p>use various summary statistics and <code>R</code> output to compute confidence and prediction intervals;</p></li>
-<li><p>use the built-in <code>R</code> function to compute confidence and prediction intervals;</p></li>
-<li><p>interpret hypothesis tests, confidence intervals and prediction intervals.</p></li>
-</ul>
-<div id="the-summary-function-for-regression-models" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> The <code>summary()</code> function for regression models<a href="index.html#the-summary-function-for-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before discussing hypothesis testing and confidence intervals for regression models, let's first revise the output of <code>summary()</code> function.</p>
-<p>Recall the model we created in Lab 4, where we try to predict the hydrostatic fat measurement of a wrestler from abomnimal fat and tricep fat measurements.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>HSWRESTLER <span class="ot">&lt;-</span> HSwrestler</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>Model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HWFAT <span class="sc">~</span> ABS <span class="sc">+</span> TRICEPS, <span class="at">data =</span> HSWRESTLER)</span></code></pre></div>
-<p>We apply the summary function, which gives the following output:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="fu">summary</span>(Model1)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.5558 -2.2550 -0.5245  2.3365  9.4957 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.05904    0.65219   3.157   0.0023 ** 
-## ABS          0.33708    0.06415   5.255 1.34e-06 ***
-## TRICEPS      0.50430    0.09920   5.084 2.64e-06 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.061 on 75 degrees of freedom
-## Multiple R-squared:  0.8832, Adjusted R-squared:  0.8801 
-## F-statistic: 283.6 on 2 and 75 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The above <code>R</code> output displays a few elements, which were briefly explained below.</p>
-<p><strong>Call</strong>: This shows the formula that was used in the regression model.</p>
-<p><strong>Residuals</strong>: This lists the five-number summary of the residuals from the regression model.</p>
-<p><strong>Coefficients</strong>: This shows a summary of estimated coefficients of the regression model.</p>
-<p>Within this section the column headers are:</p>
-<ul>
-<li><p><strong>Estimate</strong>: The estimated parameter. These can be used to write down the fitted regression model.</p></li>
-<li><p><strong>Std. Error</strong>: This is the estimated standard error of the parameter estimate.</p></li>
-<li><p><strong>t value</strong>: This is the <span class="math inline">\(t\)</span>-statistic for the parameter, calculated as <code>Estimate</code> / <code>Std. Error</code>.</p></li>
-<li><p><strong>Pr(&gt;|t|)</strong>: This is the <span class="math inline">\(p\)</span>-value that corresponds to the <span class="math inline">\(t\)</span>-statistic, i.e. <span class="math inline">\(2\cdot \mathbb{P}(X&gt;|t|)\)</span> for <span class="math inline">\(X \sim t(n-p)\)</span>, where <span class="math inline">\(t\)</span> is the <code>t value</code> computed above, <span class="math inline">\(n\)</span> is the sample size, and <span class="math inline">\(p\)</span> is the number of parameters.</p></li>
-</ul>
-<p><strong>Significance codes</strong>: These codes in asterisks are appended to the <span class="math inline">\(p\)</span>-values in regression analysis results. They provide a quick indication of the level of significance of the predictors in the model. The most commonly used significance levels and their corresponding codes are:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">significance code</th>
-<th align="right">p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">***</td>
-<td align="right">&lt; 0.001</td>
-</tr>
-<tr class="even">
-<td align="center">**</td>
-<td align="right">0.001 - 0.01</td>
-</tr>
-<tr class="odd">
-<td align="center">*</td>
-<td align="right">0.01 - 0.05</td>
-</tr>
-<tr class="even">
-<td align="center">.</td>
-<td align="right">0.05 - 0.1</td>
-</tr>
-<tr class="odd">
-<td align="center"></td>
-<td align="right">≥ 0.1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Residual standard error</strong>: This is the square root of mean squared error (MSE), where <span class="math inline">\(MSE=\frac{\sum_{i=1}^n \epsilon_i^2}{n-p}\)</span> is calculated as the sum of squared residuals divided by the degrees of freedom in the model.</p>
-<p>The remaining terms, <code>Multiple R-squared</code>, <code>Adjusted R-squared</code> and <code>F-statistic</code>, will be explained in subsequent labs.</p>
-<p>Here we can look at the estimates of the model coefficients <span class="math inline">\(\hat{\beta}_k\)</span>, which are both positive, indicating both <code>Abs</code> and <code>Tri</code> have a positive relationship with Hydrostatic fat.</p>
-<p>We can also state that both Abdominal Fat and Tricep Fat measurements are significant in predicting the Hydrostatic fat measurement to a significance level of <span class="math inline">\(\approx 0\)</span> by looking at the <span class="math inline">\(p\)</span>-values associated with the <span class="math inline">\(t\)</span>-tests.</p>
-</div>
-<div id="hypothesis-testing-for-linear-relationships" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Hypothesis testing for linear relationships<a href="index.html#hypothesis-testing-for-linear-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Recall a linear regression model can be written in the matrix form as
-<span class="math display">\[\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol \epsilon.\]</span>
-Assuming <span class="math inline">\(\boldsymbol{\epsilon} \sim N (\mathbf{0},\sigma^2 \bf{I})\)</span>, we have shown that <span class="math inline">\(\mathbf{Y} \sim N (\mathbf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\)</span> and <span class="math inline">\(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \mathbf{(X&#39;X)}^{-1})\)</span>.</p>
-<div id="finding-the-estimate-of-error-variance" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Finding the estimate of error variance<a href="index.html#finding-the-estimate-of-error-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We know that <span class="math inline">\(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\)</span> and</p>
-<p><span class="math display">\[\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \hat{\sigma}^2 \mathbf{(X&#39;X)}^{-1} = \begin{bmatrix}
-s^2_{{\hat{\beta}_0}} &amp; s_{\hat{\beta}_0,\hat{\beta}_1} &amp;...&amp; s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\
-s_{\hat{\beta}_1,\hat{\beta}_0} &amp; s^2_{\hat{\beta}_1} &amp;...&amp; s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-s_{\hat{\beta}_{p-1},\hat{\beta}_0} &amp; s_{\hat{\beta}_{p-1},\hat{\beta}_1} &amp;...&amp; s^2_{\hat{\beta}_{p-1}}
-\end{bmatrix} \]</span></p>
-<p>In R the matrices of <span class="math inline">\(\mathbf{(X&#39;X)}^{-1}\)</span> and <span class="math inline">\(\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}}\)</span> can be found using <code>summary(lm.object)$cov.unscaled</code> and <code>vcov(lm.object)</code> respectively, where <code>lm.object</code> is the linear model object built by using <code>lm()</code>.</p>
-</div>
-<div id="steps-of-the-hypothesis-test" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Steps of the hypothesis test<a href="index.html#steps-of-the-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Step 1: Hypotheses</strong></p>
-<p>If we want to test a model coefficient against a hypothesised value. the null and alternative hypotheses are:
-<span class="math display">\[H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}\]</span></p>
-<p><strong>Step 2: Test Statistic</strong></p>
-<p>The test statistic is <span class="math inline">\(\hat{\beta_k}\)</span>. Assuming the error terms are distributed normally,</p>
-<p><span class="math display">\[\hat{\beta_k} \sim N(\beta_k, \sigma^2_{\hat{\beta_k}}).\]</span></p>
-<p>The standardised test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are:</p>
-<p><span class="math display">\[\frac{\text{unbiased estimator} - \text{hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\]</span></p>
-<p><strong>Step 3: Rejection region calculations</strong></p>
-<p>The standardised test statistic is <span class="math inline">\(\frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\)</span>, and so <span class="math inline">\(t_\text{obs} = \frac{\hat{\beta_k}-\beta_{k_0}}{s_{\hat{\beta}_k}}\)</span>. This can be compared to the critical value, <span class="math inline">\(t_{1-\alpha,n-p}\)</span>, which can be found from the statistical table or using R.</p>
-<p>In R the test can be run using the function <code>lm()</code>. For example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span>
-<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a><span class="fu">summary</span>(model)<span class="sc">$</span>coef</span></code></pre></div>
-<p>This will give the observed <span class="math inline">\(t\)</span>-value and the corresponding <span class="math inline">\(p\)</span>-value which can then be compared to the significance level <span class="math inline">\(\alpha\)</span>.</p>
-<p><strong>Step 4: Statistical conclusion</strong></p>
-<ul>
-<li><p>From the rejection region, reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_\text{obs}\)</span> is greater than the critical value.</p></li>
-<li><p>From the <span class="math inline">\(p\)</span>-value, reject <span class="math inline">\(H_0\)</span> if the <span class="math inline">\(p\)</span>-value is less than <span class="math inline">\(\alpha\)</span>.</p></li>
-</ul>
-<p><strong>Step 5: English conclusion</strong></p>
-<p>Depending on whether <span class="math inline">\(H_0\)</span> is rejected or not, conclude whether there is sufficient or insufficient evidence evidence to suggest a linear relationship between the response variable and the predictor variable.</p>
-</div>
-</div>
-<div id="confidence-intervals-for-the-model-parameters" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Confidence intervals for the model parameters<a href="index.html#confidence-intervals-for-the-model-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter <span class="math inline">\(\beta_k\)</span> with confidence level <span class="math inline">\(1-\alpha\)</span> is:</p>
-<p><span class="math display">\[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right),\]</span></p>
-<p>where the degrees of freedom is <span class="math inline">\(n-p\)</span> because <span class="math inline">\(\sigma^2\)</span> is estimated using <span class="math inline">\(MSE=\frac{SSE}{n-p}\)</span>.</p>
+<div id="welcome-to-s1z-lab-4" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Welcome to S1Z Lab 4<a href="#welcome-to-s1z-lab-4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- Content starts from here -->
 
-</div>
 </div>
 <script>
 
@@ -310,41 +104,25 @@ s_{\hat{\beta}_{p-1},\hat{\beta}_0} &amp; s_{\hat{\beta}_{p-1},\hat{\beta}_1} &a
 update_total_correct = function() {
   console.log("webex: update total_correct");
 
-  var t = document.getElementsByClassName("webex-total_correct");
-  for (var i = 0; i < t.length; i++) {
-    p = t[i].parentElement;
-    var correct = p.getElementsByClassName("webex-correct").length;
-    var solvemes = p.getElementsByClassName("webex-solveme").length;
-    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
-    var selects = p.getElementsByClassName("webex-select").length;
-
-    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
   }
 }
 
 /* webex-solution button toggling function */
 b_func = function() {
   console.log("webex: toggle hide");
-
+  
   var cl = this.parentElement.classList;
   if (cl.contains('open')) {
     cl.remove("open");
   } else {
     cl.add("open");
-  }
-}
-
-/* check answers */
-check_func = function() {
-  console.log("webex: check answers");
-
-  var cl = this.parentElement.classList;
-  if (cl.contains('unchecked')) {
-    cl.remove("unchecked");
-    this.innerHTML = "Hide Answers";
-  } else {
-    cl.add("unchecked");
-    this.innerHTML = "Check Answers";
   }
 }
 
@@ -398,9 +176,9 @@ solveme_func = function(e) {
 /* function for checking select answers */
 select_func = function(e) {
   console.log("webex: check select");
-
+  
   var cl = this.classList
-
+  
   /* add style */
   cl.remove("webex-incorrect");
   cl.remove("webex-correct");
@@ -409,7 +187,7 @@ select_func = function(e) {
   } else if (this.value != "blank") {
     cl.add("webex-incorrect");
   }
-
+  
   update_total_correct();
 }
 
@@ -420,25 +198,25 @@ radiogroups_func = function(e) {
   var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
   var cl = checked_button.parentElement.classList;
   var labels = checked_button.parentElement.parentElement.children;
-
+  
   /* get rid of styles */
   for (i = 0; i < labels.length; i++) {
     labels[i].classList.remove("webex-incorrect");
     labels[i].classList.remove("webex-correct");
   }
-
+  
   /* add style */
   if (checked_button.value == "answer") {
     cl.add("webex-correct");
   } else {
     cl.add("webex-incorrect");
   }
-
+  
   update_total_correct();
 }
 
 window.onload = function() {
-  console.log("webex onload");
+  console.log("onload");
   /* set up solution buttons */
   var buttons = document.getElementsByTagName("button");
 
@@ -446,22 +224,6 @@ window.onload = function() {
     if (buttons[i].parentElement.classList.contains('webex-solution')) {
       buttons[i].onclick = b_func;
     }
-  }
-
-  var check_sections = document.getElementsByClassName("webex-check");
-  console.log("check:", check_sections.length);
-  for (var i = 0; i < check_sections.length; i++) {
-    check_sections[i].classList.add("unchecked");
-
-    let btn = document.createElement("button");
-    btn.innerHTML = "Check Answers";
-    btn.classList.add("webex-check-button");
-    btn.onclick = check_func;
-    check_sections[i].appendChild(btn);
-
-    let spn = document.createElement("span");
-    spn.classList.add("webex-total_correct");
-    check_sections[i].appendChild(spn);
   }
 
   /* set up webex-solveme inputs */
@@ -489,21 +251,18 @@ window.onload = function() {
     /* attach checking function */
     solveme[i].onkeyup = solveme_func;
     solveme[i].onchange = solveme_func;
-
-    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
   }
-
+  
   /* set up radiogroups */
   var radiogroups = document.getElementsByClassName("webex-radiogroup");
   for (var i = 0; i < radiogroups.length; i++) {
     radiogroups[i].onchange = radiogroups_func;
   }
-
+  
   /* set up selects */
   var selects = document.getElementsByClassName("webex-select");
   for (var i = 0; i < selects.length; i++) {
     selects[i].onchange = select_func;
-    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
   }
 
   update_total_correct();
@@ -516,7 +275,7 @@ window.onload = function() {
         </div>
       </div>
 
-<a href="example-1---modelling-college-grades.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -569,20 +328,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
