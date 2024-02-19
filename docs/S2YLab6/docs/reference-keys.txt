@@ -4,3 +4,6 @@ hypothesis-testing-for-linear-relationships
 finding-the-estimate-of-error-variance
 steps-of-the-hypothesis-test
 confidence-intervals-for-the-model-parameters
+example-1---modelling-college-grades
+hypothsis-testing-for-regression-models
+confidence-intervals-for-model-parameters
