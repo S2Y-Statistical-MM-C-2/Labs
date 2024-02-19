@@ -139,18 +139,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 6</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-summary-function-for-regression-models"><i class="fa fa-check"></i><b>1.1</b> The <code>summary()</code> function for regression models</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#hypothesis-testing-for-linear-relationships"><i class="fa fa-check"></i><b>1.2</b> Hypothesis Testing for Linear Relationships</a>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#hypothesis-testing-for-linear-relationships"><i class="fa fa-check"></i><b>1.2</b> Hypothesis testing for linear relationships</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#finding-the-varaince"><i class="fa fa-check"></i><b>1.2.1</b> Finding the Varaince</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#steps-of-the-hyphotesis-test"><i class="fa fa-check"></i><b>1.2.2</b> Steps of the Hyphotesis Test</a></li>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#finding-the-estimate-of-error-variance"><i class="fa fa-check"></i><b>1.2.1</b> Finding the estimate of error variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#steps-of-the-hypothesis-test"><i class="fa fa-check"></i><b>1.2.2</b> Steps of the hypothesis test</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#confidence-intervals-for-linear-model-estimators"><i class="fa fa-check"></i><b>1.3</b> Confidence Intervals for Linear Model Estimators</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#confidence-intervals-for-the-model-parameters"><i class="fa fa-check"></i><b>1.3</b> Confidence intervals for the model parameters</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html"><i class="fa fa-check"></i><b>2</b> Example 1 - Modelling College Grades</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#building-the-model"><i class="fa fa-check"></i><b>2.1</b> Building the Model</a></li>
-<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.2</b> Hypothsis Testing for Regression Models</a></li>
-<li class="chapter" data-level="2.3" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.3</b> Confidence intervals for model terms</a></li>
+<li class="chapter" data-level="2.1" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.1</b> Hypothsis Testing for Regression Models</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1---modelling-college-grades.html"><a href="example-1---modelling-college-grades.html#confidence-intervals-for-model-terms"><i class="fa fa-check"></i><b>2.2</b> Confidence intervals for model terms</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html"><i class="fa fa-check"></i><b>3</b> Example 2: Cherry trees</a>
 <ul>
@@ -185,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">4</span> Exercise 1: Body fat<a href="exercise-1-body-fat.html#exercise-1-body-fat" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The dataset <code>femalebodyfat.csv</code> gives the % body fat, triceps skinfold thickness (taken at the midpoint of the upperarm) and the midarm circumference (the circumference of the non-dominant arm midway between the shoulder and the elbow) for twenty healthy females aged 20 to 34. The % body fat for each person was obtained by a cumbersome and expensive procedure requiring the immersion of the person in water. It would therefore be very helpful if a regression model with tricep skinfold thickness and midarm circumference could provide reliable predictions of the amount of body fat, since the measurements needed for the predictor variables are straightforward to obtain.</p>
 <p>Read in the data using:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="exercise-1-body-fat.html#cb48-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;femalebodyfat.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exercise-1-body-fat.html#cb43-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;femalebodyfat.csv&quot;</span>)</span></code></pre></div>
 <p><strong>QUESTION</strong></p>
 <ol style="list-style-type: decimal">
 <li>Use an appropriate exploratory analysis to explore the relationships between % body fat, triceps skinfold thickness and midarm circumference.</li>
@@ -194,8 +193,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="exercise-1-body-fat.html#cb49-1" tabindex="-1"></a><span class="fu">pairs</span>(bf, <span class="at">lower.panel =</span> <span class="cn">NULL</span>) </span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="exercise-1-body-fat.html#cb44-1" tabindex="-1"></a><span class="fu">pairs</span>(bf, <span class="at">lower.panel =</span> <span class="cn">NULL</span>) </span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 This shows a moderate positive linear relationship between % body fat and triceps skinfold thickness.</p>
 <p>There doesn't seem to be much of a relationship between % body fat and midarm circumference but we will continue to explore whether it is useful to the model.</p>
 </div>
@@ -206,7 +205,7 @@ This shows a moderate positive linear relationship between % body fat and tricep
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="exercise-1-body-fat.html#cb50-1" tabindex="-1"></a>modelfat <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fat <span class="sc">~</span> Triceps <span class="sc">+</span> Midarm, <span class="at">data=</span>bf)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="exercise-1-body-fat.html#cb45-1" tabindex="-1"></a>modelfat <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fat <span class="sc">~</span> Triceps <span class="sc">+</span> Midarm, <span class="at">data=</span>bf)</span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li></li>
@@ -218,7 +217,7 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="exercise-1-body-fat.html#cb51-1" tabindex="-1"></a><span class="fu">confint</span>(modelfat)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="exercise-1-body-fat.html#cb46-1" tabindex="-1"></a><span class="fu">confint</span>(modelfat)</span></code></pre></div>
 <pre><code>##                   2.5 %       97.5 %
 ## (Intercept) -2.67783060 16.261085426
 ## Triceps      0.73003885  1.271130967
@@ -241,8 +240,8 @@ Hint
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="exercise-1-body-fat.html#cb53-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">25</span>, <span class="at">Midarm =</span> <span class="dv">310</span>)</span>
-<span id="cb53-2"><a href="exercise-1-body-fat.html#cb53-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;c&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="exercise-1-body-fat.html#cb48-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">25</span>, <span class="at">Midarm =</span> <span class="dv">310</span>)</span>
+<span id="cb48-2"><a href="exercise-1-body-fat.html#cb48-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;c&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 18.43155 16.67794 20.18516</code></pre>
 </div>
@@ -253,8 +252,8 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="exercise-1-body-fat.html#cb55-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">20</span>, <span class="at">Midarm =</span> <span class="dv">250</span>)</span>
-<span id="cb55-2"><a href="exercise-1-body-fat.html#cb55-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;p&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="exercise-1-body-fat.html#cb50-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">20</span>, <span class="at">Midarm =</span> <span class="dv">250</span>)</span>
+<span id="cb50-2"><a href="exercise-1-body-fat.html#cb50-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;p&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 16.01728 10.46253 21.57202</code></pre>
 </div>
