@@ -1,4 +1,4 @@
-# Example 1 - Modelling College Grades
+# Example 1: Modelling College Grades
 
 
 In Lab 4, we looked at the `Grades` dataset from the `PASWR` package, which records the first-semester college GPA and SAT scores for 200 freshmen. The question of interest is to check whether there is a linear relationship between GPA and SAT scores. Last time, we viewed the data in scatterplots, built a linear model, and calculated correlation to learn more about the relationship between SAT and GPA scores. Today, we will formally assess if the SAT is a useful variable in predicting GPA.
@@ -113,7 +113,7 @@ We will practice constructing 90% confidence intervals for \(\beta_0\) and \(\be
 
 These 90% CIs will take the format of \(\left( \hat{\beta}_k - t_{0.95;198} \cdot s_{\hat{\beta}_k} \text{ },\text{ } \hat{\beta}_k + t_{0.95;198} \cdot s_{\hat{\beta}_k}\right)\)
 
-The parameter estimates \(\hat{\beta}_k\) can be found in the model summary and their standard errors \(s_{\hat{\beta}_k}\) can be found from the variance-covariance matrix or from the model summary as well.
+The parameter estimates \(\hat{\beta}_k\) can be found in the model summary and their estimated standard errors \(s_{\hat{\beta}_k}\) can be found from the variance-covariance matrix or from the model summary as well.
 
 ```{r}
 b0 <- coef(summary(Model2))[1, 1]

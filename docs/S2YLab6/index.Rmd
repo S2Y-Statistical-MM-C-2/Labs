@@ -154,11 +154,34 @@ Depending on whether $H_0$ is rejected or not, conclude whether there is suffici
 
 ## Confidence intervals for the model parameters
 
-
 We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter \(\beta_k\) with confidence level \(1-\alpha\) is:
 
-\[\left( \hat{\beta}_k - t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2\text{ };\text{ }n-p} \cdot s_{\hat{\beta}_k}\right),\]
+\begin{equation}
+\left( \hat{\beta}_k - t_{1-\alpha/2;n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2;n-p} \cdot s_{\hat{\beta}_k}\right), (\#eq:CI)
+\end{equation}
 
 where the degrees of freedom is \(n-p\) because \(\sigma^2\) is estimated using \(MSE=\frac{SSE}{n-p}\).
 
+
+## Confidence interval for the population mean response and prediction interval for a future response
+
+Once we have fitted the model of interest, it can be used to make predictions on unseen data by plugging in the particular values of the predictor variables:
+$$\hat{Y}_h = \mathbf{X}_h \hat{\boldsymbol \beta},$$
+where $\mathbf{X}_h = [1, x_{h,1}, x_{h,2}, \ldots, x_{h,p-1}]$ is the vector of predictor variables for the new observation. 
+
+In addition to the point estimate, it is also important to compute the confidence interval for the mean response for this new $\mathbf{X}_h$ and the prediction interval on a single, new observation. 
+
+The confidence interval for the mean response is given by
+\begin{equation}
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k}\right). (\#eq:CI_mean)
+\end{equation}
+
+$$\small \left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')}\right)$$
+
+The prediction interval for a single new observation is given by
+\begin{equation}
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_k}\right). (\#eq:PI)
+\end{equation}
+
+$$\small \left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h'))},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h'))}\right)$$
 
