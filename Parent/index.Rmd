@@ -23,8 +23,6 @@ library(webexercises)
 
 * [S2Y Lab 5](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab5/docs)
 
-* [S2Y Lab 5 Solution](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab5_solution/docs)
-
 * [S2Y Lab 6](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab6/docs)
 
 * [S2Y Lab 7](https://s2y-statistical-mm-c-2.github.io/Labs/S2YLab7/docs)
