@@ -37,7 +37,7 @@ confint(modelfat)
 
 ii. Comment on your intervals.
 
-The confidence interval for the variable `Triceps` `r mcq(c("contains",answer="does not contain"))` zero so we conclude it `r mcq(c("makes",answer="does not make"))` a statistically significant contribution in addition to the predictor `Midarm` in explaining the variability in `Fat`. Therefore `Triceps` should be `r mcq(c("retained in",answer="removed from"))` the model. The coefficient for `Triceps` is highly likely to lie between `r fitb(0.73)` and `r fitb(1.27)` (*Enter your answer by rounding to two decimal places*). 
+The confidence interval for the variable `Triceps` `r mcq(c("contains",answer="does not contain"))` zero so we conclude it `r mcq(c(answer="makes","does not make"))` a statistically significant contribution in addition to the predictor `Midarm` in explaining the variability in `Fat`. Therefore `Triceps` should be `r mcq(c(answer="retained in","removed from"))` the model. The coefficient for `Triceps` is highly likely to lie between `r fitb(0.73)` and `r fitb(1.27)` (*Enter your answer by rounding to two decimal places*). 
 
 4. Find a 95% confidence interval for the mean % body fat for a female (aged 20 to 34) whose triceps skinfold thickness is 25mm and midarm circumference is 310mm. Interpret the interval.
 
