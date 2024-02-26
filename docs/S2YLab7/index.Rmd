@@ -1,0 +1,227 @@
+---
+title: |
+    | S2Y Lab 7
+    | Examining model fit – ANOVA and $R^2$
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "01-Example1.Rmd", "02-Exercise1.Rmd"]
+---
+
+```{r setup, include = FALSE}
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(PASWR)
+library(PASWR2)
+knitr::opts_chunk$set(echo=TRUE, eval=TRUE)
+
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+# Welcome to S2Y Lab 7
+
+Intended Learning Outcomes:
+
+- obtain the elements of an analysis of variance (ANOVA) table;
+- use the ANOVA table to compute and interpret the $F$-statistic and its hypothesis test;
+- assess the goodness of fit of linear models based on $R^2$ and $R^2_a$.
+
+## Introduction
+
+### The ANOVA table
+In the lectures we studied analysis of variance (ANOVA) table which can be used to investigate the variability explained by the model. It is based on partitioning the sums of squares ($SS$) and the degrees of freedom (df) associated with the response variable $Y$. The total deviation, $Y_i - \overline{Y}$, can be decomposed as 
+
+1. The deviation from the fitted value $\hat{Y}_i$ to the mean $\overline{Y}$ and
+
+2. The deviation fo the observation $Y_i$ to the regression line $\hat{Y}_i$. 
+
+$$\underbrace{Y_i - \bar{Y}}_{\text{Total Deviation}} = \underbrace{\hat{Y_i} - \bar{Y}}_{\substack{\text{Deviation of Fitted}\\ \text{Regression Value}\\ \text{around the Mean}}} + \underbrace{Y_i - \hat{Y_i}}_{\substack{\text{Deviation around}\\ \text{the Fitted Regression Line}}}$$
+
+When we take the sum over all observations and square it, we obtain the following equation, which decomposes the total variability in the response into two parts::
+
+$$\underbrace{\sum_{i=1}^n(Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n(\hat{Y_i} - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n(Y_i - \hat{Y_i})^2}_{SSE}$$
+
+We have 
+
+* $SST$: Total sum of squares
+
+* $SSR$: Regression sum of squares
+
+* $SSE$: Error (residual) sum of squares.
+
+In a simple linear regression (only one predictor), degrees of freedom can be partitioned as: $SST$ has $n-1$ degrees of freedom, $SSE$ has $n-2$, and $SSR$ has $1$. If we divide the $SS$ by its degrees of freedom, we obtain the mean square as 
+
+$$\frac{SSR}{1} = MSR \text{ and } \frac{SSE}{n-2} = MSE$$
+
+
+When $\beta_1 = 0$, meaning the predictor does not have an effect in our regression, the $MSR$ and $MSE$ will be similar in magnitude. If $\beta_1\neq0$, the center of the $MSR$ will be larger than that of $MSE$. 
+
+<center>
+![](Images/fig_1.png){width=500px}
+</center>
+
+We can use this understanding to test the effect of the predictor in the model using a hypothesis test. In particular, we could test $H_0: \beta_1 = 0$ versus $H_1: \beta_1 \neq 0$ using the test statistic
+
+$$F_\text{obs} = \frac{MSR}{MSE}$$
+
+When the null hypothesis is true, i.e. $H_0: \beta_1 = 0$, then
+$$F_\text{obs} = \frac{MSR}{MSE} \sim F_{1,n-2}.$$
+
+As a wide rule of thumb, you can say that values of $F_{obs}$ close to $1$ generally support the null hypothesis while larger values will support the alternative. However, you will always need to compare it with a critical value found using a statistical table or look at the $p$-value produced in `R`. To generate an ANOVA table on linear objects, use `anova(lm.object)`. 
+
+The full ANOVA table for a single predictor looks like this:
+
+```{r , echo=FALSE, out.width="70%", fig.cap="ANOVA table for a simple linear regression model", fig.align='center'}
+knitr::include_graphics("Images/table4.png")
+```
+
+
+
+More generally, for a multiple linear regression with $p-1$ predictors, the ANOVA table looks like this:
+
+```{r ANOVA, echo=FALSE, out.width="70%", fig.cap="ANOVA table for a multiple linear regression model", fig.align='center'}
+knitr::include_graphics("Images/table5.png")
+```
+
+
+We can perform $F$-test to test whether all parameters in the model of interest (i.e. all parameters excluding the intercept) are zero:
+
+$$H_0: \beta_1 = \beta_2 = \cdots = \beta_{p-1} = 0 \quad \text{versus} \quad H_1: \text{at least one } \beta_i \neq 0 \text{ for } i =1, 2, \ldots, p-1.$$
+The test statistic is again $F_\text{obs} = \frac{MSR}{MSE}$ and under the assumption that $H_0$ is true,
+
+$$F_\text{obs} = \frac{MSR}{MSE} \sim F_{p-1;n-p}.$$
+
+
+### $R^2$
+
+ANOVA table also allows us to easily calculate the **coefficient of determination**, $R^2$. $R^2$ is a useful tool to assess the goodness-of-fit of our linear regression models. It provides a measure for the proportion of variability in the $Y_i$s that can be explained by our model. The formula of $R^2$ is given by:
+
+$$R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}. $$
+
+
+Think about it this way: if $SSE$ is the sum of squares of the error, it can be interpreted as the amount of variability in $Y$ that is not explained by the model. $SST$ represents all the variability in the data. If our model did not explain any variation, it would be equivalent to a horizontal line and $SSE=SST$. Therefore, the ratio of $\frac{SSE}{SST}$ represents the proportion of variability not explained by the model and $1-\frac{SSE}{SST}$ is the variability explained. 
+
+<center>
+
+![](Images/fig_2.png){width=250px}
+![](Images/fig_3.png){width=250px}
+![](Images/fig_4.png){width=250px}
+</center>
+
+In today’s lab we will first revisit ordinary least squares estimates (OLS) and then delve into the coefficient of determination ($R^2$) and the analysis of variance (ANOVA) table to deepen our understanding of the `R` output. 
+
+
+## A brief reminder from Lab 6: The `summary()` function
+
+Let's take a look at the `summary()` function again. Think of the `HSwrestlers` data set where we try to predict the hydrostatic fat (`HWFAT`) measurement of a wrestler from abomnimal fat (`ABS`) and tricep fat (`TRICEPS`) measurements.
+
+```{r}
+library(PASWR)
+data(HSwrestler)
+Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+```
+
+The summary function gives the following output:
+```{r}
+summary(Model1)
+```
+The above `R` output displays a few elements, which were briefly explained below.
+
+**Call**: This shows the formula that was used in the regression model.
+
+**Residuals**: This lists the five-number summary of the residuals from the regression model.
+
+**Coefficients**: This shows a summary of estimated coefficients of the regression model.
+
+Within this section the column headers are:
+
+* **Estimate**: The estimated parameter. These can be used to write down the fitted regression model.
+
+* **Std. Error**: This is the estimated standard error of the parameter estimate.
+
+* **t value**: This is the $t$-statistic for the parameter, calculated as `Estimate` / `Std. Error`.
+
+* **Pr(>|t|)**: This is the $p$-value that corresponds to the $t$-statistic, i.e. $2\cdot \mathbb{P}(X>|t|)$ for $X \sim t(n-p)$, where $t$ is the `t value` computed above, $n$ is the sample size, and $p$ is the number of parameters.
+
+**Significance codes**: These codes in asterisks are appended to the $p$-values in regression analysis results. They provide a quick indication of the level of significance of the predictors in the model. The most commonly used significance levels and their corresponding codes are:
+
+```{r echo=FALSE}
+significance <- data.frame(
+  significance_code = c("***", "**", "*", ".", ""),
+  p_value = c("< 0.001", "0.001 - 0.01", "0.01 - 0.05", "0.05 - 0.1", "≥ 0.1"))
+
+colnames(significance) <- c("significance code", "p-value")
+
+kable(significance, align = c("c", "r"))
+```
+
+
+**Residual standard error**: This is the square root of mean squared error (MSE), where $MSE=\frac{\sum_{i=1}^n \hat{\epsilon}_i^2}{n-p}$ is calculated as the sum of squared residuals divided by the degrees of freedom in the model.
+
+**Multiple R-squared**: The proportion of variability in the data that is explained in the model. It is calculated as $R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}$. Higher values of $R^2$ indicate a better model fit. 
+
+**Adjusted R-squared**: Adjust $R^2$ for increased number of predictors. $R^2_a = 1-\frac{\frac{SSE}{n-p}}{\frac{SST}{n-1}}$.
+
+**F-statistic**: This is the $F$-statistic from the ANOVA table ($F_\text{obs}$), along with the regression degrees of freedom and error degrees of freedom, followed by the $p$-value corresponding to the $F$-test.
+
+
+## Exam-style questions
+This section is designed to help you make connections between the lab content and the exam questions. In the exam, since you will not have access to R and the data, the questions will be phrased as the example questions below. Try to think about them as you work through the examples and exercises in this lab. 
+
+
+ **Question 1:** Given the following summary statistics
+
+$$\sum_{i=1}^{20} \left(Y_i - \hat{Y}_i\right)^2 = 6.94983 \quad\quad \sum_{i=1}^{20} \left(Y_i - \bar{Y}\right)^2 = 13.09869,$$
+
+complete the analysis of variance table below.
+
+<center>
+
+![](Images/table1.png){width=450px}
+
+</center>
+
+
+**Question 2:** The following linear model was fitted to some data:
+
+\[\mathbb{E}(Y_i) = \beta_0 + \beta_1 x_i, \quad i = 1,\ldots, 50.\]
+
+The \texttt{R} output and some summary statistics from the data are given below:
+
+<center>
+![](Images/results_tab.png){width=500px}
+![](Images/anova_tab.png){width=500px}
+</center>
+
+
+\[S_{xx} = 7.0408 \quad\quad S_{yy} = 6.0882 \quad\quad S_{xy} = 4.8616 \quad\quad \bar{x} = 3.4280  \quad\quad \bar{y} = 5.0060
+\]
+<!-- \vsp -->
+
+|      a. Use the summary statistics to obtain the estimated parameters of $\hat{\beta_0}$ and $\hat{\beta_1}$. 
+|          Check your answers with the column of `Estimate` in `R`.
+\vsp
+
+|      b. Use the summary statistics to complete the analysis of variance table below, 
+|          i.e. finding the degrees of freedom, the regression sum of squares, the error sum of squares, 
+|          the mean squared error, and the $F$-statistic. Check your answer with the `R` output. 
+
+<center>
+![](Images/table3.png){width=450px}
+</center>
+
+|      c. What hypotheses are being examined by the $F$-statistic in the ANOVA table? 
+|          Given that its $p$-value $< 0.05$, what does this tell us about the fitted model?
+|      d. Compute and interpret the coefficient of determination, $R^2$.
+|      e. Comment on the strength of linear relationship between $x$ and $Y$. 

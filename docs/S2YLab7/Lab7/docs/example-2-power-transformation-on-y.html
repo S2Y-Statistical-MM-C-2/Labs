@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Example 2: power transformation on \(y\) | main.knit</title>
+  <meta name="description" content="S2Y Lab 5<br />
+Further examination on model fit and assumptions - ANOVA, residual plots and transformations</div>" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Example 2: power transformation on \(y\) | main.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Example 2: power transformation on \(y\) | main.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="example-1-log-transformation-on-x.html"/>
+<link rel="next" href="optional-activity-more-on-log-transformation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to S2Y Lab 5</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1-log-transformation-on-x.html"><a href="example-1-log-transformation-on-x.html"><i class="fa fa-check"></i><b>2</b> Example 1: log-transformation on <span class="math inline">\(x\)</span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1-log-transformation-on-x.html"><a href="example-1-log-transformation-on-x.html#exploratory-analysis"><i class="fa fa-check"></i><b>2.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-log-transformation-on-x.html"><a href="example-1-log-transformation-on-x.html#statistical-analysis"><i class="fa fa-check"></i><b>2.2</b> Statistical analysis</a></li>
+<li class="chapter" data-level="2.3" data-path="example-1-log-transformation-on-x.html"><a href="example-1-log-transformation-on-x.html#assumption-checking"><i class="fa fa-check"></i><b>2.3</b> Assumption checking</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="example-2-power-transformation-on-y.html"><a href="example-2-power-transformation-on-y.html"><i class="fa fa-check"></i><b>3</b> Example 2: power transformation on <span class="math inline">\(y\)</span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="example-2-power-transformation-on-y.html"><a href="example-2-power-transformation-on-y.html#exploratory-analysis-1"><i class="fa fa-check"></i><b>3.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="example-2-power-transformation-on-y.html"><a href="example-2-power-transformation-on-y.html#assumption-checking-1"><i class="fa fa-check"></i><b>3.2</b> Assumption checking</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="example-2-power-transformation-on-y.html"><a href="example-2-power-transformation-on-y.html#regression-output"><i class="fa fa-check"></i><b>3.2.1</b> Regression output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="optional-activity-more-on-log-transformation.html"><a href="optional-activity-more-on-log-transformation.html"><i class="fa fa-check"></i><b>4</b> Optional activity: more on log-transformation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="optional-activity-more-on-log-transformation.html"><a href="optional-activity-more-on-log-transformation.html#log-transformation-on-y"><i class="fa fa-check"></i><b>4.1</b> Log-transformation on <span class="math inline">\(y\)</span></a></li>
+<li class="chapter" data-level="4.2" data-path="optional-activity-more-on-log-transformation.html"><a href="optional-activity-more-on-log-transformation.html#log-transformation-on-both-x-and-y"><i class="fa fa-check"></i><b>4.2</b> log-transformation on both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="solution.html"><a href="solution.html"><i class="fa fa-check"></i><b>5</b> Solution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="solution.html"><a href="solution.html#task-1"><i class="fa fa-check"></i><b>5.1</b> Task 1</a></li>
+<li class="chapter" data-level="5.2" data-path="solution.html"><a href="solution.html#task-2"><i class="fa fa-check"></i><b>5.2</b> Task 2</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">S2Y Lab 5<br />
+Further examination on model fit and assumptions - ANOVA, residual plots and transformations</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-2-power-transformation-on-y" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Example 2: power transformation on <span class="math inline">\(y\)</span><a href="example-2-power-transformation-on-y.html#example-2-power-transformation-on-y" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The <code>stopping.csv</code> file contains 63 observations of cars. In these observations, two variables were recorded, namely the speed of cars when the brakes were applied (in mile per hour) and the stopping distance (in feet). Our question of interest is determine if there is a relationship between the speed of cars and the distance taken to stop.</p>
+<div id="exploratory-analysis-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Exploratory analysis<a href="example-2-power-transformation-on-y.html#exploratory-analysis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The scatterplot of distance (<span class="math inline">\(Y\)</span>) against the speed (<span class="math inline">\(x\)</span>) in Figure <a href="example-2-power-transformation-on-y.html#fig:stopping">3.1</a> (left) shows that the variables do not appear to be linearly related. A possible remedy is to transform <span class="math inline">\(Y\)</span> into <span class="math inline">\(\sqrt{Y}\)</span>. A new scatterplot, Figure <a href="example-2-power-transformation-on-y.html#fig:stopping">3.1</a> (right), is obtained by using the command:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopping"></span>
+<img src="main_files/figure-html/stopping-1.png" alt="Left: scatterplot of *Distance* versus *Speed*. Right: scatterplot of *square root of Distance* versus *Speed*." width="672" />
+<p class="caption">
+Figure 3.1: Left: scatterplot of <em>Distance</em> versus <em>Speed</em>. Right: scatterplot of <em>square root of Distance</em> versus <em>Speed</em>.
+</p>
+</div>
+<p>As the relationship now appears to be linear, we will build a simple linear regression model between <span class="math inline">\(\sqrt{\text{distance}}\)</span> (as new <span class="math inline">\(Y\)</span>) and speed as
+<span class="math display">\[Y_i = \alpha + \beta x_i + \epsilon_i,\quad \epsilon_i \sim N(0,\sigma^2), \quad i = 1,\ldots, 63,\]</span>
+which can be fitted by using the command:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="example-2-power-transformation-on-y.html#cb12-1" aria-hidden="true" tabindex="-1"></a>Model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">sqrt</span>(Distance) <span class="sc">~</span> Speed, <span class="at">data =</span> stopping)</span></code></pre></div>
+</div>
+<div id="assumption-checking-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Assumption checking<a href="example-2-power-transformation-on-y.html#assumption-checking-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Figure <a href="example-2-power-transformation-on-y.html#fig:stopping2">3.2</a> gives the residual plots after fitting a simple linear regression model to the original variables.</p>
+<p><img src="main_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopping2"></span>
+<img src="main_files/figure-html/stopping2-1.png" alt="Residual plots from fitting a simple linear regression model to original variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot." width="70%" />
+<p class="caption">
+Figure 3.2: Residual plots from fitting a simple linear regression model to original variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot.
+</p>
+</div>
+<p>The plots show the problems of curvature, non-constant variance and non-normality, indicating that the wrong type of model was used.</p>
+<p>Figure <a href="example-2-power-transformation-on-y.html#fig:stopping3">3.3</a> gives the residual plots after fitting a simple linear regression model to the transformed variables.</p>
+<p><img src="main_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopping3"></span>
+<img src="main_files/figure-html/stopping3-1.png" alt="Residual plots from fitting a simple linear regression model to transformed variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot." width="70%" />
+<p class="caption">
+Figure 3.3: Residual plots from fitting a simple linear regression model to transformed variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot.
+</p>
+</div>
+<p>The curvature disappears and the variance is almost constant across the range of fitted values. The normality assumption, however, remains to be invalid. This is not ideal but, on the positive side, the estimates of parameters will not be affected and hence we can still use the model to describe the relationship between variables and make predictions.</p>
+<div id="regression-output" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Regression output<a href="example-2-power-transformation-on-y.html#regression-output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-2-power-transformation-on-y.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Model2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sqrt(Distance) ~ Speed, data = stopping)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.4879 -0.5487  0.0098  0.5291  1.5545 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.918283   0.197406   4.652 1.82e-05 ***
+## Speed       0.252568   0.009246  27.317  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7193 on 61 degrees of freedom
+## Multiple R-squared:  0.9244, Adjusted R-squared:  0.9232 
+## F-statistic: 746.2 on 1 and 61 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>QUESTION</strong>:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Write down the equation of the fitted model.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>The regression equation is
+<span class="math display">\[\sqrt{\text{Distance}} = 0.918 + 0.253 \cdot \text{Speed} \]</span></p>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Based on the regression equation in (a), comment on the relationship between speed and square root of distance. In addition, pick a speed value yourself and predict the distance for this speed.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>The estimated parameter of <span class="math inline">\(0.253\)</span> suggests the square root of distance is positively linearly related to speed. As the speed increases by 1 MPH, the expected square root of distance increases by 0.253 feet.</p>
+<p>When predicting the value of the response, we back transform the variable as <span class="math inline">\(\text{Distance} = (0.918 + 0.253 \cdot \text{Speed})^2\)</span>. For example, if the speed is 20 MPH, the predicted distance is <span class="math inline">\((0.918+0.252\cdot 20)^2 \approx 35.64\)</span> feet.</p>
+<p>Note that our model is built only for speed ranging from 4 to 40. It would be unwise to make predictions outside this range in the absence of other information.</p>
+</div>
+
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="example-1-log-transformation-on-x.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="optional-activity-more-on-log-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

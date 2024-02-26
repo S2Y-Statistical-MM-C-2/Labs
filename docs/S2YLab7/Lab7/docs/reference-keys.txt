@@ -1,0 +1,13 @@
+welcome-to-s2y-lab-7
+introduction
+the-anova-table
+r2
+exam-style-questions
+eg-1
+constructing-an-anova-table
+testing-for-the-significance-of-the-regression-model
+computing-r2
+ex2
+constructing-an-anova-table-1
+testing-for-the-significance-of-the-regression-model-1
+computing-r2-1

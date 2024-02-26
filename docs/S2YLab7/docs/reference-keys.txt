@@ -1,0 +1,15 @@
+fig:unnamed-chunk-3
+fig:ANOVA
+welcome-to-s2y-lab-7
+introduction
+the-anova-table
+r2
+a-brief-reminder-from-lab-6-the-summary-function
+exam-style-questions
+eg-1
+constructing-an-anova-table
+testing-for-the-significance-of-the-regression-model
+computing-r2
+ex2
+constructing-an-anova-table-and-testing-for-the-significance-of-the-regression-model.
+computing-r2-1
