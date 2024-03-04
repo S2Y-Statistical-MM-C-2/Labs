@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 8 - Exploring Model Selection</title>
+  <meta name="description" content="Lab 8 - Exploring Model Selection" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 8 - Exploring Model Selection" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 8 - Exploring Model Selection" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="example-1-methods-for-variable-selection.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 8!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-model-selection"><i class="fa fa-check"></i><b>1.1</b> Introduction to model selection</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#stepwise-testing"><i class="fa fa-check"></i><b>1.2</b> Stepwise Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#backward-elimination"><i class="fa fa-check"></i>Backward Elimination</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#forward-selection"><i class="fa fa-check"></i>Forward Selection</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#stepwise-regression"><i class="fa fa-check"></i>Stepwise Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#criterion-based-approach"><i class="fa fa-check"></i><b>1.3</b> Criterion-based approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#adjusted-r2-r2_alpha"><i class="fa fa-check"></i>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mallows-c_p"><i class="fa fa-check"></i>Mallow's (<span class="math inline">\(C_p\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bayes-information-criterion-bic"><i class="fa fa-check"></i>Bayes Information Criterion (<span class="math inline">\(BIC\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#akaike-information-criterion-aic"><i class="fa fa-check"></i>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html"><i class="fa fa-check"></i><b>2</b> Example 1: Methods for Variable Selection</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#backward-elimination-and-forward-selection"><i class="fa fa-check"></i><b>2.1</b> Backward Elimination and Forward Selection</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#criterion-based-variable-selection"><i class="fa fa-check"></i><b>2.2</b> Criterion-Based Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-1-lake-water-quality.html"><a href="exercise-1-lake-water-quality.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: Lake water quality</a></li>
+<li class="chapter" data-level="4" data-path="exercise-2-fuel-efficiency.html"><a href="exercise-2-fuel-efficiency.html"><i class="fa fa-check"></i><b>4</b> Exercise 2: Fuel Efficiency</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 8 - Exploring Model Selection</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Lab 8 - Exploring Model Selection</h1>
+</div>
+<div id="welcome-to-lab-8" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Welcome to Lab 8!<a href="index.html#welcome-to-lab-8" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Intended Learning Outcomes:</p>
+<ul>
+<li>Select predictors using backward elimination, forward selection, and stepwise regression;</li>
+<li>Select predictors based on optimality criteria, such as <span class="math inline">\(R^2_a\)</span> (<span class="math inline">\(R^2\)</span> adjusted) and AIC.</li>
+</ul>
+<div id="introduction-to-model-selection" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction to model selection<a href="index.html#introduction-to-model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, we will consider model selection to refer to variable/predictor selection. The process of selection should answer the question: what are the best predictors in my model?
+Some might say, the more the merrier. However, models with too many predictors are challenging for many reasons: they can be difficult to manage, assess, compute, and interpret. In general, statisticians prefer parsimonious models: the simplest possible model that does the best job. But... how will we know what is the best model? We consider two basic approaches to model selection:</p>
+<p align="center">
+<ol style="list-style-type: decimal">
+<li><strong>Stepwise testing</strong>: strategies that compare models with small differences</li>
+<li><strong>Criterion-based approach</strong>: results in the model that optimises some measure of goodness-of-fit</li>
+</ol>
+</p>
+<p><br /></p>
+</div>
+<div id="stepwise-testing" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Stepwise Testing<a href="index.html#stepwise-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="backward-elimination" class="section level3 unnumbered hasAnchor">
+<h3>Backward Elimination<a href="index.html#backward-elimination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Backward elimination begins with a model containing all potential predictors and identifies the one with the largest <span class="math inline">\(p\)</span>-value. This can be done by looking at the <span class="math inline">\(p\)</span>-values for the <span class="math inline">\(t\)</span>-statistics of the <span class="math inline">\(\hat{\beta}_i, i = 1,...,p-1\)</span> coefficients using the function <code>summary()</code> or for the <span class="math inline">\(F\)</span>-statistics using the function <code>drop1()</code>. If the variable with the largest <span class="math inline">\(p\)</span>-value is above a predetermined critical value, <span class="math inline">\(\alpha_{\text{crit}}\)</span>, that variable is dropped. A model with the remaining variables is then fit and the procedure continues until all the <span class="math inline">\(p\)</span>-values for the remaining variables in the model are below <span class="math inline">\(\alpha_{\text{crit}}\)</span>. In summary, the process is</p>
+<p align="center">
+<div class="line-block">    <strong>Step 1: Fit model</strong>. For the first iteration, fit a model with all predictor variables. In later iterations, fit the latest selection of variables.</div>
+<div class="line-block">    <strong>Step 2: Evaluate</strong>. Are there variables with <span class="math inline">\(p\)</span>-values larger than <span class="math inline">\(\alpha_{\text{crit}}\)</span>? If so, remove the variable with the largest <span class="math inline">\(p\)</span>-value.</div>
+<div class="line-block">    <strong>Step 3: Re-fit the model</strong>. Repeat Steps 1 and 2 until no variables have <span class="math inline">\(p\)</span>-values larger than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.</div>
+</p>
+</div>
+<div id="forward-selection" class="section level3 unnumbered hasAnchor">
+<h3>Forward Selection<a href="index.html#forward-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+Forward selection starts with no variables in the model and then adds the variable that produces the smallest <span class="math inline">\(p\)</span>-value below <span class="math inline">\(\alpha_{\text{crit}}\)</span> when included in the model. This procedure is continued until no new predictors can be added. A summary of the steps is:
+<p align="center">
+<div class="line-block">    <strong>Step 1: Fit model</strong>. For the first iteration, fit a model with no predictor variables, only the intercept. In later iterations, fit the latest selection of variables.</div>
+<div class="line-block">    <strong>Step 2: Evaluate</strong>. Are there variables with <span class="math inline">\(p\)</span>-values smaller than <span class="math inline">\(\alpha_{\text{crit}}\)</span> if included in the model? If so, add the variable with the smallest <span class="math inline">\(p\)</span>-value.</div>
+<div class="line-block">    <strong>Step 3: Re-fit the model</strong>. Repeat Steps 1 and 2 until no variables have <span class="math inline">\(p\)</span>-values smaller than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.</div>
+</p>
+</div>
+<div id="stepwise-regression" class="section level3 unnumbered hasAnchor">
+<h3>Stepwise Regression<a href="index.html#stepwise-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a combination of backward elimination and forward selection. This technique
+allows variables that were either removed or added early in the procedure to reenter or exit
+the model later in the process. At each stage, a variable can be added or removed.
+Testing-based procedures are relatively straightforward to implement; however, they do
+have some drawbacks. One of the chief weaknesses of testing-based procedures is ending
+up with a model that is overly parsimonious.</p>
+<p><br /></p>
+</div>
+</div>
+<div id="criterion-based-approach" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Criterion-based approach<a href="index.html#criterion-based-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In essence, we look for the combination of variables that gives us the best goodness-of-fit (gof) metric. Different gofs focus on different things. Here, we will consider <span class="math inline">\(R^2_\alpha\)</span> (adjusted <span class="math inline">\(R^2\)</span>), Mallow's <span class="math inline">\(C_p\)</span>, Bayes Information Criterion (BIC) and Akaike Information Criterion (AIC). You are not expected to know the formula for Mallow's <span class="math inline">\(C_p\)</span>, BIC or AIC.</p>
+<div id="adjusted-r2-r2_alpha" class="section level3 unnumbered hasAnchor">
+<h3>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)<a href="index.html#adjusted-r2-r2_alpha" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is a measure of the variability of the data captured by the model, as <span class="math inline">\(R^2\)</span>. However, because more predictors will always increase with more variables, we adjust it to account for the added complexity. It is defined as</p>
+<p><span class="math display" id="eq:Radj">\[\begin{equation}
+R^2_{\alpha} = 1- \frac{SSE/(n-p)}{SST/(n-1)}.
+\tag{1.1}
+\end{equation}\]</span><br />
+In summary: <strong>The higher, the better.</strong></p>
+</div>
+<div id="mallows-c_p" class="section level3 unnumbered hasAnchor">
+<h3>Mallow's (<span class="math inline">\(C_p\)</span>)<a href="index.html#mallows-c_p" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is defined as</p>
+<p><span class="math display" id="eq:MallC">\[\begin{equation}
+C_p = \frac{SSE}{\hat{\sigma}^2} + 2p - n.
+\tag{1.2}
+\end{equation}\]</span>
+where <span class="math inline">\(\hat{\sigma}\)</span> is from the model with all predictors and <span class="math inline">\(SSE\)</span> is for the model with <span class="math inline">\(p\)</span> predictors. When all predictors are used in the model <span class="math inline">\(C_p = p\)</span>. It is helpful to plot <span class="math inline">\(C_p\)</span> against <span class="math inline">\(p\)</span>.<br />
+<br />
+</p>
+<p>In summary: <strong>Small <span class="math inline">\(p\)</span> and <span class="math inline">\(C_p \leq p\)</span>. The smaller, the better.</strong></p>
+</div>
+<div id="bayes-information-criterion-bic" class="section level3 unnumbered hasAnchor">
+<h3>Bayes Information Criterion (<span class="math inline">\(BIC\)</span>)<a href="index.html#bayes-information-criterion-bic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall that <span class="math inline">\(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})\)</span> is the log-likelihood function. The BIC is defined as</p>
+<p><span class="math display" id="eq:BIC">\[\begin{equation}
+BIC = -2\text{max}(\ln \mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + p \cdot \text{ln}(n) = n \text{ln}\frac{SSE}{n} +p\text{ln}(n) + \text{constant}.
+\tag{1.3}
+\end{equation}\]</span>
+The BIC uses the log-likelihood and penalises the number of parameters <span class="math inline">\(p\)</span> in the model.<br />
+<br />
+In summary: <strong>The smaller BIC, the better.</strong></p>
+</div>
+<div id="akaike-information-criterion-aic" class="section level3 unnumbered hasAnchor">
+<h3>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)<a href="index.html#akaike-information-criterion-aic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The AIC is defined as
+<span class="math display" id="eq:AIC">\[\begin{equation}
+AIC = -2\text{max}(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + 2p = n \text{ln}\frac{SSE}{n} + 2p + \text{constant}.
+\tag{1.4}
+\end{equation}\]</span>
+This is perhaps one of the most common goodness-of-fit metrics. It is good to know.<br />
+<br />
+In summary: <strong>The smaller AIC, the better.</strong></p>
+
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="example-1-methods-for-variable-selection.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

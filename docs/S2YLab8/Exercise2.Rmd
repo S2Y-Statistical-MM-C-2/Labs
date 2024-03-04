@@ -1,0 +1,57 @@
+# Exercise 2: Fuel Efficiency
+
+A sample of 86 cars had their city fuel economy measured in miles per gallon and for each car
+the size of the engine, horsepower (an indication of how powerful the engine is) and the length
+of the wheelbase (distance between the centres of the front and rear wheels) were also recorded.
+It is of interest to model city fuel economy using the engine size, horsepower and wheelbase as
+predictors.
+
+**Data:** `cars.csv`
+
+**Columns:**
+
+|                       **C1:** `cmpg` - thickness of inner wall during systole
+
+|                       **C2:** `EngineSize` - in litres
+
+|                       **C3:** `HorsePower` - in hp units
+
+|                       **C4:** `Wheelbase` - in inches
+
+
+Read in the data using: 
+
+```{r}
+cars <- read.csv("cars.csv")
+```
+
+<br>
+
+**Tasks**:
+
+
+(a) Use an appropriate exploratory analysis to explore the relationships between `cmpg`, `EngineSize`, `HorsePower` and `Wheelbase`. Is there anything that might concern you here?
+
+(b) Fit a multiple linear (`lm`) regression model to the data in order to predict `cmpg` from `EngineSize`, `HorsePower` and `Wheelbase`. Justify your model selection. Choose from backward selection, forward selection, or a criterion-based approach. 
+
+(c) Using an appropriate regression model, find and interpret a 95% confidence interval for the logarithm of city fuel economy of a future car with:
+
+<p align = "center">
+$\textbf{ EngineSize} = 2, \textbf{ HorsePower} = 65, \textbf{ Wheelbase} = 95$
+</p>
+
+`r hide ("Hint")`
+See Hint in Exercise 1.
+`r unhide ()`
+
+(d) Using the same regression model, find and interpret a 95% prediction interval for the logarithm of
+city fuel economy of a future car with:
+
+<p align = "center">
+$\textbf{ EngineSize} = 2, \textbf{ HorsePower} = 65, \textbf{ Wheelbase} = 95$
+</p>
+
+`r hide ("Hint")`
+See Hint in Exercise 1.
+`r unhide ()`
+

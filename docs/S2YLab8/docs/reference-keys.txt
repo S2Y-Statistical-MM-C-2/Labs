@@ -1,0 +1,13 @@
+eq:Radj
+eq:MallC
+eq:BIC
+eq:AIC
+welcome-to-lab-8
+introduction-to-model-selection
+stepwise-testing
+criterion-based-approach
+example-1-methods-for-variable-selection
+backward-elimination-and-forward-selection
+criterion-based-variable-selection
+exercise-1-lake-water-quality
+exercise-2-fuel-efficiency

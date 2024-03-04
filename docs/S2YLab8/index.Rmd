@@ -1,0 +1,130 @@
+---
+title: "Lab 8 - Exploring Model Selection"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "Example1.Rmd", "Exercise1.Rmd", "Exercise2.Rmd"]
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+library(VGAM)
+
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# Welcome to Lab 8!
+
+Intended Learning Outcomes:
+
+* Select predictors using backward elimination, forward selection, and stepwise regression;
+* Select predictors based on optimality criteria, such as $R^2_a$ ($R^2$ adjusted) and AIC.
+
+## Introduction to model selection
+In this lab, we will consider model selection to refer to variable/predictor selection. The process of selection should answer the question: what are the best predictors in my model?
+Some might say, the more the merrier. However, models with too many predictors are challenging for many reasons: they can be difficult to manage, assess, compute, and interpret. In general, statisticians prefer parsimonious models: the simplest possible model that does the best job. But... how will we know what is the best model? We consider two basic approaches to model selection: 
+
+<p align = "center">
+1. **Stepwise testing**: strategies that compare models with small differences
+2. **Criterion-based approach**: results in the model that optimises some measure of goodness-of-fit
+</p>
+
+<br />
+
+## Stepwise Testing
+
+### Backward Elimination {-}
+Backward elimination begins with a model containing all potential predictors and identifies the one with the largest $p$-value. This can be done by looking at the $p$-values for the $t$-statistics of the $\hat{\beta}_i, i = 1,...,p-1$ coefficients using the function `summary()` or for the $F$-statistics using the function `drop1()`. If the variable with the largest $p$-value is above a predetermined critical value, $\alpha_{\text{crit}}$, that variable is dropped. A model with the remaining variables is then fit and the procedure continues until all the $p$-values for the remaining variables in the model are below $\alpha_{\text{crit}}$. In summary, the process is
+
+<p align = "center">
+|     **Step 1: Fit model**. For the first iteration, fit a model with all predictor variables. In later iterations, fit the latest selection of variables. 
+
+|     **Step 2: Evaluate**. Are there variables with $p$-values larger than $\alpha_{\text{crit}}$? If so, remove the variable with the largest $p$-value. 
+
+|     **Step 3: Re-fit the model**. Repeat Steps 1 and 2 until no variables have $p$-values larger than $\alpha_{\text{crit}}$. 
+</p>
+
+### Forward Selection {-}
+Forward selection starts with no variables in the model and then adds the variable that produces the smallest $p$-value below $\alpha_{\text{crit}}$ when included in the model. This procedure is continued until no new predictors can be added. A summary of the steps is:
+<p align = "center">
+|     **Step 1: Fit model**. For the first iteration, fit a model with no predictor variables, only the intercept. In later iterations, fit the latest selection of variables. 
+
+|     **Step 2: Evaluate**. Are there variables with $p$-values smaller than $\alpha_{\text{crit}}$ if included in the model? If so, add the variable with the smallest $p$-value. 
+
+|     **Step 3: Re-fit the model**. Repeat Steps 1 and 2 until no variables have $p$-values smaller than $\alpha_{\text{crit}}$. 
+</p>
+
+### Stepwise Regression {-}
+This is a combination of backward elimination and forward selection. This technique
+allows variables that were either removed or added early in the procedure to reenter or exit
+the model later in the process. At each stage, a variable can be added or removed.
+Testing-based procedures are relatively straightforward to implement; however, they do
+have some drawbacks. One of the chief weaknesses of testing-based procedures is ending
+up with a model that is overly parsimonious.
+
+<br />
+
+## Criterion-based approach
+In essence, we look for the combination of variables that gives us the best goodness-of-fit (gof) metric. Different gofs focus on different things. Here, we will consider $R^2_\alpha$ (adjusted $R^2$), Mallow's $C_p$, Bayes Information Criterion (BIC) and Akaike Information Criterion (AIC). You are not expected to know the formula for Mallow's $C_p$, BIC or AIC. 
+
+###  Adjusted $R^2$ ($R^2_\alpha$) {-}
+It is a measure of the variability of the data captured by the model, as $R^2$. However, because more predictors will always increase with more variables, we adjust it to account for the added complexity. It is defined as 
+
+\begin{equation}
+R^2_{\alpha} = 1- \frac{SSE/(n-p)}{SST/(n-1)}.
+(\#eq:Radj)
+\end{equation}
+\
+In summary: **The higher, the better.**
+
+### Mallow's ($C_p$) {-}
+It is defined as 
+
+\begin{equation}
+C_p = \frac{SSE}{\hat{\sigma}^2} + 2p - n.
+(\#eq:MallC)
+\end{equation}
+where $\hat{\sigma}$ is from the model with all predictors and $SSE$ is for the model with $p$ predictors. When all predictors are used in the model $C_p = p$. It is helpful to plot $C_p$ against $p$.\
+\
+
+In summary: **Small $p$ and $C_p \leq p$. The smaller, the better.**
+
+### Bayes Information Criterion ($BIC$) {-}
+Recall that $\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})$ is the log-likelihood function. The BIC is defined as 
+
+\begin{equation}
+BIC = -2\text{max}(\ln \mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + p \cdot \text{ln}(n) = n \text{ln}\frac{SSE}{n} +p\text{ln}(n) + \text{constant}. 
+(\#eq:BIC)
+\end{equation}
+The BIC uses the log-likelihood and penalises the number of parameters $p$ in the model. \
+\
+In summary: **The smaller BIC, the better.**
+
+
+### Akaike Information Criterion ($AIC$) {-}
+The AIC is defined as
+\begin{equation}
+AIC = -2\text{max}(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + 2p = n \text{ln}\frac{SSE}{n} + 2p + \text{constant}. 
+(\#eq:AIC)
+\end{equation}
+This is perhaps one of the most common goodness-of-fit metrics. It is good to know. \
+\
+In summary: **The smaller AIC, the better.**
+
