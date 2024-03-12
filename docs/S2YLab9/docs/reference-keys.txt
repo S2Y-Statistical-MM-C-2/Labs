@@ -3,8 +3,7 @@ fig:reciprocal
 fig:quadratic
 fig:log1
 fig:log2
-fig:stopping-1
-fig:stopping-2
+fig:stopping
 fig:stopping2
 fig:stopping3
 fig:unnamed-chunk-36

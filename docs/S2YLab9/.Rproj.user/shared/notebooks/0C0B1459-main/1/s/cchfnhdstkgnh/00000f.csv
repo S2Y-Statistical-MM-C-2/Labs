@@ -1,0 +1,3 @@
+"0","knitr::write_bib(c("
+"0","  .packages(), 'bookdown', 'knitr', 'rmarkdown'"
+"0","), 'packages.bib')"
