@@ -203,11 +203,11 @@ Hint
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="exercise-1-identify-the-appropriate-transformation.html#cb21-1" tabindex="-1"></a><span class="co"># Fit and plot model</span></span>
 <span id="cb21-2"><a href="exercise-1-identify-the-appropriate-transformation.html#cb21-2" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> SIMDATAXT)</span>
 <span id="cb21-3"><a href="exercise-1-identify-the-appropriate-transformation.html#cb21-3" tabindex="-1"></a><span class="fu">plot</span>(model1,<span class="at">which=</span><span class="fu">c</span>(<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-26-2.png" width="672" />
-The relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x_1\)</span> is curved and convex.</p>
+<p><img src="main_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p>The relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x_1\)</span> is curved and convex.</p>
 </div>
-<p>Apply the transformation you think is necessary and fit a model. 
-From the figures, the appropriate transformation of <span class="math inline">\(x_1\)</span> is the <select class='webex-select'><option value='blank'></option><option value='answer'>square root</option><option value=''>quadratic</option><option value=''>logarithmic</option><option value=''>reciprocal</option><option value=''>none</option></select> .</p>
+<p>Apply the transformation you think is necessary and fit a model.</p>
+<p>From the figures, the appropriate transformation of <span class="math inline">\(x_1\)</span> is the <select class='webex-select'><option value='blank'></option><option value='answer'>square root</option><option value=''>quadratic</option><option value=''>logarithmic</option><option value=''>reciprocal</option><option value=''>none</option></select> .</p>
 <div class="webex-solution">
 <button>
 Solution
@@ -221,7 +221,6 @@ Solution
 <span id="cb22-7"><a href="exercise-1-identify-the-appropriate-transformation.html#cb22-7" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">sqrt</span>(x1), <span class="at">data =</span> SIMDATAXT)</span>
 <span id="cb22-8"><a href="exercise-1-identify-the-appropriate-transformation.html#cb22-8" tabindex="-1"></a><span class="fu">plot</span>(model2,<span class="at">which=</span><span class="fu">c</span>(<span class="dv">1</span>)) <span class="co"># Much better!</span></span></code></pre></div>
 </div>
-<!-- From all the figuresof $x_1$ against $Y$ to analize the relationship between predictor and response. Are transformations necessary? -->
 <p><strong>Transform <span class="math inline">\(x_2\)</span></strong>
 The second predictor can be evaluated in the same way as the first. You can begin by examining the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x_2\)</span> and the relationship between the two in a simple linear model using scatterplots.</p>
 <div class="webex-solution">
@@ -234,11 +233,11 @@ Hint
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="exercise-1-identify-the-appropriate-transformation.html#cb24-1" tabindex="-1"></a><span class="co"># Fit and plot model</span></span>
 <span id="cb24-2"><a href="exercise-1-identify-the-appropriate-transformation.html#cb24-2" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x2, <span class="at">data =</span> SIMDATAXT)</span>
 <span id="cb24-3"><a href="exercise-1-identify-the-appropriate-transformation.html#cb24-3" tabindex="-1"></a><span class="fu">plot</span>(model3,<span class="at">which=</span><span class="fu">c</span>(<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-28-2.png" width="672" />
-The relationship seems both curved and concave.</p>
+<p><img src="main_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+<p>The relationship seems both curved and concave.</p>
 </div>
-<p>Apply the transformation you think is necessary and fit a model.<br />
-From the figures, the appropriate transformation of <span class="math inline">\(x_2\)</span> is <select class='webex-select'><option value='blank'></option><option value='answer'>quadratic</option><option value=''>square root</option><option value=''>logarithmic</option><option value=''>reciprocal</option><option value=''>none</option></select>.</p>
+<p>Apply the transformation you think is necessary and fit a model.</p>
+<p>From the figures, the appropriate transformation of <span class="math inline">\(x_2\)</span> is <select class='webex-select'><option value='blank'></option><option value='answer'>quadratic</option><option value=''>square root</option><option value=''>logarithmic</option><option value=''>reciprocal</option><option value=''>none</option></select>.</p>
 <div class="webex-solution">
 <button>
 Solution
@@ -264,11 +263,11 @@ Hint
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="exercise-1-identify-the-appropriate-transformation.html#cb27-1" tabindex="-1"></a><span class="co"># Fit and plot model</span></span>
 <span id="cb27-2"><a href="exercise-1-identify-the-appropriate-transformation.html#cb27-2" tabindex="-1"></a>model5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x3, <span class="at">data =</span> SIMDATAXT)</span>
 <span id="cb27-3"><a href="exercise-1-identify-the-appropriate-transformation.html#cb27-3" tabindex="-1"></a><span class="fu">plot</span>(model5,<span class="at">which=</span><span class="fu">c</span>(<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-30-2.png" width="672" />
-The relationship seems curved and concave.</p>
+<p><img src="main_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
+<p>The relationship seems curved and concave.</p>
 </div>
-<p>Apply the transformation you think is necessary and fit a model.<br />
-The figures suggest a <select class='webex-select'><option value='blank'></option><option value='answer'>reciprocal</option><option value=''>square root</option><option value=''>logarithmic</option><option value=''>quadratic</option><option value=''>none</option></select> transformation for <span class="math inline">\(x_3\)</span>.</p>
+<p>Apply the transformation you think is necessary and fit a model.</p>
+<p>The figures suggest a <select class='webex-select'><option value='blank'></option><option value='answer'>reciprocal</option><option value=''>square root</option><option value=''>logarithmic</option><option value=''>quadratic</option><option value=''>none</option></select> transformation for <span class="math inline">\(x_3\)</span>.</p>
 <div class="webex-solution">
 <button>
 Solution
