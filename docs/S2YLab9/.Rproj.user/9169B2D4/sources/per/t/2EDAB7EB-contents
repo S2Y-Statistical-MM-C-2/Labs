@@ -1,0 +1,192 @@
+# Exercise 1: Plant Height Hypothesis Test
+
+Using the data frame `Fertilize` in the package `PASWR`, which contains the height in inches for plants for cross fertilization and self-fertilization, test if the data suggest that the average height of self-fertilized plants is more than 17 inches. (Use \(\alpha = 0.05\)).
+
+**1) a) Does this data fit the required assumption of normality to perform a hypothesis test?**
+
+`r hide()`
+
+1 a) We can verify the normality assumption of the data using exploratory data analysis (`EDA()`).
+
+```{r, eval=TRUE, echo=TRUE}
+library(PASWR)
+FERTILIZE <- Fertilize
+EDA(FERTILIZE$self)
+
+```
+
+The results from applying the function `EDA()` to self fertilized plants suggest it is not unreasonable to assume that plant height for self fertilized plants follows a normal distribution. Now, proceed with the five-step procedure.
+`r unhide()`
+
+
+
+**1) b) Step 1 - select the correct hypothesis:**
+
+
+To test whether the height of self fertilized plants is greater than \(17\) inches, the correct null and alternative hypotheses are:
+
+\begin{align} 
+1&. \quad H_0 : \mu = 17 \quad \text{verses} \quad H_1 : \mu < 17\\
+O&R\\
+2&. \quad H_0 : \mu = 17 \quad \text{verses} \quad H_1 : \mu > 17 \\
+O&R\\
+3&. \quad H_0 : \mu = 17 \quad \text{verses} \quad H_1 : \mu \neq 17
+\end{align}
+```{r, echo = FALSE}
+mcqhyp <- c("1",answer="2","3")
+```
+`r mcq(mcqhyp)`
+
+**1) c) Step 2 - Choose and calculate the test statistic (before standardisation).**
+
+The test statistic \(\bar{X}=\)
+
+
+`r hide()`
+
+1) c) The test statistic chosen is \(\bar{X}\) because \(E[\bar{X}] = \mu\).
+
+```{r, eval=TRUE, echo=TRUE}
+xbar <- mean(FERTILIZE$self)
+xbar
+```
+The value of this test statistic is \(\bar{x} = \frac{\sum^n_{i=1}x_i}{n} = 17.575\)
+
+`r unhide()`
+
+
+**1) d) Step 3a - Finding rejection region \(t_{obs} > t_{1-0.05; df}\).**
+
+i) Find the degrees of freedom.
+
+ii) Find the critical value \(t_{1-0.05; df} =\)
+
+`r hide()`
+1) d) i) Because the standardized test statistic is distributed \(t_{14}\) and \(H_1\) is a upper one-sided hypothesis, the rejection region is the \(t_{obs} > t_{1-0.05; 14} = t_{0.95; 14}\)
+
+1) d) ii) From the statistical tables, the t-value that corresponds to our significance level (critical value), \( t_{0.95; 14} = 1.7613\). Remember this is positive because we are discussing the upper tail of the t-distribution.
+
+This same t-value can be found using R:
+```{r, eval=TRUE, echo=TRUE}
+RR <- qt(0.95, df = 14)
+RR
+```
+`r unhide()`
+
+
+
+**1) e) Step 3b - Finding the standardisied test statistic and p-value for our data.**
+
+The standardized test statistic under the assumption that \(H_0\) is true and its distribution are \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{df}\).
+
+i) Calculate the standardisied test statistic.
+
+`r hide()`
+1) e) i) Our standardised test statistic =  \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = \frac{17.575−17}{S/\sqrt{n}}\).
+From our data set in R we can obtain \(S\) and \(n\):
+
+```{r, eval=TRUE, eval=TRUE}
+S <- sd(FERTILIZE$self)
+S
+
+n <- length(FERTILIZE$self)
+n
+```
+
+This gives our standardised test statistic \(t_{obs}=\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = 1.0854\):
+
+```{r, eval=TRUE, echo=TRUE}
+sta.test.stat <- (17.575-17)/(S/sqrt(n))
+sta.test.stat
+```
+**OR**
+
+The standardised test statistic can be found using:
+```{r}
+Test <- t.test(FERTILIZE$self, mu = 17, alternative = "greater")
+Test
+```
+
+
+`r unhide()`
+
+
+ii) Calculate the p-value that corresponds to our standardised test statistic.
+
+`r hide()`
+
+1) e) ii)
+```{r, eval=TRUE, echo=TRUE}
+pvalue <- 1-pt(1.085437, df=14)
+pvalue
+```
+
+Graphically this could be shown:
+```{r, eval=TRUE, echo=FALSE}
+library(latex2exp)
+
+alpha <- 0.05
+critical_value <- -1*qt(alpha, df = Inf)
+x <- seq(-4, 4, length.out = 1000)
+t_dist <- data.frame(x = x, y = dt(x, df = Inf))
+
+# Create t distribution plot and alpha below in the funtion is transparency of the region
+t_plot <- ggplot(t_dist, aes(x)) +
+  geom_line(aes(y = y), size = 1) +
+  geom_area(data = subset(t_dist, x > critical_value), aes(y = y), fill = "red", alpha=0.2) +
+  geom_area(data = subset(t_dist, x > sta.test.stat), aes(y = y), fill = "blue", alpha=0.1) +
+  labs(title = TeX("T Distribution with Rejection Region for One-tail test with $\\alpha = 0.05$"),
+       x = "T-Score",
+       y = "Probability Density") +
+annotate("text", x = critical_value + 0.2, y = 0.02, label = TeX("$\\alpha = 0.05$"), size = 2.5, colour="red") +
+annotate("text", x = 1.9, y = -0.02, label = TeX("1.7613"), vjust = 0.4, size=3) +
+annotate("text", x = sta.test.stat-0.5, y = 0.1, label = TeX("$\\p = 0.1480328$"), size = 2.5, colour="blue") +
+annotate("text", x = 0.8, y = -0.02, label = "1.0854", vjust = 0.4, size=3) +
+theme_minimal()
+
+# Display the plot
+print(t_plot)
+
+```
+Our standardised test statistic is greater than  the critical value and outside our rejection region. Hence our p-value is greater than \(\alpha\)
+
+
+**OR**
+
+The p-value can be found using:
+```{r}
+Test <- t.test(FERTILIZE$self, mu = 17, alternative = "greater")
+Test
+```
+`r unhide()`
+
+
+**1) f) Step 4 - Statistical Conclusion**
+
+Do we reject our null hypothesis?
+
+`r hide()`
+
+1) f) 
+I. From the rejection region, we fail to reject \(H_0\) because the standardised test statistic is less than the critical value and hence outside the rejection region i.e \(t_{obs} = 1.0854 < 1.7613\).
+
+OR
+
+II. From the p-value, we fail to reject \(H_0\) because the p-value\( 0.1480 > 0.05\).
+
+
+Whichever method we use, we fail to reject \(H_0\).
+
+`r unhide()`
+
+**1) g) Step 5 - English Conclusion**
+
+Is there statistical evidence to suggest a mean greater than 17?
+
+```{r, echo = FALSE}
+mcqconc <- c("There is sufficient evidence to suggest the average height of self-fertilized plants is more than 17 inches", "We cannot conclude if there is sufficient evidence to suggest the average height of self-fertilized plants is more than 17 inches.",
+answer = "There is not sufficient evidence to suggest the the average height of self-fertilized plants is more than 17 inches.",
+"There is sufficient evidence to suggest the average height of self-fertilized plants is less than 17 inches.")
+```
+`r longmcq(mcqconc)`
+

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 9 - Transformations and Assumptions</title>
+  <meta name="description" content="Lab 9 - Transformations and Assumptions" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 9 - Transformations and Assumptions" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 9 - Transformations and Assumptions" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="example-1-power-transformation-on-y.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 9!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-variable-transformations"><i class="fa fa-check"></i><b>1.1</b> Introduction to variable transformations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#root"><i class="fa fa-check"></i><b>1.2</b> Root</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#reciprocal"><i class="fa fa-check"></i><b>1.3</b> Reciprocal</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#quadratic"><i class="fa fa-check"></i><b>1.4</b> Quadratic</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#logarithmic"><i class="fa fa-check"></i><b>1.5</b> Logarithmic</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1-power-transformation-on-y.html"><a href="example-1-power-transformation-on-y.html"><i class="fa fa-check"></i><b>2</b> Example 1: Power transformation on <span class="math inline">\(Y\)</span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1-power-transformation-on-y.html"><a href="example-1-power-transformation-on-y.html#exploratory-analysis-and-model-fitting"><i class="fa fa-check"></i><b>2.1</b> Exploratory analysis and model fitting</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-power-transformation-on-y.html"><a href="example-1-power-transformation-on-y.html#assumption-checking-and-interpretation"><i class="fa fa-check"></i><b>2.2</b> Assumption checking and Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="example-2-animal-brains-and-double-transformations.html"><a href="example-2-animal-brains-and-double-transformations.html"><i class="fa fa-check"></i><b>3</b> Example 2: Animal brains and double transformations</a></li>
+<li class="chapter" data-level="4" data-path="exercise-1-identify-the-appropriate-transformation.html"><a href="exercise-1-identify-the-appropriate-transformation.html"><i class="fa fa-check"></i><b>4</b> Exercise 1: Identify the appropriate transformation</a></li>
+<li class="chapter" data-level="5" data-path="exercise-2-log-transformation-on-x.html"><a href="exercise-2-log-transformation-on-x.html"><i class="fa fa-check"></i><b>5</b> Exercise 2: Log-transformation on <span class="math inline">\(x\)</span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exercise-2-log-transformation-on-x.html"><a href="exercise-2-log-transformation-on-x.html#statistical-analysis"><i class="fa fa-check"></i><b>5.1</b> Statistical analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="exercise-2-log-transformation-on-x.html"><a href="exercise-2-log-transformation-on-x.html#assumption-checking"><i class="fa fa-check"></i><b>5.2</b> Assumption checking</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 9 - Transformations and Assumptions</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Lab 9 - Transformations and Assumptions</h1>
+</div>
+<div id="welcome-to-lab-9" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Welcome to Lab 9!<a href="index.html#welcome-to-lab-9" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Intended Learning Outcomes:</p>
+<ul>
+<li>Produce residual plots and assess the assumptions of a linear model.</li>
+<li>Fit linear models with transformed variables.</li>
+</ul>
+<div id="introduction-to-variable-transformations" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction to variable transformations<a href="index.html#introduction-to-variable-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The need to transform variables may arise during the exploratory analysis when you realize that your predictor(s) do not have a linear relationship with the response, or during assumption checking when the residuals do not meet assumptions. In either case, a transformation of the response variable, the predictors, or both response and predictors may be necessary.</p>
+<p>Once the model has been fitted using a transformation, the results will be given in the transformed scale. It is still possible to report the findings in the original scale, but this requires a back-transformation. How do I back-transform my data, you ask? Simply apply the inverse operation (inverse of the transformation) to your predictions.</p>
+<p>In this lab, we will explore some simple transformations and how to tell if you need them. All examples are a simple linear regression where <span class="math inline">\(Y = \beta_0 + \beta_1 x + \epsilon\)</span>, where <span class="math inline">\(Y\)</span> is the response and <span class="math inline">\(x\)</span> is the predictor.</p>
+</div>
+<div id="root" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Root<a href="index.html#root" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A root transformation is one where you take a root of the variable. For example, you may take the square or cubic root. Recognizing the need for the transformation is important. Here is a small simulation to give you a taste for a predictor in need of a square root transformation looks like. In this example, <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 2\)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
+<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.5</span>), <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Square-root Transformation&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:root"></span>
+<img src="main_files/figure-html/root-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the square-root transformation of $x$" width="672" />
+<p class="caption">
+Figure 1.1: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the square-root transformation of <span class="math inline">\(x\)</span>
+</p>
+</div>
+<p>As you can see in the plots, the transformation may be required if the predictor displays a convex curved relationship with the response. If you think this is you, you can apply the transformation in the model using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
+<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
+<span id="cb2-4"><a href="index.html#cb2-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.5</span>))</span></code></pre></div>
+</div>
+<div id="reciprocal" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Reciprocal<a href="index.html#reciprocal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The reciprocal transformation of <span class="math inline">\(x\)</span> is the same as saying <span class="math inline">\(\frac{1}{x}\)</span> or <span class="math inline">\(x^{-1}\)</span>. We performed another simulation to show you what data in need of the reciprocal transformation look like. Here, <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta1 = 1.5\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
+<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^-</span><span class="dv">1</span>), <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Reciprocal Transformation&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:reciprocal"></span>
+<img src="main_files/figure-html/reciprocal-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the reciprocal transformation of $x$" width="672" />
+<p class="caption">
+Figure 1.2: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the reciprocal transformation of <span class="math inline">\(x\)</span>
+</p>
+</div>
+<p>The figure shows a concave curve that slopes downward. The response is largest when <span class="math inline">\(x \leq 1\)</span> because <span class="math inline">\(\frac{1}{x} &gt; 1\)</span> when <span class="math inline">\(x &lt; 1\)</span>. Using the same logic, we understand that large values of <span class="math inline">\(x\)</span> result in smaller values of <span class="math inline">\(Y\)</span>.</p>
+<p>You can fit it in a model using:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
+<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb4-3"><a href="index.html#cb4-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
+<span id="cb4-4"><a href="index.html#cb4-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^-</span><span class="dv">1</span>))</span></code></pre></div>
+</div>
+<div id="quadratic" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Quadratic<a href="index.html#quadratic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The quadratic transformation of <span class="math inline">\(x\)</span> is the same as saying <span class="math inline">\(x^2\)</span>. It is the inverse of the square-root transformation. It it a subset of the power transformations. In more general terms, it is <span class="math inline">\(x^a\)</span>, where <span class="math inline">\(a\)</span> is anything. The reciprocal can also be thought of in this same category.</p>
+<p>But what does it look like? The figures below are a simulated example using <span class="math inline">\(\beta_0=1\)</span> and <span class="math inline">\(\beta_1=2\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb5-3"><a href="index.html#cb5-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
+<span id="cb5-4"><a href="index.html#cb5-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb5-5"><a href="index.html#cb5-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Quadratic Transformation&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:quadratic"></span>
+<img src="main_files/figure-html/quadratic-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of $x$" width="672" />
+<p class="caption">
+Figure 1.3: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of <span class="math inline">\(x\)</span>
+</p>
+</div>
+<p>As you can see from the plots, the predictor has a concave relationship with the response previous to the quadratic transformation. You can use it in a model by using the code:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
+<span id="cb6-2"><a href="index.html#cb6-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb6-3"><a href="index.html#cb6-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
+<span id="cb6-4"><a href="index.html#cb6-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+</div>
+<div id="logarithmic" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Logarithmic<a href="index.html#logarithmic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Last but not least, the logarithmic transformation is equivalent to saying <span class="math inline">\(\ln(x)\)</span>, which in <code>R</code> is the same as <code>log(x)</code>. Here is another simulation that shows the original and transformed predictor when the transformation should be logarithmic.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="index.html#cb7-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb7-3"><a href="index.html#cb7-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
+<span id="cb7-4"><a href="index.html#cb7-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb7-5"><a href="index.html#cb7-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Log Transformation&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:log1"></span>
+<img src="main_files/figure-html/log1-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$" width="672" />
+<p class="caption">
+Figure 1.4: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of <span class="math inline">\(x\)</span>
+</p>
+</div>
+<p>Fitting the transformation in <code>R</code> is straight forward as in the previous transformations. You can use:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
+<span id="cb8-2"><a href="index.html#cb8-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb8-3"><a href="index.html#cb8-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
+<span id="cb8-4"><a href="index.html#cb8-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">log</span>(x))</span></code></pre></div>
+<p>Another useful feature of the logarithmic transformation is that it can help when applied to the response variable too so that both predictor and response are log-transformed. In the original scale, the data can look like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb9-2"><a href="index.html#cb9-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb9-3"><a href="index.html#cb9-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
+<span id="cb9-4"><a href="index.html#cb9-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(Y)<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb9-5"><a href="index.html#cb9-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Log Transformation&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:log2"></span>
+<img src="main_files/figure-html/log2-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$ and $Y$" width="672" />
+<p class="caption">
+Figure 1.5: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of <span class="math inline">\(x\)</span> and <span class="math inline">\(Y\)</span>
+</p>
+</div>
+<p>The main thing to note in these plots is the increasing variance the further away from the origin. Sort of like a "fanning" effect. The transformation is easy to fit using:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
+<span id="cb10-2"><a href="index.html#cb10-2" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(y) <span class="sc">~</span> <span class="fu">log</span>(x))</span></code></pre></div>
+<p>You will not need to know this for the exam, but as a special feature, models that use logarithmic transformations have approximate interpretations without the need for back-transformation. When <span class="math inline">\(x\)</span> has been transformed with a natural log transformation, the change in the <span class="math inline">\(\ln(x)\)</span> is roughly equal to the change in <span class="math inline">\(x\)</span> provided the changes in <span class="math inline">\(x\)</span> are small. Consider the figure below, which graphically illustrates how changing the <span class="math inline">\(x\)</span> values 3 and 6 by 10% corresponds to an approximate increase in <span class="math inline">\(\ln(x)\)</span> of about 10%.</p>
+<center>
+<div class="float">
+<img src="Images/fig_logs.png" height="300" alt="Small change in x gives a similar small change in \ln(x)" />
+<div class="figcaption">Small change in <span class="math inline">\(x\)</span> gives a similar small change in <span class="math inline">\(\ln(x)\)</span></div>
+</div>
+</center>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="example-1-power-transformation-on-y.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

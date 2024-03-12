@@ -1,0 +1,5 @@
+"0","plot(sqrt(Distance)~Speed, data=stopping,"
+"0","     xlab=""Speed (in MPH)"", ylab=""Square root of distance (in feet)"", "
+"0","     pch = 16,""Transform Distance"")"
+"2","Error in plot.xy(xy, type, ...) : invalid plot type 'T'
+"
