@@ -47,7 +47,7 @@ model.sqrt <- lm(I(Distance^0.5) ~ Speed, data = stopping)
 ```
 
 
-## Assumption checking and Interpretation
+## Assumption checking and interpretation
 Figure \@ref(fig:stopping2) gives the residual plots after fitting a simple linear regression model to the original  variables. 
 
 ```{r echo=FALSE, fig.align='center', out.width="70%"}
