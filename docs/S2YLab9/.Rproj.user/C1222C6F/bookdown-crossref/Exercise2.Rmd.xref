@@ -1,7 +1,0 @@
-h1:exercise-2-log-transformation-on-x Exercise 2: Log-transformation on 
-fig:logX Scatterplot of female life expectancy versus log(number of people per physician).
-h2:statistical-analysis Statistical analysis
-h2:assumption-checking Assumption checking
-fig:ResVsFitted Standardised residuals versus fitted values plot from fitting a simple linear regression model to transformed variables.
-fig:QQ-plot Normal probability (Q-Q) plot from fitting a simple linear regression model to transformed variables.
-
