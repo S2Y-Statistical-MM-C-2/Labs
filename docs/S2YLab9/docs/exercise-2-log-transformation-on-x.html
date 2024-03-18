@@ -181,11 +181,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="line-block">                      <strong>C1:</strong> <code>PPP</code> - umber of people per physician</div>
 <div class="line-block">                      <strong>C2:</strong> <code>FLE</code> - female life expectancy</div>
 <p>Read the data using</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="exercise-2-log-transformation-on-x.html#cb31-1" tabindex="-1"></a>life <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;LifeExp.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="exercise-2-log-transformation-on-x.html#cb33-1" tabindex="-1"></a>life <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;LifeExp.csv&quot;</span>)</span></code></pre></div>
 <p>Firstly, produce a scatterplot of FLE against PPP.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="exercise-2-log-transformation-on-x.html#cb32-1" tabindex="-1"></a><span class="fu">plot</span>(FLE <span class="sc">~</span> PPP, <span class="at">data =</span> life)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
-<img src="main_files/figure-html/unnamed-chunk-36-1.png" alt="Scatterplot of female life expectancy versus the number of people per physician." width="70%" />
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="exercise-2-log-transformation-on-x.html#cb34-1" tabindex="-1"></a><span class="fu">plot</span>(FLE <span class="sc">~</span> PPP, <span class="at">data =</span> life)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-38"></span>
+<img src="main_files/figure-html/unnamed-chunk-38-1.png" alt="Scatterplot of female life expectancy versus the number of people per physician." width="70%" />
 <p class="caption">
 Figure 5.1: Scatterplot of female life expectancy versus the number of people per physician.
 </p>
@@ -193,7 +193,7 @@ Figure 5.1: Scatterplot of female life expectancy versus the number of people pe
 <!-- We can say that the relationship between female life expectancy and the number of people per physician? Do we need to consider transformations? A transformation of the predictor variable(s) may be useful if there is a non-linear monotonic (i.e. entirely non-increasing or entirely non-decreasing) trend in the data, and non-linearity is the only problem. -->
 <!-- In other words, assumptions on the error term (i.e. independence, zero-mean, constant variance, normality) should be met. -->
 <p>As the relationship appears to be non-linear, we apply log-transformation to the predictor variable. Transforming the values of <span class="math inline">\(x\)</span> might be the first thing to try if there is a non-linear monotonic (i.e. entirely non-increasing or entirely non-decreasing) trend in the data, and non-linearity is the only problem. In other words, model assumptions (i.e. independence, zero-mean, constant variance, normality) should be met. The scatterplot of female life expectancy against <span class="math inline">\(\log\)</span>(PPP) is produced using:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="exercise-2-log-transformation-on-x.html#cb33-1" tabindex="-1"></a><span class="fu">plot</span>(FLE <span class="sc">~</span> <span class="fu">log</span>(PPP), <span class="at">data =</span> life, <span class="at">xlab =</span> <span class="st">&quot;log(PPP)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="exercise-2-log-transformation-on-x.html#cb35-1" tabindex="-1"></a><span class="fu">plot</span>(FLE <span class="sc">~</span> <span class="fu">log</span>(PPP), <span class="at">data =</span> life, <span class="at">xlab =</span> <span class="st">&quot;log(PPP)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:logX"></span>
 <img src="main_files/figure-html/logX-1.png" alt="Scatterplot of female life expectancy versus log(number of people per physician)." width="70%" />
 <p class="caption">
@@ -205,9 +205,9 @@ Figure 5.2: Scatterplot of female life expectancy versus log(number of people pe
 <div id="statistical-analysis" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Statistical analysis<a href="exercise-2-log-transformation-on-x.html#statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A simple linear regression model can be fitted by using the <code>lm</code> command:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="exercise-2-log-transformation-on-x.html#cb34-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(FLE <span class="sc">~</span> <span class="fu">log</span>(PPP), <span class="at">data =</span> life)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="exercise-2-log-transformation-on-x.html#cb36-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(FLE <span class="sc">~</span> <span class="fu">log</span>(PPP), <span class="at">data =</span> life)</span></code></pre></div>
 <p>The summary table and ANOVA table of this model can be produced by using <code>summary()</code> and <code>anova()</code>:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="exercise-2-log-transformation-on-x.html#cb35-1" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="exercise-2-log-transformation-on-x.html#cb37-1" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = FLE ~ log(PPP), data = life)
@@ -226,7 +226,7 @@ Figure 5.2: Scatterplot of female life expectancy versus log(number of people pe
 ## Residual standard error: 4.286 on 35 degrees of freedom
 ## Multiple R-squared:  0.7724, Adjusted R-squared:  0.7659 
 ## F-statistic: 118.8 on 1 and 35 DF,  p-value: 8.484e-13</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="exercise-2-log-transformation-on-x.html#cb37-1" tabindex="-1"></a><span class="fu">anova</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="exercise-2-log-transformation-on-x.html#cb39-1" tabindex="-1"></a><span class="fu">anova</span>(model1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: FLE
@@ -239,18 +239,18 @@ Figure 5.2: Scatterplot of female life expectancy versus log(number of people pe
 <div id="assumption-checking" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Assumption checking<a href="exercise-2-log-transformation-on-x.html#assumption-checking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As seen in previous examples and exercises, model assumptions can be assessed graphically by producing a plot of the residuals versus the fitted values and a normal probability plot (Q-Q plot) of the residuals. It is important to check the assumptions of your model are met before using it.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="exercise-2-log-transformation-on-x.html#cb39-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstandard</span>(model1) <span class="sc">~</span> <span class="fu">fitted</span>(model1))</span>
-<span id="cb39-2"><a href="exercise-2-log-transformation-on-x.html#cb39-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exercise-2-log-transformation-on-x.html#cb41-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstandard</span>(model1) <span class="sc">~</span> <span class="fu">fitted</span>(model1))</span>
+<span id="cb41-2"><a href="exercise-2-log-transformation-on-x.html#cb41-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ResVsFitted"></span>
 <img src="main_files/figure-html/ResVsFitted-1.png" alt="Standardised residuals versus fitted values plot from fitting a simple linear regression model to transformed variables." width="672" />
 <p class="caption">
 Figure 5.3: Standardised residuals versus fitted values plot from fitting a simple linear regression model to transformed variables.
 </p>
 </div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="exercise-2-log-transformation-on-x.html#cb40-1" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb40-2"><a href="exercise-2-log-transformation-on-x.html#cb40-2" tabindex="-1"></a><span class="co"># plot(model1, which =1)</span></span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exercise-2-log-transformation-on-x.html#cb41-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(model1))</span>
-<span id="cb41-2"><a href="exercise-2-log-transformation-on-x.html#cb41-2" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">rstandard</span>(model1))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="exercise-2-log-transformation-on-x.html#cb42-1" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb42-2"><a href="exercise-2-log-transformation-on-x.html#cb42-2" tabindex="-1"></a><span class="co"># plot(model1, which =1)</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exercise-2-log-transformation-on-x.html#cb43-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(model1))</span>
+<span id="cb43-2"><a href="exercise-2-log-transformation-on-x.html#cb43-2" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">rstandard</span>(model1))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:QQ-plot"></span>
 <img src="main_files/figure-html/QQ-plot-1.png" alt="Normal probability (Q-Q) plot from fitting a simple linear regression model to transformed variables." width="672" />
 <p class="caption">

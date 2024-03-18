@@ -200,7 +200,12 @@ Figure 2.1: Left: scatterplot of <em>Distance</em> versus <em>Speed</em>. Centre
 <div id="assumption-checking-and-interpretation" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Assumption checking and interpretation<a href="example-1-power-transformation-on-y.html#assumption-checking-and-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Figure <a href="example-1-power-transformation-on-y.html#fig:stopping2">2.2</a> gives the residual plots after fitting a simple linear regression model to the original variables.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1-power-transformation-on-y.html#cb13-1" tabindex="-1"></a>model.og <span class="ot">&lt;-</span> <span class="fu">lm</span>(Distance <span class="sc">~</span> Speed, <span class="at">data =</span> stopping)</span>
+<span id="cb13-2"><a href="example-1-power-transformation-on-y.html#cb13-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstandard</span>(model.og) <span class="sc">~</span> <span class="fu">fitted</span>(model.og), </span>
+<span id="cb13-3"><a href="example-1-power-transformation-on-y.html#cb13-3" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb13-4"><a href="example-1-power-transformation-on-y.html#cb13-4" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(model.og))</span>
+<span id="cb13-5"><a href="example-1-power-transformation-on-y.html#cb13-5" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">rstandard</span>(model.og))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopping2"></span>
 <img src="main_files/figure-html/stopping2-1.png" alt="Residual plots from fitting a simple linear regression model to original variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot." width="70%" />
 <p class="caption">
@@ -209,7 +214,12 @@ Figure 2.2: Residual plots from fitting a simple linear regression model to orig
 </div>
 <p>The plots show the problems of curvature, non-constant variance and non-normality, indicating that the wrong type of model was used.</p>
 <p>Figure <a href="example-1-power-transformation-on-y.html#fig:stopping3">2.3</a> gives the residual plots after fitting a simple linear regression model to the transformed variables.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="example-1-power-transformation-on-y.html#cb14-1" tabindex="-1"></a>model.sqrt <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">sqrt</span>(Distance) <span class="sc">~</span> Speed, <span class="at">data =</span> stopping)</span>
+<span id="cb14-2"><a href="example-1-power-transformation-on-y.html#cb14-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstandard</span>(model.sqrt) <span class="sc">~</span> <span class="fu">fitted</span>(model.sqrt), </span>
+<span id="cb14-3"><a href="example-1-power-transformation-on-y.html#cb14-3" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb14-4"><a href="example-1-power-transformation-on-y.html#cb14-4" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(model.sqrt))</span>
+<span id="cb14-5"><a href="example-1-power-transformation-on-y.html#cb14-5" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">rstandard</span>(model.sqrt))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopping3"></span>
 <img src="main_files/figure-html/stopping3-1.png" alt="Residual plots from fitting a simple linear regression model to transformed variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot." width="70%" />
 <p class="caption">
@@ -217,7 +227,7 @@ Figure 2.3: Residual plots from fitting a simple linear regression model to tran
 </p>
 </div>
 <p>The curvature disappears and the variance is almost constant across the range of fitted values. The normality assumption, however, remains to be invalid. This is not ideal but, on the positive side, the estimates of parameters will not be affected and hence we can still use the model to describe the relationship between variables and make predictions.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1-power-transformation-on-y.html#cb13-1" tabindex="-1"></a><span class="fu">summary</span>(model.sqrt)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-1-power-transformation-on-y.html#cb15-1" tabindex="-1"></a><span class="fu">summary</span>(model.sqrt)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = sqrt(Distance) ~ Speed, data = stopping)

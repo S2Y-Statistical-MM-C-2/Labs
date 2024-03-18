@@ -6,7 +6,7 @@ fig:log2
 fig:stopping
 fig:stopping2
 fig:stopping3
-fig:unnamed-chunk-36
+fig:unnamed-chunk-38
 fig:logX
 fig:ResVsFitted
 fig:QQ-plot

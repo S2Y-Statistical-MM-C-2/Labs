@@ -181,22 +181,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="line-block">                      <strong>C1:</strong> <code>body</code> - body weight given in kilograms</div>
 <div class="line-block">                      <strong>C2:</strong> <code>brain</code> - weight of brains given in grams</div>
 <p>Read the data using:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-2-animal-brains-and-double-transformations.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb15-2"><a href="example-2-animal-brains-and-double-transformations.html#cb15-2" tabindex="-1"></a><span class="fu">data</span>(Animals)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="example-2-animal-brains-and-double-transformations.html#cb17-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb17-2"><a href="example-2-animal-brains-and-double-transformations.html#cb17-2" tabindex="-1"></a><span class="fu">data</span>(Animals)</span></code></pre></div>
 <p><strong>Exploratory analysis and model fitting </strong>
 As always, it is important to first plot the data to understand the relationship between response and predictor in the original scale. Before you start, make sure to remove the dinosaurs from the data (observations 26 to 28 after sorting), because they are outliers (which we know from previous labs!).</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="example-2-animal-brains-and-double-transformations.html#cb16-1" tabindex="-1"></a><span class="co"># Sort by body size</span></span>
-<span id="cb16-2"><a href="example-2-animal-brains-and-double-transformations.html#cb16-2" tabindex="-1"></a>SA <span class="ot">&lt;-</span> Animals[<span class="fu">order</span>(Animals<span class="sc">$</span>body), ]</span>
-<span id="cb16-3"><a href="example-2-animal-brains-and-double-transformations.html#cb16-3" tabindex="-1"></a><span class="co"># Remove dinos</span></span>
-<span id="cb16-4"><a href="example-2-animal-brains-and-double-transformations.html#cb16-4" tabindex="-1"></a>NoDINO <span class="ot">&lt;-</span> SA[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">26</span><span class="sc">:</span><span class="dv">28</span>),]</span>
-<span id="cb16-5"><a href="example-2-animal-brains-and-double-transformations.html#cb16-5" tabindex="-1"></a><span class="co"># Plot the data</span></span>
-<span id="cb16-6"><a href="example-2-animal-brains-and-double-transformations.html#cb16-6" tabindex="-1"></a><span class="fu">plot</span>(NoDINO, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> <span class="st">&quot;Body&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Brain&quot;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="example-2-animal-brains-and-double-transformations.html#cb18-1" tabindex="-1"></a><span class="co"># Sort by body size</span></span>
+<span id="cb18-2"><a href="example-2-animal-brains-and-double-transformations.html#cb18-2" tabindex="-1"></a>SA <span class="ot">&lt;-</span> Animals[<span class="fu">order</span>(Animals<span class="sc">$</span>body), ]</span>
+<span id="cb18-3"><a href="example-2-animal-brains-and-double-transformations.html#cb18-3" tabindex="-1"></a><span class="co"># Remove dinos</span></span>
+<span id="cb18-4"><a href="example-2-animal-brains-and-double-transformations.html#cb18-4" tabindex="-1"></a>NoDINO <span class="ot">&lt;-</span> SA[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">26</span><span class="sc">:</span><span class="dv">28</span>),]</span>
+<span id="cb18-5"><a href="example-2-animal-brains-and-double-transformations.html#cb18-5" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb18-6"><a href="example-2-animal-brains-and-double-transformations.html#cb18-6" tabindex="-1"></a><span class="fu">plot</span>(NoDINO, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> <span class="st">&quot;Body&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Brain&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>From the figure above, we can see the response and predictor have a difficult relationship that is curved (convex) and increases in variability. Transforming both variables may be useful in this case. From the introduction, we know logarithmic transformations are often a good choice.</p>
 <p>You can fit this model in the same way that you have fitted the other transformations.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="example-2-animal-brains-and-double-transformations.html#cb17-1" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb17-2"><a href="example-2-animal-brains-and-double-transformations.html#cb17-2" tabindex="-1"></a>simple.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(brain) <span class="sc">~</span> <span class="fu">log</span>(body), <span class="at">data =</span> NoDINO)</span>
-<span id="cb17-3"><a href="example-2-animal-brains-and-double-transformations.html#cb17-3" tabindex="-1"></a><span class="fu">coef</span>(simple.model)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="example-2-animal-brains-and-double-transformations.html#cb19-1" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb19-2"><a href="example-2-animal-brains-and-double-transformations.html#cb19-2" tabindex="-1"></a>simple.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(brain) <span class="sc">~</span> <span class="fu">log</span>(body), <span class="at">data =</span> NoDINO)</span>
+<span id="cb19-3"><a href="example-2-animal-brains-and-double-transformations.html#cb19-3" tabindex="-1"></a><span class="fu">coef</span>(simple.model)</span></code></pre></div>
 <pre><code>## (Intercept)   log(body) 
 ##   2.1504121   0.7522607</code></pre>
 <p><strong>Interpretation</strong>
