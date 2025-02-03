@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Example 1: Diode Diameter Hypothesis Test | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit</title>
+  <meta name="description" content="3 Example 1: Diode Diameter Hypothesis Test | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Example 1: Diode Diameter Hypothesis Test | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Example 1: Diode Diameter Hypothesis Test | Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="written-tasks.html"/>
+<link rel="next" href="example-2-vitoria-apartment-costs.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 3</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today"><i class="fa fa-check"></i><b>1.1</b> A summary of the type of the hypothesis test and R commands used today</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="written-tasks.html"><a href="written-tasks.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question 1</a></li>
+<li class="chapter" data-level="2.2" data-path="written-tasks.html"><a href="written-tasks.html#question-2"><i class="fa fa-check"></i><b>2.2</b> Question 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html"><i class="fa fa-check"></i><b>3</b> Example 1: Diode Diameter Hypothesis Test</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>3.1</b> Verifying normality</a></li>
+<li class="chapter" data-level="3.2" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#step-1---hypotheses"><i class="fa fa-check"></i><b>3.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="3.3" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#step-2---test-statistic"><i class="fa fa-check"></i><b>3.3</b> <strong>Step 2 - Test Statistic</strong></a></li>
+<li class="chapter" data-level="3.4" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#step-3---hypothesis-test-calculations"><i class="fa fa-check"></i><b>3.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#finding-the-rejection-region"><i class="fa fa-check"></i><b>3.4.1</b> Finding the rejection region</a></li>
+<li class="chapter" data-level="3.4.2" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#finding-the-standardised-test-statistic-and-p-value"><i class="fa fa-check"></i><b>3.4.2</b> Finding the standardised test statistic and <span class="math inline">\(p\)</span>-value</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#step-4---statistical-conclusion"><i class="fa fa-check"></i><b>3.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="3.6" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#step-5---english-conclusion"><i class="fa fa-check"></i><b>3.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html"><i class="fa fa-check"></i><b>4</b> Example 2: Vitoria Apartment Costs</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#verifying-normality-1"><i class="fa fa-check"></i><b>4.1</b> Verifying normality</a></li>
+<li class="chapter" data-level="4.2" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#step-1---hypotheses-1"><i class="fa fa-check"></i><b>4.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
+<li class="chapter" data-level="4.3" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#step-2---choosing-a-test-statistic"><i class="fa fa-check"></i><b>4.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
+<li class="chapter" data-level="4.4" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#step-3---hypothesis-test-calculations-1"><i class="fa fa-check"></i><b>4.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#finding-the-rejection-region-1"><i class="fa fa-check"></i><b>4.4.1</b> Finding the rejection region</a></li>
+<li class="chapter" data-level="4.4.2" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#finding-the-standardised-test-statistic-and-p-value-1"><i class="fa fa-check"></i><b>4.4.2</b> Finding the standardised test statistic and <span class="math inline">\(p\)</span>-value</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#step-4---statistical-conclusion-1"><i class="fa fa-check"></i><b>4.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
+<li class="chapter" data-level="4.6" data-path="example-2-vitoria-apartment-costs.html"><a href="example-2-vitoria-apartment-costs.html#step-5---english-conclusion-1"><i class="fa fa-check"></i><b>4.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 3 - Hypothesis testing for variance, proportion and goodness-of-fit</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-1-diode-diameter-hypothesis-test" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Example 1: Diode Diameter Hypothesis Test<a href="example-1-diode-diameter-hypothesis-test.html#example-1-diode-diameter-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the construction of a safety strobe, a particular manufacturer can purchase LED diodes from one of two suppliers. It is critical that the purchased diodes conform to their stated specifications with respect to diameter since they must be mated with a fixed width cable. The diameter in millimeters for a random sample of 15 diodes from each of the two suppliers was taken.</p>
+<p>The diameters can be found in the <em>LEDDIODE</em> data frame in the <code>PASWR2</code> package.</p>
+<p><strong>Question of interest</strong>: Does this data provide evidence to suggest a difference in variabilities between the two suppliers? Use a significance level of <span class="math inline">\(\alpha = 0.01\)</span> for any tests.</p>
+<div class="webex-solution">
+<button>
+Reminder of how to access data
+</button>
+<p>Install or load the package and then save the data to your environment. E.g:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(PASWR2)</span>
+<span id="cb2-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb2-2" tabindex="-1"></a>LEDDIODE <span class="ot">&lt;-</span> LEDDIODE</span></code></pre></div>
+</div>
+<div id="verifying-normality" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Verifying normality<a href="example-1-diode-diameter-hypothesis-test.html#verifying-normality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we start, let's note that this test is to compare variances of two unpaired samples. This means the type of test we will use is an <span class="math inline">\(F\)</span>-test.</p>
+<p>As always, we should start by verifying the normality assumption required for this test.</p>
+<p>We should do this with <code>ggplot</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LEDDIODE, <span class="fu">aes</span>(diameter, <span class="at">fill =</span> supplier)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-3" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(<span class="fu">density.default</span>(<span class="at">x =</span> LEDDIODE<span class="sc">$</span>diameter)<span class="sc">$</span>x), </span>
+<span id="cb3-4"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-4" tabindex="-1"></a>       <span class="fu">max</span>(<span class="fu">density.default</span>(<span class="at">x =</span> LEDDIODE<span class="sc">$</span>diameter)<span class="sc">$</span>x)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LEDDIODE, <span class="fu">aes</span>(<span class="at">sample =</span> diameter, <span class="at">color =</span> supplier)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb4-2" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href="example-1-diode-diameter-hypothesis-test.html#cb4-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Based on the density plots and quantile-quantile normal plots, it seems reasonable to assume the LED diode widths from both suppliers follow normal distributions. Therefore, proceed with the five-step procedure.</p>
+</div>
+<div id="step-1---hypotheses" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> <strong>Step 1 - Hypotheses</strong><a href="example-1-diode-diameter-hypothesis-test.html#step-1---hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hypotheses — The null and alternative hypotheses to test whether the variability in LED diode widths using supplier A’s (X) diodes is not equal to the variability in LED diode widths using supplier B’s (Y) diodes are:</p>
+<p><span class="math display">\[H_0 : \sigma^2_X = \sigma_Y^2  \quad \text{versus} \quad H_1 : \sigma^2_X \neq \sigma_Y^2\]</span></p>
+</div>
+<div id="step-2---test-statistic" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> <strong>Step 2 - Test Statistic</strong><a href="example-1-diode-diameter-hypothesis-test.html#step-2---test-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The test statistics chosen are <span class="math inline">\(S^2_X\)</span> and <span class="math inline">\(S^2_Y\)</span> since <span class="math inline">\(E[S^2_X] = \sigma^2_X\)</span> and <span class="math inline">\(E[S^2_Y] = \sigma^2_Y\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb5-1" tabindex="-1"></a>VAR <span class="ot">&lt;-</span> <span class="fu">tapply</span>(LEDDIODE<span class="sc">$</span>diameter, LEDDIODE<span class="sc">$</span>supplier, var)</span>
+<span id="cb5-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb5-2" tabindex="-1"></a>VAR</span></code></pre></div>
+<pre><code>##  supplierA  supplierB 
+## 0.06495524 0.01506381</code></pre>
+<p>The value of the test statistics are <span class="math inline">\(s^2_X = 0.0650\)</span> and <span class="math inline">\(s^2_Y = 0.0151\)</span>.</p>
+<p>We will determine the probability of obtaining this test statistic when the null hypothesis is true. We do this with standardisation and the probability is called the <span class="math inline">\(p\)</span>-value.</p>
+<p>The standardised test statistic is calculated under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution for this test are <span class="math display">\[\frac{S^2_X}{S^2_Y} \sim F_{15−1, 15-1}\]</span></p>
+<p>This is what will be used to complete the test.</p>
+</div>
+<div id="step-3---hypothesis-test-calculations" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> <strong>Step 3 - Hypothesis Test Calculations</strong><a href="example-1-diode-diameter-hypothesis-test.html#step-3---hypothesis-test-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="finding-the-rejection-region" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Finding the rejection region<a href="example-1-diode-diameter-hypothesis-test.html#finding-the-rejection-region" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we continue to analyse our data we must find the rejection region:</p>
+<p>Because the standardised test statistic is distributed <span class="math inline">\(F_{14,14}\)</span>, and <span class="math inline">\(H_1\)</span> is a two-sided hypothesis, the rejection region is <span class="math inline">\(f_{obs} &lt; F_{0.005;14,14}\)</span> or <span class="math inline">\(f_{obs} &gt; F_{0.995;14,14}\)</span></p>
+<p>From the statistical tables or from R, the <span class="math inline">\(F\)</span>-values that correspond to the significance level (critical values) are <span class="math inline">\(F_{0.005;14,14} = 0.2326\)</span> and <span class="math inline">\(F_{0.995;14,14} = 4.2993\)</span>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb7-1" tabindex="-1"></a>RRupper <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.995</span>, <span class="dv">14</span>, <span class="dv">14</span>)</span>
+<span id="cb7-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb7-2" tabindex="-1"></a>RRlower <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.005</span>, <span class="dv">14</span>, <span class="dv">14</span>)</span>
+<span id="cb7-3"><a href="example-1-diode-diameter-hypothesis-test.html#cb7-3" tabindex="-1"></a><span class="fu">c</span>(RRlower, RRupper)</span></code></pre></div>
+<pre><code>## [1] 0.2325967 4.2992869</code></pre>
+<p>This gives us the critical values which make up the limits of the rejection region (what we will compare our result to).</p>
+<p><em>Remember you can sketch these if it helps to see the rejection region graphically.</em></p>
+</div>
+<div id="finding-the-standardised-test-statistic-and-p-value" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Finding the standardised test statistic and <span class="math inline">\(p\)</span>-value<a href="example-1-diode-diameter-hypothesis-test.html#finding-the-standardised-test-statistic-and-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The test we are running here is an <span class="math inline">\(F\)</span> test on variances. We can calculate the standardised test statistics by hand or with R.</p>
+<p>In R:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb9-1" tabindex="-1"></a>f_obs <span class="ot">&lt;-</span> VAR[<span class="dv">1</span>]<span class="sc">/</span>VAR[<span class="dv">2</span>]</span>
+<span id="cb9-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb9-2" tabindex="-1"></a>f_obs</span></code></pre></div>
+<pre><code>## supplierA 
+##  4.312006</code></pre>
+<p>This gives our standardised test statistic as <span class="math inline">\(f_{obs} = \frac{s^2_X}{s^2_Y}= \frac{0.065}{0.0151} = 4.312\)</span> and the corresponding <span class="math inline">\(p\)</span>-value <span class="math inline">\(2*\mathrm{P}(F_{14,14} \geq 4.312) = 0.0099\)</span>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb11-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pf</span>(f_obs, <span class="dv">14</span>, <span class="dv">14</span>, <span class="at">lower=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##   supplierA 
+## 0.009861004</code></pre>
+<p>R also has a built-in function, <code>var.test</code> to perform the <span class="math inline">\(F\)</span>-test of equality of variances, which automatically return the value of standardised test statistic and <span class="math inline">\(p\)</span>-value.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb13-1" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="fu">var.test</span>(diameter <span class="sc">~</span> supplier, <span class="at">data =</span> LEDDIODE, <span class="at">conf.level =</span> <span class="fl">0.99</span>)</span>
+<span id="cb13-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb13-2" tabindex="-1"></a>TR</span></code></pre></div>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  diameter by supplier
+## F = 4.312, num df = 14, denom df = 14, p-value = 0.009861
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 99 percent confidence interval:
+##   1.002958 18.538551
+## sample estimates:
+## ratio of variances 
+##           4.312006</code></pre>
+</div>
+</div>
+<div id="step-4---statistical-conclusion" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> <strong>Step 4 - Statistical Conclusion</strong><a href="example-1-diode-diameter-hypothesis-test.html#step-4---statistical-conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To draw our conclusions we need to consider our rejection region.
+<em>Remember this is both ends of the F-distribution for this two-sided test.</em></p>
+<p><strong>QUESTION</strong>: Do we reject our null hypothesis?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>I. From the rejection region, we reject <span class="math inline">\(H_0\)</span> because <span class="math inline">\(f_{obs} = 4.312\)</span> is greater than 4.2993 and is inside the rejection region (in its upper tail).</p>
+<p>OR</p>
+<ol start="2" style="list-style-type: upper-roman">
+<li>From the <span class="math inline">\(p\)</span>-value, we reject <span class="math inline">\(H_0\)</span> because the <span class="math inline">\(p\)</span>-value <span class="math inline">\(0.0099 &lt; 0.01\)</span>.</li>
+</ol>
+<p>Whichever method we use, we reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</div>
+<div id="step-5---english-conclusion" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> <strong>Step 5 - English Conclusion</strong><a href="example-1-diode-diameter-hypothesis-test.html#step-5---english-conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What does the previous statistical conclusion mean for the data and the purpose of the test?</p>
+<p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
+<div id="radio_NAZTWQDXWQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value="answer"></input> <span>There is evidence to suggest the variability of the width of LED diodes from supplier A is not equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value=""></input> <span>There is evidence to suggest the variability of the width of LED diodes from supplier A is equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value=""></input> <span>There is insufficient evidence to suggest the variability of the width of LED diodes from supplier A is equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the variability of the width of LED diodes from supplier A is not equal to the variance for the width of LED diodes from supplier B.</span></label>
+</div>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="written-tasks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="example-2-vitoria-apartment-costs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
