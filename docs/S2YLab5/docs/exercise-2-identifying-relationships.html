@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 5 - Exploring relationships and understanding correlation</title>
-  <meta name="description" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <title>6 Exercise 2: Identifying relationships | Lab 5 - Exploring relationships and understanding correlation</title>
+  <meta name="description" content="6 Exercise 2: Identifying relationships | Lab 5 - Exploring relationships and understanding correlation" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <meta property="og:title" content="6 Exercise 2: Identifying relationships | Lab 5 - Exploring relationships and understanding correlation" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <meta name="twitter:title" content="6 Exercise 2: Identifying relationships | Lab 5 - Exploring relationships and understanding correlation" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="example-3-spurious-correlation.html"/>
 
-<link rel="next" href="example-1-simple-linear-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -180,32 +180,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lab 5 - Exploring relationships and understanding correlation</h1>
-</div>
-<div id="welcome-to-lab-5" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 5<a href="index.html#welcome-to-lab-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Intended Learning Outcomes:</p>
-<ul>
-<li><p>Produce scatterplots of report quality;</p></li>
-<li><p>Calculate and interpret the sample correlation coefficient;</p></li>
-<li><p>Fit linear regression models by using <code>lm</code>;</p></li>
-<li><p>Interpret estimates of model parameters.</p></li>
-</ul>
-<div id="correlation-coefficient" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Correlation coefficient<a href="index.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the lectures we learned how to assess the strength of a linear relationship between random variables using the correlation coefficient. The population correlation is a measure of the magnitude of the strength of the relationship between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and is defined as</p>
-<p><span class="math display" id="eq:corr">\[\begin{equation}
-\rho(X,Y) =\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}}, \tag{1.1}
-\end{equation}\]</span></p>
-<p>and can be estimated by replacing each of <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>, <span class="math inline">\(\mathrm{Var}(X)\)</span> and <span class="math inline">\(\mathrm{Var}(Y)\)</span> by their unbiased estimators to give</p>
-<p><span class="math display">\[\begin{equation}
-r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, (\#eq:sample_corr)
-\end{equation}\]</span></p>
-<p>the <strong>sample correlation coefficient</strong> (<span class="math inline">\(-1 \leq r \leq 1\)</span>).</p>
-<p>Given a sample of data, we can assess the statistical significance of the observed correlations between variables in the wider population. To do this we perform a hypothesis test.</p>
+<div id="exercise-2-identifying-relationships" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Exercise 2: Identifying relationships<a href="exercise-2-identifying-relationships.html#exercise-2-identifying-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>If we had data for the following studies, determine whether fitting a regression model would be appropriate or produce meaningful results. If a regression model is appropriate, identify which variable is the <strong>response variable</strong> and which is the <strong>explanatory variable</strong>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>A study investigated whether federal spending, on average, is higher or lower in countries with higher rates of poverty.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value='answer'>Yes</option><option value=''>No</option></select></div>
+<div class="line-block">       Federal spending: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value='answer'>Response</option><option value=''>N/A</option></select></div>
+<div class="line-block">       Poverty rates: <select class='webex-select'><option value='blank'></option><option value='answer'>Explanatory</option><option value=''>Response</option><option value=''>N/A</option></select></div>
+<p><br></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>A study was conducted to determine whether surgery or chemotherapy results in higher survival rates for a certain type of cancer.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value='answer'>Yes</option><option value=''>No</option></select></div>
+<div class="line-block">       Type of treatment: <select class='webex-select'><option value='blank'></option><option value='answer'>Explanatory</option><option value=''>Response</option><option value=''>N/A</option></select></div>
+<div class="line-block">       Survival rates: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value='answer'>Response</option><option value=''>N/A</option></select></div>
+<p><br></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>A study found that, overall, left-handed people die at a younger age than right-handed people.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value=''>Yes</option><option value='answer'>No</option></select></div>
+<div class="line-block">       Age of death: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value=''>Response</option><option value='answer'>N/A</option></select></div>
+<div class="line-block">       Left- or right-handed: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value=''>Response</option><option value='answer'>N/A</option></select></div>
+<p><br></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>A study to determine if per capita cheese consumption is correlated with the number of people who died getting tangled in bed sheets.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value=''>Yes</option><option value='answer'>No</option></select></div>
+<div class="line-block">       Number of people who died getting tangled in bed sheets: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value=''>Response</option><option value='answer'>N/A</option></select></div>
+<div class="line-block">       Per capita cheese consumption: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value=''>Response</option><option value='answer'>N/A</option></select></div>
+<p><br></p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>An experiment was conducted to test the effects of sleep deprivation on human reaction times.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value='answer'>Yes</option><option value=''>No</option></select></div>
+<div class="line-block">       Hours of sleep: <select class='webex-select'><option value='blank'></option><option value='answer'>Explanatory</option><option value=''>Response</option><option value=''>N/A</option></select></div>
+<div class="line-block">       Reaction times: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value='answer'>Response</option><option value=''>N/A</option></select></div>
+<p><br></p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>A study was conducted in order to predict the GPA of university students given their high school GPA.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value='answer'>Yes</option><option value=''>No</option></select></div>
+<div class="line-block">       GPA of university students: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value='answer'>Response</option><option value=''>N/A</option></select></div>
+<div class="line-block">       High school GPA: <select class='webex-select'><option value='blank'></option><option value='answer'>Explanatory</option><option value=''>Response</option><option value=''>N/A</option></select></div>
+<p><br></p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>A company ran a study to find out if there is a significant relationship between its advertising expenditures and its sales volume.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value='answer'>Yes</option><option value=''>No</option></select></div>
+<div class="line-block">       Advertising expenditures: <select class='webex-select'><option value='blank'></option><option value='answer'>Explanatory</option><option value=''>Response</option><option value=''>N/A</option></select></div>
+<div class="line-block">       Sales volume: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value='answer'>Response</option><option value=''>N/A</option></select></div>
+<p><br></p>
+<ol start="8" style="list-style-type: lower-alpha">
+<li>A sample of insured drivers with similar insurance policies were randomly selected. Interest is in determining whether there is a significant relationship between driving experience and insurance premium.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value='answer'>Yes</option><option value=''>No</option></select></div>
+<div class="line-block">       Driving experience: <select class='webex-select'><option value='blank'></option><option value='answer'>Explanatory</option><option value=''>Response</option><option value=''>N/A</option></select></div>
+<div class="line-block">       Insurance premium: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value='answer'>Response</option><option value=''>N/A</option></select></div>
+<p><br></p>
+<ol style="list-style-type: lower-roman">
+<li>A study was run to investigate if ice cream sales are correlated with murder rates in the US.</li>
+</ol>
+<div class="line-block">       Regression model appropriate? <select class='webex-select'><option value='blank'></option><option value=''>Yes</option><option value='answer'>No</option></select></div>
+<div class="line-block">       Murder rates: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value=''>Response</option><option value='answer'>N/A</option></select></div>
+<div class="line-block">       Ice cream sales: <select class='webex-select'><option value='blank'></option><option value=''>Explanatory</option><option value=''>Response</option><option value='answer'>N/A</option></select></div>
 
-</div>
 </div>
 <script>
 
@@ -418,8 +458,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
+<a href="example-3-spurious-correlation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="example-1-simple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

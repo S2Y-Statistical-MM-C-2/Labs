@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 5 - Exploring relationships and understanding correlation</title>
-  <meta name="description" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <title>4 Example 2: Simulating random variables | Lab 5 - Exploring relationships and understanding correlation</title>
+  <meta name="description" content="4 Example 2: Simulating random variables | Lab 5 - Exploring relationships and understanding correlation" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <meta property="og:title" content="4 Example 2: Simulating random variables | Lab 5 - Exploring relationships and understanding correlation" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <meta name="twitter:title" content="4 Example 2: Simulating random variables | Lab 5 - Exploring relationships and understanding correlation" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="example-1-simple-linear-regression.html"/>
+<link rel="prev" href="exercise-1-multiple-linear-regression.html"/>
+<link rel="next" href="example-3-spurious-correlation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -180,30 +180,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lab 5 - Exploring relationships and understanding correlation</h1>
+<div id="example-2-simulating-random-variables" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Example 2: Simulating random variables<a href="example-2-simulating-random-variables.html#example-2-simulating-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We can use <code>R</code> to generate random variables. Here we will generate two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, that are, or aren't, related to each other in some form. This can help us understand the relationship between two variables and how they may be correlated.</p>
+<div id="independent-random-variables" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Independent random variables<a href="example-2-simulating-random-variables.html#independent-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let's start by first generating two random variables that are independent of one another. You have already been introduced to the <strong>normal distribution</strong>, where some random variable, <span class="math inline">\(X\)</span>, is centred at mean <span class="math inline">\(\mu\)</span>, with variance <span class="math inline">\(\sigma^2\)</span>, such that <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>.</p>
+<p>To generate random variables from the normal distribution we can use the <code>rnorm</code> command. For example, let's say we want to generate <span class="math inline">\(n=30\)</span> samples from two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, each with mean <span class="math inline">\(\mu = 10\)</span>, and standard deviation <span class="math inline">\(\sigma = 1\)</span>, we can do this as follows:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="example-2-simulating-random-variables.html#cb18-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb18-2"><a href="example-2-simulating-random-variables.html#cb18-2" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb18-3"><a href="example-2-simulating-random-variables.html#cb18-3" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-4"><a href="example-2-simulating-random-variables.html#cb18-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb18-5"><a href="example-2-simulating-random-variables.html#cb18-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb18-6"><a href="example-2-simulating-random-variables.html#cb18-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span></code></pre></div>
+<p>Note: since we are generating random numbers it is best to use the command <code>set.seed</code> beforehand to be able to replicate the results. For example, if we first run the line <code>set.seed(1)</code>, and then the above code, we will generate the same random variables <code>x</code> and <code>y</code>, and a different set if we change the seed value.</p>
+<p>This gives us our random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, generated independently of one another, and so we should expect to see no relationship between them. Using <code>set.seed(1)</code> to obtain <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, a scatterplot of their relationship is shown in Figure <a href="example-2-simulating-random-variables.html#fig:sim1">4.1</a>.</p>
+<div class="figure"><span style="display:block;" id="fig:sim1"></span>
+<img src="main_files/figure-html/sim1-1.png" alt="Scatterplots of independent random variables." width="672" />
+<p class="caption">
+Figure 4.1: Scatterplots of independent random variables.
+</p>
 </div>
-<div id="welcome-to-lab-5" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 5<a href="index.html#welcome-to-lab-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Intended Learning Outcomes:</p>
-<ul>
-<li><p>Produce scatterplots of report quality;</p></li>
-<li><p>Calculate and interpret the sample correlation coefficient;</p></li>
-<li><p>Fit linear regression models by using <code>lm</code>;</p></li>
-<li><p>Interpret estimates of model parameters.</p></li>
-</ul>
-<div id="correlation-coefficient" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Correlation coefficient<a href="index.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the lectures we learned how to assess the strength of a linear relationship between random variables using the correlation coefficient. The population correlation is a measure of the magnitude of the strength of the relationship between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and is defined as</p>
-<p><span class="math display" id="eq:corr">\[\begin{equation}
-\rho(X,Y) =\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}}, \tag{1.1}
-\end{equation}\]</span></p>
-<p>and can be estimated by replacing each of <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>, <span class="math inline">\(\mathrm{Var}(X)\)</span> and <span class="math inline">\(\mathrm{Var}(Y)\)</span> by their unbiased estimators to give</p>
-<p><span class="math display">\[\begin{equation}
-r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, (\#eq:sample_corr)
-\end{equation}\]</span></p>
-<p>the <strong>sample correlation coefficient</strong> (<span class="math inline">\(-1 \leq r \leq 1\)</span>).</p>
-<p>Given a sample of data, we can assess the statistical significance of the observed correlations between variables in the wider population. To do this we perform a hypothesis test.</p>
+<p><strong>QUESTION</strong>: What can we say about the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from Figure <a href="example-2-simulating-random-variables.html#fig:sim1">4.1</a>? What can be said about the two boxplots in Figure <a href="example-2-simulating-random-variables.html#fig:sim1">4.1</a>?</p>
+<p><strong>QUESTION</strong>: Use <code>R</code> as a calculator or the <code>cor()</code> function to calculate the correlation between the two variables. What does this value tell us about the their relationship?</p>
+<p>The sample correlation <span class="math inline">\(r\)</span> = <input class='webex-solveme nospaces' size='10' data-answer='["0.04866964","0.0486696","0.04867","0.0487","0.049"]'/>, suggesting a <select class='webex-select'><option value='blank'></option><option value=''>strong</option><option value=''>moderate</option><option value=''>weak</option><option value='answer'>no</option></select> <select class='webex-select'><option value='blank'></option><option value=''></option><option value='answer'>linear</option></select> relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="example-2-simulating-random-variables.html#cb19-1" tabindex="-1"></a>x_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb19-2"><a href="example-2-simulating-random-variables.html#cb19-2" tabindex="-1"></a>y_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb19-3"><a href="example-2-simulating-random-variables.html#cb19-3" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_mean) <span class="sc">*</span> (y<span class="sc">-</span>y_mean)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span>x_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">sum</span>((y<span class="sc">-</span>y_mean)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb19-4"><a href="example-2-simulating-random-variables.html#cb19-4" tabindex="-1"></a><span class="fu">print</span>(r)</span></code></pre></div>
+<pre><code>## [1] 0.04866964</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="example-2-simulating-random-variables.html#cb21-1" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code></pre></div>
+<pre><code>## [1] 0.04866964</code></pre>
+</div>
+</div>
+<div id="correlated-random-variables" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Correlated random variables<a href="example-2-simulating-random-variables.html#correlated-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us now look at how to generate random variables that are correlated in some way. To do that we will need to obtain the covariance or correlation matrix, and generate the random variables from a <strong>multivariate normal distribution</strong>. The multivariate normal distribution is a generalisation of the normal distribution to higher dimensions, and as multivariate data analysis is not covered until Honours level we will simplify things a little.</p>
+<p>To generate correlated random variables we can use the <code>mvrnorm</code> command (load <code>library(MASS)</code>). This requires us to obtain the covariance matrix, <span class="math inline">\(\Sigma\)</span>, explaining the relationship between our two random variables. As you will find out in 2X, the covariance is scale dependent, and as such, the correlation is often easier to use and interpret.</p>
+<p>We simplify things by generating random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, such that their variances are the same and equal to one. Assuming <span class="math inline">\(\text{Var}(X) = \text{Var}(Y) = 1\)</span>, we can then see from formula <a href="index.html#eq:corr">(1.1)</a> that</p>
+<p><span class="math display">\[\rho(X,Y) =\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}} = \frac{\mathrm{Cov}(X,Y)}{\sqrt{1 \cdot 1}} = \mathrm{Cov}(X,Y),\]</span></p>
+<p>that is, the correlation and covariance are the same. This now means that the covariance matrix, <span class="math inline">\(\Sigma\)</span>, and the correlation matrix, <span class="math inline">\(P\)</span>, are now equivalent, such that,</p>
+<p><span class="math display">\[\Sigma = \begin{bmatrix} \text{Var}(X) &amp; \text{Cov}(X, Y) \\ \text{Cov}(X, Y) &amp; \text{Var}(Y) \end{bmatrix}  = \begin{bmatrix} 1 &amp; \rho(X, Y) \\ \rho(X, Y) &amp; 1 \end{bmatrix} = P.\]</span></p>
+<p>Now, let's say we want to generate two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, from a multivariate normal distribution, such that <span class="math inline">\((X, Y) \sim N(\boldsymbol{\mu}, \Sigma)\)</span>. This can be done using the <code>mvrnorm</code> command as follows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="example-2-simulating-random-variables.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb23-2"><a href="example-2-simulating-random-variables.html#cb23-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb23-3"><a href="example-2-simulating-random-variables.html#cb23-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb23-4"><a href="example-2-simulating-random-variables.html#cb23-4" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb23-5"><a href="example-2-simulating-random-variables.html#cb23-5" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.85</span></span>
+<span id="cb23-6"><a href="example-2-simulating-random-variables.html#cb23-6" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(rho, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">diag</span>(<span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> rho)</span>
+<span id="cb23-7"><a href="example-2-simulating-random-variables.html#cb23-7" tabindex="-1"></a>rand.vars <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> mu, <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb23-8"><a href="example-2-simulating-random-variables.html#cb23-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> rand.vars[, <span class="dv">1</span>]</span>
+<span id="cb23-9"><a href="example-2-simulating-random-variables.html#cb23-9" tabindex="-1"></a>y <span class="ot">&lt;-</span> rand.vars[, <span class="dv">2</span>]</span></code></pre></div>
+<p>Here we have generated <span class="math inline">\(n = 30\)</span> random samples from a multivariate normal distribution for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, with mean vector <span class="math inline">\(\boldsymbol{\mu}^\top =\begin{bmatrix} \mu_X &amp; \mu_Y \end{bmatrix} = \begin{bmatrix}10 &amp; 10 \end{bmatrix}\)</span>, and correlation matrix, <span class="math inline">\(P\)</span>, such that <span class="math inline">\(\rho(X, Y) = 0.85\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:sim2"></span>
+<img src="main_files/figure-html/sim2-1.png" alt="Scatterplots of correlated random variables." width="672" />
+<p class="caption">
+Figure 4.2: Scatterplots of correlated random variables.
+</p>
+</div>
+<p><strong>QUESTION</strong>:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>What can we say about the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from the scatterplot in Figure <a href="example-2-simulating-random-variables.html#fig:sim2">4.2</a>?</p></li>
+<li><p>Calculate the sample correlation coefficient, <span class="math inline">\(r\)</span>. Is this the same as the correlation parameter, <span class="math inline">\(\rho\)</span>, used to generate the data?</p></li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>The sample correlation coefficient will not be exactly the same as the correlation parameter since the simulated data are random samples from the true population.</p>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><p>What happens with the sample correlation, <span class="math inline">\(r\)</span>, and the 'true' correlation, <span class="math inline">\(\rho\)</span>, as the number of samples, <span class="math inline">\(n\)</span>, increases?</p></li>
+<li><p>Edit the <code>R</code> code to obtain a weak-to-moderate positive linear relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Use a scatterplot to examine this relationship, and use the <code>cor</code> command to see if the sample correlation matches that used to simulate the data.</p></li>
+<li><p>Generate two random variables that exhibit a moderate-to-strong negative linear relationship. Use a plot to display this relationship, and obtain an estimate of the sample correlation coefficient.</p></li>
+</ol>
 
 </div>
 </div>
@@ -418,8 +472,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="example-1-simple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercise-1-multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="example-3-spurious-correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

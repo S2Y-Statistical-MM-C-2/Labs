@@ -1,4 +1,4 @@
-# Exercise 1: Chi-squared test for association
+# Exercise 2: Chi-squared test for association
 
 The sinking of the Titanic occurred on the 15th of April in 1912. The data frame `TITANIC3` in the `PASWR2`package contains information regarding class, sex, and survival as well as several other variables.
 ```{r, echo=TRUE, eval=TRUE}

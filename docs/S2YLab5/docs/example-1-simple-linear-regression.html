@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 5 - Exploring relationships and understanding correlation</title>
-  <meta name="description" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <title>2 Example 1: Simple linear regression | Lab 5 - Exploring relationships and understanding correlation</title>
+  <meta name="description" content="2 Example 1: Simple linear regression | Lab 5 - Exploring relationships and understanding correlation" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <meta property="og:title" content="2 Example 1: Simple linear regression | Lab 5 - Exploring relationships and understanding correlation" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 5 - Exploring relationships and understanding correlation" />
+  <meta name="twitter:title" content="2 Example 1: Simple linear regression | Lab 5 - Exploring relationships and understanding correlation" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="example-1-simple-linear-regression.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="exercise-1-multiple-linear-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -180,30 +180,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lab 5 - Exploring relationships and understanding correlation</h1>
+<div id="example-1-simple-linear-regression" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Example 1: Simple linear regression<a href="example-1-simple-linear-regression.html#example-1-simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The admissions committee of a comprehensive state university selected at random the records of 200 second-semester freshmen. The results, first-semester college GPA and SAT scores, are stored in the data set <code>Grades</code> in the package <code>PASWR</code>. The admissions committee wants to study the relationship between first-semester college grade point average (<code>gpa</code>) and scholastic aptitude test (<code>sat</code>) scores.</p>
+<p>To open this data file, type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="example-1-simple-linear-regression.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
+<span id="cb1-2"><a href="example-1-simple-linear-regression.html#cb1-2" tabindex="-1"></a>Grades <span class="ot">&lt;-</span> Grades</span></code></pre></div>
+<p>This will assign the data to the object <code>Grades</code>.</p>
+<p>A spreadsheet of the data can be viewed by typing:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="example-1-simple-linear-regression.html#cb2-1" tabindex="-1"></a><span class="fu">fix</span>(GRADES)</span></code></pre></div>
+<p>but note that you will need to close this window before trying to excute any further commands. The spreadsheet can also be viewed by clicking on the <code>GRADES</code> object in the Workspace (top right of the screen).</p>
+<div id="creating-scatterplots" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Creating scatterplots<a href="example-1-simple-linear-regression.html#creating-scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The relationship between <code>gpa</code> and <code>sat</code> scores can be examined by using a scatterplot.
+This code will produce the basic scatterplot of <code>gpa</code> (y-axis) against <code>sat</code> (x-axis):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="example-1-simple-linear-regression.html#cb3-1" tabindex="-1"></a><span class="fu">plot</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> Grades)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="main_files/figure-html/unnamed-chunk-7-1.png" alt="Scatterplot of `gpa` versus `sat`." width="672" />
+<p class="caption">
+Figure 2.1: Scatterplot of <code>gpa</code> versus <code>sat</code>.
+</p>
 </div>
-<div id="welcome-to-lab-5" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 5<a href="index.html#welcome-to-lab-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Intended Learning Outcomes:</p>
+<p>There are several options for personalising plots. First of all, you should add sensible axis labels to the plot and a main title. For example, by typing:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="example-1-simple-linear-regression.html#cb4-1" tabindex="-1"></a><span class="fu">plot</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> Grades, <span class="at">xlab =</span> <span class="st">&quot;SAT score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">main=</span><span class="st">&quot;Scatterplot of GPA versus SAT scores&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="main_files/figure-html/unnamed-chunk-8-1.png" alt="Scatterplot of `gpa` versus `sat` with annotated axis labels." width="672" />
+<p class="caption">
+Figure 2.2: Scatterplot of <code>gpa</code> versus <code>sat</code> with annotated axis labels.
+</p>
+</div>
+<p>You can also edit the points by changing the symbol type, size and colour, such as</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="example-1-simple-linear-regression.html#cb5-1" tabindex="-1"></a><span class="fu">plot</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> Grades, <span class="at">xlab =</span> <span class="st">&quot;SAT score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Scatterplot of GPA versus SAT scores&quot;</span>, <span class="at">pch =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">0.7</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The plotting character is determined by the <code>pch</code> argument, the size of the plotted characters by <code>cex</code>, and the colour by the <code>col</code> argument.</p>
+<p><strong>DISCUSSION</strong>: Looking at your plot, what can we say about the relationship between <code>gpa</code> and <code>sat</code>?</p>
 <ul>
-<li><p>Produce scatterplots of report quality;</p></li>
-<li><p>Calculate and interpret the sample correlation coefficient;</p></li>
-<li><p>Fit linear regression models by using <code>lm</code>;</p></li>
-<li><p>Interpret estimates of model parameters.</p></li>
+<li>Is the relationship linear or non-linear?</li>
+<li>Is the relationship positive or negative?</li>
+<li>How strong is the relationship?</li>
 </ul>
-<div id="correlation-coefficient" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Correlation coefficient<a href="index.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the lectures we learned how to assess the strength of a linear relationship between random variables using the correlation coefficient. The population correlation is a measure of the magnitude of the strength of the relationship between two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and is defined as</p>
-<p><span class="math display" id="eq:corr">\[\begin{equation}
-\rho(X,Y) =\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}}, \tag{1.1}
-\end{equation}\]</span></p>
-<p>and can be estimated by replacing each of <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>, <span class="math inline">\(\mathrm{Var}(X)\)</span> and <span class="math inline">\(\mathrm{Var}(Y)\)</span> by their unbiased estimators to give</p>
-<p><span class="math display">\[\begin{equation}
-r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, (\#eq:sample_corr)
-\end{equation}\]</span></p>
-<p>the <strong>sample correlation coefficient</strong> (<span class="math inline">\(-1 \leq r \leq 1\)</span>).</p>
-<p>Given a sample of data, we can assess the statistical significance of the observed correlations between variables in the wider population. To do this we perform a hypothesis test.</p>
+</div>
+<div id="sample-correlation-coefficient" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Sample correlation coefficient<a href="example-1-simple-linear-regression.html#sample-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From the scatterplot, we can see a linear relationship between <code>gpa</code> and <code>sat</code>. To further assess the strength of linear relationship, sample correlation coefficient <span class="math inline">\(r\)</span> may be calculated.</p>
+<p>Let's first calculate <span class="math inline">\(r\)</span> by using <code>R</code> as a calculator:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="example-1-simple-linear-regression.html#cb6-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> Grades<span class="sc">$</span>sat</span>
+<span id="cb6-2"><a href="example-1-simple-linear-regression.html#cb6-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> Grades<span class="sc">$</span>gpa</span>
+<span id="cb6-3"><a href="example-1-simple-linear-regression.html#cb6-3" tabindex="-1"></a>x_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb6-4"><a href="example-1-simple-linear-regression.html#cb6-4" tabindex="-1"></a>y_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb6-5"><a href="example-1-simple-linear-regression.html#cb6-5" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_mean) <span class="sc">*</span> (y<span class="sc">-</span>y_mean)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span>x_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span><span class="fu">sum</span>((y<span class="sc">-</span>y_mean)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb6-6"><a href="example-1-simple-linear-regression.html#cb6-6" tabindex="-1"></a>r</span></code></pre></div>
+<pre><code>## [1] 0.7491015</code></pre>
+<p>The correlation coefficient varies from a strong negative linear association <span class="math inline">\(r=-1\)</span>, to no <strong>LINEAR</strong> association <span class="math inline">\(r=0\)</span>, to a strong positive linear association <span class="math inline">\(r=1\)</span>.</p>
+<p><strong>QUESTION</strong>: Which of the following is the correct interpretation of the correlation coefficient?</p>
+<div id="radio_AIOOLEVNNX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AIOOLEVNNX" value=""></input> <span>74.9% correlation would indicate a weak negative linear relationship between GPA and SAT scores.</span></label><label><input type="radio" autocomplete="off" name="radio_AIOOLEVNNX" value=""></input> <span>74.9% correlation would indicate a strong negative linear relationship between GPA and SAT scores.</span></label><label><input type="radio" autocomplete="off" name="radio_AIOOLEVNNX" value=""></input> <span>74.9% correlation would indicate a weak positive linear relationship between GPA and SAT scores.</span></label><label><input type="radio" autocomplete="off" name="radio_AIOOLEVNNX" value="answer"></input> <span>74.9% correlation would indicate a strong positive linear relationship between GPA and SAT scores.</span></label>
+</div>
+<p>In <code>R</code> we can compute the sample correlation coefficient more efficiently by using the built-in function <code>cor()</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="example-1-simple-linear-regression.html#cb8-1" tabindex="-1"></a><span class="fu">cor</span>(<span class="at">x=</span>Grades<span class="sc">$</span>sat,<span class="at">y=</span>Grades<span class="sc">$</span>gpa)</span></code></pre></div>
+<pre><code>## [1] 0.7491015</code></pre>
+</div>
+<div id="fitting-a-linear-model" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Fitting a linear model<a href="example-1-simple-linear-regression.html#fitting-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To find the equation that best describes the relationship between <code>gpa</code> and <code>sat</code>, the <code>lm</code> (abbreviation for Linear Model) function can be used:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="example-1-simple-linear-regression.html#cb10-1" tabindex="-1"></a>model.lm<span class="ot">&lt;-</span> <span class="fu">lm</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> Grades)</span>
+<span id="cb10-2"><a href="example-1-simple-linear-regression.html#cb10-2" tabindex="-1"></a>model.lm</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = gpa ~ sat, data = Grades)
+## 
+## Coefficients:
+## (Intercept)          sat  
+##   -1.192064     0.003094</code></pre>
+<p>This fits a simple linear regression model with the response variable <code>gpa</code> and the explanatory variable <code>sat</code>.</p>
+From the <code>R</code> output, note down the equation of the fitted line that is given: <em>(Enter your answers to 3 decimal places.)</em>
+<center>
+<code>gpa</code> = <input class='webex-solveme nospaces' size='11' data-answer='["-1.19206381","-1.192064","-1.19206","-1.1921","-1.192","-1.19","-1.2"]'/> + <input class='webex-solveme nospaces' size='8' data-answer='["0.003094","0.00309","0.0031","0.003"]'/> <code>sat</code>
+</center>
+<p>This is the line of best fit, describing the effect of <code>sat</code> on <code>gpa</code>.</p>
+<p><br></p>
+<p><strong>QUESTION</strong>: Which of the following is the correct interpretation of the regression model?</p>
+<div id="radio_NUUNXHIILO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NUUNXHIILO" value=""></input> <span>The intercept of the fitted line is -1.192, so for every unit increase in <code>sat</code>, we expect <code>gpa</code> to decrease by 1.192.</span></label><label><input type="radio" autocomplete="off" name="radio_NUUNXHIILO" value=""></input> <span>The intercept of the fitted line is -1.192, so for every unit increase in <code>gpa</code>, we expect <code>sat</code> to decrease by 1.192.</span></label><label><input type="radio" autocomplete="off" name="radio_NUUNXHIILO" value="answer"></input> <span>The slope coefficient of the fitted line is 0.0031, so for every unit increase in <code>sat</code>, we expect <code>gpa</code> to increase by 0.0031.</span></label><label><input type="radio" autocomplete="off" name="radio_NUUNXHIILO" value=""></input> <span>The coefficient of the fitted line is 0.0031, so for every unit increase in <code>gpa</code>, we expect <code>sat</code> to increase by 0.0031.</span></label>
+</div>
+<p><br></p>
+<p><strong>QUESTION</strong>: Use <code>R</code> to calculate the point estimate of the change in the mean GPA when the SAT score increases by 50 points.</p>
+<p>ANSWER = <input class='webex-solveme nospaces' size='9' data-answer='["0.1547135","0.154714","0.15471","0.1547","0.155","0.16",".1547135",".154714",".15471",".1547",".155",".16"]'/></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="example-1-simple-linear-regression.html#cb12-1" tabindex="-1"></a><span class="fu">coef</span>(model.lm)[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">50</span></span></code></pre></div>
+<pre><code>##       sat 
+## 0.1547135</code></pre>
+</div>
+<p><br></p>
+<p><strong>Plot of the data including the fitted line</strong></p>
+<p>A plot of the data can be re-produced as before with the fitted line added using the <code>abline</code> command. This command uses the intercept and slope information from the fitted line saved in <code>model.lm</code>. This is done using:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="example-1-simple-linear-regression.html#cb14-1" tabindex="-1"></a><span class="fu">plot</span>(gpa <span class="sc">~</span> sat, <span class="at">data =</span> Grades, <span class="at">xlab =</span> <span class="st">&quot;SAT score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;GPA&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Scatterplot of GPA versus SAT scores&quot;</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb14-2"><a href="example-1-simple-linear-regression.html#cb14-2" tabindex="-1"></a><span class="fu">abline</span>(model.lm)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -418,8 +494,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="example-1-simple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-1-multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
