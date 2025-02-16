@@ -1,4 +1,5 @@
 eq:corr
+eq:scorr
 fig:unnamed-chunk-7
 fig:unnamed-chunk-8
 fig:sim1

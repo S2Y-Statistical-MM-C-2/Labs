@@ -199,8 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \rho(X,Y) =\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}}, \tag{1.1}
 \end{equation}\]</span></p>
 <p>and can be estimated by replacing each of <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span>, <span class="math inline">\(\mathrm{Var}(X)\)</span> and <span class="math inline">\(\mathrm{Var}(Y)\)</span> by their unbiased estimators to give</p>
-<p><span class="math display">\[\begin{equation}
-r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, (\#eq:sample_corr)
+<p><span class="math display" id="eq:scorr">\[\begin{equation}
+r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, \tag{1.2}
 \end{equation}\]</span></p>
 <p>the <strong>sample correlation coefficient</strong> (<span class="math inline">\(-1 \leq r \leq 1\)</span>).</p>
 <p>Given a sample of data, we can assess the statistical significance of the observed correlations between variables in the wider population. To do this we perform a hypothesis test.</p>

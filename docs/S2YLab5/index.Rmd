@@ -51,7 +51,7 @@ In the lectures we learned how to assess the strength of a linear relationship b
 and can be estimated by replacing each of $\mathrm{Cov}(X,Y)$,  $\mathrm{Var}(X)$ and $\mathrm{Var}(Y)$ by their unbiased estimators to give
 
 \begin{equation}
-r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, (\#eq:sample_corr)
+r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}  = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2\sum_{i=1}^n(y_i-\bar{y})^2}}, (\#eq:scorr)
 \end{equation}
 
 the **sample correlation coefficient** ($-1 \leq r \leq 1$).
