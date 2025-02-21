@@ -1,0 +1,136 @@
+Question
+========
+In a study of the drug Carbinazole in the treatment of thyrotoxicosis, there is interest in comparing
+patients who are responders (R) to the drug with those who are dormant (D), i.e. non-responders. The
+patients are compared using their Protein Bound Iodine (PBI) levels. Data from 20 responders and
+20 dormants are available. The model for these data can be written as:
+
+$\textbf{Data}: y_{ij};\ i = 1, 2;\ j = 1, ..., 20$
+
+$\textbf{Model}: \mathbb{E}(Y_{1j}) = \theta_R,$ $\mathbb{E}(Y_{2j}) = \theta_D$, $\text{Var}(Y_{ij}) = \sigma^2$
+
+That is:
+$$
+\mathbb{E}(Y_{ij})=x_{1j}\theta_R + x_{2j}\theta_D \mbox{ where} 
+\begin{cases}
+(1,0)&\text{for }i = 1\\
+(0,1)&\text{for }i = 2\\
+\end{cases}
+$$
+
+In matrix notation, this model is represented as $\mathbb{E}(\textbf{Y}) = \textbf{X}\boldsymbol\beta$.
+
+<br>
+
+You will need to calculate $\textbf{Y}$, $\textbf{X}$, and $\boldsymbol\beta$ beforehand to answer the following questions.
+
+<br>
+
+
+a) Identify the correct expression for the elements of $\textbf{X}^\top\textbf{X}$:
+
+##ANSWER1##
+
+<br>
+
+b) Using your answer from part (a), identify the correct expression for the elements of $(\textbf{X}^\top\textbf{X})^{-1}$:
+
+##ANSWER2##
+
+<br>
+
+c) Is this the correct expression for the elements of $\textbf{X}^\top\textbf{Y}$?
+
+$$\quad\quad \mathbf{X}^\top\mathbf{Y} = \left[
+                                \begin{array}{c}
+                                  \sum_{j=1}^{20} Y_{1j} \\
+                                  \sum_{j=1}^{20} Y_{2j} \\
+                                \end{array}
+                              \right]$$
+                              
+##ANSWER3##
+
+<br>
+
+d) Consider the following summary statistics below:
+
+\[\sum_{j=1}^{20}Y_{1j} = 196.7,\ 
+\sum_{j=1}^{20}Y_{2j} = 271.9,\  \sum_{j=1}^{20}y_{ij}^2 = 5816.20\] 
+
+<br>
+
+Using the general formula for $\hat{\boldsymbol \beta}$ in matrix notation, find the least squares estimators of $\theta_{R}$ and $\theta_{D}$.
+
+i) What is the least squares estimate for $\theta_{R}$?
+
+##ANSWER4##
+
+<br>
+
+ii) What is the least squares estimate for $\theta_{D}$? 
+
+##ANSWER5##
+
+
+Answerlist
+----------
+* $\textbf{X}^\top\textbf{X} =
+            \begin{bmatrix}
+              20 & 0 \\
+              0 & 20 \\
+            \end{bmatrix}$
+* $\textbf{X}^\top\textbf{X} =
+            \begin{bmatrix}
+              0 & 20 \\
+              20 & 0 \\
+            \end{bmatrix}$
+* $\textbf{X}^\top\textbf{X} =
+            \begin{bmatrix}
+              40 & 0 \\
+              0 & 20 \\
+            \end{bmatrix}$
+* $\textbf{X}^\top\textbf{X} =
+            \begin{bmatrix}
+              20 & 0 \\
+              0 & 0 \\
+            \end{bmatrix}$
+* $(\textbf{X}^\top\textbf{X})^{-1} =
+            \begin{bmatrix}
+              0.05 & 0 \\
+              0 & 0 \\
+            \end{bmatrix}$
+* $(\textbf{X}^\top\textbf{X})^{-1} =
+            \begin{bmatrix}
+              0.05 & 0 \\
+              0 & 0.05 \\
+            \end{bmatrix}$
+* $(\textbf{X}^\top\textbf{X})^{-1} =
+            \begin{bmatrix}
+              0.05 & 0.05 \\
+              0.05 & 0.05 \\
+            \end{bmatrix}$
+* $(\textbf{X}^\top\textbf{X})^{-1} =
+            \begin{bmatrix}
+              0.025 & 0 \\
+              0 & 0.05 \\
+            \end{bmatrix}$
+* True
+* False
+*
+*
+*
+            
+Solution
+========
+                                                        
+                                                        
+Meta-information
+================
+extype: cloze
+exclozetype: schoice|schoice|schoice|num|num
+exsolution: 1000|0100|10|9.835|13.595
+exname: Ex2Q4
+extol: 0.01
+exextra[numwidth,numeric]: 9
+exextra[stringwidth,numeric]: 9
+

@@ -1,0 +1,32 @@
+# Written questions
+
+Below are example questions from past exam papers. As you go through the lab, think of how each part can be used to address the exam-style questions. 
+ 
+1. For the Crimes example discussed in the lecture, consider the following model:
+
+|             **Data**: $(y_i, x_i) \quad i=1,\dots,50$
+
+|             **Model**: $\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i, \quad \text{Var}(Y_i) = \sigma^2$
+\
+where $x_i$ denotes the \% high school dropouts in state $i$ and $y_i$ denotes the crime rate in state $i$.
+
+|      a. Using the sum of squares function, $\mathcal{Q}(\beta_0, \beta_1) = \sum_{i=1}^{50}(Y_i-\beta_0-\beta_1 x_i)^2$, derive the least squares estimators for $\beta_0$ and $\beta_1$.
+|      b. Use the summary statistics below to calculate the least squares estimates for $\beta_0$ and $\beta_1$.
+
+ \[ \sum_{i=1}^{50}Y_i =254258, \quad\, \sum_{i=1}^{50}x_i =512.6, \quad\,   \sum_{i=1}^{50}x_i^2 = 5538.8,\quad\,  \sum_{i=1}^{50}y_i^2 = 1365790732,\quad\, \sum_{i=1}^{50} x_iy_i= 2686567.5\]
+
+
+<br> 
+
+2.  Consider the following model:
+
+|             **Data**: $(y_i, x_i) \quad i=1,\dots,n$
+
+|             **Model**: $\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i+\beta_2 x_i^2,\quad \text{Var}(Y_i) = \sigma^2$
+
+\
+This model has been proposed for the potato example used in the lectures.\
+
+|      a. Write this model in matrix notation, $\mathbb{E}(\mathbf{Y}$) = $\mathbf{X}\boldsymbol{\beta}$,  clearly identifying the elements of $\mathbf{Y}$, $\mathbf{X}$ and $\boldsymbol{\beta}$.
+
+|      b. Identify formulae (in terms of the $Y_i$'s and $x_i$'s) for the elements of $\mathbf{X}'\mathbf{X}$ and $\mathbf{X}'\mathbf{y}$.

@@ -1,0 +1,47 @@
+# Written questions
+
+## Question 1
+
+Just now, we estimated model parameters using `R`. Below is a conversion of Example 1 in an exam-style written question.
+
+50 US states were investigated in terms of their crime rates (per 100,000 people), which includes crimes such as murder, assault, and car theft. Some demographic information about each state was also recorded, such as the number of police and prisoners per 100,000 people and the percentage of high school dropouts (i.e. 16-19 year olds who were not in school and did not finish the 12$^\text{th}$ grade). Figure \@ref(fig:crime) below is a scatterplot of the percentage of high school dropouts $x$ and the crime rate ($Y$).
+
+```{r crime, echo=FALSE}
+plot(crime$Crime~crime$Dropout, pch=16, xlab="Percentage of high school dropouts", ylab="Crime rate per 100,000")
+```
+
+Some summary statistics are also calculated.
+
+a. Comment on the relationship between the percentage of high school dropouts and the crime rate.
+
+b. Calculate the sample correlation coefficient and provide an interpretation of this value.
+
+c. The following linear model, Model 1, was fitted to the data, with the crime rate as the response ($Y$) and the percentage of high school dropouts as the predictor ($x$):
+
+Model 1: $\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i, \quad \text{Var}(Y_i) = \sigma^2$.
+
+Using the sum of squares function, $\mathcal{Q}(\beta_0, \beta_1) = \sum_{i=1}^{n}(Y_i-E(Y_i))^2$, derive the least squares estimators for $\beta_0$ and $\beta_1$.
+
+You **do not** need to confirm that you have found a mimimum.
+
+d. Use the summary statistics to calculate the least squares estimates for $\beta_0$ and $\beta_1$.
+
+
+## Question 2
+
+Consider the following model:
+
+|             **Data**: $(y_i, x_i) \quad i=1,\dots,n$
+
+|             **Model**: $\mathbb{E}(Y_i) = \beta_0+\beta_1 x_i+\beta_2 x_i^2,\quad \text{Var}(Y_i) = \sigma^2$
+
+
+This model has been proposed for the potato example used in the lectures.
+
+a. Write this model in matrix notation, $\mathbb{E}(\mathbf{Y}$) = $\mathbf{X}\boldsymbol{\beta}$,  clearly identifying the elements of $\mathbf{Y}$, $\mathbf{X}$ and $\boldsymbol{\beta}$.
+
+b. Identify formulae (in terms of the $Y_i$'s and $x_i$'s) for the elements of $\mathbf{X}'\mathbf{X}$ and $\mathbf{X}'\mathbf{y}$.
+
+## Question 3
+
+For question 2, write down the likelihood and log-likelihood assuming that $Y_i$ is Normally distributed.

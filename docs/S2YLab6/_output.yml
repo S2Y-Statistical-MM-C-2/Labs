@@ -20,5 +20,3 @@ bookdown::gitbook:
   includes:
     after_body: include/webex.js
   md_extensions: -smart
-
-

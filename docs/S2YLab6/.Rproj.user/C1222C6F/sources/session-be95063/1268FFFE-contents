@@ -1,0 +1,95 @@
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# SIMPLE LINEAR REGRESSION (Cricket)
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+rm(list=ls());dev.off()
+cricket <- read.csv("cricket_C.csv",header=TRUE)
+pdf("cricket_C.pdf")
+plot(Chirps~Temperature,data=cricket,xlab="Temperature (in Celsius)",
+     ylab="Rate of chirps (pulses/sec)",pch=16,cex=1.5,cex.lab=1.5)
+dev.off()
+
+#-------------------------------------
+# correlation
+#-------------------------------------
+x <- cricket$Temperature
+y <- cricket$Chirps
+S_xx <- sum((x-mean(x))^2)
+S_xy <- sum((x-mean(x))*(y-mean(y)))
+S_yy <- sum((y-mean(y))^2)
+print(c(mean(x),mean(y)))
+print(c(S_xx,S_yy,S_xy))
+rho  <- S_xy/sqrt(S_xx*S_yy)
+rho
+
+#-------------------------------------
+# LSE
+#-------------------------------------
+x_c <- x-mean(x)
+Model <- lm(y~x_c)
+summary(Model)
+mean(y)
+S_xy/S_xx
+
+#-------------------------------------
+# Assumption checking
+#-------------------------------------
+pdf("residual vs fitted.pdf")
+plot(Model$fitted.values,rstandard(Model),xlab="Fitted values",
+     ylab="Standardised residuals",cex.lab=1.5)
+dev.off()
+pdf("qqplot.pdf")
+qqnorm(rstandard(Model),cex.lab=1.5,main="")
+qqline(rstandard(Model))
+dev.off()
+
+
+
+
+
+
+
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# MULTIPLE LINEAR REGRESSION
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+rm(list=ls());dev.off()
+horse <- read.csv("horse.csv")
+
+#-------------------------------------
+# Backward selection
+#-------------------------------------
+model.all <- lm(wt~., data=horse)
+drop1(model.all, test = "F")
+model.new <- update(model.all, .~. -siw)
+drop1(model.new, test = "F")
+model.new <- update(model.new, .~. -dow)
+drop1(model.new, test = "F")
+model.new <- update(model.new, .~. -dew)
+drop1(model.new, test = "F")
+model.final <- lm(wt~diw+sow, data=horse)
+summary(model.final)
+
+#-------------------------------------
+# ANOVA
+#-------------------------------------
+anova(model.final)
+
+#------------------------------------------------------------------------------
+# prediction interval
+#------------------------------------------------------------------------------
+XTXI <- summary(model.final)$cov.unscaled
+XTXI <- round(XTXI,3)
+XTXI
+b <- c(1,3,2)
+Yhat <- b %*% coef(model.final)
+bX <- t(b) %*% XtX_inv %*% b; bX
+t_val <- round(qt(0.975,anova(model.final)[3,1]),4);t_val
+MSE <- round(anova(model.final)[3,3],3);MSE
+ese <- sqrt(MSE*(1+bX))
+print(c(Yhat - t_val*ese, Yhat + t_val*ese))
+
+predframe <- data.frame(diw=3, sow=2)
+predict(model.final, int="p", level=0.95, newdata = predframe)

@@ -1,0 +1,60 @@
+# Exercise 3: The taste of cheese
+
+**Context:** This model might be considered for an experiment involving the chemical constituents of cheese and its taste. The dataset contains the concentrations of acetic acid, hydrogen sulphide ($H_2S$) and lactic acid, as well as a subjective taste score. It is of interest to investigate the effects of the different acids on the taste score.
+
+**Model:** $\mathbb{E}(Y_i) = \alpha + \beta x_i$, $Var(Y_i) = \sigma^2$
+
+**Data:** `cheese.csv`
+
+**Columns:**
+
+|           **C1:** `Case` - Number of sample
+
+|           **C2:** `Taste` - Taste score
+
+|           **C3:** `Acetic.Acid` - Acetic acid concentration
+
+|           **C4:** `H2S` - $H_2S$ concentration
+
+|           **C5:** `Lactic.Acid` - Lactic acid concentration
+
+
+Read in the data using
+
+```{r, eval=FALSE}
+cheese <- read.csv("cheese.csv")
+```
+
+## Exploratory analysis
+
+**TASK 4**
+
+(a) Produce scatterplots of `Taste` ($y$-axis) against `Lactic.Acid` ($x$-axis), and `Taste` ($y$-axis) against `H2S` ($x$-axis).
+
+(b) Now plot `Taste` against log(`H2S`), and against log(`Lactic.Acid`). The command in `R` to perform a natural logarithmic transform is, for example, `log(H2S)`.
+
+(c) Which of the 4 variables (`H2S`, log(`H2S`), `Lactic.Acid`, log(`Lactic.Acid`)) seems best for describing a linear relationship with `Taste`?
+
+`r mcq(c("H2S", answer="log(H2S)", "Lactic.Acid", "log(Lactic.Acid)"))`
+
+`r hide("Hint")`
+Which of the four plots shows a straight/close-to-straight line similar to the line $y=x$?
+`r unhide()`
+
+## Fitting a model with a transformation
+
+(d) Fit a linear regression (using the `lm` command) with `Taste` as the response variable and the explanatory variable you selected from part (c). Make a note of the fitted model. 
+
+(e) Produce a plot with a line from your fitted model in (d) using the `abline` command.
+
+(f) How well do you think the model and the data agree?
+
+```{r echo = FALSE}
+opts_p <- c(
+  answer = "There is a weak positive relationship", 
+  "There is a strong positive relationship", 
+  "There is a moderate positive relationship"
+)
+```
+
+`r longmcq(opts_p)`

@@ -1,0 +1,6 @@
+crime <- read.csv("crime.csv")
+x <- crime$Dropout
+y <- crime$Crime
+print(c(sum(x),sum(y)))
+print(c(sum(x^2),sum(y^2),sum(x*y)))
+lm(y~x)

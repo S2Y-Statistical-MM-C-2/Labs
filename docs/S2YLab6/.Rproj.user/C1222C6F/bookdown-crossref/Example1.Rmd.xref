@@ -1,5 +1,5 @@
-h1:example-1---modelling-college-grades Example 1 - Modelling College Grades
-h2:building-the-model Building the Model
-h2:hypothsis-testing-for-regression-models Hypothsis Testing for Regression Models
-h2:confidence-intervals-for-model-terms Confidence intervals for model terms
+h1:example-1-crime Example 1: Crime
+h2:simple-linear-regression Simple linear regression
+h3:least-squares-estimates-of-model-parameters-in-matrix-notation Least squares estimates of model parameters in matrix notation
+h2:multiple-linear-regression Multiple linear regression
 
