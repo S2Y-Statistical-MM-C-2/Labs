@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>S2Y Lab 7 Examining model fit – ANOVA and \(R^2\) | main.knit</title>
+  <title>S2Y Lab 7 Hypothesis testing and interval estimation | main.knit</title>
   <meta name="description" content="S2Y Lab 7<br />
-Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div>" />
+Hypothesis testing and interval estimation</div>" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="S2Y Lab 7 Examining model fit – ANOVA and \(R^2\) | main.knit" />
+  <meta property="og:title" content="S2Y Lab 7 Hypothesis testing and interval estimation | main.knit" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="S2Y Lab 7 Examining model fit – ANOVA and \(R^2\) | main.knit" />
+  <meta name="twitter:title" content="S2Y Lab 7 Hypothesis testing and interval estimation | main.knit" />
   
   
   
@@ -30,7 +30,7 @@ Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div>
   
   
 
-<link rel="next" href="eg-1.html"/>
+<link rel="next" href="example-1-modelling-college-grades.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -139,25 +139,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to S2Y Lab 7</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-summary-function-for-regression-models"><i class="fa fa-check"></i><b>1.1</b> The <code>summary()</code> function for regression models</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#hypothesis-testing-for-linear-relationships"><i class="fa fa-check"></i><b>1.2</b> Hypothesis testing for linear relationships</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#the-anova-table"><i class="fa fa-check"></i><b>1.1.1</b> The ANOVA table</a></li>
-<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#r2"><i class="fa fa-check"></i><b>1.1.2</b> <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#finding-the-estimate-of-error-variance"><i class="fa fa-check"></i><b>1.2.1</b> Finding the estimate of error variance</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#steps-of-the-hypothesis-test"><i class="fa fa-check"></i><b>1.2.2</b> Steps of the hypothesis test</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-brief-reminder-from-lab-6-the-summary-function"><i class="fa fa-check"></i><b>1.2</b> A brief reminder from Lab 6: The <code>summary()</code> function</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#exam-style-questions"><i class="fa fa-check"></i><b>1.3</b> Exam-style questions</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#confidence-intervals-for-the-model-parameters"><i class="fa fa-check"></i><b>1.3</b> Confidence intervals for the model parameters</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response"><i class="fa fa-check"></i><b>1.4</b> Confidence interval for the population mean response and prediction interval for a future response</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="eg-1.html"><a href="eg-1.html"><i class="fa fa-check"></i><b>2</b> Example 1: <code>GRADES</code> dataset</a>
+<li class="chapter" data-level="2" data-path="example-1-modelling-college-grades.html"><a href="example-1-modelling-college-grades.html"><i class="fa fa-check"></i><b>2</b> Example 1: Modelling College Grades</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="eg-1.html"><a href="eg-1.html#constructing-an-anova-table"><i class="fa fa-check"></i><b>2.1</b> Constructing an ANOVA table</a></li>
-<li class="chapter" data-level="2.2" data-path="eg-1.html"><a href="eg-1.html#testing-for-the-significance-of-the-regression-model"><i class="fa fa-check"></i><b>2.2</b> Testing for the significance of the regression model</a></li>
-<li class="chapter" data-level="2.3" data-path="eg-1.html"><a href="eg-1.html#computing-r2"><i class="fa fa-check"></i><b>2.3</b> Computing <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="2.1" data-path="example-1-modelling-college-grades.html"><a href="example-1-modelling-college-grades.html#hypothsis-testing-for-regression-models"><i class="fa fa-check"></i><b>2.1</b> Hypothsis testing for regression models</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-modelling-college-grades.html"><a href="example-1-modelling-college-grades.html#confidence-intervals-for-model-parameters"><i class="fa fa-check"></i><b>2.2</b> Confidence intervals for model parameters</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ex2.html"><a href="ex2.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: <code>HSwrestler</code> dataset</a>
+<li class="chapter" data-level="3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html"><i class="fa fa-check"></i><b>3</b> Example 2: Cherry trees</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="ex2.html"><a href="ex2.html#constructing-an-anova-table-and-testing-for-the-significance-of-the-regression-model."><i class="fa fa-check"></i><b>3.1</b> Constructing an ANOVA table and testing for the significance of the regression model.</a></li>
-<li class="chapter" data-level="3.2" data-path="ex2.html"><a href="ex2.html#computing-r2-1"><i class="fa fa-check"></i><b>3.2</b> Computing <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="3.1" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#exploratory-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#statistical-analysis"><i class="fa fa-check"></i><b>3.2</b> Statistical analysis</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#hypothesis-testing-on-model-parameters"><i class="fa fa-check"></i><b>3.2.1</b> Hypothesis testing on model parameters</a></li>
+<li class="chapter" data-level="3.2.2" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#confidence-interval-on-model-parameters"><i class="fa fa-check"></i><b>3.2.2</b> Confidence interval on model parameters</a></li>
+<li class="chapter" data-level="3.2.3" data-path="example-2-cherry-trees.html"><a href="example-2-cherry-trees.html#confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response-1"><i class="fa fa-check"></i><b>3.2.3</b> Confidence interval for the population mean response and prediction interval for a future response</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercise-1-body-fat.html"><a href="exercise-1-body-fat.html"><i class="fa fa-check"></i><b>4</b> Exercise 1: Body fat</a></li>
 </ul>
 
       </nav>
@@ -168,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <div class="book-header" role="navigation">
           <h1>
             <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">S2Y Lab 7<br />
-Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div></a>
+Hypothesis testing and interval estimation</div></a>
           </h1>
         </div>
 
@@ -178,88 +184,29 @@ Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div>
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title"><div class="line-block">S2Y Lab 7<br />
-Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div></h1>
+Hypothesis testing and interval estimation</div></h1>
 </div>
 <div id="welcome-to-s2y-lab-7" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Welcome to S2Y Lab 7<a href="index.html#welcome-to-s2y-lab-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Intended Learning Outcomes:</p>
 <ul>
-<li>obtain the elements of an analysis of variance (ANOVA) table;</li>
-<li>use the ANOVA table to compute and interpret the <span class="math inline">\(F\)</span>-statistic and its hypothesis test;</li>
-<li>assess the goodness of fit of linear models based on <span class="math inline">\(R^2\)</span> and <span class="math inline">\(R^2_a\)</span>.</li>
+<li>use <code>R</code> to conduct hypothesis tests for parameters in a linear model;</li>
+<li>use various summary statistics and <code>R</code> output to compute confidence and prediction intervals;</li>
+<li>use the built-in <code>R</code> function to compute confidence and prediction intervals;</li>
+<li>interpret hypothesis tests, confidence intervals and prediction intervals.</li>
 </ul>
-<div id="introduction" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="the-anova-table" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> The ANOVA table<a href="index.html#the-anova-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the lectures we studied analysis of variance (ANOVA) table which can be used to investigate the variability explained by the model. It is based on partitioning the sums of squares (<span class="math inline">\(SS\)</span>) and the degrees of freedom (df) associated with the response variable <span class="math inline">\(Y\)</span>. The total deviation, <span class="math inline">\(Y_i - \overline{Y}\)</span>, can be decomposed as</p>
-<ol style="list-style-type: decimal">
-<li><p>The deviation from the fitted value <span class="math inline">\(\hat{Y}_i\)</span> to the mean <span class="math inline">\(\overline{Y}\)</span> and</p></li>
-<li><p>The deviation fo the observation <span class="math inline">\(Y_i\)</span> to the regression line <span class="math inline">\(\hat{Y}_i\)</span>.</p></li>
-</ol>
-<p><span class="math display">\[\underbrace{Y_i - \bar{Y}}_{\text{Total Deviation}} = \underbrace{\hat{Y_i} - \bar{Y}}_{\substack{\text{Deviation of Fitted}\\ \text{Regression Value}\\ \text{around the Mean}}} + \underbrace{Y_i - \hat{Y_i}}_{\substack{\text{Deviation around}\\ \text{the Fitted Regression Line}}}\]</span></p>
-<p>When we take the sum over all observations and square it, we obtain the following equation, which decomposes the total variability in the response into two parts::</p>
-<p><span class="math display">\[\underbrace{\sum_{i=1}^n(Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n(\hat{Y_i} - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n(Y_i - \hat{Y_i})^2}_{SSE}\]</span></p>
-<p>We have</p>
-<ul>
-<li><p><span class="math inline">\(SST\)</span>: Total sum of squares</p></li>
-<li><p><span class="math inline">\(SSR\)</span>: Regression sum of squares</p></li>
-<li><p><span class="math inline">\(SSE\)</span>: Error (residual) sum of squares.</p></li>
-</ul>
-<p>In a simple linear regression (only one predictor), degrees of freedom can be partitioned as: <span class="math inline">\(SST\)</span> has <span class="math inline">\(n-1\)</span> degrees of freedom, <span class="math inline">\(SSE\)</span> has <span class="math inline">\(n-2\)</span>, and <span class="math inline">\(SSR\)</span> has <span class="math inline">\(1\)</span>. If we divide the <span class="math inline">\(SS\)</span> by its degrees of freedom, we obtain the mean square as</p>
-<p><span class="math display">\[\frac{SSR}{1} = MSR \text{ and } \frac{SSE}{n-2} = MSE\]</span></p>
-<p>When <span class="math inline">\(\beta_1 = 0\)</span>, meaning the predictor does not have an effect in our regression, the <span class="math inline">\(MSR\)</span> and <span class="math inline">\(MSE\)</span> will be similar in magnitude. If <span class="math inline">\(\beta_1\neq0\)</span>, the center of the <span class="math inline">\(MSR\)</span> will be larger than that of <span class="math inline">\(MSE\)</span>.</p>
-<center>
-<img src="Images/fig_1.png" width="500" />
-</center>
-<p>We can use this understanding to test the effect of the predictor in the model using a hypothesis test. In particular, we could test <span class="math inline">\(H_0: \beta_1 = 0\)</span> versus <span class="math inline">\(H_1: \beta_1 \neq 0\)</span> using the test statistic</p>
-<p><span class="math display">\[F_\text{obs} = \frac{MSR}{MSE}\]</span></p>
-<p>When the null hypothesis is true, i.e. <span class="math inline">\(H_0: \beta_1 = 0\)</span>, then
-<span class="math display">\[F_\text{obs} = \frac{MSR}{MSE} \sim F_{1,n-2}.\]</span></p>
-<p>As a wide rule of thumb, you can say that values of <span class="math inline">\(F_{obs}\)</span> close to <span class="math inline">\(1\)</span> generally support the null hypothesis while larger values will support the alternative. However, you will always need to compare it with a critical value found using a statistical table or look at the <span class="math inline">\(p\)</span>-value produced in <code>R</code>. To generate an ANOVA table on linear objects, use <code>anova(lm.object)</code>.</p>
-<p>The full ANOVA table for a single predictor looks like this:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="Images/table4.png" alt="ANOVA table for a simple linear regression model" width="70%" />
-<p class="caption">
-Figure 1.1: ANOVA table for a simple linear regression model
-</p>
-</div>
-<p>More generally, for a multiple linear regression with <span class="math inline">\(p-1\)</span> predictors, the ANOVA table looks like this:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ANOVA"></span>
-<img src="Images/table5.png" alt="ANOVA table for a multiple linear regression model" width="70%" />
-<p class="caption">
-Figure 1.2: ANOVA table for a multiple linear regression model
-</p>
-</div>
-<p>We can perform <span class="math inline">\(F\)</span>-test to test whether all parameters in the model of interest (i.e. all parameters excluding the intercept) are zero:</p>
-<p><span class="math display">\[H_0: \beta_1 = \beta_2 = \cdots = \beta_{p-1} = 0 \quad \text{versus} \quad H_1: \text{at least one } \beta_i \neq 0 \text{ for } i =1, 2, \ldots, p-1.\]</span>
-The test statistic is again <span class="math inline">\(F_\text{obs} = \frac{MSR}{MSE}\)</span> and under the assumption that <span class="math inline">\(H_0\)</span> is true,</p>
-<p><span class="math display">\[F_\text{obs} = \frac{MSR}{MSE} \sim F_{p-1;n-p}.\]</span></p>
-</div>
-<div id="r2" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> <span class="math inline">\(R^2\)</span><a href="index.html#r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>ANOVA table also allows us to easily calculate the <strong>coefficient of determination</strong>, <span class="math inline">\(R^2\)</span>. <span class="math inline">\(R^2\)</span> is a useful tool to assess the goodness-of-fit of our linear regression models. It provides a measure for the proportion of variability in the <span class="math inline">\(Y_i\)</span>s that can be explained by our model. The formula of <span class="math inline">\(R^2\)</span> is given by:</p>
-<p><span class="math display">\[R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}. \]</span></p>
-<p>Think about it this way: if <span class="math inline">\(SSE\)</span> is the sum of squares of the error, it can be interpreted as the amount of variability in <span class="math inline">\(Y\)</span> that is not explained by the model. <span class="math inline">\(SST\)</span> represents all the variability in the data. If our model did not explain any variation, it would be equivalent to a horizontal line and <span class="math inline">\(SSE=SST\)</span>. Therefore, the ratio of <span class="math inline">\(\frac{SSE}{SST}\)</span> represents the proportion of variability not explained by the model and <span class="math inline">\(1-\frac{SSE}{SST}\)</span> is the variability explained.</p>
-<center>
-<img src="Images/fig_2.png" width="250" />
-<img src="Images/fig_3.png" width="250" />
-<img src="Images/fig_4.png" width="250" />
-</center>
-<p>In today’s lab we will first revisit ordinary least squares estimates (OLS) and then delve into the coefficient of determination (<span class="math inline">\(R^2\)</span>) and the analysis of variance (ANOVA) table to deepen our understanding of the <code>R</code> output.</p>
-</div>
-</div>
-<div id="a-brief-reminder-from-lab-6-the-summary-function" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> A brief reminder from Lab 6: The <code>summary()</code> function<a href="index.html#a-brief-reminder-from-lab-6-the-summary-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let's take a look at the <code>summary()</code> function again. Think of the <code>HSwrestlers</code> data set where we try to predict the hydrostatic fat (<code>HWFAT</code>) measurement of a wrestler from abomnimal fat (<code>ABS</code>) and tricep fat (<code>TRICEPS</code>) measurements.</p>
+<div id="the-summary-function-for-regression-models" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> The <code>summary()</code> function for regression models<a href="index.html#the-summary-function-for-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before discussing hypothesis testing and confidence intervals for regression models, let's first revise the output of <code>summary()</code> function.</p>
+<p>Recall the model we created in Lab 5, where we try to predict the hydrostatic fat measurement of a wrestler from abomnimal fat and tricep fat measurements.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">data</span>(HSwrestler)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>Model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HWFAT <span class="sc">~</span> ABS <span class="sc">+</span> TRICEPS, <span class="at">data =</span> HSwrestler)</span></code></pre></div>
-<p>The summary function gives the following output:</p>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>HSWRESTLER <span class="ot">&lt;-</span> HSwrestler</span>
+<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>Model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HWFAT <span class="sc">~</span> ABS <span class="sc">+</span> TRICEPS, <span class="at">data =</span> HSWRESTLER)</span></code></pre></div>
+<p>We apply the summary function, which gives the following output:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="fu">summary</span>(Model1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+## lm(formula = HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -318,42 +265,76 @@ The test statistic is again <span class="math inline">\(F_\text{obs} = \frac{MSR
 </tr>
 </tbody>
 </table>
-<p><strong>Residual standard error</strong>: This is the square root of mean squared error (MSE), where <span class="math inline">\(MSE=\frac{\sum_{i=1}^n \hat{\epsilon}_i^2}{n-p}\)</span> is calculated as the sum of squared residuals divided by the degrees of freedom in the model.</p>
-<p><strong>Multiple R-squared</strong>: The proportion of variability in the data that is explained in the model. It is calculated as <span class="math inline">\(R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}\)</span>. Higher values of <span class="math inline">\(R^2\)</span> indicate a better model fit.</p>
-<p><strong>Adjusted R-squared</strong>: Adjust <span class="math inline">\(R^2\)</span> for increased number of predictors. <span class="math inline">\(R^2_a = 1-\frac{\frac{SSE}{n-p}}{\frac{SST}{n-1}}\)</span>.</p>
-<p><strong>F-statistic</strong>: This is the <span class="math inline">\(F\)</span>-statistic from the ANOVA table (<span class="math inline">\(F_\text{obs}\)</span>), along with the regression degrees of freedom and error degrees of freedom, followed by the <span class="math inline">\(p\)</span>-value corresponding to the <span class="math inline">\(F\)</span>-test.</p>
+<p><strong>Residual standard error</strong>: This is the square root of mean squared error (MSE), where <span class="math inline">\(MSE=\frac{\sum_{i=1}^n \epsilon_i^2}{n-p}\)</span> is calculated as the sum of squared residuals divided by the degrees of freedom in the model.</p>
+<p>The remaining terms, <code>Multiple R-squared</code>, <code>Adjusted R-squared</code> and <code>F-statistic</code>, will be explained in subsequent labs.</p>
+<p>Here we can look at the estimates of the model coefficients <span class="math inline">\(\hat{\beta}_k\)</span>, which are both positive, indicating both <code>Abs</code> and <code>Tri</code> have a positive relationship with Hydrostatic fat.</p>
+<p>We can also state that both Abdominal Fat and Tricep Fat measurements are significant in predicting the Hydrostatic fat measurement to a significance level of <span class="math inline">\(\approx 0\)</span> by looking at the <span class="math inline">\(p\)</span>-values associated with the <span class="math inline">\(t\)</span>-tests.</p>
 </div>
-<div id="exam-style-questions" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Exam-style questions<a href="index.html#exam-style-questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This section is designed to help you make connections between the lab content and the exam questions. In the exam, since you will not have access to R and the data, the questions will be phrased as the example questions below. Try to think about them as you work through the examples and exercises in this lab.</p>
-<p><strong>Question 1:</strong> Given the following summary statistics</p>
-<p><span class="math display">\[\sum_{i=1}^{20} \left(Y_i - \hat{Y}_i\right)^2 = 6.94983 \quad\quad \sum_{i=1}^{20} \left(Y_i - \bar{Y}\right)^2 = 13.09869,\]</span></p>
-<p>complete the analysis of variance table below.</p>
-<center>
-<p><img src="Images/table1.png" width="450" /></p>
-</center>
-<p><strong>Question 2:</strong> The following linear model was fitted to some data:</p>
-<p><span class="math display">\[\mathbb{E}(Y_i) = \beta_0 + \beta_1 x_i, \quad i = 1,\ldots, 50.\]</span></p>
-<p>The output and some summary statistics from the data are given below:</p>
-<center>
-<img src="Images/results_tab.png" width="500" />
-<img src="Images/anova_tab.png" width="500" />
-</center>
-<p><span class="math display">\[S_{xx} = 7.0408 \quad\quad S_{yy} = 6.0882 \quad\quad S_{xy} = 4.8616 \quad\quad \bar{x} = 3.4280  \quad\quad \bar{y} = 5.0060
-\]</span>
-<!-- \vsp --></p>
-<div class="line-block">     a. Use the summary statistics to obtain the estimated parameters of <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span>.<br />
-         Check your answers with the column of <code>Estimate</code> in <code>R</code>.</div>
-<div class="line-block">     b. Use the summary statistics to complete the analysis of variance table below,<br />
-         i.e. finding the degrees of freedom, the regression sum of squares, the error sum of squares,<br />
-         the mean squared error, and the <span class="math inline">\(F\)</span>-statistic. Check your answer with the <code>R</code> output.</div>
-<center>
-<img src="Images/table3.png" width="450" />
-</center>
-<div class="line-block">     c. What hypotheses are being examined by the <span class="math inline">\(F\)</span>-statistic in the ANOVA table?<br />
-         Given that its <span class="math inline">\(p\)</span>-value <span class="math inline">\(&lt; 0.05\)</span>, what does this tell us about the fitted model?<br />
-     d. Compute and interpret the coefficient of determination, <span class="math inline">\(R^2\)</span>.<br />
-     e. Comment on the strength of linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(Y\)</span>.</div>
+<div id="hypothesis-testing-for-linear-relationships" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Hypothesis testing for linear relationships<a href="index.html#hypothesis-testing-for-linear-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall a linear regression model can be written in the matrix form as
+<span class="math display">\[\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol \epsilon.\]</span>
+Assuming <span class="math inline">\(\boldsymbol{\epsilon} \sim N (\mathbf{0},\sigma^2 \bf{I})\)</span>, we have shown that <span class="math inline">\(\mathbf{Y} \sim N (\mathbf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\)</span> and <span class="math inline">\(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \mathbf{(X&#39;X)}^{-1})\)</span>.</p>
+<div id="finding-the-estimate-of-error-variance" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Finding the estimate of error variance<a href="index.html#finding-the-estimate-of-error-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We know that <span class="math inline">\(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\)</span> and</p>
+<p><span class="math display">\[\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \hat{\sigma}^2 \mathbf{(X&#39;X)}^{-1} = \begin{bmatrix}
+s^2_{{\hat{\beta}_0}} &amp; s_{\hat{\beta}_0,\hat{\beta}_1} &amp;...&amp; s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\
+s_{\hat{\beta}_1,\hat{\beta}_0} &amp; s^2_{\hat{\beta}_1} &amp;...&amp; s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+s_{\hat{\beta}_{p-1},\hat{\beta}_0} &amp; s_{\hat{\beta}_{p-1},\hat{\beta}_1} &amp;...&amp; s^2_{\hat{\beta}_{p-1}}
+\end{bmatrix} \]</span></p>
+<p>In R the matrices of <span class="math inline">\(\mathbf{(X&#39;X)}^{-1}\)</span> and <span class="math inline">\(\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}}\)</span> can be found using <code>summary(lm.object)$cov.unscaled</code> and <code>vcov(lm.object)</code> respectively, where <code>lm.object</code> is the linear model object built by using <code>lm()</code>.</p>
+</div>
+<div id="steps-of-the-hypothesis-test" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Steps of the hypothesis test<a href="index.html#steps-of-the-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Step 1: Hypotheses</strong></p>
+<p>If we want to test a model coefficient against a hypothesised value. the null and alternative hypotheses are:
+<span class="math display">\[H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}\]</span></p>
+<p><strong>Step 2: Test Statistic</strong></p>
+<p>The test statistic is <span class="math inline">\(\hat{\beta}_k\)</span>. Assuming the error terms are distributed normally,</p>
+<p><span class="math display">\[\hat{\beta}_k \sim N(\beta_k, \sigma^2_{\hat{\beta}_k}).\]</span></p>
+<p>The standardised test statistic under the assumption that <span class="math inline">\(H_0\)</span> is true and its distribution are:</p>
+<p><span class="math display">\[\frac{\text{unbiased estimator} - \text{hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\]</span></p>
+<p><strong>Step 3: Rejection region calculations</strong></p>
+<p>The standardised test statistic is <span class="math inline">\(\frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\)</span>, and so <span class="math inline">\(t_\text{obs} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}}\)</span>. This can be compared to the critical value, <span class="math inline">\(t_{1-\alpha,n-p}\)</span>, which can be found from the statistical table or using R.</p>
+<p>In R the test can be run using the function <code>lm()</code>. For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span>
+<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a><span class="fu">summary</span>(model)<span class="sc">$</span>coef</span></code></pre></div>
+<p>This will give the observed <span class="math inline">\(t\)</span>-value and the corresponding <span class="math inline">\(p\)</span>-value which can then be compared to the significance level <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>Step 4: Statistical conclusion</strong></p>
+<ul>
+<li><p>From the rejection region, reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_\text{obs}|\)</span> is greater than the critical value.</p></li>
+<li><p>From the <span class="math inline">\(p\)</span>-value, reject <span class="math inline">\(H_0\)</span> if the <span class="math inline">\(p\)</span>-value is less than <span class="math inline">\(\alpha\)</span>.</p></li>
+</ul>
+<p><strong>Step 5: English conclusion</strong></p>
+<p>Depending on whether <span class="math inline">\(H_0\)</span> is rejected or not, conclude whether there is sufficient or insufficient evidence evidence to suggest a linear relationship between the response variable and the predictor variable.</p>
+</div>
+</div>
+<div id="confidence-intervals-for-the-model-parameters" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Confidence intervals for the model parameters<a href="index.html#confidence-intervals-for-the-model-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter <span class="math inline">\(\beta_k\)</span> with confidence level <span class="math inline">\(1-\alpha\)</span> is:</p>
+<p><span class="math display" id="eq:CI">\[\begin{equation}
+\left( \hat{\beta}_k - t_{1-\alpha/2;n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2;n-p} \cdot s_{\hat{\beta}_k}\right), \tag{1.1}
+\end{equation}\]</span></p>
+<p>where the degrees of freedom is <span class="math inline">\(n-p\)</span> because <span class="math inline">\(\sigma^2\)</span> is estimated using <span class="math inline">\(MSE=\frac{SSE}{n-p}\)</span>.</p>
+</div>
+<div id="confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Confidence interval for the population mean response and prediction interval for a future response<a href="index.html#confidence-interval-for-the-population-mean-response-and-prediction-interval-for-a-future-response" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once we have fitted the model of interest, it can be used to make predictions on unseen data by plugging in the particular values of the predictor variables:
+<span class="math display">\[\hat{Y}_h = \mathbf{X}_h \hat{\boldsymbol \beta},\]</span>
+where <span class="math inline">\(\mathbf{X}_h = [1, x_{h,1}, x_{h,2}, \ldots, x_{h,p-1}]\)</span> is the vector of predictor variables for the new observation.</p>
+<p>In addition to the point estimate, it is also important to compute the confidence interval for the mean response for this new <span class="math inline">\(\mathbf{X}_h\)</span> and the prediction interval on a single, new observation.</p>
+<p>The <span class="math inline">\(100 \cdot (1-\alpha)\)</span>% confidence interval for the mean response is given by
+<span class="math display" id="eq:CImean">\[\begin{equation}
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_h},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_h}\right). \tag{1.2}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\small \left( \mathbf{X}_h \hat{\boldsymbol \beta} - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h&#39; \mathbf{X}_h)^{-1}\mathbf{X}_h&#39;)},\ \mathbf{X}_h \hat{\boldsymbol \beta} + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h&#39; \mathbf{X}_h)^{-1}\mathbf{X}_h&#39;)}\right)\]</span></p>
+<p>The <span class="math inline">\(100 \cdot (1-\alpha)\)</span>% prediction interval for a single new observation is given by
+<span class="math display" id="eq:PI">\[\begin{equation}
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_{h(\text{new})}},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_{h(\text{new})}}\right). \tag{1.3}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\small \left( \mathbf{X}_h \hat{\boldsymbol \beta} - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h&#39; \mathbf{X}_h)^{-1}\mathbf{X}_h&#39;))},\ \mathbf{X}_h \hat{\boldsymbol \beta} + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h&#39; \mathbf{X}_h)^{-1}\mathbf{X}_h&#39;))}\right)\]</span></p>
 
 </div>
 </div>
@@ -534,7 +515,7 @@ window.onload = function() {
         </div>
       </div>
 
-<a href="eg-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="example-1-modelling-college-grades.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

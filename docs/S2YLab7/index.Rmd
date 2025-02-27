@@ -1,24 +1,24 @@
 ---
 title: |
     | S2Y Lab 7
-    | Examining model fit – ANOVA and $R^2$
+    | Hypothesis testing and interval estimation
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 biblio-style: apalike
 link-citations: yes
-rmd_files: ["index.Rmd", "01-Example1.Rmd", "02-Exercise1.Rmd"]
 ---
 
-```{r setup, include = FALSE}
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(webexercises)
 library(tinytex)
 library(dplyr)
 library(knitr)
-library(PASWR)
+library(ggplot2)
+library(tidyverse)
 library(PASWR2)
-knitr::opts_chunk$set(echo=TRUE, eval=TRUE)
-
+library(MASS)
 ```
 
 
@@ -28,111 +28,27 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-
 # Welcome to S2Y Lab 7
 
 Intended Learning Outcomes:
 
-- obtain the elements of an analysis of variance (ANOVA) table;
-- use the ANOVA table to compute and interpret the $F$-statistic and its hypothesis test;
-- assess the goodness of fit of linear models based on $R^2$ and $R^2_a$.
+* use `R` to conduct hypothesis tests for parameters in a linear model;
+* use various summary statistics and `R` output to compute confidence and prediction intervals;
+* use the built-in `R` function to compute confidence and prediction intervals;
+* interpret hypothesis tests, confidence intervals and prediction intervals.
 
-## Introduction
+## The `summary()` function for regression models
 
-### The ANOVA table
-In the lectures we studied analysis of variance (ANOVA) table which can be used to investigate the variability explained by the model. It is based on partitioning the sums of squares ($SS$) and the degrees of freedom (df) associated with the response variable $Y$. The total deviation, $Y_i - \overline{Y}$, can be decomposed as 
+Before discussing hypothesis testing and confidence intervals for regression models, let's first revise the output of `summary()` function.
 
-1. The deviation from the fitted value $\hat{Y}_i$ to the mean $\overline{Y}$ and
-
-2. The deviation fo the observation $Y_i$ to the regression line $\hat{Y}_i$. 
-
-$$\underbrace{Y_i - \bar{Y}}_{\text{Total Deviation}} = \underbrace{\hat{Y_i} - \bar{Y}}_{\substack{\text{Deviation of Fitted}\\ \text{Regression Value}\\ \text{around the Mean}}} + \underbrace{Y_i - \hat{Y_i}}_{\substack{\text{Deviation around}\\ \text{the Fitted Regression Line}}}$$
-
-When we take the sum over all observations and square it, we obtain the following equation, which decomposes the total variability in the response into two parts::
-
-$$\underbrace{\sum_{i=1}^n(Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n(\hat{Y_i} - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n(Y_i - \hat{Y_i})^2}_{SSE}$$
-
-We have 
-
-* $SST$: Total sum of squares
-
-* $SSR$: Regression sum of squares
-
-* $SSE$: Error (residual) sum of squares.
-
-In a simple linear regression (only one predictor), degrees of freedom can be partitioned as: $SST$ has $n-1$ degrees of freedom, $SSE$ has $n-2$, and $SSR$ has $1$. If we divide the $SS$ by its degrees of freedom, we obtain the mean square as 
-
-$$\frac{SSR}{1} = MSR \text{ and } \frac{SSE}{n-2} = MSE$$
-
-
-When $\beta_1 = 0$, meaning the predictor does not have an effect in our regression, the $MSR$ and $MSE$ will be similar in magnitude. If $\beta_1\neq0$, the center of the $MSR$ will be larger than that of $MSE$. 
-
-<center>
-![](Images/fig_1.png){width=500px}
-</center>
-
-We can use this understanding to test the effect of the predictor in the model using a hypothesis test. In particular, we could test $H_0: \beta_1 = 0$ versus $H_1: \beta_1 \neq 0$ using the test statistic
-
-$$F_\text{obs} = \frac{MSR}{MSE}$$
-
-When the null hypothesis is true, i.e. $H_0: \beta_1 = 0$, then
-$$F_\text{obs} = \frac{MSR}{MSE} \sim F_{1,n-2}.$$
-
-As a wide rule of thumb, you can say that values of $F_{obs}$ close to $1$ generally support the null hypothesis while larger values will support the alternative. However, you will always need to compare it with a critical value found using a statistical table or look at the $p$-value produced in `R`. To generate an ANOVA table on linear objects, use `anova(lm.object)`. 
-
-The full ANOVA table for a single predictor looks like this:
-
-```{r , echo=FALSE, out.width="70%", fig.cap="ANOVA table for a simple linear regression model", fig.align='center'}
-knitr::include_graphics("Images/table4.png")
-```
-
-
-
-More generally, for a multiple linear regression with $p-1$ predictors, the ANOVA table looks like this:
-
-```{r ANOVA, echo=FALSE, out.width="70%", fig.cap="ANOVA table for a multiple linear regression model", fig.align='center'}
-knitr::include_graphics("Images/table5.png")
-```
-
-
-We can perform $F$-test to test whether all parameters in the model of interest (i.e. all parameters excluding the intercept) are zero:
-
-$$H_0: \beta_1 = \beta_2 = \cdots = \beta_{p-1} = 0 \quad \text{versus} \quad H_1: \text{at least one } \beta_i \neq 0 \text{ for } i =1, 2, \ldots, p-1.$$
-The test statistic is again $F_\text{obs} = \frac{MSR}{MSE}$ and under the assumption that $H_0$ is true,
-
-$$F_\text{obs} = \frac{MSR}{MSE} \sim F_{p-1;n-p}.$$
-
-
-### $R^2$
-
-ANOVA table also allows us to easily calculate the **coefficient of determination**, $R^2$. $R^2$ is a useful tool to assess the goodness-of-fit of our linear regression models. It provides a measure for the proportion of variability in the $Y_i$s that can be explained by our model. The formula of $R^2$ is given by:
-
-$$R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}. $$
-
-
-Think about it this way: if $SSE$ is the sum of squares of the error, it can be interpreted as the amount of variability in $Y$ that is not explained by the model. $SST$ represents all the variability in the data. If our model did not explain any variation, it would be equivalent to a horizontal line and $SSE=SST$. Therefore, the ratio of $\frac{SSE}{SST}$ represents the proportion of variability not explained by the model and $1-\frac{SSE}{SST}$ is the variability explained. 
-
-<center>
-
-![](Images/fig_2.png){width=250px}
-![](Images/fig_3.png){width=250px}
-![](Images/fig_4.png){width=250px}
-</center>
-
-In today’s lab we will first revisit ordinary least squares estimates (OLS) and then delve into the coefficient of determination ($R^2$) and the analysis of variance (ANOVA) table to deepen our understanding of the `R` output. 
-
-
-## A brief reminder from Lab 6: The `summary()` function
-
-Let's take a look at the `summary()` function again. Think of the `HSwrestlers` data set where we try to predict the hydrostatic fat (`HWFAT`) measurement of a wrestler from abomnimal fat (`ABS`) and tricep fat (`TRICEPS`) measurements.
-
+Recall the model we created in Lab 5, where we try to predict the hydrostatic fat measurement of a wrestler from abomnimal fat and tricep fat measurements.
 ```{r}
 library(PASWR)
-data(HSwrestler)
-Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+HSWRESTLER <- HSwrestler
+Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSWRESTLER)
 ```
 
-The summary function gives the following output:
+We apply the summary function, which gives the following output:
 ```{r}
 summary(Model1)
 ```
@@ -167,61 +83,105 @@ kable(significance, align = c("c", "r"))
 ```
 
 
-**Residual standard error**: This is the square root of mean squared error (MSE), where $MSE=\frac{\sum_{i=1}^n \hat{\epsilon}_i^2}{n-p}$ is calculated as the sum of squared residuals divided by the degrees of freedom in the model.
+**Residual standard error**: This is the square root of mean squared error (MSE), where $MSE=\frac{\sum_{i=1}^n \epsilon_i^2}{n-p}$ is calculated as the sum of squared residuals divided by the degrees of freedom in the model.
 
-**Multiple R-squared**: The proportion of variability in the data that is explained in the model. It is calculated as $R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}$. Higher values of $R^2$ indicate a better model fit. 
+The remaining terms, `Multiple R-squared`, `Adjusted R-squared` and `F-statistic`, will be explained in subsequent labs.
 
-**Adjusted R-squared**: Adjust $R^2$ for increased number of predictors. $R^2_a = 1-\frac{\frac{SSE}{n-p}}{\frac{SST}{n-1}}$.
+Here we can look at the estimates of the model coefficients \(\hat{\beta}_k\), which are both positive, indicating both `Abs` and `Tri` have a positive relationship with Hydrostatic fat.
 
-**F-statistic**: This is the $F$-statistic from the ANOVA table ($F_\text{obs}$), along with the regression degrees of freedom and error degrees of freedom, followed by the $p$-value corresponding to the $F$-test.
-
-
-## Exam-style questions
-This section is designed to help you make connections between the lab content and the exam questions. In the exam, since you will not have access to R and the data, the questions will be phrased as the example questions below. Try to think about them as you work through the examples and exercises in this lab. 
+We can also state that both Abdominal Fat and Tricep Fat measurements are significant in predicting the Hydrostatic fat measurement to a significance level of \(\approx 0\) by looking at the $p$-values associated with the $t$-tests.
 
 
- **Question 1:** Given the following summary statistics
 
-$$\sum_{i=1}^{20} \left(Y_i - \hat{Y}_i\right)^2 = 6.94983 \quad\quad \sum_{i=1}^{20} \left(Y_i - \bar{Y}\right)^2 = 13.09869,$$
+## Hypothesis testing for linear relationships
 
-complete the analysis of variance table below.
+Recall a linear regression model can be written in the matrix form as
+$$\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol \epsilon.$$
+Assuming \(\boldsymbol{\epsilon} \sim N (\mathbf{0},\sigma^2 \bf{I})\), we have shown that \(\mathbf{Y} \sim N (\mathbf{X} \boldsymbol{\beta},\sigma^2 \bf{I})\)  and \(\hat{\boldsymbol{\beta}} \sim N (\boldsymbol{\beta},\sigma^2 \mathbf{(X'X)}^{-1})\).
 
-<center>
+### Finding the estimate of error variance
+We know that \(\hat{\sigma}^2 = s^2=MSE=\frac{SSE}{n-p}=\frac{\sum^2_{i=1} \hat{\epsilon}^2_i}{n-p}\) and
 
-![](Images/table1.png){width=450px}
+$$\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}} = \hat{\sigma}^2 \mathbf{(X'X)}^{-1} = \begin{bmatrix}
+s^2_{{\hat{\beta}_0}} & s_{\hat{\beta}_0,\hat{\beta}_1} &...& s_{\hat{\beta}_0,\hat{\beta}_{p-1}}\\
+s_{\hat{\beta}_1,\hat{\beta}_0} & s^2_{\hat{\beta}_1} &...& s_{\hat{\beta}_1,\hat{\beta}_{p-1}}\\
+\vdots & \vdots & \ddots & \vdots \\
+s_{\hat{\beta}_{p-1},\hat{\beta}_0} & s_{\hat{\beta}_{p-1},\hat{\beta}_1} &...& s^2_{\hat{\beta}_{p-1}}
+\end{bmatrix} $$
 
-</center>
+In R the matrices of $\mathbf{(X'X)}^{-1}$ and $\mathbf{s}^2_{{\hat{\boldsymbol{\beta}}}}$ can be found using `summary(lm.object)$cov.unscaled` and `vcov(lm.object)` respectively, where `lm.object` is the linear model object built by using `lm()`.
 
-
-**Question 2:** The following linear model was fitted to some data:
-
-\[\mathbb{E}(Y_i) = \beta_0 + \beta_1 x_i, \quad i = 1,\ldots, 50.\]
-
-The \texttt{R} output and some summary statistics from the data are given below:
-
-<center>
-![](Images/results_tab.png){width=500px}
-![](Images/anova_tab.png){width=500px}
-</center>
+### Steps of the hypothesis test
 
 
-\[S_{xx} = 7.0408 \quad\quad S_{yy} = 6.0882 \quad\quad S_{xy} = 4.8616 \quad\quad \bar{x} = 3.4280  \quad\quad \bar{y} = 5.0060
-\]
-<!-- \vsp -->
+**Step 1: Hypotheses**
 
-|      a. Use the summary statistics to obtain the estimated parameters of $\hat{\beta_0}$ and $\hat{\beta_1}$. 
-|          Check your answers with the column of `Estimate` in `R`.
-\vsp
+If we want to test a model coefficient against a hypothesised value. the null and alternative hypotheses are:
+$$H_0: \beta_k = \beta_{k_0} \quad \text{vs} \quad H_1: \beta_k \neq \beta_{k_0}$$
 
-|      b. Use the summary statistics to complete the analysis of variance table below, 
-|          i.e. finding the degrees of freedom, the regression sum of squares, the error sum of squares, 
-|          the mean squared error, and the $F$-statistic. Check your answer with the `R` output. 
+**Step 2: Test Statistic**
 
-<center>
-![](Images/table3.png){width=450px}
-</center>
+The test statistic is \(\hat{\beta}_k\). Assuming the error terms are distributed normally,
 
-|      c. What hypotheses are being examined by the $F$-statistic in the ANOVA table? 
-|          Given that its $p$-value $< 0.05$, what does this tell us about the fitted model?
-|      d. Compute and interpret the coefficient of determination, $R^2$.
-|      e. Comment on the strength of linear relationship between $x$ and $Y$. 
+$$\hat{\beta}_k \sim N(\beta_k, \sigma^2_{\hat{\beta}_k}).$$
+
+The standardised test statistic under the assumption that $H_0$ is true and its distribution are:
+
+\[\frac{\text{unbiased estimator} - \text{hypothesized value}}{\text{standard error of estimator}} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}\]
+
+**Step 3: Rejection region calculations**
+
+The standardised test statistic is $\frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}} \sim t_{n-p}$, and so $t_\text{obs} = \frac{\hat{\beta}_k-\beta_{k_0}}{s_{\hat{\beta}_k}}$. This can be compared to the critical value, \(t_{1-\alpha,n-p}\), which can be found from the statistical table or using R.
+
+In R the test can be run using the function `lm()`. For example:
+
+```{r, echo=TRUE, eval=FALSE}
+model <- lm()
+summary(model)$coef
+```
+This will give the observed $t$-value and the corresponding $p$-value which can then be compared to the significance level \(\alpha\).
+
+**Step 4: Statistical conclusion**
+
+* From the rejection region, reject $H_0$ if $|t_\text{obs}|$ is greater than the critical value.
+
+* From the $p$-value, reject $H_0$ if the $p$-value is less than \(\alpha\).
+
+**Step 5: English conclusion**
+
+Depending on whether $H_0$ is rejected or not, conclude whether there is sufficient or insufficient evidence evidence to suggest a linear relationship between the response variable and the predictor variable.
+
+
+## Confidence intervals for the model parameters
+
+We may also want to build confidence intervals (CI) for our model parameters. The CI for the parameter \(\beta_k\) with confidence level \(1-\alpha\) is:
+
+\begin{equation}
+\left( \hat{\beta}_k - t_{1-\alpha/2;n-p} \cdot s_{\hat{\beta}_k},\ \hat{\beta}_k + t_{1-\alpha/2;n-p} \cdot s_{\hat{\beta}_k}\right), (\#eq:CI)
+\end{equation}
+
+where the degrees of freedom is \(n-p\) because \(\sigma^2\) is estimated using \(MSE=\frac{SSE}{n-p}\).
+
+
+## Confidence interval for the population mean response and prediction interval for a future response
+
+Once we have fitted the model of interest, it can be used to make predictions on unseen data by plugging in the particular values of the predictor variables:
+$$\hat{Y}_h = \mathbf{X}_h \hat{\boldsymbol \beta},$$
+where $\mathbf{X}_h = [1, x_{h,1}, x_{h,2}, \ldots, x_{h,p-1}]$ is the vector of predictor variables for the new observation. 
+
+In addition to the point estimate, it is also important to compute the confidence interval for the mean response for this new $\mathbf{X}_h$ and the prediction interval on a single, new observation. 
+
+The $100 \cdot (1-\alpha)$\% confidence interval for the mean response is given by
+\begin{equation}
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_h},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_h}\right). (\#eq:CImean)
+\end{equation}
+
+$$\small \left( \mathbf{X}_h \hat{\boldsymbol \beta} - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')},\ \mathbf{X}_h \hat{\boldsymbol \beta} + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot \mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h')}\right)$$
+
+The $100 \cdot (1-\alpha)$\% prediction interval for a single new observation is given by
+\begin{equation}
+\left( \hat{Y}_h - t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_{h(\text{new})}},\ \hat{Y}_h + t_{1-\alpha/2;n-p} \cdot s_{\hat{Y}_{h(\text{new})}}\right). (\#eq:PI)
+\end{equation}
+
+$$\small \left( \mathbf{X}_h \hat{\boldsymbol \beta} - t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h'))},\ \mathbf{X}_h \hat{\boldsymbol \beta} + t_{1-\alpha/2;n-p} \cdot \sqrt{MSE\cdot (1+\mathbf{X}_h (\mathbf{X}_h' \mathbf{X}_h)^{-1}\mathbf{X}_h'))}\right)$$
+

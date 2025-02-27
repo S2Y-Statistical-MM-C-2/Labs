@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | main.knit</title>
+  <title>4 Exercise 1: Body fat | main.knit</title>
   <meta name="description" content="S2Y Lab 7<br />
 Hypothesis testing and interval estimation</div>" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | main.knit" />
+  <meta property="og:title" content="4 Exercise 1: Body fat | main.knit" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | main.knit" />
+  <meta name="twitter:title" content="4 Exercise 1: Body fat | main.knit" />
   
   
   
@@ -29,7 +29,7 @@ Hypothesis testing and interval estimation</div>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="example-2-cherry-trees.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -182,11 +182,84 @@ Hypothesis testing and interval estimation</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="exercise-1-body-fat" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Exercise 1: Body fat<a href="exercise-1-body-fat.html#exercise-1-body-fat" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The dataset <code>femalebodyfat.csv</code> gives the % body fat, triceps skinfold thickness (taken at the midpoint of the upperarm) and the midarm circumference (the circumference of the non-dominant arm midway between the shoulder and the elbow) for twenty healthy females aged 20 to 34. The % body fat for each person was obtained by a cumbersome and expensive procedure requiring the immersion of the person in water. It would therefore be very helpful if a regression model with tricep skinfold thickness and midarm circumference could provide reliable predictions of the amount of body fat, since the measurements needed for the predictor variables are straightforward to obtain.</p>
+<p>Read in the data using:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="exercise-1-body-fat.html#cb39-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;femalebodyfat.csv&quot;</span>)</span></code></pre></div>
+<p><strong>QUESTION</strong></p>
+<ol style="list-style-type: decimal">
+<li>Use an appropriate exploratory analysis to explore the relationships between % body fat, triceps skinfold thickness and midarm circumference.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="exercise-1-body-fat.html#cb40-1" tabindex="-1"></a><span class="fu">pairs</span>(bf, <span class="at">lower.panel =</span> <span class="cn">NULL</span>) </span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+This shows a moderate positive linear relationship between % body fat and triceps skinfold thickness.</p>
+<p>There doesn't seem to be much of a relationship between % body fat and midarm circumference but we will continue to explore whether it is useful to the model.</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit a multiple linear regression model to the data in order to predict % body fat from triceps skinfold thickness and midarm circumference.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exercise-1-body-fat.html#cb41-1" tabindex="-1"></a>modelfat <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fat <span class="sc">~</span> Triceps <span class="sc">+</span> Midarm, <span class="at">data=</span>bf)</span></code></pre></div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>Use <code>R</code> to compute a 95% confidence interval for the coefficient of each predictor in the model.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="exercise-1-body-fat.html#cb42-1" tabindex="-1"></a><span class="fu">confint</span>(modelfat)</span></code></pre></div>
+<pre><code>##                   2.5 %       97.5 %
+## (Intercept) -2.67783060 16.261085426
+## Triceps      0.73003885  1.271130967
+## Midarm      -0.08040683 -0.005881575</code></pre>
+</div>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Comment on your intervals.</li>
+</ol>
+<p>The confidence interval for the variable <code>Triceps</code> <select class='webex-select'><option value='blank'></option><option value=''>contains</option><option value='answer'>does not contain</option></select> zero so we conclude it <select class='webex-select'><option value='blank'></option><option value='answer'>makes</option><option value=''>does not make</option></select> a statistically significant contribution in addition to the predictor <code>Midarm</code> in explaining the variability in <code>Fat</code>. Therefore <code>Triceps</code> should be <select class='webex-select'><option value='blank'></option><option value='answer'>retained in</option><option value=''>removed from</option></select> the model. The coefficient for <code>Triceps</code> is highly likely to lie between <input class='webex-solveme nospaces' size='4' data-answer='["0.73",".73"]'/> and <input class='webex-solveme nospaces' size='4' data-answer='["1.27"]'/> (<em>Enter your answer by rounding to two decimal places</em>).</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Find a 95% confidence interval for the mean % body fat for a female (aged 20 to 34) whose triceps skinfold thickness is 25mm and midarm circumference is 310mm. Interpret the interval.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>Define the prediction dataframe for the given predictor values and use the <code>predict()</code> function with that dataframe. Be careful to use the correct parameter to get a confidence interval not a prediction interval.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="exercise-1-body-fat.html#cb44-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">25</span>, <span class="at">Midarm =</span> <span class="dv">310</span>)</span>
+<span id="cb44-2"><a href="exercise-1-body-fat.html#cb44-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;c&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 18.43155 16.67794 20.18516</code></pre>
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li>Find a 95% prediction interval for the % body fat of a future female with skinfold thickness and midarm circumference values of your choice. Interpret the interval.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="exercise-1-body-fat.html#cb46-1" tabindex="-1"></a>predframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Triceps =</span> <span class="dv">20</span>, <span class="at">Midarm =</span> <span class="dv">250</span>)</span>
+<span id="cb46-2"><a href="exercise-1-body-fat.html#cb46-2" tabindex="-1"></a><span class="fu">predict</span>(modelfat, <span class="at">int =</span> <span class="st">&quot;p&quot;</span>, <span class="at">newdata =</span> predframe)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 16.01728 10.46253 21.57202</code></pre>
+</div>
+
 </div>
 <script>
 
@@ -364,7 +437,7 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
+<a href="example-2-cherry-trees.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
