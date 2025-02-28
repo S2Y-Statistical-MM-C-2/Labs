@@ -1,0 +1,141 @@
+# Exercise 1: `HSwrestler` dataset {#ex2}
+
+In Lab 5, we looked at the `HSwrestler` from the `PASWR` package, which measures the body fat of 78 high school wrestlers using three separate techniques, namely hydrostatic weighing, skin fold measurements and the Tanita body fat scale. We built a multiple linear regression model to understand the relationship between the hydrostatic fat (`HWFAT`; response variable) and abdominal fat (`ABS`; predictor variable 1) and tricep fat (`TRICEPS`; predictor variable 2). Our question of interest today is to test if the model is useful and comment on how well the model performs. 
+
+Read in the data using:
+```{r, evaluate = TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+library(PASWR)
+data(HSwrestler)
+```
+
+## Constructing an ANOVA table and testing for the significance of the regression model.
+
+**Task**: Perform a hypothesis test to assess whether the multiple linear regression model is significant. 
+
+To complete the task, we will need to:
+
+1. Use `R` to construct an ANOVA table for a model where hydrostatic fat level (`HWFAT`) is the response variable and abdominal fat (`ABS`) and tricep fat (`TRICEPS`) are the predictor variables;
+
+2. Manually construct an ANOVA table which combine abdominal fat (`ABS`) and tricep fat (`TRICEPS`) are a single term of Regression as in Table \@ref(fig:ANOVA);
+
+3. Perform the $F$-test with $\alpha=0.05$ significance level. 
+
+Remember to follow the steps in Example 1. 
+<br>
+
+**Step 1: Hypotheses**
+
+Suppose the model is of the following form:
+$$Y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i.$$
+
+The null and alternative hypotheses for testing the significance of the regression model are:
+
+$$H_0: \beta_1 = \beta_2 = 0\quad \text{ versus }\quad H_1: \text{at least one }\beta_i \neq 0 \text{ for } i =1,2$$
+<br>
+
+**Step 2: Test statistic**
+
+Use the function `anova()` to obtain the initial ANOVA table, where each predictor is listed as a separate row. Then, create the ANOVA table as in Table \@ref(fig:ANOVA). Remember, you will need to combine certain rows to create the *Regression* component. 
+
+Once completed the calculation, enter your answer below for each component of the ANOVA table:
+
+$n =$ `r fitb(78)`, $p =$ `r fitb(3)`
+
+$SSR =$ `r fitb(c(5315.008, 5315, 5315.01))`, $SSE =$ `r fitb(c(702.7837, 702.8, 702.784, 703))`, $SST =$ `r fitb(c(6017.792, 6017.8, 6017.79, 6018))`
+
+$MSR =$ `r fitb(c(2657.504, 2657,2658,2657.5, 2657.50))`, $MSE =$ `r fitb(c(9.370449, 9.4,9.37,9.371,9.37045))`
+
+`r hide("Hint")`
+```{r ANOVA-table-ex1, eval = TRUE, echo = TRUE}
+model.lm <- lm(HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+anova(model.lm)
+```
+`r unhide()`
+
+`r hide("Solution")`
+```{r ANOVA-table-ex2, eval = TRUE, echo = TRUE}
+model.lm <- lm(HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+anova.tab <- anova(model.lm)
+
+n <- nrow(HSwrestler)
+p <- 3 # Intercept + parameters associated with the two predictors
+SSR <- sum(anova.tab$`Sum Sq`[1:2])
+SSE <- sum(anova.tab$`Sum Sq`[3])
+SST <- SSR + SSE
+MSR <- sum(anova.tab$`Sum Sq`[1:2])/(p-1)
+MSE <- sum(anova.tab$`Sum Sq`[3])/(n-p)
+
+# Produce
+SSR
+SSE
+SST
+MSR
+MSE
+```
+`r unhide()`
+
+Now calculate the value of the test statistic $F_\text{obs}$. 
+
+$F_\text{obs} =$ `r fitb(c(283.6, 283.60, 283.61, 283.605))`
+
+`r hide("Hint")`
+The formula of $F_{obs}$ is given by $F_{obs} = \frac{MSR}{MSE}$.
+`r unhide()`
+
+`r hide("Solution")`
+$F_\text{obs} = \frac{MSR}{MSE} = \frac{2657.504}{9.370449} = 283.6043$
+`r unhide()`
+
+<br>
+
+**Step 3: Rejection region calculation**
+
+Now calculate the critical value $F_{1-\alpha;p-1,n-p}$ to define the rejection region. Remember that $\alpha = 0.05$. 
+
+$F_{1-\alpha;p-1,n-p} =$ `r fitb(c(3.118642, 3.11864,3.1186,3.119,3.12,3.1))`
+
+`r hide("Hint")`
+Use the function `qf()` to obtain the quantile of the $F$-distribution. 
+`r unhide()`
+
+`r hide("Solution")`
+```{r, eval = TRUE, include = TRUE}
+qf(0.95, 2, 75)
+```
+`r unhide()`
+
+<br>
+
+**Step 4: Statistical conclusion**
+
+
+Using the rejection region approach, we `r mcq(c(answer = "reject", "do not reject"))` $H_0$ because $F_\text{obs}$ is `r mcq(c(answer = "lies in", "does not lie in"))` the rejection region.
+<br>
+
+**Step 5: English conclusion**
+
+There is `r mcq(c(answer = "sufficient evidence", "insufficient evidence"))` that suggests that at least one predictor (`ABS` and `TRICEPS`) has a linear relationship with the response variable (`HWFAT`).
+
+## Computing $R^2$
+
+Compute $R^2$ based on `anova(model.lm)`.
+
+$R^2 =$ `r fitb(c(0.883213,0.88321,0.8832,0.883,0.88))`
+
+`r hide("Hint")`
+The formula for $R^2$ is 
+$R^2 = 1-\frac{SSE}{SST}$
+`r unhide()`
+
+`r hide("Solution")`
+$R^2 = 1-\frac{SSE}{SST} = 1-\frac{702.8}{6017.792} = 0.883213$
+`r unhide()`
+
+Again, from the summary table output, the value of the coefficient of determination, $R^2$, is `r fitb(c(88.32,88.3))`%. This gives us the proportion of variation in `HWFAT` that is explained by the linear regression model with `TRICEPS` AND `ABS` as predictors. Hence `r fitb(c(88.32,88.3))`% of the variation in the hydrostatic fat is explained by taking into account abdominal fat and tricep fat using a multiple linear regression model. Hence the model gives a `r mcq(c("bad", "moderate",answer = "good"))` fit to the data. 
+
+The adjusted coefficient of determination, $R^2_a$, is also useful in examining model fit and can be obtained from the summary table output. In this case, $R^2_a$ is `r fitb(88.01)`%, which is `r mcq(c("higher", answer = "lower"))` than the $R^2$ value. This is reasonable since $R^2_a$ includes a penalty when including more predictors in the model. 
+
+Which of the two statistics, $R^2$ and $R^2_a$, is more appropriate to assess the model's goodness of fit? 
+
+`r longmcq(c(answer = "$R^2_a$, because it takes into account the number of prdictor variables are in a model.", "$R^2$, because it is always higher."))`
+

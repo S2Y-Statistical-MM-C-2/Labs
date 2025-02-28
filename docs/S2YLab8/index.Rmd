@@ -1,25 +1,23 @@
 ---
-title: "Lab 8 - Exploring Model Selection"
+title: |
+    | S2Y Lab 8
+    | Examining model fit – ANOVA and $R^2$
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 biblio-style: apalike
 link-citations: yes
-rmd_files: ["index.Rmd", "Example1.Rmd", "Exercise1.Rmd", "Exercise2.Rmd"]
-
+rmd_files: ["index.Rmd", "01-Example1.Rmd", "02-Exercise1.Rmd"]
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```{r setup, include = FALSE}
 library(webexercises)
 library(tinytex)
 library(dplyr)
 library(knitr)
-library(ggplot2)
-library(tidyverse)
+library(PASWR)
 library(PASWR2)
-library(MASS)
-library(VGAM)
+knitr::opts_chunk$set(echo=TRUE, eval=TRUE)
 
 ```
 
@@ -30,101 +28,150 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 
-# Welcome to Lab 8!
+
+# Welcome to S2Y Lab 8
 
 Intended Learning Outcomes:
 
-* Select predictors using backward elimination, forward selection, and stepwise regression;
-* Select predictors based on optimality criteria, such as $R^2_a$ ($R^2$ adjusted) and AIC.
+- obtain the elements of an analysis of variance (ANOVA) table;
+- use the ANOVA table to compute and interpret the $F$-statistic and its hypothesis test;
+- assess the goodness of fit of linear models based on $R^2$ and $R^2_a$.
 
-## Introduction to model selection
-In this lab, we will consider model selection to refer to variable/predictor selection. The process of selection should answer the question: what are the best predictors in my model?
-Some might say, the more the merrier. However, models with too many predictors are challenging for many reasons: they can be difficult to manage, assess, compute, and interpret. In general, statisticians prefer parsimonious models: the simplest possible model that does the best job. But... how will we know what is the best model? We consider two basic approaches to model selection: 
+## Introduction
 
-<p align = "center">
-1. **Stepwise testing**: strategies that compare models with small differences
-2. **Criterion-based approach**: results in the model that optimises some measure of goodness-of-fit
-</p>
+### The ANOVA table
+In the lectures we studied analysis of variance (ANOVA) table which can be used to investigate the variability explained by the model. It is based on partitioning the sums of squares ($SS$) and the degrees of freedom (df) associated with the response variable $Y$. The total deviation, $Y_i - \overline{Y}$, can be decomposed as 
 
-<br />
+1. The deviation from the fitted value $\hat{Y}_i$ to the mean $\overline{Y}$ and
 
-## Stepwise Testing
+2. The deviation fo the observation $Y_i$ to the regression line $\hat{Y}_i$. 
 
-### Backward Elimination {-}
-Backward elimination begins with a model containing all potential predictors and identifies the one with the largest $p$-value. This can be done by looking at the $p$-values for the $t$-statistics of the $\hat{\beta}_i, i = 1,...,p-1$ coefficients using the function `summary()` or for the $F$-statistics using the function `drop1()`. If the variable with the largest $p$-value is above a predetermined critical value, $\alpha_{\text{crit}}$, that variable is dropped. A model with the remaining variables is then fit and the procedure continues until all the $p$-values for the remaining variables in the model are below $\alpha_{\text{crit}}$. In summary, the process is
+$$\underbrace{Y_i - \bar{Y}}_{\text{Total Deviation}} = \underbrace{\hat{Y_i} - \bar{Y}}_{\substack{\text{Deviation of Fitted}\\ \text{Regression Value}\\ \text{around the Mean}}} + \underbrace{Y_i - \hat{Y_i}}_{\substack{\text{Deviation around}\\ \text{the Fitted Regression Line}}}$$
 
-<p align = "center">
-|     **Step 1: Fit model**. For the first iteration, fit a model with all predictor variables. In later iterations, fit the latest selection of variables. 
+When we take the sum over all observations and square it, we obtain the following equation, which decomposes the total variability in the response into two parts::
 
-|     **Step 2: Evaluate**. Are there variables with $p$-values larger than $\alpha_{\text{crit}}$? If so, remove the variable with the largest $p$-value. 
+$$\underbrace{\sum_{i=1}^n(Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n(\hat{Y_i} - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n(Y_i - \hat{Y_i})^2}_{SSE}$$
 
-|     **Step 3: Re-fit the model**. Repeat Steps 1 and 2 until no variables have $p$-values larger than $\alpha_{\text{crit}}$. 
-</p>
+We have 
 
-### Forward Selection {-}
-Forward selection starts with no variables in the model and then adds the variable that produces the smallest $p$-value below $\alpha_{\text{crit}}$ when included in the model. This procedure is continued until no new predictors can be added. A summary of the steps is:
-<p align = "center">
-|     **Step 1: Fit model**. For the first iteration, fit a model with no predictor variables, only the intercept. In later iterations, fit the latest selection of variables. 
+* $SST$: Total sum of squares
 
-|     **Step 2: Evaluate**. Are there variables with $p$-values smaller than $\alpha_{\text{crit}}$ if included in the model? If so, add the variable with the smallest $p$-value. 
+* $SSR$: Regression sum of squares
 
-|     **Step 3: Re-fit the model**. Repeat Steps 1 and 2 until no variables have $p$-values smaller than $\alpha_{\text{crit}}$. 
-</p>
+* $SSE$: Error (residual) sum of squares.
 
-### Stepwise Regression {-}
-This is a combination of backward elimination and forward selection. This technique
-allows variables that were either removed or added early in the procedure to reenter or exit
-the model later in the process. At each stage, a variable can be added or removed.
-Testing-based procedures are relatively straightforward to implement; however, they do
-have some drawbacks. One of the chief weaknesses of testing-based procedures is ending
-up with a model that is overly parsimonious.
+In a simple linear regression (only one predictor), degrees of freedom can be partitioned as: $SST$ has $n-1$ degrees of freedom, $SSE$ has $n-2$, and $SSR$ has $1$. If we divide the $SS$ by its degrees of freedom, we obtain the mean square as 
 
-<br />
-
-## Criterion-based approach
-In essence, we look for the combination of variables that gives us the best goodness-of-fit (gof) metric. Different gofs focus on different things. Here, we will consider $R^2_\alpha$ (adjusted $R^2$), Mallow's $C_p$, Bayes Information Criterion (BIC) and Akaike Information Criterion (AIC). You are not expected to know the formula for Mallow's $C_p$, BIC or AIC. 
-
-###  Adjusted $R^2$ ($R^2_\alpha$) {-}
-It is a measure of the variability of the data captured by the model, as $R^2$. However, because more predictors will always increase with more variables, we adjust it to account for the added complexity. It is defined as 
-
-\begin{equation}
-R^2_{\alpha} = 1- \frac{SSE/(n-p)}{SST/(n-1)}.
-(\#eq:Radj)
-\end{equation}
-\
-In summary: **The higher, the better.**
-
-### Mallow's ($C_p$) {-}
-It is defined as 
-
-\begin{equation}
-C_p = \frac{SSE}{\hat{\sigma}^2} + 2p - n.
-(\#eq:MallC)
-\end{equation}
-where $\hat{\sigma}$ is from the model with all predictors and $SSE$ is for the model with $p$ predictors. When all predictors are used in the model $C_p = p$. It is helpful to plot $C_p$ against $p$.\
-\
-
-In summary: **Small $p$ and $C_p \leq p$. The smaller, the better.**
-
-### Bayes Information Criterion ($BIC$) {-}
-Recall that $\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})$ is the log-likelihood function. The BIC is defined as 
-
-\begin{equation}
-BIC = -2\text{max}(\ln \mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + p \cdot \text{ln}(n) = n \text{ln}\frac{SSE}{n} +p\text{ln}(n) + \text{constant}. 
-(\#eq:BIC)
-\end{equation}
-The BIC uses the log-likelihood and penalises the number of parameters $p$ in the model. \
-\
-In summary: **The smaller BIC, the better.**
+$$\frac{SSR}{1} = MSR \text{ and } \frac{SSE}{n-2} = MSE$$
 
 
-### Akaike Information Criterion ($AIC$) {-}
-The AIC is defined as
-\begin{equation}
-AIC = -2\text{max}(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + 2p = n \text{ln}\frac{SSE}{n} + 2p + \text{constant}. 
-(\#eq:AIC)
-\end{equation}
-This is perhaps one of the most common goodness-of-fit metrics. It is good to know. \
-\
-In summary: **The smaller AIC, the better.**
+When $\beta_1 = 0$, meaning the predictor does not have an effect in our regression, the $MSR$ and $MSE$ will be similar in magnitude. If $\beta_1\neq0$, the center of the $MSR$ will be larger than that of $MSE$. 
+
+<center>
+![](Images/fig_1.png){width=500px}
+</center>
+
+We can use this understanding to test the effect of the predictor in the model using a hypothesis test. In particular, we could test $H_0: \beta_1 = 0$ versus $H_1: \beta_1 \neq 0$ using the test statistic
+
+$$F_\text{obs} = \frac{MSR}{MSE}$$
+
+When the null hypothesis is true, i.e. $H_0: \beta_1 = 0$, then
+$$F_\text{obs} = \frac{MSR}{MSE} \sim F_{1,n-2}.$$
+
+As a wide rule of thumb, you can say that values of $F_{obs}$ close to $1$ generally support the null hypothesis while larger values will support the alternative. However, you will always need to compare it with a critical value found using a statistical table or look at the $p$-value produced in `R`. To generate an ANOVA table on linear objects, use `anova(lm.object)`. 
+
+The full ANOVA table for a single predictor looks like this:
+
+```{r , echo=FALSE, out.width="70%", fig.cap="ANOVA table for a simple linear regression model", fig.align='center'}
+knitr::include_graphics("Images/table4.png")
+```
+
+
+
+More generally, for a multiple linear regression with $p-1$ predictors, the ANOVA table looks like this:
+
+```{r ANOVA, echo=FALSE, out.width="70%", fig.cap="ANOVA table for a multiple linear regression model", fig.align='center'}
+knitr::include_graphics("Images/table5.png")
+```
+
+
+We can perform $F$-test to test whether all parameters in the model of interest (i.e. all parameters excluding the intercept) are zero:
+
+$$H_0: \beta_1 = \beta_2 = \cdots = \beta_{p-1} = 0 \quad \text{versus} \quad H_1: \text{at least one } \beta_i \neq 0 \text{ for } i =1, 2, \ldots, p-1.$$
+The test statistic is again $F_\text{obs} = \frac{MSR}{MSE}$ and under the assumption that $H_0$ is true,
+
+$$F_\text{obs} = \frac{MSR}{MSE} \sim F_{p-1;n-p}.$$
+
+
+### $R^2$
+
+ANOVA table also allows us to easily calculate the **coefficient of determination**, $R^2$. $R^2$ is a useful tool to assess the goodness-of-fit of our linear regression models. It provides a measure for the proportion of variability in the $Y_i$s that can be explained by our model. The formula of $R^2$ is given by:
+
+$$R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}. $$
+
+
+Think about it this way: if $SSE$ is the sum of squares of the error, it can be interpreted as the amount of variability in $Y$ that is not explained by the model. $SST$ represents all the variability in the data. If our model did not explain any variation, it would be equivalent to a horizontal line and $SSE=SST$. Therefore, the ratio of $\frac{SSE}{SST}$ represents the proportion of variability not explained by the model and $1-\frac{SSE}{SST}$ is the variability explained. 
+
+<center>
+
+![](Images/fig_2.png){width=250px}
+![](Images/fig_3.png){width=250px}
+![](Images/fig_4.png){width=250px}
+</center>
+
+In today’s lab we will first revisit ordinary least squares estimates (OLS) and then delve into the coefficient of determination ($R^2$) and the analysis of variance (ANOVA) table to deepen our understanding of the `R` output. 
+
+
+## A brief reminder from Lab 7: The `summary()` function
+
+Let's take a look at the `summary()` function again. Think of the `HSwrestlers` data set where we try to predict the hydrostatic fat (`HWFAT`) measurement of a wrestler from abomnimal fat (`ABS`) and tricep fat (`TRICEPS`) measurements.
+
+```{r}
+library(PASWR)
+data(HSwrestler)
+Model1 <- lm(HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+```
+
+The summary function gives the following output:
+```{r}
+summary(Model1)
+```
+The above `R` output displays a few elements, which were briefly explained below.
+
+**Call**: This shows the formula that was used in the regression model.
+
+**Residuals**: This lists the five-number summary of the residuals from the regression model.
+
+**Coefficients**: This shows a summary of estimated coefficients of the regression model.
+
+Within this section the column headers are:
+
+* **Estimate**: The estimated parameter. These can be used to write down the fitted regression model.
+
+* **Std. Error**: This is the estimated standard error of the parameter estimate.
+
+* **t value**: This is the $t$-statistic for the parameter, calculated as `Estimate` / `Std. Error`.
+
+* **Pr(>|t|)**: This is the $p$-value that corresponds to the $t$-statistic, i.e. $2\cdot \mathbb{P}(X>|t|)$ for $X \sim t(n-p)$, where $t$ is the `t value` computed above, $n$ is the sample size, and $p$ is the number of parameters.
+
+**Significance codes**: These codes in asterisks are appended to the $p$-values in regression analysis results. They provide a quick indication of the level of significance of the predictors in the model. The most commonly used significance levels and their corresponding codes are:
+
+```{r echo=FALSE}
+significance <- data.frame(
+  significance_code = c("***", "**", "*", ".", ""),
+  p_value = c("< 0.001", "0.001 - 0.01", "0.01 - 0.05", "0.05 - 0.1", "≥ 0.1"))
+
+colnames(significance) <- c("significance code", "p-value")
+
+kable(significance, align = c("c", "r"))
+```
+
+
+**Residual standard error**: This is the square root of mean squared error (MSE), where $MSE=\frac{\sum_{i=1}^n \hat{\epsilon}_i^2}{n-p}$ is calculated as the sum of squared residuals divided by the degrees of freedom in the model.
+
+**Multiple R-squared**: The proportion of variability in the data that is explained in the model. It is calculated as $R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}$. Higher values of $R^2$ indicate a better model fit. 
+
+**Adjusted R-squared**: Adjust $R^2$ for increased number of predictors. $R^2_a = 1-\frac{\frac{SSE}{n-p}}{\frac{SST}{n-1}}$.
+
+**F-statistic**: This is the $F$-statistic from the ANOVA table ($F_\text{obs}$), along with the regression degrees of freedom and error degrees of freedom, followed by the $p$-value corresponding to the $F$-test.
 

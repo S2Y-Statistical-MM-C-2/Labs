@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>S2Y Lab 8 Examining model fit – ANOVA and \(R^2\) | main.knit</title>
+  <title>2 Example 1: GRADES dataset | main.knit</title>
   <meta name="description" content="S2Y Lab 8<br />
 Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div>" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="S2Y Lab 8 Examining model fit – ANOVA and \(R^2\) | main.knit" />
+  <meta property="og:title" content="2 Example 1: GRADES dataset | main.knit" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="S2Y Lab 8 Examining model fit – ANOVA and \(R^2\) | main.knit" />
+  <meta name="twitter:title" content="2 Example 1: GRADES dataset | main.knit" />
   
   
   
@@ -29,8 +29,8 @@ Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div>
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="eg-1.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ex2.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -180,152 +180,88 @@ Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">S2Y Lab 8<br />
-Examining model fit – ANOVA and <span class="math inline">\(R^2\)</span></div></h1>
-</div>
-<div id="welcome-to-s2y-lab-8" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to S2Y Lab 8<a href="index.html#welcome-to-s2y-lab-8" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Intended Learning Outcomes:</p>
-<ul>
-<li>obtain the elements of an analysis of variance (ANOVA) table;</li>
-<li>use the ANOVA table to compute and interpret the <span class="math inline">\(F\)</span>-statistic and its hypothesis test;</li>
-<li>assess the goodness of fit of linear models based on <span class="math inline">\(R^2\)</span> and <span class="math inline">\(R^2_a\)</span>.</li>
-</ul>
-<div id="introduction" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="the-anova-table" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> The ANOVA table<a href="index.html#the-anova-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the lectures we studied analysis of variance (ANOVA) table which can be used to investigate the variability explained by the model. It is based on partitioning the sums of squares (<span class="math inline">\(SS\)</span>) and the degrees of freedom (df) associated with the response variable <span class="math inline">\(Y\)</span>. The total deviation, <span class="math inline">\(Y_i - \overline{Y}\)</span>, can be decomposed as</p>
-<ol style="list-style-type: decimal">
-<li><p>The deviation from the fitted value <span class="math inline">\(\hat{Y}_i\)</span> to the mean <span class="math inline">\(\overline{Y}\)</span> and</p></li>
-<li><p>The deviation fo the observation <span class="math inline">\(Y_i\)</span> to the regression line <span class="math inline">\(\hat{Y}_i\)</span>.</p></li>
-</ol>
-<p><span class="math display">\[\underbrace{Y_i - \bar{Y}}_{\text{Total Deviation}} = \underbrace{\hat{Y_i} - \bar{Y}}_{\substack{\text{Deviation of Fitted}\\ \text{Regression Value}\\ \text{around the Mean}}} + \underbrace{Y_i - \hat{Y_i}}_{\substack{\text{Deviation around}\\ \text{the Fitted Regression Line}}}\]</span></p>
-<p>When we take the sum over all observations and square it, we obtain the following equation, which decomposes the total variability in the response into two parts::</p>
-<p><span class="math display">\[\underbrace{\sum_{i=1}^n(Y_i - \bar{Y})^2}_{SST} = \underbrace{\sum_{i=1}^n(\hat{Y_i} - \bar{Y})^2}_{SSR} + \underbrace{\sum_{i=1}^n(Y_i - \hat{Y_i})^2}_{SSE}\]</span></p>
-<p>We have</p>
-<ul>
-<li><p><span class="math inline">\(SST\)</span>: Total sum of squares</p></li>
-<li><p><span class="math inline">\(SSR\)</span>: Regression sum of squares</p></li>
-<li><p><span class="math inline">\(SSE\)</span>: Error (residual) sum of squares.</p></li>
-</ul>
-<p>In a simple linear regression (only one predictor), degrees of freedom can be partitioned as: <span class="math inline">\(SST\)</span> has <span class="math inline">\(n-1\)</span> degrees of freedom, <span class="math inline">\(SSE\)</span> has <span class="math inline">\(n-2\)</span>, and <span class="math inline">\(SSR\)</span> has <span class="math inline">\(1\)</span>. If we divide the <span class="math inline">\(SS\)</span> by its degrees of freedom, we obtain the mean square as</p>
-<p><span class="math display">\[\frac{SSR}{1} = MSR \text{ and } \frac{SSE}{n-2} = MSE\]</span></p>
-<p>When <span class="math inline">\(\beta_1 = 0\)</span>, meaning the predictor does not have an effect in our regression, the <span class="math inline">\(MSR\)</span> and <span class="math inline">\(MSE\)</span> will be similar in magnitude. If <span class="math inline">\(\beta_1\neq0\)</span>, the center of the <span class="math inline">\(MSR\)</span> will be larger than that of <span class="math inline">\(MSE\)</span>.</p>
-<center>
-<img src="Images/fig_1.png" width="500" />
-</center>
-<p>We can use this understanding to test the effect of the predictor in the model using a hypothesis test. In particular, we could test <span class="math inline">\(H_0: \beta_1 = 0\)</span> versus <span class="math inline">\(H_1: \beta_1 \neq 0\)</span> using the test statistic</p>
-<p><span class="math display">\[F_\text{obs} = \frac{MSR}{MSE}\]</span></p>
-<p>When the null hypothesis is true, i.e. <span class="math inline">\(H_0: \beta_1 = 0\)</span>, then
-<span class="math display">\[F_\text{obs} = \frac{MSR}{MSE} \sim F_{1,n-2}.\]</span></p>
-<p>As a wide rule of thumb, you can say that values of <span class="math inline">\(F_{obs}\)</span> close to <span class="math inline">\(1\)</span> generally support the null hypothesis while larger values will support the alternative. However, you will always need to compare it with a critical value found using a statistical table or look at the <span class="math inline">\(p\)</span>-value produced in <code>R</code>. To generate an ANOVA table on linear objects, use <code>anova(lm.object)</code>.</p>
-<p>The full ANOVA table for a single predictor looks like this:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="Images/table4.png" alt="ANOVA table for a simple linear regression model" width="70%" />
-<p class="caption">
-Figure 1.1: ANOVA table for a simple linear regression model
+<div id="eg-1" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Example 1: <code>GRADES</code> dataset<a href="eg-1.html#eg-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Recall the <code>GRADES</code> dataset we explored in Labs 5 and 7. Previously we built a simple linear regression model between GPA and SAT scores and verified the usefulness of SAT in predicting GPA using a <span class="math inline">\(t\)</span>-test. Today, we will look at the ANOVA table produced in <code>R</code>, test the significance of the regression model using an <span class="math inline">\(F\)</span>-test, and finally examine the <span class="math inline">\(R^2\)</span> to understand how well the model performs.</p>
+<p>To open the data, type:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="eg-1.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(PASWR2)</span>
+<span id="cb4-2"><a href="eg-1.html#cb4-2" tabindex="-1"></a><span class="fu">data</span>(GRADES)</span></code></pre></div>
+<div id="constructing-an-anova-table" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Constructing an ANOVA table<a href="eg-1.html#constructing-an-anova-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let's construct an ANOVA table for the simple linear regression using the data in <code>GRADES</code>. To start, we first fit the model for <code>gpa</code> and <code>sat</code>:</p>
+<p align="center">
+<code>model.lm &lt;- lm(gpa ~ sat, data = GRADES)</code>
 </p>
-</div>
-<p>More generally, for a multiple linear regression with <span class="math inline">\(p-1\)</span> predictors, the ANOVA table looks like this:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ANOVA"></span>
-<img src="Images/table5.png" alt="ANOVA table for a multiple linear regression model" width="70%" />
-<p class="caption">
-Figure 1.2: ANOVA table for a multiple linear regression model
+<p>Then use the <code>anova()</code> command to obtain the ANOVA table:</p>
+<p align="center">
+<code>anova(model.lm)</code>
 </p>
-</div>
-<p>We can perform <span class="math inline">\(F\)</span>-test to test whether all parameters in the model of interest (i.e. all parameters excluding the intercept) are zero:</p>
-<p><span class="math display">\[H_0: \beta_1 = \beta_2 = \cdots = \beta_{p-1} = 0 \quad \text{versus} \quad H_1: \text{at least one } \beta_i \neq 0 \text{ for } i =1, 2, \ldots, p-1.\]</span>
-The test statistic is again <span class="math inline">\(F_\text{obs} = \frac{MSR}{MSE}\)</span> and under the assumption that <span class="math inline">\(H_0\)</span> is true,</p>
-<p><span class="math display">\[F_\text{obs} = \frac{MSR}{MSE} \sim F_{p-1;n-p}.\]</span></p>
-</div>
-<div id="r2" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> <span class="math inline">\(R^2\)</span><a href="index.html#r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>ANOVA table also allows us to easily calculate the <strong>coefficient of determination</strong>, <span class="math inline">\(R^2\)</span>. <span class="math inline">\(R^2\)</span> is a useful tool to assess the goodness-of-fit of our linear regression models. It provides a measure for the proportion of variability in the <span class="math inline">\(Y_i\)</span>s that can be explained by our model. The formula of <span class="math inline">\(R^2\)</span> is given by:</p>
-<p><span class="math display">\[R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}. \]</span></p>
-<p>Think about it this way: if <span class="math inline">\(SSE\)</span> is the sum of squares of the error, it can be interpreted as the amount of variability in <span class="math inline">\(Y\)</span> that is not explained by the model. <span class="math inline">\(SST\)</span> represents all the variability in the data. If our model did not explain any variation, it would be equivalent to a horizontal line and <span class="math inline">\(SSE=SST\)</span>. Therefore, the ratio of <span class="math inline">\(\frac{SSE}{SST}\)</span> represents the proportion of variability not explained by the model and <span class="math inline">\(1-\frac{SSE}{SST}\)</span> is the variability explained.</p>
-<center>
-<img src="Images/fig_2.png" width="250" />
-<img src="Images/fig_3.png" width="250" />
-<img src="Images/fig_4.png" width="250" />
-</center>
-<p>In today’s lab we will first revisit ordinary least squares estimates (OLS) and then delve into the coefficient of determination (<span class="math inline">\(R^2\)</span>) and the analysis of variance (ANOVA) table to deepen our understanding of the <code>R</code> output.</p>
-</div>
-</div>
-<div id="a-brief-reminder-from-lab-7-the-summary-function" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> A brief reminder from Lab 7: The <code>summary()</code> function<a href="index.html#a-brief-reminder-from-lab-7-the-summary-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let's take a look at the <code>summary()</code> function again. Think of the <code>HSwrestlers</code> data set where we try to predict the hydrostatic fat (<code>HWFAT</code>) measurement of a wrestler from abomnimal fat (<code>ABS</code>) and tricep fat (<code>TRICEPS</code>) measurements.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">data</span>(HSwrestler)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>Model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HWFAT <span class="sc">~</span> ABS <span class="sc">+</span> TRICEPS, <span class="at">data =</span> HSwrestler)</span></code></pre></div>
-<p>The summary function gives the following output:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="fu">summary</span>(Model1)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = HWFAT ~ ABS + TRICEPS, data = HSwrestler)
+<p>The ANOVA table output is shown below:</p>
+<pre><code>## Analysis of Variance Table
 ## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -6.5558 -2.2550 -0.5245  2.3365  9.4957 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.05904    0.65219   3.157   0.0023 ** 
-## ABS          0.33708    0.06415   5.255 1.34e-06 ***
-## TRICEPS      0.50430    0.09920   5.084 2.64e-06 ***
+## Response: gpa
+##            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## sat         1 40.397  40.397  253.18 &lt; 2.2e-16 ***
+## Residuals 198 31.592   0.160                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.061 on 75 degrees of freedom
-## Multiple R-squared:  0.8832, Adjusted R-squared:  0.8801 
-## F-statistic: 283.6 on 2 and 75 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The above <code>R</code> output displays a few elements, which were briefly explained below.</p>
-<p><strong>Call</strong>: This shows the formula that was used in the regression model.</p>
-<p><strong>Residuals</strong>: This lists the five-number summary of the residuals from the regression model.</p>
-<p><strong>Coefficients</strong>: This shows a summary of estimated coefficients of the regression model.</p>
-<p>Within this section the column headers are:</p>
-<ul>
-<li><p><strong>Estimate</strong>: The estimated parameter. These can be used to write down the fitted regression model.</p></li>
-<li><p><strong>Std. Error</strong>: This is the estimated standard error of the parameter estimate.</p></li>
-<li><p><strong>t value</strong>: This is the <span class="math inline">\(t\)</span>-statistic for the parameter, calculated as <code>Estimate</code> / <code>Std. Error</code>.</p></li>
-<li><p><strong>Pr(&gt;|t|)</strong>: This is the <span class="math inline">\(p\)</span>-value that corresponds to the <span class="math inline">\(t\)</span>-statistic, i.e. <span class="math inline">\(2\cdot \mathbb{P}(X&gt;|t|)\)</span> for <span class="math inline">\(X \sim t(n-p)\)</span>, where <span class="math inline">\(t\)</span> is the <code>t value</code> computed above, <span class="math inline">\(n\)</span> is the sample size, and <span class="math inline">\(p\)</span> is the number of parameters.</p></li>
-</ul>
-<p><strong>Significance codes</strong>: These codes in asterisks are appended to the <span class="math inline">\(p\)</span>-values in regression analysis results. They provide a quick indication of the level of significance of the predictors in the model. The most commonly used significance levels and their corresponding codes are:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">significance code</th>
-<th align="right">p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">***</td>
-<td align="right">&lt; 0.001</td>
-</tr>
-<tr class="even">
-<td align="center">**</td>
-<td align="right">0.001 - 0.01</td>
-</tr>
-<tr class="odd">
-<td align="center">*</td>
-<td align="right">0.01 - 0.05</td>
-</tr>
-<tr class="even">
-<td align="center">.</td>
-<td align="right">0.05 - 0.1</td>
-</tr>
-<tr class="odd">
-<td align="center"></td>
-<td align="right">≥ 0.1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Residual standard error</strong>: This is the square root of mean squared error (MSE), where <span class="math inline">\(MSE=\frac{\sum_{i=1}^n \hat{\epsilon}_i^2}{n-p}\)</span> is calculated as the sum of squared residuals divided by the degrees of freedom in the model.</p>
-<p><strong>Multiple R-squared</strong>: The proportion of variability in the data that is explained in the model. It is calculated as <span class="math inline">\(R^2 = 1-\frac{SSE}{SST} = \frac{SSR}{SST}\)</span>. Higher values of <span class="math inline">\(R^2\)</span> indicate a better model fit.</p>
-<p><strong>Adjusted R-squared</strong>: Adjust <span class="math inline">\(R^2\)</span> for increased number of predictors. <span class="math inline">\(R^2_a = 1-\frac{\frac{SSE}{n-p}}{\frac{SST}{n-1}}\)</span>.</p>
-<p><strong>F-statistic</strong>: This is the <span class="math inline">\(F\)</span>-statistic from the ANOVA table (<span class="math inline">\(F_\text{obs}\)</span>), along with the regression degrees of freedom and error degrees of freedom, followed by the <span class="math inline">\(p\)</span>-value corresponding to the <span class="math inline">\(F\)</span>-test.</p>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Check if you understand everything produced in the above table. If not, ask for help!</p>
+</div>
+<div id="testing-for-the-significance-of-the-regression-model" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Testing for the significance of the regression model<a href="eg-1.html#testing-for-the-significance-of-the-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <span class="math inline">\(F\)</span>-test is used to assess if the model of interest is useful or not. In this example, since there is only one predictor, testing the significance of the model is equivalent to testing the significance of the predictor. Therefore, we would expect the conclusion from the <span class="math inline">\(F\)</span>-test to be same with that from the <span class="math inline">\(t\)</span>-test in Lab 7. Let's check.</p>
+<p><strong>TASK</strong>: Test if the regression model is significant at the <span class="math inline">\(\alpha=0.05\)</span> significance level.</p>
+<p><strong>Step 1: Hypotheses</strong></p>
+<p>The null and alternative hypotheses for testing the significance of the regression model are:
+<span class="math display">\[H_0: \beta_1 = 0\quad \text{ versus }\quad H_1: \beta_1 \neq 0\]</span>
+(Unsurprisingly, the hypotheses are identical to those in Example 1 of Lab 7, as there is only one predictor.)</p>
+<p><strong>Step 2: Test statistic</strong></p>
+<p>Looking at the ANOVA table above, what is the value of test statistic for this problem?</p>
+<p><span class="math inline">\(F_\text{obs}=\)</span> <input class='webex-solveme nospaces' size='8' data-answer='["253.1824","253.182","253.18","253.2"]'/></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p><span class="math inline">\(F_\text{obs}\)</span> corresponds to <code>F value</code> in the above ANOVA table. It is calculated as:
+<span class="math display">\[F_{obs} = \frac{MSR}{MSE} = \frac{40.3965}{0.1596} = 253.1824\]</span></p>
+</div>
+<p><strong>Step 3: Rejection region calculation</strong></p>
+<p>What is the critical value in this case?</p>
+<p>ANSWER <span class="math inline">\(=\)</span> <input class='webex-solveme nospaces' size='8' data-answer='["3.888853","3.88885","3.8889","3.889","3.89"]'/></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>Because <span class="math inline">\(F_\text{obs} \sim F_{1,198}\)</span> and this is a one-tailed test, the rejection region is <span class="math inline">\(F_\text{obs} &gt; F_{0.95;1,198} = 3.888853\)</span> (value found by using the R command below).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="eg-1.html#cb6-1" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">1</span>,<span class="dv">198</span>)</span></code></pre></div>
+<pre><code>## [1] 3.888853</code></pre>
+</div>
+<p><strong>Step 4: Statistical conclusion</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>From the rejection region, we <select class='webex-select'><option value='blank'></option><option value='answer'>reject</option><option value=''>do not reject</option></select> <span class="math inline">\(H_0\)</span> because <span class="math inline">\(F_{obs}\)</span> is <select class='webex-select'><option value='blank'></option><option value='answer'>lies in</option><option value=''>does not lie in</option></select> the rejection region.</p></li>
+<li><p>From the <span class="math inline">\(p\)</span>-value (<code>Pr(&gt;|F|))</code> in the above ANOVA table), we <select class='webex-select'><option value='blank'></option><option value='answer'>reject</option><option value=''>do not reject</option></select> <span class="math inline">\(H_0\)</span> because the value for <code>Pr(&gt;|F|))</code> is <select class='webex-select'><option value='blank'></option><option value=''>greater than</option><option value='answer'>less than</option></select> 0.05.</p></li>
+</ol>
+<p><strong>Step 5: English conclusion</strong></p>
+<p>There is <select class='webex-select'><option value='blank'></option><option value='answer'>sufficient evidence</option><option value=''>insufficient evidence</option></select> that suggests the current regression model is significant, thus there exists a linear relationship exists between first-semester <code>gpa</code> and <code>sat</code> scores.</p>
+</div>
+<div id="computing-r2" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Computing <span class="math inline">\(R^2\)</span><a href="eg-1.html#computing-r2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <span class="math inline">\(R^2\)</span> metric is a measurement of the proportion of variability captured by the model. It is a helpful tool to assess how well our model fits the data (goodness-of-fit).</p>
+<p>Compute <span class="math inline">\(R^2\)</span> based on <code>anova(model.lm)</code> (it should be the same as the value of <code>Multiple R-squared</code> returned in <code>summary(model.lm)</code>).</p>
+<p><span class="math inline">\(R^2 =\)</span> <input class='webex-solveme nospaces' size='6' data-answer='["0.5612","0.561","0.56",".5612",".561",".56"]'/></p>
+<div class="webex-solution">
+<button>
+Hint: How to calculate <span class="math inline">\(R^2\)</span>
+</button>
+<p>The formula for <span class="math inline">\(R^2\)</span> is
+<span class="math inline">\(R^2 = 1-\frac{SSE}{SST}\)</span>.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution: <span class="math inline">\(R^2\)</span>
+</button>
+<p><span class="math inline">\(R^2 = 1-\frac{SSE}{SST} = \frac{31.592}{31.592+40.397} = 0.5612\)</span></p>
+</div>
 
 </div>
 </div>
@@ -505,8 +441,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="eg-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ex2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
