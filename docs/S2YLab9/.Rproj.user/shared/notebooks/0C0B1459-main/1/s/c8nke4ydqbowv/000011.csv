@@ -1,3 +1,0 @@
-"0","plot(Distance~I(Speed^2), data=stopping,"
-"0","     xlab=""Squared speed (in MPH) "", ylab=""Distance (in feet)"", "
-"0","     pch = 16, main = ""Transform Speed"")"

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 9 - Transformations and Assumptions</title>
-  <meta name="description" content="Lab 9 - Transformations and Assumptions" />
+  <title>Lab 9 - Exploring Model Selection</title>
+  <meta name="description" content="Lab 9 - Exploring Model Selection" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 9 - Transformations and Assumptions" />
+  <meta property="og:title" content="Lab 9 - Exploring Model Selection" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 9 - Transformations and Assumptions" />
+  <meta name="twitter:title" content="Lab 9 - Exploring Model Selection" />
   
   
   
@@ -29,7 +29,7 @@
   
   
 
-<link rel="next" href="example-1-power-transformation-on-y.html"/>
+<link rel="next" href="example-1-methods-for-variable-selection.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -138,24 +138,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 9!</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-variable-transformations"><i class="fa fa-check"></i><b>1.1</b> Introduction to variable transformations</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#root"><i class="fa fa-check"></i><b>1.2</b> Root</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#reciprocal"><i class="fa fa-check"></i><b>1.3</b> Reciprocal</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#quadratic"><i class="fa fa-check"></i><b>1.4</b> Quadratic</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#logarithmic"><i class="fa fa-check"></i><b>1.5</b> Logarithmic</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="example-1-power-transformation-on-y.html"><a href="example-1-power-transformation-on-y.html"><i class="fa fa-check"></i><b>2</b> Example 1: Power transformation on <span class="math inline">\(Y\)</span></a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-model-selection"><i class="fa fa-check"></i><b>1.1</b> Introduction to model selection</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#stepwise-testing"><i class="fa fa-check"></i><b>1.2</b> Stepwise Testing</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="example-1-power-transformation-on-y.html"><a href="example-1-power-transformation-on-y.html#exploratory-analysis-and-model-fitting"><i class="fa fa-check"></i><b>2.1</b> Exploratory analysis and model fitting</a></li>
-<li class="chapter" data-level="2.2" data-path="example-1-power-transformation-on-y.html"><a href="example-1-power-transformation-on-y.html#assumption-checking-and-interpretation"><i class="fa fa-check"></i><b>2.2</b> Assumption checking and interpretation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#backward-elimination"><i class="fa fa-check"></i>Backward Elimination</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#forward-selection"><i class="fa fa-check"></i>Forward Selection</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#stepwise-regression"><i class="fa fa-check"></i>Stepwise Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="example-2-animal-brains-and-double-transformations.html"><a href="example-2-animal-brains-and-double-transformations.html"><i class="fa fa-check"></i><b>3</b> Example 2: Animal brains and double transformations</a></li>
-<li class="chapter" data-level="4" data-path="exercise-1-identify-the-appropriate-transformation.html"><a href="exercise-1-identify-the-appropriate-transformation.html"><i class="fa fa-check"></i><b>4</b> Exercise 1: Identify the appropriate transformation</a></li>
-<li class="chapter" data-level="5" data-path="exercise-2-log-transformation-on-x.html"><a href="exercise-2-log-transformation-on-x.html"><i class="fa fa-check"></i><b>5</b> Exercise 2: Log-transformation on <span class="math inline">\(x\)</span></a>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#criterion-based-approach"><i class="fa fa-check"></i><b>1.3</b> Criterion-based approach</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="exercise-2-log-transformation-on-x.html"><a href="exercise-2-log-transformation-on-x.html#statistical-analysis"><i class="fa fa-check"></i><b>5.1</b> Statistical analysis</a></li>
-<li class="chapter" data-level="5.2" data-path="exercise-2-log-transformation-on-x.html"><a href="exercise-2-log-transformation-on-x.html#assumption-checking"><i class="fa fa-check"></i><b>5.2</b> Assumption checking</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#adjusted-r2-r2_alpha"><i class="fa fa-check"></i>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mallows-c_p"><i class="fa fa-check"></i>Mallow's (<span class="math inline">\(C_p\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bayesian-information-criterion-bic"><i class="fa fa-check"></i>Bayesian Information Criterion (<span class="math inline">\(BIC\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#akaike-information-criterion-aic"><i class="fa fa-check"></i>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html"><i class="fa fa-check"></i><b>2</b> Example 1: Methods for Variable Selection</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#backward-elimination-and-forward-selection"><i class="fa fa-check"></i><b>2.1</b> Backward Elimination and Forward Selection</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#criterion-based-variable-selection"><i class="fa fa-check"></i><b>2.2</b> Criterion-Based Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-1-lake-water-quality.html"><a href="exercise-1-lake-water-quality.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: Lake water quality</a></li>
+<li class="chapter" data-level="4" data-path="exercise-2-fuel-efficiency.html"><a href="exercise-2-fuel-efficiency.html"><i class="fa fa-check"></i><b>4</b> Exercise 2: Fuel Efficiency</a></li>
 </ul>
 
       </nav>
@@ -165,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 9 - Transformations and Assumptions</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 9 - Exploring Model Selection</a>
           </h1>
         </div>
 
@@ -174,125 +178,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Lab 9 - Transformations and Assumptions</h1>
+<h1 class="title">Lab 9 - Exploring Model Selection</h1>
 </div>
 <div id="welcome-to-lab-9" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Welcome to Lab 9!<a href="index.html#welcome-to-lab-9" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Intended Learning Outcomes:</p>
 <ul>
-<li>Produce residual plots and assess the assumptions of a linear model.</li>
-<li>Fit linear models with transformed variables.</li>
+<li>Select predictors using backward elimination, forward selection, and stepwise regression;</li>
+<li>Select predictors based on optimality criteria, such as <span class="math inline">\(R^2_a\)</span> (<span class="math inline">\(R^2\)</span> adjusted) and AIC.</li>
 </ul>
-<div id="introduction-to-variable-transformations" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction to variable transformations<a href="index.html#introduction-to-variable-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The need to transform variables may arise during the exploratory analysis when you realize that your predictor(s) do not have a linear relationship with the response, or during assumption checking when the residuals do not meet assumptions. In either case, a transformation of the response variable, the predictors, or both response and predictors may be necessary.</p>
-<p>If the model has been fitted using a transformation on the response variable, the results will be given in the transformed scale. It is still possible to report the findings in the original scale, but this requires a back-transformation. How do I back-transform my data, you ask? Simply apply the inverse operation (inverse of the transformation) to your predictions.</p>
-<p>In this lab, we will explore some simple transformations and how to tell if you need them. All examples are a simple linear regression where <span class="math inline">\(Y = \beta_0 + \beta_1 x + \epsilon\)</span>, where <span class="math inline">\(Y\)</span> is the response and <span class="math inline">\(x\)</span> is the predictor.</p>
+<div id="introduction-to-model-selection" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction to model selection<a href="index.html#introduction-to-model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, we will consider model selection to refer to variable/predictor selection. The process of selection should answer the question: what are the best predictors in my model?
+Some might say, the more the merrier. However, models with too many predictors are challenging for many reasons: they can be difficult to manage, assess, compute, and interpret. In general, statisticians prefer parsimonious models: the simplest possible model that does the best job. But... how will we know what is the best model? We consider two basic approaches to model selection:</p>
+<p align="center">
+<ol style="list-style-type: decimal">
+<li><strong>Stepwise testing</strong>: strategies that compare models with small differences</li>
+<li><strong>Criterion-based approach</strong>: results in the model that optimises some measure of goodness-of-fit</li>
+</ol>
+</p>
+<p><br /></p>
 </div>
-<div id="root" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Root<a href="index.html#root" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A root transformation is one where you take a root of the variable. For example, you may take the square or cubic root. Recognizing the need for the transformation is important. Here is a small simulation to give you a taste for a predictor in need of a square root transformation looks like. In this example, <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 2\)</span>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
-<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.5</span>), <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Square-root Transformation&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:root"></span>
-<img src="main_files/figure-html/root-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the square-root transformation of $x$" width="672" />
-<p class="caption">
-Figure 1.1: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the square-root transformation of <span class="math inline">\(x\)</span>
+<div id="stepwise-testing" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Stepwise Testing<a href="index.html#stepwise-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="backward-elimination" class="section level3 unnumbered hasAnchor">
+<h3>Backward Elimination<a href="index.html#backward-elimination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Backward elimination begins with a model containing all potential predictors and identifies the one with the largest <span class="math inline">\(p\)</span>-value. This can be done by looking at the <span class="math inline">\(p\)</span>-values for the <span class="math inline">\(t\)</span>-statistics of the <span class="math inline">\(\hat{\beta}_i, i = 1,...,p-1\)</span> coefficients using the function <code>summary()</code> or for the <span class="math inline">\(F\)</span>-statistics using the function <code>drop1()</code>. If the variable with the largest <span class="math inline">\(p\)</span>-value is above a predetermined critical value, <span class="math inline">\(\alpha_{\text{crit}}\)</span>, that variable is dropped. A model with the remaining variables is then fit and the procedure continues until all the <span class="math inline">\(p\)</span>-values for the remaining variables in the model are below <span class="math inline">\(\alpha_{\text{crit}}\)</span>. In summary, the process is</p>
+<p align="center">
+<div class="line-block">    <strong>Step 1: Fit model</strong>. For the first iteration, fit a model with all predictor variables. In later iterations, fit the latest selection of variables.</div>
+<div class="line-block">    <strong>Step 2: Evaluate</strong>. Are there variables with <span class="math inline">\(p\)</span>-values larger than <span class="math inline">\(\alpha_{\text{crit}}\)</span>? If so, remove the variable with the largest <span class="math inline">\(p\)</span>-value.</div>
+<div class="line-block">    <strong>Step 3: Re-fit the model</strong>. Repeat Steps 1 and 2 until no variables have <span class="math inline">\(p\)</span>-values larger than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.</div>
 </p>
 </div>
-<p>As you can see in the plots, the transformation may be required if the predictor displays a convex curved relationship with the response. If you think this is you, you can apply the transformation in the model using:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
-<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
-<span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
-<span id="cb2-4"><a href="index.html#cb2-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.5</span>))</span></code></pre></div>
-</div>
-<div id="reciprocal" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Reciprocal<a href="index.html#reciprocal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The reciprocal transformation of <span class="math inline">\(x\)</span> is the same as saying <span class="math inline">\(\frac{1}{x}\)</span> or <span class="math inline">\(x^{-1}\)</span>. We performed another simulation to show you what data in need of the reciprocal transformation look like. Here, <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1.5\)</span>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
-<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^-</span><span class="dv">1</span>), <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Reciprocal Transformation&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:reciprocal"></span>
-<img src="main_files/figure-html/reciprocal-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the reciprocal transformation of $x$" width="672" />
-<p class="caption">
-Figure 1.2: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the reciprocal transformation of <span class="math inline">\(x\)</span>
+<div id="forward-selection" class="section level3 unnumbered hasAnchor">
+<h3>Forward Selection<a href="index.html#forward-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+Forward selection starts with no variables in the model and then adds the variable that produces the smallest <span class="math inline">\(p\)</span>-value below <span class="math inline">\(\alpha_{\text{crit}}\)</span> when included in the model. This procedure is continued until no new predictors can be added. A summary of the steps is:
+<p align="center">
+<div class="line-block">    <strong>Step 1: Fit model</strong>. For the first iteration, fit a model with no predictor variables, only the intercept. In later iterations, fit the latest selection of variables.</div>
+<div class="line-block">    <strong>Step 2: Evaluate</strong>. Are there variables with <span class="math inline">\(p\)</span>-values smaller than <span class="math inline">\(\alpha_{\text{crit}}\)</span> if included in the model? If so, add the variable with the smallest <span class="math inline">\(p\)</span>-value.</div>
+<div class="line-block">    <strong>Step 3: Re-fit the model</strong>. Repeat Steps 1 and 2 until no variables have <span class="math inline">\(p\)</span>-values smaller than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.</div>
 </p>
 </div>
-<p>The figure shows a concave curve that slopes downward. The response is largest when <span class="math inline">\(x \leq 1\)</span> because <span class="math inline">\(\frac{1}{x} &gt; 1\)</span> when <span class="math inline">\(x &lt; 1\)</span>. Using the same logic, we understand that large values of <span class="math inline">\(x\)</span> result in smaller values of <span class="math inline">\(Y\)</span>.</p>
-<p>You can fit it in a model using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
-<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
-<span id="cb4-3"><a href="index.html#cb4-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
-<span id="cb4-4"><a href="index.html#cb4-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^-</span><span class="dv">1</span>))</span></code></pre></div>
+<div id="stepwise-regression" class="section level3 unnumbered hasAnchor">
+<h3>Stepwise Regression<a href="index.html#stepwise-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a combination of backward elimination and forward selection. This technique
+allows variables that were either removed or added early in the procedure to reenter or exit
+the model later in the process. At each stage, a variable can be added or removed.
+Testing-based procedures are relatively straightforward to implement; however, they do
+have some drawbacks. One of the chief weaknesses of testing-based procedures is ending
+up with a model that is overly parsimonious.</p>
+<p><br /></p>
 </div>
-<div id="quadratic" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Quadratic<a href="index.html#quadratic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The quadratic transformation of <span class="math inline">\(x\)</span> is the same as saying <span class="math inline">\(x^2\)</span>. It is the inverse of the square-root transformation. It it a subset of the power transformations. In more general terms, it is <span class="math inline">\(x^a\)</span>, where <span class="math inline">\(a\)</span> is anything. The reciprocal can also be thought of in this same category.</p>
-<p>But what does it look like? The figures below are a simulated example using <span class="math inline">\(\beta_0=1\)</span> and <span class="math inline">\(\beta_1=2\)</span>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb5-3"><a href="index.html#cb5-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
-<span id="cb5-4"><a href="index.html#cb5-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb5-5"><a href="index.html#cb5-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Quadratic Transformation&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:quadratic"></span>
-<img src="main_files/figure-html/quadratic-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of $x$" width="672" />
-<p class="caption">
-Figure 1.3: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of <span class="math inline">\(x\)</span>
+</div>
+<div id="criterion-based-approach" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Criterion-based approach<a href="index.html#criterion-based-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In essence, we look for the combination of variables that gives us the best goodness-of-fit (gof) metric. Different gofs focus on different things. Here, we will consider <span class="math inline">\(R^2_\alpha\)</span> (adjusted <span class="math inline">\(R^2\)</span>), Mallow's <span class="math inline">\(C_p\)</span>, Bayesian Information Criterion (BIC) and Akaike Information Criterion (AIC). You are not expected to know the formula for Mallow's <span class="math inline">\(C_p\)</span>, BIC or AIC.</p>
+<div id="adjusted-r2-r2_alpha" class="section level3 unnumbered hasAnchor">
+<h3>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)<a href="index.html#adjusted-r2-r2_alpha" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is a measure of the variability of the data captured by the model, as <span class="math inline">\(R^2\)</span>. However, because more predictors will always increase with more variables, we adjust it to account for the added complexity. It is defined as</p>
+<p><span class="math display" id="eq:Radj">\[\begin{equation}
+R^2_{\alpha} = 1- \frac{SSE/(n-p)}{SST/(n-1)}.
+\tag{1.1}
+\end{equation}\]</span><br />
+In summary: <strong>The higher, the better.</strong></p>
+</div>
+<div id="mallows-c_p" class="section level3 unnumbered hasAnchor">
+<h3>Mallow's (<span class="math inline">\(C_p\)</span>)<a href="index.html#mallows-c_p" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is defined as</p>
+<p><span class="math display" id="eq:MallC">\[\begin{equation}
+C_p = \frac{SSE}{\hat{\sigma}^2} + 2p - n.
+\tag{1.2}
+\end{equation}\]</span>
+where <span class="math inline">\(\hat{\sigma}\)</span> is from the model with all predictors and <span class="math inline">\(SSE\)</span> is for the model with <span class="math inline">\(p\)</span> predictors. When all predictors are used in the model <span class="math inline">\(C_p = p\)</span>. A model with a bad fit will produce a <span class="math inline">\(C_p\)</span> much bigger than <span class="math inline">\(p\)</span>. It is helpful to plot <span class="math inline">\(C_p\)</span> against <span class="math inline">\(p\)</span>.<br />
+<br />
 </p>
+<p>In summary: The smaller, the better.**</p>
 </div>
-<p>As you can see from the plots, the predictor has a concave relationship with the response previous to the quadratic transformation. You can use it in a model by using the code:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
-<span id="cb6-2"><a href="index.html#cb6-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
-<span id="cb6-3"><a href="index.html#cb6-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
-<span id="cb6-4"><a href="index.html#cb6-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<div id="bayesian-information-criterion-bic" class="section level3 unnumbered hasAnchor">
+<h3>Bayesian Information Criterion (<span class="math inline">\(BIC\)</span>)<a href="index.html#bayesian-information-criterion-bic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall that <span class="math inline">\(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})\)</span> is the log-likelihood function. The BIC is defined as</p>
+<p><span class="math display" id="eq:BIC">\[\begin{equation}
+BIC = -2\text{max}(\ln \mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + p \cdot \text{ln}(n) = n \text{ln}\frac{SSE}{n} +p\text{ln}(n) + \text{constant}.
+\tag{1.3}
+\end{equation}\]</span>
+The BIC uses the log-likelihood and penalises the number of parameters <span class="math inline">\(p\)</span> in the model.<br />
+<br />
+In summary: <strong>The smaller BIC, the better.</strong></p>
 </div>
-<div id="logarithmic" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Logarithmic<a href="index.html#logarithmic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Last but not least, the logarithmic transformation is equivalent to saying <span class="math inline">\(\ln(x)\)</span>, which in <code>R</code> is the same as <code>log(x)</code>. Here is another simulation that shows the original and transformed predictor when the transformation should be logarithmic.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb7-2"><a href="index.html#cb7-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb7-3"><a href="index.html#cb7-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
-<span id="cb7-4"><a href="index.html#cb7-4" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb7-5"><a href="index.html#cb7-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Log Transformation&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:log1"></span>
-<img src="main_files/figure-html/log1-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$" width="672" />
-<p class="caption">
-Figure 1.4: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of <span class="math inline">\(x\)</span>
-</p>
-</div>
-<p>Fitting the transformation in <code>R</code> is straight forward as in the previous transformations. You can use:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" tabindex="-1"></a><span class="co"># Model without transformation</span></span>
-<span id="cb8-2"><a href="index.html#cb8-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
-<span id="cb8-3"><a href="index.html#cb8-3" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
-<span id="cb8-4"><a href="index.html#cb8-4" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">log</span>(x))</span></code></pre></div>
-<p>Another useful feature of the logarithmic transformation is that it can help when applied to the response variable too so that both predictor and response are log-transformed. In the original scale, the data can look like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb9-2"><a href="index.html#cb9-2" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>x, <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb9-3"><a href="index.html#cb9-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Original Scale&quot;</span>)</span>
-<span id="cb9-4"><a href="index.html#cb9-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(Y)<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">pch =</span> <span class="dv">16</span>, </span>
-<span id="cb9-5"><a href="index.html#cb9-5" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;After Log Transformation&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:log2"></span>
-<img src="main_files/figure-html/log2-1.png" alt="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$ and $Y$" width="672" />
-<p class="caption">
-Figure 1.5: Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of <span class="math inline">\(x\)</span> and <span class="math inline">\(Y\)</span>
-</p>
-</div>
-<p>The main thing to note in these plots is the increasing variance the further away from the origin. Sort of like a "fanning" effect. The transformation is easy to fit using:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" tabindex="-1"></a><span class="co"># Model with transformation</span></span>
-<span id="cb10-2"><a href="index.html#cb10-2" tabindex="-1"></a>model.root <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(y) <span class="sc">~</span> <span class="fu">log</span>(x))</span></code></pre></div>
-<p>You will not need to know this for the exam, but as a special feature, models that use logarithmic transformations have approximate interpretations without the need for back-transformation. When <span class="math inline">\(x\)</span> has been transformed with a natural log transformation, the change in the <span class="math inline">\(\ln(x)\)</span> is roughly equal to the change in <span class="math inline">\(x\)</span> provided the changes in <span class="math inline">\(x\)</span> are small. Consider the figure below, which graphically illustrates how changing the <span class="math inline">\(x\)</span> values 3 and 6 by 10% corresponds to an approximate increase in <span class="math inline">\(\ln(x)\)</span> of about 10%.</p>
-<center>
-<div class="float">
-<img src="Images/fig_logs.png" height="300" alt="Small change in x gives a similar small change in \ln(x)" />
-<div class="figcaption">Small change in <span class="math inline">\(x\)</span> gives a similar small change in <span class="math inline">\(\ln(x)\)</span></div>
-</div>
-</center>
+<div id="akaike-information-criterion-aic" class="section level3 unnumbered hasAnchor">
+<h3>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)<a href="index.html#akaike-information-criterion-aic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The AIC is defined as
+<span class="math display" id="eq:AIC">\[\begin{equation}
+AIC = -2\text{max}(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + 2p = n \text{ln}\frac{SSE}{n} + 2p + \text{constant}.
+\tag{1.4}
+\end{equation}\]</span>
+This is perhaps one of the most common goodness-of-fit metrics. It is good to know.<br />
+<br />
+In summary: <strong>The smaller AIC, the better.</strong></p>
 
+</div>
 </div>
 </div>
 <script>
@@ -507,7 +491,7 @@ window.onload = function() {
         </div>
       </div>
 
-<a href="example-1-power-transformation-on-y.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="example-1-methods-for-variable-selection.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

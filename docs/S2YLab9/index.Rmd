@@ -1,11 +1,11 @@
 ---
-title: "Lab 9 - Transformations and Assumptions"
+title: "Lab 9 - Exploring Model Selection"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 biblio-style: apalike
 link-citations: yes
-rmd_files: ["index.Rmd", "Example1.Rmd","Example2.Rmd", "Exercise1.Rmd", "Exercise2.Rmd"]
+rmd_files: ["index.Rmd", "Example1.Rmd", "Exercise1.Rmd", "Exercise2.Rmd"]
 
 ---
 
@@ -20,8 +20,6 @@ library(tidyverse)
 library(PASWR2)
 library(MASS)
 library(VGAM)
-# RUBBER<- Rubber
-# FERTILIZE <- FERTILIZE
 
 ```
 
@@ -36,186 +34,97 @@ knitr::write_bib(c(
 
 Intended Learning Outcomes:
 
-* Produce residual plots and assess the assumptions of a linear model. 
-* Fit linear models with transformed variables. 
+* Select predictors using backward elimination, forward selection, and stepwise regression;
+* Select predictors based on optimality criteria, such as $R^2_a$ ($R^2$ adjusted) and AIC.
 
-## Introduction to variable transformations
-The need to transform variables may arise during the exploratory analysis when you realize that your predictor(s) do not have a linear relationship with the response, or during assumption checking when the residuals do not meet assumptions. In either case, a transformation of the response variable, the predictors, or both response and predictors may be necessary.
+## Introduction to model selection
+In this lab, we will consider model selection to refer to variable/predictor selection. The process of selection should answer the question: what are the best predictors in my model?
+Some might say, the more the merrier. However, models with too many predictors are challenging for many reasons: they can be difficult to manage, assess, compute, and interpret. In general, statisticians prefer parsimonious models: the simplest possible model that does the best job. But... how will we know what is the best model? We consider two basic approaches to model selection: 
 
-If the model has been fitted using a transformation on the response variable, the results will be given in the transformed scale. It is still possible to report the findings in the original scale, but this requires a back-transformation. How do I back-transform my data, you ask? Simply apply the inverse operation (inverse of the transformation) to your predictions.  
+<p align = "center">
+1. **Stepwise testing**: strategies that compare models with small differences
+2. **Criterion-based approach**: results in the model that optimises some measure of goodness-of-fit
+</p>
 
-In this lab, we will explore some simple transformations and how to tell if you need them. All examples are a simple linear regression where $Y = \beta_0 + \beta_1 x + \epsilon$, where $Y$ is the response and $x$ is the predictor. 
+<br />
 
-## Root 
-A root transformation is one where you take a root of the variable. For example, you may take the square or cubic root. Recognizing the need for the transformation is important. Here is a small simulation to give you a taste for a predictor in need of a square root transformation looks like. In this example, $\beta_0 = 1$ and $\beta_1 = 2$. 
-```{r, include = FALSE, eval = TRUE, warnings= FALSE, message = FALSE, echo = FALSE}
-set.seed(123) # Ignore this line
+## Stepwise Testing
 
-# Simulate data from a simple linear model
-n <- 100
-beta_0 <- 1
-beta_1 <- 2
-x.trans <- runif(n, min = 0, max =10)
-Y <- beta_0 + beta_1*x.trans + rnorm(n, 0, sd = 1)
-x <- x.trans^2
-```
+### Backward Elimination {-}
+Backward elimination begins with a model containing all potential predictors and identifies the one with the largest $p$-value. This can be done by looking at the $p$-values for the $t$-statistics of the $\hat{\beta}_i, i = 1,...,p-1$ coefficients using the function `summary()` or for the $F$-statistics using the function `drop1()`. If the variable with the largest $p$-value is above a predetermined critical value, $\alpha_{\text{crit}}$, that variable is dropped. A model with the remaining variables is then fit and the procedure continues until all the $p$-values for the remaining variables in the model are below $\alpha_{\text{crit}}$. In summary, the process is
 
-```{r root, fig.cap="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the square-root transformation of $x$", fig.align='center'}
-par(mfrow = c(1,2))
-plot(Y~x, pch = 16, 
-     main = "Original Scale")
-plot(Y~I(x^0.5), pch = 16, 
-    main = "After Square-root Transformation")
+<p align = "center">
+|     **Step 1: Fit model**. For the first iteration, fit a model with all predictor variables. In later iterations, fit the latest selection of variables. 
 
-```
-As you can see in the plots, the transformation may be required if the predictor displays a convex curved relationship with the response. If you think this is you, you can apply the transformation in the model using:
-```{r, eval = FALSE}
-# Model without transformation
-model <- lm(y ~ x)
-# Model with transformation
-model.root <- lm(y ~ I(x^0.5))
-```
+|     **Step 2: Evaluate**. Are there variables with $p$-values larger than $\alpha_{\text{crit}}$? If so, remove the variable with the largest $p$-value. 
 
-## Reciprocal
-The reciprocal transformation of $x$ is the same as saying $\frac{1}{x}$ or $x^{-1}$. We performed another simulation to show you what data in need of the reciprocal transformation look like. Here, $\beta_0 = 1$ and $\beta_1 = 1.5$. 
-```{r, include = FALSE, eval = TRUE, warnings= FALSE, message = FALSE, echo = FALSE}
-set.seed(123) # Ignore this line
+|     **Step 3: Re-fit the model**. Repeat Steps 1 and 2 until no variables have $p$-values larger than $\alpha_{\text{crit}}$. 
+</p>
 
-# Simulate data from a simple linear model
-beta_0 <- 1
-beta_1 <- 1.5
-x.trans <- runif(n, min = 0.2, max =2)
-Y <- beta_0 + beta_1*x.trans + rnorm(n, 0, sd = 1)
-x <- 1/x.trans
-```
+### Forward Selection {-}
+Forward selection starts with no variables in the model and then adds the variable that produces the smallest $p$-value below $\alpha_{\text{crit}}$ when included in the model. This procedure is continued until no new predictors can be added. A summary of the steps is:
+<p align = "center">
+|     **Step 1: Fit model**. For the first iteration, fit a model with no predictor variables, only the intercept. In later iterations, fit the latest selection of variables. 
 
-```{r reciprocal, fig.cap="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the reciprocal transformation of $x$", fig.align='center'}
-par(mfrow = c(1,2))
-plot(Y~x, pch = 16, 
-     main = "Original Scale")
-plot(Y~I(x^-1), pch = 16, 
-    main = "After Reciprocal Transformation")
+|     **Step 2: Evaluate**. Are there variables with $p$-values smaller than $\alpha_{\text{crit}}$ if included in the model? If so, add the variable with the smallest $p$-value. 
 
-```
- The figure shows a concave curve that slopes downward. The response is largest when $x \leq 1$ because $\frac{1}{x} > 1$ when $x < 1$. Using the same logic, we understand that large values of $x$ result in smaller values of $Y$.  
- 
- You can fit it in a model using:
-```{r, eval = FALSE}
-# Model without transformation
-model <- lm(y ~ x)
-# Model with transformation
-model.root <- lm(y ~ I(x^-1))
-```
+|     **Step 3: Re-fit the model**. Repeat Steps 1 and 2 until no variables have $p$-values smaller than $\alpha_{\text{crit}}$. 
+</p>
 
+### Stepwise Regression {-}
+This is a combination of backward elimination and forward selection. This technique
+allows variables that were either removed or added early in the procedure to reenter or exit
+the model later in the process. At each stage, a variable can be added or removed.
+Testing-based procedures are relatively straightforward to implement; however, they do
+have some drawbacks. One of the chief weaknesses of testing-based procedures is ending
+up with a model that is overly parsimonious.
 
+<br />
 
-## Quadratic
-The quadratic transformation of $x$ is the same as saying $x^2$. It is the inverse of the square-root transformation. It it a subset of the power transformations. In more general terms, it is $x^a$, where $a$ is anything. The reciprocal can also be thought of in this same category. 
+## Criterion-based approach
+In essence, we look for the combination of variables that gives us the best goodness-of-fit (gof) metric. Different gofs focus on different things. Here, we will consider $R^2_\alpha$ (adjusted $R^2$), Mallow's $C_p$, Bayesian Information Criterion (BIC) and Akaike Information Criterion (AIC). You are not expected to know the formula for Mallow's $C_p$, BIC or AIC. 
 
-But what does it look like? The figures below are a simulated example using $\beta_0=1$ and $\beta_1=2$. 
-```{r, include = FALSE, eval = TRUE, warnings= FALSE, message = FALSE, echo = FALSE}
-set.seed(123) # Ignore this line
+###  Adjusted $R^2$ ($R^2_\alpha$) {-}
+It is a measure of the variability of the data captured by the model, as $R^2$. However, because more predictors will always increase with more variables, we adjust it to account for the added complexity. It is defined as 
 
-# Simulate data from a simple linear model
-n <- 500
-beta_0 <- 1
-beta_1 <- 2
-x.trans <- runif(n, min = 0, max =2)
-Y <- beta_0 + beta_1*x.trans + rnorm(n, 0, sd = 0.25)
-x <- sqrt(x.trans)
-```
+\begin{equation}
+R^2_{\alpha} = 1- \frac{SSE/(n-p)}{SST/(n-1)}.
+(\#eq:Radj)
+\end{equation}
+\
+In summary: **The higher, the better.**
 
-```{r quadratic, fig.cap="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of $x$", fig.align='center'}
-par(mfrow = c(1,2))
-plot(Y~x, pch = 16, 
-     main = "Original Scale")
-plot(Y~I(x^2), pch = 16, 
-    main = "After Quadratic Transformation")
+### Mallow's ($C_p$) {-}
+It is defined as 
 
-```
+\begin{equation}
+C_p = \frac{SSE}{\hat{\sigma}^2} + 2p - n.
+(\#eq:MallC)
+\end{equation}
+where $\hat{\sigma}$ is from the model with all predictors and $SSE$ is for the model with $p$ predictors. When all predictors are used in the model $C_p = p$. A model with a bad fit will produce a $C_p$ much bigger than $p$. It is helpful to plot $C_p$ against $p$.\
+\
 
-As you can see from the plots, the predictor has a concave relationship with the response previous to the quadratic transformation. You can use it in a model by using the code:
+In summary: The smaller, the better.**
 
-```{r, eval = FALSE}
-# Model without transformation
-model <- lm(y ~ x)
-# Model with transformation
-model.root <- lm(y ~ I(x^2))
-```
+### Bayesian Information Criterion ($BIC$) {-}
+Recall that $\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})$ is the log-likelihood function. The BIC is defined as 
 
-## Logarithmic
-Last but not least, the logarithmic transformation is equivalent to saying $\ln(x)$, which in `R` is the same as `log(x)`. Here is another simulation that shows the original and transformed predictor when the transformation should be logarithmic. 
-```{r, include = FALSE, eval = TRUE, warnings= FALSE, message = FALSE, echo = FALSE}
-set.seed(123) # Ignore this line
-
-# Simulate data from a simple linear model
-n <- 100
-beta_0 <- 1
-beta_1 <- 2
-x.trans <- runif(n, min = 0, max =5)
-Y <- beta_0 + beta_1*x.trans + rnorm(n, 0, sd = 1.5)
-x <- exp(x.trans)
-```
-
-```{r log1, fig.cap="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$", fig.align='center'}
-par(mfrow = c(1,2))
-plot(Y~x, pch = 16, 
-     main = "Original Scale")
-plot(Y~log(x), pch = 16, 
-    main = "After Log Transformation")
-
-```
-
-Fitting the transformation in `R` is straight forward as in the previous transformations. You can use:
-```{r, eval = FALSE}
-# Model without transformation
-model <- lm(y ~ x)
-# Model with transformation
-model.root <- lm(y ~ log(x))
-```
+\begin{equation}
+BIC = -2\text{max}(\ln \mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + p \cdot \text{ln}(n) = n \text{ln}\frac{SSE}{n} +p\text{ln}(n) + \text{constant}. 
+(\#eq:BIC)
+\end{equation}
+The BIC uses the log-likelihood and penalises the number of parameters $p$ in the model. \
+\
+In summary: **The smaller BIC, the better.**
 
 
-Another useful feature of the logarithmic transformation is that it can help when applied to the response variable too so that both predictor and response are log-transformed. In the original scale, the data can look like this:
-
-```{r, include = FALSE, eval = TRUE, warnings= FALSE, message = FALSE, echo = FALSE}
-set.seed(123) # Ignore this line
-
-# Simulate data from a simple linear model
-n <- 100
-beta_0 <- 1
-beta_1 <- 2
-x.trans <- runif(n, min = 0, max =2)
-Y.trans <- beta_0 + beta_1*x.trans + rnorm(n, 0, sd = 0.5)
-x <- exp(x.trans)
-Y <- exp(Y.trans)
-```
-
-```{r log2, fig.cap="Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$ and $Y$", fig.align='center'}
-par(mfrow = c(1,2))
-plot(Y~x, pch = 16, 
-     main = "Original Scale")
-plot(log(Y)~log(x), pch = 16, 
-    main = "After Log Transformation")
-
-```
-The main thing to note in these plots is the increasing variance the further away from the origin. Sort of like a "fanning" effect. The transformation is easy to fit using:
-```{r, eval = FALSE}
-# Model with transformation
-model.root <- lm(log(y) ~ log(x))
-```
-
-
-You will not need to know this for the exam, but as a special feature, models that use logarithmic transformations have approximate interpretations without the need for back-transformation. When $x$ has been transformed with a natural log transformation, the change in the $\ln(x)$ is roughly equal to the change in $x$ provided the changes in $x$ are small. Consider the figure below, which graphically illustrates how changing the $x$ values 3 and 6 by 10% corresponds to an approximate increase in $\ln(x)$ of about 10%.
-
-<center>
-![Small change in $x$ gives a similar small change in $\ln(x)$](Images/fig_logs.png){width=400px, height=300px}
-</center>
-
-
-
-
-
-
-
-
+### Akaike Information Criterion ($AIC$) {-}
+The AIC is defined as
+\begin{equation}
+AIC = -2\text{max}(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + 2p = n \text{ln}\frac{SSE}{n} + 2p + \text{constant}. 
+(\#eq:AIC)
+\end{equation}
+This is perhaps one of the most common goodness-of-fit metrics. It is good to know. \
+\
+In summary: **The smaller AIC, the better.**
 

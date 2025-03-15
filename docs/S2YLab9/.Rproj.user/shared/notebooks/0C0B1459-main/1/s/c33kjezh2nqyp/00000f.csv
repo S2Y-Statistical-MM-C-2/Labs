@@ -1,3 +1,0 @@
-"0","par(mfrow = c(1,2))"
-"0","plot(Y~x, pch = 16, "
-"0","     main = ""Original Scale"")"

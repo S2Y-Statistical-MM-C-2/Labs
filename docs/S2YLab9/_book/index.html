@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 1 -Exploring Hypothesis Testing</title>
-  <meta name="description" content="Lab 1 -Exploring Hypothesis Testing" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <title>Lab 9 - Exploring Model Selection</title>
+  <meta name="description" content="Lab 9 - Exploring Model Selection" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 1 -Exploring Hypothesis Testing" />
+  <meta property="og:title" content="Lab 9 - Exploring Model Selection" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 1 -Exploring Hypothesis Testing" />
+  <meta name="twitter:title" content="Lab 9 - Exploring Model Selection" />
   
   
   
@@ -29,7 +29,7 @@
   
   
 
-<link rel="next" href="example-1-the-5-steps-of-hypothesis-testing.html"/>
+<link rel="next" href="example-1-methods-for-variable-selection.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -134,32 +134,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 1</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 9!</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#optional-rstudio-quickstart-guide"><i class="fa fa-check"></i><b>1.2</b> Optional: RStudio Quickstart Guide</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#credit-where-credit-is-due"><i class="fa fa-check"></i><b>1.3</b> Credit where credit is due</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Example 1: The 5 Steps of Hypothesis Testing</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-model-selection"><i class="fa fa-check"></i><b>1.1</b> Introduction to model selection</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#stepwise-testing"><i class="fa fa-check"></i><b>1.2</b> Stepwise Testing</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#verifying-normality"><i class="fa fa-check"></i><b>2.1</b> Verifying normality</a></li>
-<li class="chapter" data-level="2.2" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#step-1---hypotheses"><i class="fa fa-check"></i><b>2.2</b> <strong>Step 1 - Hypotheses</strong></a></li>
-<li class="chapter" data-level="2.3" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#step-2---choosing-a-test-statistic"><i class="fa fa-check"></i><b>2.3</b> <strong>Step 2 - Choosing a Test Statistic</strong></a></li>
-<li class="chapter" data-level="2.4" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#step-3---hypothesis-test-calculations"><i class="fa fa-check"></i><b>2.4</b> <strong>Step 3 - Hypothesis Test Calculations</strong></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#backward-elimination"><i class="fa fa-check"></i>Backward Elimination</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#forward-selection"><i class="fa fa-check"></i>Forward Selection</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#stepwise-regression"><i class="fa fa-check"></i>Stepwise Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#criterion-based-approach"><i class="fa fa-check"></i><b>1.3</b> Criterion-based approach</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#finding-your-rejection-region"><i class="fa fa-check"></i><b>2.4.1</b> Finding your Rejection Region</a></li>
-<li class="chapter" data-level="2.4.2" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#finding-your-standardised-test-statistic-and-p-value"><i class="fa fa-check"></i><b>2.4.2</b> Finding your standardised test statistic and p-value</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#adjusted-r2-r2_alpha"><i class="fa fa-check"></i>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mallows-c_p"><i class="fa fa-check"></i>Mallow’s (<span class="math inline">\(C_p\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bayesian-information-criterion-bic"><i class="fa fa-check"></i>Bayesian Information Criterion (<span class="math inline">\(BIC\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#akaike-information-criterion-aic"><i class="fa fa-check"></i>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#step-4---statistical-conclusion"><i class="fa fa-check"></i><b>2.5</b> <strong>Step 4 - Statistical Conclusion</strong></a></li>
-<li class="chapter" data-level="2.6" data-path="example-1-the-5-steps-of-hypothesis-testing.html"><a href="example-1-the-5-steps-of-hypothesis-testing.html#step-5---english-conclusion"><i class="fa fa-check"></i><b>2.6</b> <strong>Step 5 - English Conclusion</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="example-2-power-of-a-test.html"><a href="example-2-power-of-a-test.html"><i class="fa fa-check"></i><b>3</b> Example 2: Power of a test</a>
+<li class="chapter" data-level="2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html"><i class="fa fa-check"></i><b>2</b> Example 1: Methods for Variable Selection</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="example-2-power-of-a-test.html"><a href="example-2-power-of-a-test.html#question-1"><i class="fa fa-check"></i><b>3.1</b> <strong>Question 1</strong></a></li>
-<li class="chapter" data-level="3.2" data-path="example-2-power-of-a-test.html"><a href="example-2-power-of-a-test.html#question-2"><i class="fa fa-check"></i><b>3.2</b> <strong>Question 2</strong></a></li>
-<li class="chapter" data-level="3.3" data-path="example-2-power-of-a-test.html"><a href="example-2-power-of-a-test.html#question-3"><i class="fa fa-check"></i><b>3.3</b> <strong>Question 3</strong></a></li>
-<li class="chapter" data-level="3.4" data-path="example-2-power-of-a-test.html"><a href="example-2-power-of-a-test.html#question-4"><i class="fa fa-check"></i><b>3.4</b> <strong>Question 4</strong></a></li>
+<li class="chapter" data-level="2.1" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#backward-elimination-and-forward-selection"><i class="fa fa-check"></i><b>2.1</b> Backward Elimination and Forward Selection</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#criterion-based-variable-selection"><i class="fa fa-check"></i><b>2.2</b> Criterion-Based Variable Selection</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="exercise-1-lake-water-quality.html"><a href="exercise-1-lake-water-quality.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: Lake water quality</a></li>
+<li class="chapter" data-level="4" data-path="exercise-2-fuel-efficiency.html"><a href="exercise-2-fuel-efficiency.html"><i class="fa fa-check"></i><b>4</b> Exercise 2: Fuel Efficiency</a></li>
 </ul>
 
       </nav>
@@ -169,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 1 -Exploring Hypothesis Testing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 9 - Exploring Model Selection</a>
           </h1>
         </div>
 
@@ -178,134 +176,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Lab 1 -Exploring Hypothesis Testing</h1>
+<h1 class="title">Lab 9 - Exploring Model Selection</h1>
 </div>
-<div id="welcome-to-lab-1" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 1<a href="index.html#welcome-to-lab-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="welcome-to-lab-9" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Welcome to Lab 9!<a href="index.html#welcome-to-lab-9" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Intended Learning Outcomes:</p>
+<ul>
+<li>Select predictors using backward elimination, forward selection, and stepwise regression;</li>
+<li>Select predictors based on optimality criteria, such as <span class="math inline">\(R^2_a\)</span> (<span class="math inline">\(R^2\)</span> adjusted) and AIC.</li>
+</ul>
+<div id="introduction-to-model-selection" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction to model selection<a href="index.html#introduction-to-model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, we will consider model selection to refer to variable/predictor selection. The process of selection should answer the question: what are the best predictors in my model?
+Some might say, the more the merrier. However, models with too many predictors are challenging for many reasons: they can be difficult to manage, assess, compute, and interpret. In general, statisticians prefer parsimonious models: the simplest possible model that does the best job. But… how will we know what is the best model? We consider two basic approaches to model selection:</p>
+<p align="center">
 <ol style="list-style-type: decimal">
-<li>Complete a one-sample hypothesis test of the mean in R with a step-by-step guide.</li>
-<li>Explore further significance levels and the power of a test.</li>
-<li>Complete a one-sample hypothesis test of the mean in R solo.</li>
+<li><strong>Stepwise testing</strong>: strategies that compare models with small differences</li>
+<li><strong>Criterion-based approach</strong>: results in the model that optimises some measure of goodness-of-fit</li>
 </ol>
-<div id="introduction" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</p>
+<p><br /></p>
 </div>
-<div id="optional-rstudio-quickstart-guide" class="section level2 hasAnchor" number="1.2" style="color: dimgrey;">
-<h2><span class="header-section-number">1.2</span> Optional: RStudio Quickstart Guide<a href="index.html#optional-rstudio-quickstart-guide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This course assumes basic knowledge of <code>R</code> and RStudio. The starting point is opening RStudio by going to:</p>
-<center>
-Maths &amp; Stats Apps &gt; RStudio
-</center>
-<p>To access the data in this course, it is best to open and save a new script file to work in within RStudio and to set the working directory. This will enable you to save your R commands and comments on your work as you go through each of the examples.</p>
-<p>To open a new script go to:</p>
-<center>
-<code>File &gt; New &gt; R script</code>
-</center>
-<p>This will open a new screen for you to type into.</p>
-<p>Go to:</p>
-<center>
-<code>File &gt; Save as</code>
-</center>
-<p>and save the script file into your home directory. Now, start by setting the working directory in RStudio to the directory in which you have stored both the data and <code>R</code> script. One way of doing this is to go to:</p>
-<center>
-<code>Session &gt; Set Working Directory &gt; To Source File Location</code>
-</center>
-<p>This will point RStudio towards this directory to enable us to use files within that directory.</p>
-<p>It is useful to annotate your script file using comments so that you know what has been done when you look at it in the future. Comments can be added to a script file by starting the line with a # symbol.</p>
+<div id="stepwise-testing" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Stepwise Testing<a href="index.html#stepwise-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="backward-elimination" class="section level3 unnumbered hasAnchor">
+<h3>Backward Elimination<a href="index.html#backward-elimination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Backward elimination begins with a model containing all potential predictors and identifies the one with the largest <span class="math inline">\(p\)</span>-value. This can be done by looking at the <span class="math inline">\(p\)</span>-values for the <span class="math inline">\(t\)</span>-statistics of the <span class="math inline">\(\hat{\beta}_i, i = 1,...,p-1\)</span> coefficients using the function <code>summary()</code> or for the <span class="math inline">\(F\)</span>-statistics using the function <code>drop1()</code>. If the variable with the largest <span class="math inline">\(p\)</span>-value is above a predetermined critical value, <span class="math inline">\(\alpha_{\text{crit}}\)</span>, that variable is dropped. A model with the remaining variables is then fit and the procedure continues until all the <span class="math inline">\(p\)</span>-values for the remaining variables in the model are below <span class="math inline">\(\alpha_{\text{crit}}\)</span>. In summary, the process is</p>
+<p align="center">
+<div class="line-block">    <strong>Step 1: Fit model</strong>. For the first iteration, fit a model with all predictor variables. In later iterations, fit the latest selection of variables.</div>
+<div class="line-block">    <strong>Step 2: Evaluate</strong>. Are there variables with <span class="math inline">\(p\)</span>-values larger than <span class="math inline">\(\alpha_{\text{crit}}\)</span>? If so, remove the variable with the largest <span class="math inline">\(p\)</span>-value.</div>
+<div class="line-block">    <strong>Step 3: Re-fit the model</strong>. Repeat Steps 1 and 2 until no variables have <span class="math inline">\(p\)</span>-values larger than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.</div>
+</p>
 </div>
-<div id="credit-where-credit-is-due" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Credit where credit is due<a href="index.html#credit-where-credit-is-due" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The labs in S2 incorporate and adapt materials from:</p>
-<p>Ugarte, M. D., Militino, A. F., &amp; Arnholt, A. T. (2008). <a href="https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596">Probability and Statistics with R</a>. CRC press.</p>
-<p>The materials were converted into interactive labs on Hypothesis Testing using <code>Bookdown</code> and <code>webexercises</code> in Summer 2023 by summer project student, Megan Ruffle.</p>
+<div id="forward-selection" class="section level3 unnumbered hasAnchor">
+<h3>Forward Selection<a href="index.html#forward-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+Forward selection starts with no variables in the model and then adds the variable that produces the smallest <span class="math inline">\(p\)</span>-value below <span class="math inline">\(\alpha_{\text{crit}}\)</span> when included in the model. This procedure is continued until no new predictors can be added. A summary of the steps is:
+<p align="center">
+<div class="line-block">    <strong>Step 1: Fit model</strong>. For the first iteration, fit a model with no predictor variables, only the intercept. In later iterations, fit the latest selection of variables.</div>
+<div class="line-block">    <strong>Step 2: Evaluate</strong>. Are there variables with <span class="math inline">\(p\)</span>-values smaller than <span class="math inline">\(\alpha_{\text{crit}}\)</span> if included in the model? If so, add the variable with the smallest <span class="math inline">\(p\)</span>-value.</div>
+<div class="line-block">    <strong>Step 3: Re-fit the model</strong>. Repeat Steps 1 and 2 until no variables have <span class="math inline">\(p\)</span>-values smaller than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.</div>
+</p>
+</div>
+<div id="stepwise-regression" class="section level3 unnumbered hasAnchor">
+<h3>Stepwise Regression<a href="index.html#stepwise-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a combination of backward elimination and forward selection. This technique
+allows variables that were either removed or added early in the procedure to reenter or exit
+the model later in the process. At each stage, a variable can be added or removed.
+Testing-based procedures are relatively straightforward to implement; however, they do
+have some drawbacks. One of the chief weaknesses of testing-based procedures is ending
+up with a model that is overly parsimonious.</p>
+<p><br /></p>
+</div>
+</div>
+<div id="criterion-based-approach" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Criterion-based approach<a href="index.html#criterion-based-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In essence, we look for the combination of variables that gives us the best goodness-of-fit (gof) metric. Different gofs focus on different things. Here, we will consider <span class="math inline">\(R^2_\alpha\)</span> (adjusted <span class="math inline">\(R^2\)</span>), Mallow’s <span class="math inline">\(C_p\)</span>, Bayesian Information Criterion (BIC) and Akaike Information Criterion (AIC). You are not expected to know the formula for Mallow’s <span class="math inline">\(C_p\)</span>, BIC or AIC.</p>
+<div id="adjusted-r2-r2_alpha" class="section level3 unnumbered hasAnchor">
+<h3>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)<a href="index.html#adjusted-r2-r2_alpha" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is a measure of the variability of the data captured by the model, as <span class="math inline">\(R^2\)</span>. However, because more predictors will always increase with more variables, we adjust it to account for the added complexity. It is defined as</p>
+<p><span class="math display" id="eq:Radj">\[\begin{equation}
+R^2_{\alpha} = 1- \frac{SSE/(n-p)}{SST/(n-1)}.
+\tag{1.1}
+\end{equation}\]</span><br />
+In summary: <strong>The higher, the better.</strong></p>
+</div>
+<div id="mallows-c_p" class="section level3 unnumbered hasAnchor">
+<h3>Mallow’s (<span class="math inline">\(C_p\)</span>)<a href="index.html#mallows-c_p" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is defined as</p>
+<p><span class="math display" id="eq:MallC">\[\begin{equation}
+C_p = \frac{SSE}{\hat{\sigma}^2} + 2p - n.
+\tag{1.2}
+\end{equation}\]</span>
+where <span class="math inline">\(\hat{\sigma}\)</span> is from the model with all predictors and <span class="math inline">\(SSE\)</span> is for the model with <span class="math inline">\(p\)</span> predictors. When all predictors are used in the model <span class="math inline">\(C_p = p\)</span>. A model with a bad fit will produce a <span class="math inline">\(C_p\)</span> much bigger than <span class="math inline">\(p\)</span>. It is helpful to plot <span class="math inline">\(C_p\)</span> against <span class="math inline">\(p\)</span>.<br />
+<br />
+</p>
+<p>In summary: The smaller, the better.**</p>
+</div>
+<div id="bayesian-information-criterion-bic" class="section level3 unnumbered hasAnchor">
+<h3>Bayesian Information Criterion (<span class="math inline">\(BIC\)</span>)<a href="index.html#bayesian-information-criterion-bic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall that <span class="math inline">\(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})\)</span> is the log-likelihood function. The BIC is defined as</p>
+<p><span class="math display" id="eq:BIC">\[\begin{equation}
+BIC = -2\text{max}(\ln \mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + p \cdot \text{ln}(n) = n \text{ln}\frac{SSE}{n} +p\text{ln}(n) + \text{constant}.
+\tag{1.3}
+\end{equation}\]</span>
+The BIC uses the log-likelihood and penalises the number of parameters <span class="math inline">\(p\)</span> in the model.<br />
+<br />
+In summary: <strong>The smaller BIC, the better.</strong></p>
+</div>
+<div id="akaike-information-criterion-aic" class="section level3 unnumbered hasAnchor">
+<h3>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)<a href="index.html#akaike-information-criterion-aic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The AIC is defined as
+<span class="math display" id="eq:AIC">\[\begin{equation}
+AIC = -2\text{max}(\ln\mathcal{L}(\boldsymbol{\beta}, \sigma^2|\mathbf{X})) + 2p = n \text{ln}\frac{SSE}{n} + 2p + \text{constant}.
+\tag{1.4}
+\end{equation}\]</span>
+This is perhaps one of the most common goodness-of-fit metrics. It is good to know.<br />
+<br />
+In summary: <strong>The smaller AIC, the better.</strong></p>
 
-<p>#The Basic Premise of Hypothsis Testing</p>
-<p><img src="Images/HypothesisTest.jpg" /></p>
-<p>All hypothesis tests that we will look at in these labs will fit the same pattern:</p>
-<p>We want to decide if the observed data from our study provides evidence to reject a baseline assumption (a null hypothesis).</p>
-<p>For all tests, we will compare our observed data to an expected distribution from the null hypothesis.</p>
-<p>The test will have a significance level and we find the critical value that corresponds to this to decide on a Rejection Region (shown in red on the graph below). This is the part of our distribution that we decide is unusual and could disprove our null hypothesis.</p>
-<p>We calculate a Standardised Test Statistic from our data and find its corresponding area on the distribution, the p-value, to be able to compare what we saw to the distribution (illustrated in blue on the graph below).</p>
-<p>How the Standardised Test Statistic compares to the rejection region, and hence how our p-value compares to the significance level, is what changes the conclusion of our hypothesis test.</p>
-<p><img src="Images/HypTestGraph.jpeg" alt="“Visualisation of the Statistics behind a Hypothesis Test.”" />
-The graphical example above is a test that would assume normally distributed data and would result in failing to reject the null hypothesis.
-The red area is our rejection region.
-The blue area represents the probability of seeing our observed data assuming the null hypothesis is true (this probability is known as the p-value).
-The Standardised Test Statistic does not sit in the rejection region. As a result the blue area is greater than the red area meaning our data was not unusual compared to the distribution where the null hypothesis is true.</p>
-<p>#The 5 steps of Hypothesis Testing</p>
-<p>In the next few labs we will look through different scenarios where we would complete hypothesis tests.</p>
-<p>In your textbook and lectures you have seen these tests broken into 5 simple steps</p>
-<ol style="list-style-type: decimal">
-<li>Hypotheses</li>
-</ol>
-<ul>
-<li>Set up the hypotheses to answer your question</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Test Statistic</li>
-</ol>
-<ul>
-<li>Chose and calculate your Test Statistic using your observed data</li>
-<li>Identify and calculate your Standardised Test Statistic using your pbserved data</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Rejection Region Calculations</li>
-</ol>
-<ul>
-<li>Find the Critical Value from the distribution</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Statistical Conclusion</li>
-</ol>
-<ul>
-<li>Find your p-value that corresponds to your Standardised Test Statistic</li>
-<li>Compare your Standardised Test Statistic to the Rejection Region or Critical value</li>
-<li>Compare your p-value to the significance level</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li>English Conclusion</li>
-</ol>
-<ul>
-<li>Give the meaning of statistical conclusion in context of the question.</li>
-</ul>
-<p>Often when undertaking hypothesis tests in R, we find the Standardised Test Statistic and p-value in one action such as when using <code>t.test()</code> .</p>
-<p>For this reason the 5 steps are broken up slightly differently in these labs so that we set up our test in entirety by hand and find the values from the distribution first. This gives us everything we need to compare our data to, then we run the analysis on our observed, giving us our Standardised Test Statistic and p-value.</p>
-<ol style="list-style-type: decimal">
-<li>Hypotheses</li>
-</ol>
-<ul>
-<li>Set up the hypotheses to answer your question</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Test Statistic</li>
-</ol>
-<ul>
-<li>Choose your Test Statistic</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Hypothesis Test Calculations</li>
-</ol>
-<ul>
-<li>Find the Critical Value and Rejection Region from the distribution</li>
-<li>Calculate your Standardised Test Statistic from the observed data</li>
-<li>Find your p-value that corresponds to your Standardised Test Statistic</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Statistical Conclusion</li>
-</ol>
-<ul>
-<li>Comparing your Standardised Test Statistic to the Rejection Region or Critical value</li>
-<li>Comparing your p-value to the significance level</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li>English Conclusion</li>
-</ol>
-<ul>
-<li>Giving the meaning of statistical conclusion in context of the question.</li>
-</ul>
-<p>The order chnage just means all calculations are done in Step 3.</p>
-
+</div>
 </div>
 </div>
             </section>
@@ -314,7 +283,7 @@ The Standardised Test Statistic does not sit in the rejection region. As a resul
         </div>
       </div>
 
-<a href="example-1-the-5-steps-of-hypothesis-testing.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="example-1-methods-for-variable-selection.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

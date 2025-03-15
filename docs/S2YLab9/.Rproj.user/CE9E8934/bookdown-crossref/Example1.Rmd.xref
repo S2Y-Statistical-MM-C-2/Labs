@@ -1,7 +1,0 @@
-h1:example-1-power-transformation-on-y Example 1: Power transformation on 
-h2:exploratory-analysis-and-model-fitting Exploratory analysis and model fitting
-fig:stopping Left: scatterplot of *Distance* versus *Speed*. Right: scatterplot of *square root of Distance* versus *Speed*.
-h2:assumption-checking-and-interpretation Assumption checking and Interpretation
-fig:stopping2 Residual plots from fitting a simple linear regression model to original variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot.
-fig:stopping3 Residual plots from fitting a simple linear regression model to transformed variables. Top: Standardised residuals versus fitted values. Bottom: Normal probability (Q-Q) plot.
-

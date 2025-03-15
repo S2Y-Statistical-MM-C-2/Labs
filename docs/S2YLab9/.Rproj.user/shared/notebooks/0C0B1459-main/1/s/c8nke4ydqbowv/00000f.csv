@@ -1,6 +1,0 @@
-"0","par(mfrow=c(1,2)) # this splits your screen to obtain 1 row of figure and 2 columns"
-"0","par(mar=c(4,4,2,1)) # sets margins"
-"0",""
-"0","plot(Distance~Speed, data=stopping,"
-"0","     xlab=""Speed (in MPH)"", ylab=""Distance (in feet)"", "
-"0","     pch = 16, main = ""Original Scale"")"

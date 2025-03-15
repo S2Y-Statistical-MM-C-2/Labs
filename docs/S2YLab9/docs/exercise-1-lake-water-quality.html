@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Lab 9 - Exploring Model Selection</title>
-  <meta name="description" content="Page not found | Lab 9 - Exploring Model Selection" />
+  <title>3 Exercise 1: Lake water quality | Lab 9 - Exploring Model Selection</title>
+  <meta name="description" content="3 Exercise 1: Lake water quality | Lab 9 - Exploring Model Selection" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Lab 9 - Exploring Model Selection" />
+  <meta property="og:title" content="3 Exercise 1: Lake water quality | Lab 9 - Exploring Model Selection" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Lab 9 - Exploring Model Selection" />
+  <meta name="twitter:title" content="3 Exercise 1: Lake water quality | Lab 9 - Exploring Model Selection" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="example-1-methods-for-variable-selection.html"/>
+<link rel="next" href="exercise-2-fuel-efficiency.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -177,11 +177,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="exercise-1-lake-water-quality" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Exercise 1: Lake water quality<a href="exercise-1-lake-water-quality.html#exercise-1-lake-water-quality" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The EC Water Framework Directive (WFD) 2000 states that there should be ‘good status’ in all
+shallow waters by 2016. Therefore, it is of interest for environmental management to investigate
+lake typology and identify lakes that are susceptible to large amounts of algae.
+An ecologist has recorded the total biovolume of algae in lakes over the summer months. He
+also measured the altitude, mean depth, retention time, alkalinity, colour and total phosphorus
+(TP) of the lakes. He was interested in which of these lake typology variables were related to the
+total amount of algae in the lakes. So the main question is: which of the lake typology variables are useful predictors of the log total biovolume of algae within lakes?</p>
+<p><strong>Data:</strong> <code>lakes.csv</code></p>
+<p><strong>Columns:</strong></p>
+<div class="line-block">                      <strong>C1:</strong> <code>lAltitude</code> - log altitude</div>
+<div class="line-block">                      <strong>C2:</strong> <code>lMeanDepth</code> - log mean depth</div>
+<div class="line-block">                      <strong>C3:</strong> <code>lRettime</code> - log retention time</div>
+<div class="line-block">                      <strong>C4:</strong> <code>lAlkalinity</code> - log alkalinity</div>
+<div class="line-block">                      <strong>C5:</strong> <code>lColour</code> - log colour</div>
+<div class="line-block">                      <strong>C6:</strong> <code>lTotalP</code> - log total phosphorus</div>
+<div class="line-block">                      <strong>C7:</strong> <code>ltotalbio</code> - log total biovolume</div>
+<p>All variables were transformed using natural logs originally to make the distribution of each variable more symmetric.</p>
+<p>Read in the data using:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="exercise-1-lake-water-quality.html#cb27-1" tabindex="-1"></a>lakes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;lakes.csv&quot;</span>)</span></code></pre></div>
+<p><br></p>
+<p><strong>Tasks</strong>:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Use the <code>pairs()</code> command to produce a matrix plot to explore relationships between all pairs of
+variables.</p></li>
+<li><p>Fit a multiple linear regression model using the <code>lm</code> command with the response being the log total
+biovolume of algae (<code>ltotalbio</code>), and the other variables as explanatory variables.</p></li>
+<li><p>Use the <code>regsubsets()</code> command in <code>R</code> to select the best model based on adjusted <span class="math inline">\(R^2\)</span>.</p></li>
+</ol>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="exercise-1-lake-water-quality.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb28-2"><a href="exercise-1-lake-water-quality.html#cb28-2" tabindex="-1"></a>mod.lm <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(ltotalbio <span class="sc">~</span>., <span class="at">data =</span> lakes)</span>
+<span id="cb28-3"><a href="exercise-1-lake-water-quality.html#cb28-3" tabindex="-1"></a>R2adj <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod.lm)<span class="sc">$</span>adjr2</span>
+<span id="cb28-4"><a href="exercise-1-lake-water-quality.html#cb28-4" tabindex="-1"></a>R2adj</span></code></pre></div>
+</div>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Fit a (multiple) linear regression model with a response of log total biovolume of algae and the predictor variables selected using <span class="math inline">\(R^2_a\)</span>.</p></li>
+<li><p>Use the final fitted model to produce a 95% prediction interval for the log total biovolume of a future lake, for the values of the explanatory variables below which correspond to your final model:</p></li>
+</ol>
+<p align="center">
+<span class="math inline">\(\textbf{ lAltitude} = 4.4, \textbf{ lMeanDepth} = 1.5, \textbf{ lRettime} = -1.3,\)</span>
+</p>
+<p align="center">
+<span class="math inline">\(\textbf{ lAlkalinity} = -0.5, \textbf{ lColour} = 2.7, \textbf{ lTotalP} = 2.77.\)</span>
+</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>This was done in Lab 7. The code hides there! If not, here's a short recap:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="exercise-1-lake-water-quality.html#cb29-1" tabindex="-1"></a>model.final <span class="ot">&lt;-</span> <span class="fu">lm</span>(ltotalbio <span class="sc">~</span> lAltitute <span class="sc">+</span> lAlkalinity <span class="sc">+</span> lColour <span class="sc">+</span> lTotalP, <span class="at">data =</span> lakes)</span>
+<span id="cb29-2"><a href="exercise-1-lake-water-quality.html#cb29-2" tabindex="-1"></a>pred.df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lAltitude =</span> <span class="fl">4.4</span>, <span class="at">lMeanDepth =</span> <span class="fl">1.5</span>, <span class="at">lRettime =</span> <span class="sc">-</span><span class="fl">1.3</span>, </span>
+<span id="cb29-3"><a href="exercise-1-lake-water-quality.html#cb29-3" tabindex="-1"></a>                       <span class="at">lAlkalinity =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">lColour =</span> <span class="fl">2.7</span>, <span class="at">lTotalP =</span> <span class="fl">2.77</span>)</span>
+<span id="cb29-4"><a href="exercise-1-lake-water-quality.html#cb29-4" tabindex="-1"></a><span class="fu">predict</span>(model.final, <span class="at">int=</span><span class="st">&quot;p&quot;</span>, <span class="at">newdata =</span> pred.df1)</span></code></pre></div>
+</div>
+
 </div>
 <script>
 
@@ -394,8 +449,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-
+<a href="example-1-methods-for-variable-selection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-2-fuel-efficiency.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

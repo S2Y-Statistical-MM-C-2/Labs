@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Example 1: Methods for Variable Selection | Lab 9 - Exploring Model Selection</title>
+  <meta name="description" content="2 Example 1: Methods for Variable Selection | Lab 9 - Exploring Model Selection" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Example 1: Methods for Variable Selection | Lab 9 - Exploring Model Selection" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Example 1: Methods for Variable Selection | Lab 9 - Exploring Model Selection" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="exercise-1-lake-water-quality.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to Lab 9!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction-to-model-selection"><i class="fa fa-check"></i><b>1.1</b> Introduction to model selection</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#stepwise-testing"><i class="fa fa-check"></i><b>1.2</b> Stepwise Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#backward-elimination"><i class="fa fa-check"></i>Backward Elimination</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#forward-selection"><i class="fa fa-check"></i>Forward Selection</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#stepwise-regression"><i class="fa fa-check"></i>Stepwise Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#criterion-based-approach"><i class="fa fa-check"></i><b>1.3</b> Criterion-based approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#adjusted-r2-r2_alpha"><i class="fa fa-check"></i>Adjusted <span class="math inline">\(R^2\)</span> (<span class="math inline">\(R^2_\alpha\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mallows-c_p"><i class="fa fa-check"></i>Mallow's (<span class="math inline">\(C_p\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bayesian-information-criterion-bic"><i class="fa fa-check"></i>Bayesian Information Criterion (<span class="math inline">\(BIC\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#akaike-information-criterion-aic"><i class="fa fa-check"></i>Akaike Information Criterion (<span class="math inline">\(AIC\)</span>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html"><i class="fa fa-check"></i><b>2</b> Example 1: Methods for Variable Selection</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#backward-elimination-and-forward-selection"><i class="fa fa-check"></i><b>2.1</b> Backward Elimination and Forward Selection</a></li>
+<li class="chapter" data-level="2.2" data-path="example-1-methods-for-variable-selection.html"><a href="example-1-methods-for-variable-selection.html#criterion-based-variable-selection"><i class="fa fa-check"></i><b>2.2</b> Criterion-Based Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-1-lake-water-quality.html"><a href="exercise-1-lake-water-quality.html"><i class="fa fa-check"></i><b>3</b> Exercise 1: Lake water quality</a></li>
+<li class="chapter" data-level="4" data-path="exercise-2-fuel-efficiency.html"><a href="exercise-2-fuel-efficiency.html"><i class="fa fa-check"></i><b>4</b> Exercise 2: Fuel Efficiency</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lab 9 - Exploring Model Selection</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-1-methods-for-variable-selection" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Example 1: Methods for Variable Selection<a href="example-1-methods-for-variable-selection.html#example-1-methods-for-variable-selection" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We have looked at the data for 78 high school wrestlers taken to understand body fat content measurements using three different body fat measuring techniques: hydrostatic weighing (<code>HWFAT</code>), skinfold measurements (<code>SKFAT</code>), and the Tanita body fat scale (<code>TANFAT</code>). In this example, we will create a regression model to predict the wrestlers' hydrostatic fat <code>HWFAT</code> using other variables in the dataset. The question we answer with model selection is: what are the best predictors of <code>HWFAT</code>?</p>
+<p><strong>Data:</strong> <code>HSwrestler</code></p>
+<p><strong>Columns:</strong></p>
+<div class="line-block">                      <strong>C1:</strong> <code>AGE</code> - Age of wrestler</div>
+<div class="line-block">                      <strong>C2:</strong> <code>HT</code> - Height in inches</div>
+<div class="line-block">                      <strong>C3:</strong> <code>WT</code> - Weight in pounds</div>
+<div class="line-block">                      <strong>C4:</strong> <code>ABS</code> - Abdominal fat</div>
+<div class="line-block">                      <strong>C5:</strong> <code>TRICEPS</code> - Tricep fat</div>
+<div class="line-block">                      <strong>C6:</strong> <code>SUBSCAP</code> - Subscapular fat</div>
+<div class="line-block">                      <strong>C7:</strong> <code>HWFAT</code> - Hydrostatic fat</div>
+<div class="line-block">                      <strong>C8:</strong> <code>TANFAT</code> - Tanita fat</div>
+<div class="line-block">                      <strong>C9:</strong> <code>SKFAT</code> - Skin fat</div>
+<p><br />
+Read in the data by using:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="example-1-methods-for-variable-selection.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(PASWR)</span>
+<span id="cb1-2"><a href="example-1-methods-for-variable-selection.html#cb1-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;HSwrestler&quot;</span>)</span></code></pre></div>
+<p><br></p>
+<div id="backward-elimination-and-forward-selection" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Backward Elimination and Forward Selection<a href="example-1-methods-for-variable-selection.html#backward-elimination-and-forward-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: lower-alpha">
+<li>Exploratory analysis: use <code>pairs</code> to visualise the data and determine which predictors may be useful in predicting <code>HWFAT</code>.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="example-1-methods-for-variable-selection.html#cb2-1" tabindex="-1"></a><span class="fu">pairs</span>(HSwrestler)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>We can see that there are many positive relationships with <code>HWFAT</code>, mainly <code>SKFAT</code>, <code>HWFAT</code>, <code>SUBCAP</code>, <code>TRIPCEPS</code>, <code>ABS</code> and <code>WT</code>. The only variables that do not seem to have a positive relationship with <code>HWFAT</code> are <code>AGE</code> and <code>HT</code>.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>You can get a little more information by calling another function from the <code>car</code> package:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="example-1-methods-for-variable-selection.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb3-2"><a href="example-1-methods-for-variable-selection.html#cb3-2" tabindex="-1"></a><span class="fu">scatterplotMatrix</span>(HSwrestler)</span></code></pre></div>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Backward elimination starts with all the variables in the model (<code>model.all</code>) and eliminates variables with the largest (least significant) <span class="math inline">\(p\)</span>-values. The period in the short-hand notation <code>HWFAT ~ .</code> tells R to include all of the variables specified in the data argument. In this case, the variables <code>TANFAT</code> and <code>SKFAT</code> are removed using negative indices. Do this in two steps, first fitting the full model (all variables), and then removing the least significant variable.</li>
+</ol>
+<div class="line-block">      <strong>Step 1: Fit model (full model at the start)</strong></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="example-1-methods-for-variable-selection.html#cb4-1" tabindex="-1"></a>model.all <span class="ot">&lt;-</span> <span class="fu">lm</span>(HWFAT <span class="sc">~</span> . , <span class="at">data =</span> HSwrestler[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="sc">-</span><span class="dv">9</span>)])</span>
+<span id="cb4-2"><a href="example-1-methods-for-variable-selection.html#cb4-2" tabindex="-1"></a><span class="fu">summary</span>(model.all) <span class="co"># Take note of which are least significant</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = HWFAT ~ ., data = HSwrestler[, c(-8, -9)])
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -6.162 -1.858 -0.464  2.502  8.177 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 13.29370    9.63027   1.380   0.1718    
+## AGE         -0.32893    0.32158  -1.023   0.3098    
+## HT          -0.06731    0.16051  -0.419   0.6762    
+## WT          -0.01365    0.02591  -0.527   0.5999    
+## ABS          0.37142    0.08837   4.203 7.55e-05 ***
+## TRICEPS      0.38743    0.13761   2.815   0.0063 ** 
+## SUBSCAP      0.11405    0.14193   0.804   0.4243    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.028 on 71 degrees of freedom
+## Multiple R-squared:  0.8918, Adjusted R-squared:  0.8827 
+## F-statistic: 97.54 on 6 and 71 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The summary table lists the <span class="math inline">\(p\)</span>-value according to the <span class="math inline">\(t\)</span>-test. Alternatively, we could perform the <span class="math inline">\(F\)</span>-test by using <code>drop1()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="example-1-methods-for-variable-selection.html#cb6-1" tabindex="-1"></a><span class="co"># Perform test</span></span>
+<span id="cb6-2"><a href="example-1-methods-for-variable-selection.html#cb6-2" tabindex="-1"></a><span class="fu">drop1</span>(model.all, <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># single term deletions</span></span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## HWFAT ~ AGE + HT + WT + ABS + TRICEPS + SUBSCAP
+##         Df Sum of Sq    RSS    AIC F value    Pr(&gt;F)    
+## &lt;none&gt;               651.05 179.51                      
+## AGE      1     9.594 660.64 178.65  1.0463  0.309839    
+## HT       1     1.613 652.66 177.70  0.1759  0.676225    
+## WT       1     2.546 653.60 177.81  0.2777  0.599879    
+## ABS      1   162.000 813.05 194.84 17.6669 7.549e-05 ***
+## TRICEPS  1    72.683 723.73 185.76  7.9264  0.006301 ** 
+## SUBSCAP  1     5.921 656.97 178.21  0.6458  0.424315    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="line-block">      <strong>Step 2: Test and remove the least significant term</strong></div>
+<p>Both the <span class="math inline">\(t\)</span>-test and the <span class="math inline">\(F\)</span>-test show that <code>HT</code> is the least significant. In addition, suppose <span class="math inline">\(\alpha_\text{crit}=0.15\)</span>, then the <span class="math inline">\(p\)</span>-value corresponding to <code>HT</code> is larger than <span class="math inline">\(\alpha_\text{crit}\)</span>. Therefore we should remove it by using the following code:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="example-1-methods-for-variable-selection.html#cb8-1" tabindex="-1"></a>mod.hsw <span class="ot">&lt;-</span> <span class="fu">update</span>(model.all, . <span class="sc">~</span> . <span class="sc">-</span> HT)</span></code></pre></div>
+<div class="line-block">      <strong>Step 3: Repeat steps 1 and 2 until all variables meet criteria</strong></div>
+<p>To see if we have removed enough predictors, perform a test and re-evaluate as many times as necessary. What variables are included in the final model?</p>
+<p>The next variable to be removed should be <select class='webex-select'><option value='blank'></option><option value=''>AGE</option><option value=''>WT</option><option value=''>ABS</option><option value='answer'>TRICEPS</option><option value=''>SUBCAP</option></select>.<br />
+</p>
+<p>Should you continue removing variables? <select class='webex-select'><option value='blank'></option><option value='answer'>YES</option><option value=''>NO</option></select>.<br />
+</p>
+<p>What variables are included in your final model? <code>AGE</code> <select class='webex-select'><option value='blank'></option><option value='answer'>is included</option><option value=''>is not included</option></select>, <code>HT</code> <select class='webex-select'><option value='blank'></option><option value=''>is included</option><option value='answer'>is not included</option></select>, <code>WT</code> <select class='webex-select'><option value='blank'></option><option value=''>is included</option><option value='answer'>is not included</option></select>, <code>ABS</code> <select class='webex-select'><option value='blank'></option><option value='answer'>is included</option><option value=''>is not included</option></select>, <code>TRICEPS</code> <select class='webex-select'><option value='blank'></option><option value='answer'>is included</option><option value=''>is not included</option></select>, and <code>SUBSCAP</code> <select class='webex-select'><option value='blank'></option><option value=''>is included</option><option value='answer'>is not included</option></select>.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="example-1-methods-for-variable-selection.html#cb9-1" tabindex="-1"></a><span class="fu">drop1</span>(mod.hsw, <span class="at">test =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## HWFAT ~ AGE + WT + ABS + TRICEPS + SUBSCAP
+##         Df Sum of Sq    RSS    AIC F value    Pr(&gt;F)    
+## &lt;none&gt;               652.66 177.70                      
+## AGE      1     9.875 662.54 176.87  1.0894  0.300098    
+## WT       1    10.554 663.22 176.95  1.1643  0.284169    
+## ABS      1   189.072 841.73 195.54 20.8580 1.996e-05 ***
+## TRICEPS  1    78.809 731.47 184.59  8.6941  0.004302 ** 
+## SUBSCAP  1     5.693 658.36 176.38  0.6281  0.430660    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>We can also perform model selection the other way around by adding one variable at the time. The functions <code>add1()</code> and <code>update()</code> are used to create a model using forward selection. In forward selection, the initial model only has an intercept (no predictors). The steps are the same as in backward selection.</li>
+</ol>
+<div class="line-block">      <strong>Step 1: Fit model (only intercept at the start)</strong></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="example-1-methods-for-variable-selection.html#cb11-1" tabindex="-1"></a><span class="co"># We define SCOPE - an object to help us keep track of the variables we can add</span></span>
+<span id="cb11-2"><a href="example-1-methods-for-variable-selection.html#cb11-2" tabindex="-1"></a>SCOPE <span class="ot">&lt;-</span> (<span class="sc">~</span> . <span class="sc">+</span> AGE <span class="sc">+</span> HT <span class="sc">+</span> WT <span class="sc">+</span> ABS <span class="sc">+</span> TRICEPS <span class="sc">+</span> SUBSCAP)</span>
+<span id="cb11-3"><a href="example-1-methods-for-variable-selection.html#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="example-1-methods-for-variable-selection.html#cb11-4" tabindex="-1"></a><span class="co"># Fit initial model</span></span>
+<span id="cb11-5"><a href="example-1-methods-for-variable-selection.html#cb11-5" tabindex="-1"></a>mod.fs <span class="ot">&lt;-</span> <span class="fu">lm</span>(HWFAT <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> HSwrestler)</span>
+<span id="cb11-6"><a href="example-1-methods-for-variable-selection.html#cb11-6" tabindex="-1"></a><span class="fu">summary</span>(mod.fs)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = HWFAT ~ 1, data = HSwrestler)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -10.655  -5.508  -3.100   1.182  27.655 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   14.235      1.001   14.22   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 8.84 on 77 degrees of freedom</code></pre>
+<div class="line-block">      <strong>Step 2: Test and add the most significant term</strong></div>
+<!-- 
+<div class='webex-solution'><button>Solution</button>
+ -->
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="example-1-methods-for-variable-selection.html#cb13-1" tabindex="-1"></a><span class="co"># Perform test</span></span>
+<span id="cb13-2"><a href="example-1-methods-for-variable-selection.html#cb13-2" tabindex="-1"></a><span class="fu">add1</span>(mod.fs, <span class="at">scope =</span> SCOPE, <span class="at">test =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<pre><code>## Single term additions
+## 
+## Model:
+## HWFAT ~ 1
+##         Df Sum of Sq    RSS    AIC  F value    Pr(&gt;F)    
+## &lt;none&gt;               6017.8 340.97                       
+## AGE      1     175.0 5842.8 340.67   2.2765    0.1355    
+## HT       1     117.8 5900.0 341.43   1.5175    0.2218    
+## WT       1    3237.6 2780.2 282.74  88.5045 2.219e-14 ***
+## ABS      1    5072.8  945.0 198.57 407.9929 &lt; 2.2e-16 ***
+## TRICEPS  1    5056.3  961.5 199.92 399.6462 &lt; 2.2e-16 ***
+## SUBSCAP  1    4939.0 1078.8 208.90 347.9456 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The variables <code>ABS</code>, <code>TRICEPS</code> and <code>SUBSCAP</code> all have very small <span class="math inline">\(p\)</span>-values (<code>&lt; 2.2e-16</code>). Therefore in this case, we simply take the first variable.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-1-methods-for-variable-selection.html#cb15-1" tabindex="-1"></a><span class="co"># Add the predictor</span></span>
+<span id="cb15-2"><a href="example-1-methods-for-variable-selection.html#cb15-2" tabindex="-1"></a>mod.fs <span class="ot">&lt;-</span> <span class="fu">update</span>(mod.fs, . <span class="sc">~</span> . <span class="sc">+</span> ABS)</span>
+<span id="cb15-3"><a href="example-1-methods-for-variable-selection.html#cb15-3" tabindex="-1"></a><span class="fu">summary</span>(mod.fs)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = HWFAT ~ ABS, data = HSwrestler)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.0920 -2.1788 -0.3144  2.2722 10.7798 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.65369    0.65867   5.547 4.05e-07 ***
+## ABS          0.63246    0.03131  20.199  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.526 on 76 degrees of freedom
+## Multiple R-squared:  0.843,  Adjusted R-squared:  0.8409 
+## F-statistic:   408 on 1 and 76 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><code>ABS</code> looks like a good addition. Evaluate your model again and add another variable if appropriate.</p>
+<div class="line-block">      <strong>Step 3: Repeat steps 1 and 2 until all terms meet criteria</strong></div>
+<p>Now we repeat steps 1 and 2 until the predictor we add has a <span class="math inline">\(p\)</span>-value greater than <span class="math inline">\(\alpha_{\text{crit}}\)</span>.<br />
+</p>
+<p>The next variable that should be added is <select class='webex-select'><option value='blank'></option><option value='answer'>TRICEPS</option><option value=''>AGE</option><option value=''>WT</option><option value=''>ABS</option><option value=''>HT</option><option value=''>SUBCAP</option></select>.<br />
+</p>
+<p>Should you continue adding variables? <select class='webex-select'><option value='blank'></option><option value='answer'>YES</option><option value=''>NO</option></select>.<br />
+</p>
+<p>Keep in mind the results from forward and backward selection. What variables are included in your final model? <code>AGE</code> <select class='webex-select'><option value='blank'></option><option value='answer'>is included</option><option value=''>is not included</option></select>, <code>HT</code> <select class='webex-select'><option value='blank'></option><option value=''>is included</option><option value='answer'>is not included</option></select>, <code>WT</code> <select class='webex-select'><option value='blank'></option><option value=''>is included</option><option value='answer'>is not included</option></select>, <code>ABS</code> <select class='webex-select'><option value='blank'></option><option value='answer'>is included</option><option value=''>is not included</option></select>, <code>TRICEPS</code> <select class='webex-select'><option value='blank'></option><option value='answer'>is included</option><option value=''>is not included</option></select>, and <code>SUBSCAP</code> <select class='webex-select'><option value='blank'></option><option value=''>is included</option><option value='answer'>is not included</option></select>.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="example-1-methods-for-variable-selection.html#cb17-1" tabindex="-1"></a><span class="co"># Test the current model</span></span>
+<span id="cb17-2"><a href="example-1-methods-for-variable-selection.html#cb17-2" tabindex="-1"></a><span class="fu">add1</span>(mod.fs, <span class="at">scope =</span> SCOPE, <span class="at">test =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+</div>
+<p><br></p>
+</div>
+<div id="criterion-based-variable-selection" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Criterion-Based Variable Selection<a href="example-1-methods-for-variable-selection.html#criterion-based-variable-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also perform variable selection by optimising some criteria. For example, our final model would be comprised of the combination of variables that results in the highest <span class="math inline">\(R^2_a\)</span> (or another goodness-of-fit metric).</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Use the function <code>regsubsets()</code> from the package <code>leaps</code> to build a regression model
+where <code>HWFAT</code> is the response using the predictors <code>AGE</code>, <code>HT</code>, <code>WT</code>, <code>ABS</code>, <code>TRICEPS</code>, and <code>SUBSCAP</code>
+when <span class="math inline">\(R^2_a\)</span> is the criterion used for variable selection.</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="example-1-methods-for-variable-selection.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb18-2"><a href="example-1-methods-for-variable-selection.html#cb18-2" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(HWFAT <span class="sc">~</span> ., <span class="at">data =</span> HSwrestler[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)])</span>
+<span id="cb18-3"><a href="example-1-methods-for-variable-selection.html#cb18-3" tabindex="-1"></a><span class="fu">summary</span>(models)</span></code></pre></div>
+<pre><code>## Subset selection object
+## Call: regsubsets.formula(HWFAT ~ ., data = HSwrestler[, -c(8, 9)])
+## 6 Variables  (and intercept)
+##         Forced in Forced out
+## AGE         FALSE      FALSE
+## HT          FALSE      FALSE
+## WT          FALSE      FALSE
+## ABS         FALSE      FALSE
+## TRICEPS     FALSE      FALSE
+## SUBSCAP     FALSE      FALSE
+## 1 subsets of each size up to 6
+## Selection Algorithm: exhaustive
+##          AGE HT  WT  ABS TRICEPS SUBSCAP
+## 1  ( 1 ) &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot; &quot;     &quot; &quot;    
+## 2  ( 1 ) &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot;     &quot; &quot;    
+## 3  ( 1 ) &quot;*&quot; &quot; &quot; &quot; &quot; &quot;*&quot; &quot;*&quot;     &quot; &quot;    
+## 4  ( 1 ) &quot;*&quot; &quot;*&quot; &quot; &quot; &quot;*&quot; &quot;*&quot;     &quot; &quot;    
+## 5  ( 1 ) &quot;*&quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;    
+## 6  ( 1 ) &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;     &quot;*&quot;</code></pre>
+<p>Since we are evaluating adding or dropping terms based on <span class="math inline">\(R^2_a\)</span>, we can see the difference in each model.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="example-1-methods-for-variable-selection.html#cb20-1" tabindex="-1"></a>R2adj <span class="ot">&lt;-</span> <span class="fu">summary</span>(models)<span class="sc">$</span>adjr2</span>
+<span id="cb20-2"><a href="example-1-methods-for-variable-selection.html#cb20-2" tabindex="-1"></a>R2adj</span></code></pre></div>
+<pre><code>## [1] 0.8409068 0.8801014 0.8849817 0.8846381 0.8840129 0.8826699</code></pre>
+<p>The output indicates the best single predictor model is that with the variable <code>ABS</code>, and that particular model has <span class="math inline">\(R^2_a = 0.8409\)</span>, the best model with two predictors is the model with the variables <code>ABS</code> and <code>TRICEPS</code> with <span class="math inline">\(R^2_a = 0.8801\)</span>, and so forth. The largest <span class="math inline">\(R^2_a\)</span> is <span class="math inline">\(0.8849817\)</span>, which corresponds to the model with predictors <code>AGE</code>, <code>ABS</code>, and <code>TRICEPS</code>.</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>The best models of each size are stored in the object models, and Mallow’s <span class="math inline">\(C_p\)</span> values are extracted from the model.</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="example-1-methods-for-variable-selection.html#cb22-1" tabindex="-1"></a>MCP <span class="ot">&lt;-</span> <span class="fu">summary</span>(models)<span class="sc">$</span>cp</span>
+<span id="cb22-2"><a href="example-1-methods-for-variable-selection.html#cb22-2" tabindex="-1"></a>MCP</span></code></pre></div>
+<pre><code>## [1] 29.051861  4.641808  2.541953  3.775400  5.175856  7.000000</code></pre>
+<p>The smallest Mallow’s <span class="math inline">\(C_p\)</span> value is <span class="math inline">\(2.542\)</span>, indicating the best model according to Mallow’s <span class="math inline">\(C_p\)</span> is the one with the predictors <code>AGE</code>, <code>ABS</code>, and <code>TRICEPS</code>.</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>Can you think of a way of selecting the best model according to <span class="math inline">\(BIC\)</span>?</li>
+</ol>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>You can try <code>bic</code>. Remember, the lower the <span class="math inline">\(BIC\)</span> the better.</p>
+</div>
+<p>Just now, we find the best model by looking at the model giving the maximum <span class="math inline">\(R^2_a\)</span> or the minimum Mallow's <span class="math inline">\(C_p\)</span> or BIC and then looking at the predictors corresponding to the best model. A quicker way is to read the results graphically using the function <code>plot</code>. For example</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="example-1-methods-for-variable-selection.html#cb24-1" tabindex="-1"></a><span class="fu">plot</span>(models, <span class="at">scale =</span> <span class="st">&quot;adjr2&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="example-1-methods-for-variable-selection.html#cb25-1" tabindex="-1"></a><span class="fu">plot</span>(models, <span class="at">scale =</span> <span class="st">&quot;Cp&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="example-1-methods-for-variable-selection.html#cb26-1" tabindex="-1"></a><span class="fu">plot</span>(models, <span class="at">scale =</span> <span class="st">&quot;bic&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-19-3.png" width="672" /></p>
+<p>In these plots, each row corresponds to a model, with the top row corresponding to the best model. The shaded blocks indicate that the predictors are selected in this model. For example, in the plot of adjusted <span class="math inline">\(R^2\)</span>, the top row contains four shaded blocks, meaning that the best model is consisted of intercept, age, abs and triceps.</p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>(optional) Verify that the model selected using AIC as a criterion from the function <code>stepAIC()</code> from the <code>MASS</code> package returns the same model as the model created in (e) using the <code>regsubsets()</code> function.</li>
+</ol>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<ol style="list-style-type: decimal">
+<li>Fit a full model.</li>
+<li>Define <code>SCOPE &lt;- (~.)</code></li>
+<li>Use the function <code>stepAIC()</code> instead of <code>add1()</code>. Be sure to check what parameters it takes using <code>?stepAIC</code></li>
+</ol>
+</div>
+<!-- ## Part 3: PLEASE -->
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Check Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Check Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-1-lake-water-quality.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
