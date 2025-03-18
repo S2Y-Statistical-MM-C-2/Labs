@@ -79,7 +79,7 @@ mod.hsw <- update(model.all, . ~ . - HT)
 
 To see if we have removed enough predictors, perform a test and re-evaluate as many times as necessary. What variables are included in the final model?
 
-The next variable to be removed should be `r mcq(c("AGE", "WT", "ABS", answer="TRICEPS", "SUBCAP"))`. \
+The next variable to be removed (after deleting `HT`) should be `r mcq(c("AGE", "WT", "ABS", "TRICEPS", answer="SUBSCAP"))`. \
 
 Should you continue removing variables? `r mcq(c(answer="YES", "NO"))`. \
 
@@ -124,11 +124,11 @@ summary(mod.fs)
 
 Now we repeat steps 1 and 2 until the predictor we add has a $p$-value greater than $\alpha_{\text{crit}}$.\
 
-The next variable that should be added is `r mcq(c(answer="TRICEPS", "AGE", "WT", "ABS", "HT", "SUBCAP"))`. \
+The next variable that should be added (after adding `ABS`) is `r mcq(c(answer="TRICEPS", "AGE", "WT", "ABS", "HT", "SUBCAP"))`. \
 
 Should you continue adding variables? `r mcq(c(answer="YES", "NO"))`. \
 
-Keep in mind the results from forward and backward selection. What variables are included in your final model? `AGE` `r mcq(c(answer="is included", "is not included"))`, `HT` `r mcq(c("is included",answer="is not included"))`, `WT` `r mcq(c("is included",answer="is not included"))`, `ABS` `r mcq(c(answer="is included","is not included"))`, `TRICEPS` `r mcq(c(answer="is included","is not included"))`, and `SUBSCAP` `r mcq(c("is included",answer="is not included"))`.
+What variables are included in your final model, assuming $\alpha_\text{crit}=0.15$? `AGE` `r mcq(c(answer="is included", "is not included"))`, `HT` `r mcq(c("is included",answer="is not included"))`, `WT` `r mcq(c("is included",answer="is not included"))`, `ABS` `r mcq(c(answer="is included","is not included"))`, `TRICEPS` `r mcq(c(answer="is included","is not included"))`, and `SUBSCAP` `r mcq(c("is included",answer="is not included"))`.
 
 `r hide ("Hint")`
 ```{r, eval = FALSE}
