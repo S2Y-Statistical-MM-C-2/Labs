@@ -1,0 +1,65 @@
+---
+title: "Lab 9 - Transformations and Assumptions"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "Example1.Rmd","Example2.Rmd", "Exercise1.Rmd", "Exercise2.Rmd"]
+
+---
+
+# Welcome to Lab 8!
+
+Placeholder
+
+
+## Introduction variable transformations
+## Root 
+## Reciprocal
+## Quadratic
+## Logarithmic
+## Credit where credit is due
+
+<!--chapter:end:index.Rmd-->
+
+
+# Example 2: power transformation on $y$
+
+Placeholder
+
+
+## Exploratory analysis and model fitting
+## Assumption checking and Interpretation
+
+<!--chapter:end:Example1.Rmd-->
+
+
+# Example 2: Animal brains and double transformations
+
+Placeholder
+
+
+
+<!--chapter:end:Example2.Rmd-->
+
+
+# Exercise 1: Identify the appropriate transformation
+
+Placeholder
+
+
+
+<!--chapter:end:Exercise1.Rmd-->
+
+
+# Exercise 2: Log-transformation on $x$
+
+Placeholder
+
+
+## Statistical analysis
+## Assumption checking
+
+<!--chapter:end:Exercise2.Rmd-->
+

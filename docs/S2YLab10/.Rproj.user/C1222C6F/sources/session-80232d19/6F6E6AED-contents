@@ -1,0 +1,2 @@
+plot(model.og$residuals[1:(length(model.og$residuals)-1)],model.og$residuals[2:length(model.og$residuals)], 
+     xlab = "residuals at time i-1", ylab="residuals at time i")

@@ -1,0 +1,13 @@
+h1:welcome-to-lab-9 Welcome to Lab 9!
+h2:introduction-variable-transformations Introduction variable transformations
+h2:root Root
+fig:root Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the square-root transformation of $x$
+h2:reciprocal Reciprocal
+fig:reciprocal Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the reciprocal transformation of $x$
+h2:quadratic Quadratic
+fig:quadratic Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of $x$
+h2:logarithmic Logarithmic
+fig:log1 Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the log transformation of $x$
+fig:log2 Left: Scatterplot of Y vs x in the original scale. Right: Scatterplot after the quadratic transformation of $x$
+h2:credit-where-credit-is-due Credit where credit is due
+

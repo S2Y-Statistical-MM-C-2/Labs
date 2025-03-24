@@ -1,0 +1,55 @@
+# Example 2: Animal brains and double transformations
+
+Variables are often transformed to ﬁx constant variance or normality assumptions; however, transformations can complicate the interpretation of the model. In this example, we explore transforming both the response and the predictor(s). To illustrate what we mean, we will use the data frame `Animals` from the `MASS` package. The data consists of 28 animals, including dinosaurs, and their respective body weight in kilograms and brain weight in grams. Our question of interest is: is a bigger brain required to govern a bigger body?
+
+**Data: `Animals`**
+
+**Columns:**
+
+|                       **C1:** `body` - body weight given in kilograms
+
+|                       **C2:** `brain` - weight of brains given in grams
+
+Read the data using:
+```{r}
+library(MASS)
+data(Animals)
+```
+
+Sometimes, it is possible to get complications before and after fitting a model, which may require more than one transformation. Transforming both the response variable and the predictor variable may be useful in the when the relationship is non-linear and the model residuals are not normal and have unequal variances.
+Logarithmic transformations are often a good choice.
+
+You can fit this model in the same way that you have fitted the other transformations. But first, make sure to remove the dinosaurs from the data set. 
+
+```{r, include = TRUE}
+SA <- Animals[order(Animals$body), ] # sorted by body
+NoDINO <- SA[-c(28:26), ] # remove dinosaurs
+simple.model <- lm(log(brain) ~ log(body), data = NoDINO)
+coef(simple.model)
+```
+
+The only thing with logarithmic transformations, as mentioned earlier, is the need for correct and careful interpretation. 
+
+**Interpretation**
+If the body weight of an animal increases by $1%$, the approximate increase in brain weight
+is $(0.01\times0.7523 = 0.0075 = 0.7523\%)$ since $\hat{\beta}_1= 0.7523$. The predicted brain weight of the
+jaguar, whose weight is listed as $100 \text{kg}$ with the ﬁtted model, is $2.1504+0.7523\times\text{ln}(100)=5.6147$. \
+
+This must be back transformed to get the units of original brain measurement (grams). \
+
+The brain weight predicted by the model is $exp(5.6147) = 274.4312 \text{g}$. If said
+jaguar were to increase its weight by $10\%$, the expected increase in brain weight would
+be approximately $7.5\%$ for a new weight of $1.075 \times 274.4312 = 295.0136 \text{g}$. The actual
+brain weight change predicted by the model for a body weight of $110 \text{kg}$ is $294.83 \text{g}$ and
+the change in brain weight as predicted from the model is $7.4331\%$ (see Table 1). Note
+that for this model,$\hat{\beta}_1= 0.7523 \approx \% \Delta Y /\% \Delta x = 0.0743/0.1 = 0.7433$. 
+In fact, when both the response and the predictors have been transformed with a natural logarithm, one can
+use the percentage interpretation of $\beta_1$ and be very close to the actual change
+given by the model for small changes in the $x$-variables.
+
+<center>
+![Table 1. Actual change in jaquar brain weight. ](Images/tab1.png){width=300px}
+</center>
+
+Just FYI, more generally, for models of the form $\text{ln}Y = \beta_0 + \beta_1x$, for each unit of increase in $x$, $Y$ increases roughly by $\beta_1 \times 100\%$.
+
