@@ -1,0 +1,27 @@
+library(ggplot2)
+p <- ggplot(data = data.frame(x = c(35,43)), aes(x = x))
+dnorm_func <- function(x){
+  y <- dnorm(x, 38.5, 2.5/sqrt(50))
+  y[x > qnorm(0.05, 40, 2.5/sqrt(50))] <- NA
+  return(y)
+} 
+dnorm_func1 <- function(x){
+  y <- dnorm(x, 38.5, 2.5/sqrt(50))
+  y[x <= qnorm(0.05, 40, 2.5/sqrt(50))] <- NA
+  return(y)
+}
+p + stat_function(fun = dnorm_func, geom = "area", fill = "blue",
+                  alpha = 0.2, n = 500) +
+  stat_function(fun = dnorm_func1, geom = "area", fill = "blue") +
+  geom_hline(yintercept = 0) +
+  stat_function(fun = dnorm, args = list(40, 2.5/ sqrt(50)), n = 500) +
+  stat_function(fun = dnorm, args = list(38.5, 2.5/sqrt(50)), n = 500) +
+  theme_bw() +
+  labs(x = "", y = "")
+
+
+######
+# pt(-2.0423, 30, 4.4542) + pt(2.0423, 30, 4.4542, lower=FALSE)
+# 
+# pf(4.1709, 1, 30, 19.84, lower = FALSE)
+

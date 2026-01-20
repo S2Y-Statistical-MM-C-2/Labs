@@ -1,0 +1,810 @@
+---
+title: |
+    | S2Y Lab 1
+    | Exploring Hypothesis Testing
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+rmd_files: ["index.Rmd", "AllAboutHypothesisTesting.Rmd", "Example1.Rmd", "Example2.Rmd", "Exercise1.Rmd", "Exam-style.Rmd"]
+
+---
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(webexercises)
+library(tinytex)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+library(PASWR2)
+library(MASS)
+RUBBER<- Rubber
+FERTILIZE <- FERTILIZE
+
+```
+
+
+```{r include=FALSE, echo=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+# Welcome to S2Y Lab 1
+
+Intended Learning Outcomes:
+
+* Conduct one-sample $t$-test (testing the mean when sampling from a normal distribution with unknown variance) in `R` with a step-by-step guide.
+* Conduct one-sample $t$-test in `R` with the built-in function.
+* Explore further the significance level and the power of a test.
+
+## Summary for testing the mean when sampling from a normal distribution with unknown variance (one-sample $t$-test)
+
+![](Images/Summary_tobs.png)
+
+
+
+
+<div style="color: dimgrey;">
+
+## Optional: RStudio Quickstart Guide
+
+This course assumes basic knowledge of `R` and RStudio. The starting point is opening RStudio by going to:
+
+<center> Maths & Stats Apps > RStudio </center>
+
+To access the data in this course, it is best to open and save a new script file to work in within RStudio and to set the working directory. This will enable you to save your R commands and comments on your work as you go through each of the examples.
+
+To open a new script go to:
+
+<center> `File > New > R script` </center>
+
+This will open a new screen for you to type into.
+
+Go to:
+
+<center> `File > Save as` </center>
+
+and save the script file into your home directory. Now, start by setting the working directory in RStudio to the directory in which you have stored both the data and `R` script. One way of doing this is to go to:
+
+<center> `Session > Set Working Directory > To Source File Location` </center>
+
+This will point RStudio towards this directory to enable us to use files within that directory.
+
+It is useful to annotate your script file using comments so that you know what has been done when you look at it in the future. Comments can be added to a script file by starting the line with a # symbol.
+
+</div>
+
+## Credit where credit is due
+
+The labs in S2Y incorporate and adapt materials from:
+
+Ugarte, M. D., Militino, A. F., & Arnholt, A. T. (2008). [Probability and Statistics with R](https://ebookcentral.proquest.com/lib/gla/detail.action?docID=5338596). CRC press.
+
+The materials were converted into interactive labs on Hypothesis Testing using `Bookdown` and `webexercises` in Summer 2023 by summer project student, Megan Ruffle.
+
+<!--chapter:end:index.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+
+# The Basic Premise of Hypothsis Testing
+
+![](Images/HypothesisTest.jpg)
+
+
+**All hypothesis tests that we will look at in these labs will fit the same pattern:**
+
+We want to decide if the observed data from our study provides evidence to reject a baseline assumption (a null hypothesis).
+
+For all tests, we will compare our observed data to an expected distribution from the null hypothesis.
+
+*The values used in this comparison:*
+The test will have a significance level and we find the critical value that corresponds to this to decide on a Rejection Region (shown in red on the graph below). This is the part of our distribution that we decide is unusual and could disprove our null hypothesis.
+
+We calculate a Standardised Test Statistic from our data and find its corresponding area on the distribution, the $p$-value, to be able to compare what we saw to the distribution (illustrated in blue on the graph below).
+
+How the Standardised Test Statistic compares to the rejection region, and hence how our $p$-value compares to the significance level, is what changes the conclusion of our hypothesis test.
+
+```{r, echo=FALSE, eval=TRUE}
+library(latex2exp); library(ggplot2)
+alpha <- 0.025
+critical_value <- qnorm(alpha)
+x <- seq(-3, 3, length.out = 1000)
+z_dist <- data.frame(x = x, y = dnorm(x))
+
+
+# Create t distribution plot and alpha below in the function is transparency of the region
+ggplot(z_dist, aes(x)) +
+  geom_line(aes(y = y), size = 1) +
+  geom_area(data = subset(z_dist, x < critical_value), aes(y = y), fill = "red", alpha=0.1) +
+  geom_area(data = subset(z_dist, x < -1.2), aes(y = y), fill = "blue", alpha=0.1) +
+  geom_area(data = subset(z_dist, x > -critical_value), aes(y = y), fill = "red", alpha=0.1) +
+  geom_area(data = subset(z_dist, x > 1.2), aes(y = y), fill = "blue", alpha=0.1) +
+  geom_segment(aes(x = critical_value, y = -0.025, xend = critical_value, yend = dnorm(critical_value)), colour="red")+
+  geom_segment(aes(x = -1.2, y = -0.04 , xend = -1.2, yend = dnorm(-1.2)), colour="blue")+
+  geom_segment(aes(x = -critical_value, y = -0.025, xend = -critical_value, yend = dnorm(critical_value)), colour="red")+
+  geom_segment(aes(x = 1.2, y = -0.04 , xend = 1.2, yend = dnorm(1.2)), colour="blue")+
+  labs(title = TeX("Example of two-tail hypothesis test with $\\alpha = 0.05$ using a normal distibution"),
+       x = "Z-Score",
+       y = "Probability Density") +
+  annotate("text", x = -2.3, y = 0.01, label = TeX("$\\alpha/2 = 0.025$"), size = 2.5, colour="red") +
+  annotate("text", x = -2, y = -0.03, label = TeX("-Critical Value"), vjust = 0.4, size=2.5, colour="red") +
+  annotate("text", x = -1.55, y = 0.05, label = TeX("p-value$/2$"), size = 2.5, colour="blue") +
+  annotate("text", x = -1.4, y = -0.04, label = "-the value of the observed Standardised Test Statistic", vjust = 0.4, size=2.5, colour="blue") +
+  annotate("text", x = 2.3, y = 0.01, label = TeX("$\\alpha/2 = 0.025$"), size = 2.5, colour="red") +
+  annotate("text", x = 2, y = -0.03, label = TeX("Critical Value"), vjust = 0.4, size=2.5, colour="red") +
+  annotate("text", x = 1.55, y = 0.05, label = TeX("\\p-value$/2$"), size = 2.5, colour="blue") +
+  annotate("text", x = 1.4, y = -0.04, label = "the value of the observed Standardised Test Statistic", vjust = 0.4, size=2.5, colour="blue") +
+  coord_cartesian(ylim=c(0,NA),expand = FALSE, clip="off")+
+  theme_minimal()
+```
+
+*The graphical example above is a test that would assume normally distributed data and would result in failing to reject the null hypothesis.*
+*The red area is our rejection region.*
+*The blue area represents the probability of seeing our observed data assuming the null hypothesis is true (this probability is known as the $p$-value).*
+*The Standardised Test Statistic does not sit in the rejection region. As a result the blue area is greater than the red area meaning our data was not unusual compared to the distribution where the null hypothesis is true.*
+
+
+## The 5 steps of Hypothesis Testing 
+
+In the next few labs we will look through different scenarios where we might conduct a hypothesis test.
+
+In your textbook and lectures you have seen these tests broken into 5 steps. 
+
+Often when undertaking hypothesis tests in R, we find the Standardised Test Statistic and $p$-value in one action such as when using `t.test()`. In the labs the 5 steps will therefore be arranged as follows:
+
+1. **Hypotheses**
+    - Set up the null and alternative hypotheses to answer your question
+2. **Test Statistic Selection** 
+    - Choose your Test Statistic
+3. **Hypothesis Test Calculations**
+    - Find the Critical Value and Rejection Region from the distribution
+    - Calculate the Standardised Test Statistic from the observed data
+    - Find the $p$-value that corresponds to the Standardised Test Statistic
+4. **Statistical Conclusion**
+    - Comparing the observed value of the Standardised Test Statistic to the Rejection Region or Critical value
+    - Comparing the $p$-value to the significance level
+5. **English Conclusion**
+    - Giving the meaning of statistical conclusion in context of the question.
+  
+(Note this is slightly different to the the wording in the textbook just for simplicity of grouping together all calculations in R within Step 3.)
+
+We shall consistently find the Rejection Region and then analyse our observed data to compare it to that region.
+
+<!--chapter:end:AllAboutHypothesisTesting.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Exam-Style Questions
+
+This section shows how previous examples and exercises may be formulated in a written exam. 
+
+## Example 1
+
+Hand et al. (1994) conducted an experiment to investigate how the resistance of rubber to abrasion is affected by the hardness of the rubber and its tensile strength. A sample of 30 rubbers were collected, which measures abrasion loss in grams/hour, the hardness in degrees shore, and the tensile strength in \(kg/cm^2\). 
+
+a) The figure below presents the histogram of abrasion loss. Comment on the suitability of a normal model for these data.
+
+```{r echo=FALSE}
+hist(RUBBER$loss, main="Histogram of abrasion loss", xlab="Abrasion loss")
+```
+
+b) Perform a hypothesis test to determine whether the population mean for abrasion loss is smaller than 170 grams/hour at a significance level of 5%. Comment on what this hypothesis test tells you about the population mean for abrasion loss. 
+
+# Example 2
+
+A cell phone provider has estimated that it needs revenues of €2 million per day in order to make a profit and remain in the market. If revenues are less than €2 million per day, the company will go bankrupt. Likewise, revenues greater than €2 million per day cannot be handled without increasing staff. Assume that revenues follow a normal distribution with \(\sigma =\) €0.5 million and a mean of \(\mu\).
+
+Calculate the power for testing \(H_0 : \mu = 2\) versus \(H_1 : \mu \neq 2\) if \(n = 150\) and \(\alpha = 0.05\) when \(\mu_1=2.1\), where \(\mu_1\) denotes the mean value under the alternative hypothesis is true. 
+
+# Exercise 1
+
+A botanist is interested in whether the mean height of self-fertilized plants is more than 17 inches. To investigate this, they measure the height of 15 self-fertilized plants and found that the sample average height is 17.575 inches.
+
+a) State the assumptions that need to be verified before conducting a hypothesis test to determine whether the mean height of self-fertilized plants is more than 17 inches.
+
+b) Perform a hypothesis test for the mean height of self-fertilized plants at a significance level of 5%. Comment on what this hypothesis test tells you about the mean height. 
+
+<!--chapter:end:Exam-style.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+
+# Example 1: The 5 Steps of Hypothesis Testing
+
+An experiment was conducted to investigate how the resistance of rubber to abrasion is affected by the hardness of the rubber and its tensile strength. The data come from Hand et al. (1994, Data Set #6, Abrasion Loss) and are stored in the data frame `Rubber` of the `MASS` package. The abrasion loss is measured in grams/hour; the hardness, in degrees shore; and the tensile strength, in \(kg/cm^2\). Use the five-step procedure to test whether \(\mu < 170\) for abrasion loss (`loss`) with 95% confidence.
+
+To open this data file, type:
+```{r eval=FALSE, echo=TRUE}
+library(MASS)
+RUBBER<- Rubber
+```
+
+This will assign the data to the object `RUBBER`. To view the data, type 
+
+```{r eval=FALSE, echo=TRUE}
+RUBBER
+```
+
+into the script file and running that line by either placing the cursor on the line and pressing *Ctrl* and *Enter*, or by clicking on the *Run* button in the top-right corner of the script file. The data will then appear in the *Console* window below.
+
+A spreadsheet of the data can be viewed by typing: 
+
+```{r eval=FALSE, echo=TRUE}
+fix(RUBBER)
+```
+
+but note that you will need to close this window before trying to excute any further commands. The spreadsheet can also be viewed by clicking on the `RUBBER` object in the Environment (top right of the screen).
+
+## **Verifying normality**
+To solve this problem, start by verifying the normality assumption of the data using
+exploratory data analysis (`EDA()`).
+
+```{r, eval=TRUE, echo=TRUE}
+library(PASWR)
+with(data = RUBBER, EDA(loss))
+```
+
+Based on the graphical output from the function `eda()`, it is not unreasonable to assume
+that abrasion loss follows a normal distribution. Now, proceed with the five-step procedure.
+
+## **Step 1 - Hypotheses**
+
+To test if mean abrasion loss is less than \(170\), the hypotheses are:
+
+\[H_0 : \mu = 170 \quad \text{verses} \quad H_1 : \mu < 170\]
+
+`r hide("Learn More")` 
+This is a one-tail test as as we want to know how different the loss is from a mean of 170 (specifically less than) rather than just if it is different which would give the two-tail hypotheses \(H_0 : \mu = 170\) versus \(H_1 : \mu \neq 170\).
+`r unhide()`
+
+
+
+## **Step 2 - Choosing a Test Statistic**
+
+The test statistic chosen is \(\bar{X}\) because \(E[\bar{X}] = \mu\).
+
+```{r}
+xbar <- mean(RUBBER$loss)
+xbar
+```
+
+The value of this test statistic is \(\bar{x} = \frac{\sum^n_{i=1}x_i}{n} = 175.4333\)
+
+`r hide("Learn More")` 
+We have this as our test statistic because we want to evaluate the mean value.
+
+We will determine the probability of obtaining that test statistic (sample mean) when the null hypothesis is true. We do this with standardisation and the probability is called the $p$-value which we will find soon.
+`r unhide()`
+
+The standardised test statistic under the assumption that \(H_0\) is true is distributed \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{30-1}\).
+
+
+## **Step 3 - Hypothesis Test Calculations**
+
+### **Finding the Rejection Region**
+
+Because the standardised test statistic is distributed \(t_{29}\) and \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} \leq t_{0.05; 29}\).
+
+From the statistical tables, the $t$-value that corresponds to our significance level (critical value) is \( t_{0.05; 29} = −1.6991\). Remember this is negative because we are discussing the lower tail of the $t$-distribution.
+
+This same $t$-value can be found using R:
+```{r, eval=TRUE, echo=TRUE}
+RR <- qt(0.05, df = 29)
+RR
+```
+
+Graphically the rejection region is as follows: 
+
+```{r, eval=TRUE, echo=FALSE}
+library(latex2exp)
+
+alpha <- 0.05
+critical_value <- qt(alpha, df = Inf)
+x <- seq(-4, 4, length.out = 1000)
+t_dist <- data.frame(x = x, y = dt(x, df = Inf))
+
+# Create t distribution plot and alpha below in the funtion is transparency of the region
+t_plot <- ggplot(t_dist, aes(x)) +
+  geom_line(aes(y = y), size = 1) +
+  geom_area(data = subset(t_dist, x < critical_value), aes(y = y), fill = "red", alpha=0.3) +
+  labs(title = TeX("$t$-Distribution with Rejection Region for One-tail test with $\\alpha = 0.05$"),
+       x = "T-Score",
+       y = "Probability Density") +
+annotate("text", x = critical_value - 0.3, y = 0.02, label = TeX("$\\alpha = 0.05$"), size = 2.5, colour="red") +
+annotate("text", x = -1.6991, y = -0.02, label = TeX("-1.6991"), size=3) +
+theme_minimal()
+
+# Display the plot
+print(t_plot)
+
+```
+
+`r hide("Learn More")` 
+The rejection region is the area in which we would reject our null hypothesis.
+The critical value is the $t$-value that corresponds to $p=0.05$, and hence is the top limit of our rejection region. 
+
+The probability of observing our test statistic (sample mean) or more extreme values under the null hypothesis is the $p$-value.
+
+To reject the null hypothesis in this case we need our standardisd test statistic to be less than our critical value and hence our $p$-value < 0.05
+
+`r unhide()`
+
+### **Finding the standardised test statistic and $p$-value**
+
+The value of the standardised test statistic is given by  \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = \frac{175.4333−170}{S/\sqrt{n}}\).
+We can obtain \(S\) and \(n\) in R by using:
+
+```{r}
+S <- sd(RUBBER$loss)
+S
+
+n <- length(RUBBER$loss)
+n
+```
+
+This gives our standardised test statistic \(t_{obs}=\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = 0.3378\):
+
+```{r}
+sta.test.stat <- (175.4333-170)/(S/sqrt(n))
+sta.test.stat
+```
+
+The $p$-value that corresponds to our standardised test statistic, \(P(t_{29} \leq 0.3378)\) is:
+
+```{r}
+pvalue <- pt(0.3378478, df=29)
+pvalue
+```
+
+**OR**
+
+The standardised test statistic can be found using:
+```{r}
+Test <- t.test(RUBBER$loss, mu = 170, alternative = "less")
+Test
+```
+
+`r hide("Learn More")` 
+
+Graphically this could be shown:
+```{r, eval=TRUE, echo=FALSE}
+library(latex2exp)
+
+alpha <- 0.05
+critical_value <- qt(alpha, df = Inf)
+x <- seq(-4, 4, length.out = 1000)
+t_dist <- data.frame(x = x, y = dt(x, df = Inf))
+
+# Create t distribution plot and alpha below in the funtion is transparency of the region
+t_plot2 <- ggplot(t_dist, aes(x)) +
+  geom_line(aes(y = y), size = 1) +
+  geom_area(data = subset(t_dist, x < critical_value), aes(y = y), fill = "red", alpha=0.1) +
+  geom_area(data = subset(t_dist, x < sta.test.stat), aes(y = y), fill = "blue", alpha=0.1) +
+  labs(title = TeX("$t$-Distribution with Rejection Region for One-tail Test with $\\alpha = 0.05$"),
+       x = "T-Score",
+       y = "Probability Density") +
+annotate("text", x = critical_value - 0.3, y = 0.02, label = TeX("$\\alpha = 0.05$"), size = 2.5, colour="red") +
+  annotate("text", x = -2, y = -0.02, label = TeX("-1.6991"), vjust = 0.4, size=3) +
+  annotate("text", x = sta.test.stat - 0.5, y = 0.2, label = TeX("$\\p = 0.6310443$"), size = 2.5, colour="blue") +
+  annotate("text", x = 0.3378478, y = -0.02, label = "0.3378478", vjust = 0.4, size=3) +
+theme_minimal()
+
+# Display the plot
+print(t_plot2)
+
+```
+`r unhide()`
+
+
+Our standardised test statistic is greater than  the critical value and outside the rejection region. The $p$-value is greater than \(\alpha\).
+
+
+## **Step 4 - Statistical Conclusion**
+
+To draw conclusions we need to consider the rejection region: 
+
+Is the value of standardised test statistic inside the rejection region? 
+Is the $p$-value smaller than 0.05?
+
+
+**QUESTION**: Do we reject the null hypothesis?
+
+`r hide()`
+
+I. From the rejection region, we fail to reject \(H_0\) because the standardised test statistic is greater than the critical value and hence outside the rejection region i.e. \(t_{obs} = 0.3378 > -1.6991\).
+
+OR
+
+II. From the $p$-value, we fail to reject \(H_0\) because the $p$-value is \( 0.631 > 0.05\).
+
+
+Whichever method we use, we fail to reject \(H_0\).
+
+`r unhide()`
+
+## **Step 5 - English Conclusion**
+
+What does the above statistical conclusion mean for the data and the purpose of the test? 
+
+Is there statistical evidence to suggest a mean less than 170?
+
+**QUESTION**: Which of the following is the correct conclusion of our test?
+```{r, echo = FALSE}
+mcq <- c("There is sufficient evidence to suggest the mean abrasion loss is less than 170.", 
+"We cannot conclude if there is sufficient evidence to suggest the mean abrasion loss is less than 170.",
+answer = "There is not sufficient evidence to suggest the mean abrasion loss is less than 170.",
+"There is sufficient evidence to suggest the mean
+abrasion loss is greater than 170.")
+```
+`r longmcq(mcq)`
+
+
+<!--chapter:end:Example1.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+
+# Example 2: Power of a test
+
+A cell phone provider has estimated that it needs revenues of €2 million per day in order to make a profit and remain in the market. If revenues are less than €2 million per day, the company will go bankrupt. Likewise, revenues greater than €2 million per day cannot be handled without increasing staff. Assume that revenues follow a normal distribution with \(\sigma =\) €0.5 million and a mean of \(\mu\).
+
+To find out more about their revenue they want to perform a hypothesis test \(H_0 : \mu = 2\) versus \(H_1 : \mu \neq 2\). To understand more about how hypothesis tests work, three scenarios will be presented to show how the power of a test can change: varying $\mu$, varying significance level and varying sample size. 
+
+
+The power function is:
+
+\[\text{Power}(\theta) = P(\text{reject }H_0|H_0 \text{ is false}) = P(\text{accept }H_1|H_1) = 1-\beta(\theta)\]
+
+where \(\beta(\theta)\) is the probability of a type II error at a given \(\theta\).
+
+
+
+
+## **Question 1**
+
+**Graphically depict the power function for testing \(H_0 : \mu = 2\) versus \(H_1 : \mu \neq 2\) if \(n = 150\) and \(\alpha = 0.05\) for values of \(\mu\) ranging from 1.8 to 2.2.**
+
+- First, think about whether we are doing a one or two-tailed test and what values represent rejecting or no-rejecting the null hypothesis.
+
+- Next, create a vector of the values of \(\mu\).
+
+- Subsequently, find the critical values for the chosen significance level \(\alpha\), which will be used to calculate the power for each \(\mu\).
+
+The power values could be saved into a data frame to make the plotting easier. 
+
+```{r eval = TRUE, echo=TRUE}
+mu <- seq(from = 1.8, to = 2.2, length = 500)
+n <- 150
+alpha <- 0.05
+sigma <- 0.5
+
+lcv <- qnorm(alpha/2, 2, sigma/sqrt(n))
+ucv <- qnorm(1 - alpha/2, 2, sigma/sqrt(n))
+
+Power <- pnorm(lcv, mu, sigma/sqrt(n)) + pnorm(ucv, mu, sigma/sqrt(n), lower = FALSE)
+
+DF <- data.frame(mu, Power)
+```
+
+Once we have values for how the power function changes with \(\mu\), we could use ggplot to create the graph:
+```{r eval = TRUE, echo=TRUE}
+ggplot(data = DF, aes(x = mu, y = Power)) +
+  geom_line(color = "red") +
+  theme_bw() +
+  labs(x = expression(mu), y = expression(Power~(mu))) +
+  geom_hline(yintercept = 0.05, color = "blue", lty = "dashed")
+```
+
+## **Question 2**
+
+Graphically depict the power function for testing \(H_0 : \mu = 2\) versus \(H_1 : \mu \neq 2\) when \(\mu_1 = 2.1\) and \(n = 150\) for values of \(\alpha\) ranging from 0.001 to 0.999.
+
+`r hide("Hint 1")`
+Think about whether you are doing a one or two-tailed test and what values represent rejecting or no-rejecting the null hypothesis.
+`r unhide()`
+
+`r hide("Hint 2")`
+First create a vector of values of \(\alpha\).
+
+Then you will need to find the critical values for each \(\alpha\) which will be used to calculate the corresponding test powers.
+
+The power values could be saved into a data frame to make the plotting easier. 
+`r unhide()`
+
+```{r eval = TRUE, webex.hide="Calculations Solution"}
+alpha <- seq(from = 0.001, to = 0.999, length = 500)
+mu <- 2.1
+sigma <- 0.5
+n <- 150
+
+lcv <- qnorm(alpha/2, 2, sigma/sqrt(n))
+ucv <- qnorm(1 - alpha/2, 2, sigma/sqrt(n))
+
+Power <- pnorm(lcv, mu, sigma/sqrt(n)) + pnorm(ucv, mu, sigma/sqrt(n), lower = FALSE)
+
+DF <- data.frame(mu, Power)
+
+```
+
+```{r eval = TRUE, webex.hide="Plot Solution"}
+ggplot(data = DF, aes(x = alpha, y = Power)) +
+  geom_line(color = "red") +
+  theme_bw() +
+  labs(x = expression(alpha), y = expression(Power~(alpha))) +
+  geom_hline(yintercept = 0.05, color = "blue", lty = "dashed")
+
+```
+
+
+## **Question 3**
+
+Graphically depict the power for testing \(H_0 : \mu = 2\) versus \(H_1 : \mu \neq 2\) when \(\mu_1 = 2.1\)
+and \(\alpha = 0.05\) for values of \(n\) ranging from 1 to 500.
+
+`r hide("Hint")`
+Create a vector of values of \(n\) and then find the critical values for each \(n\) which will be used to calculate the corresponding test powers.
+`r unhide()`
+
+```{r eval = TRUE, webex.hide="Calculations Solution"}
+n <- 1:500
+mu <- 2.1
+sigma <- 0.5
+alpha <- 0.05
+
+lcv <- qnorm(alpha/2, 2, sigma/sqrt(n))
+ucv <- qnorm(1 - alpha/2, 2, sigma/sqrt(n))
+
+Power <- pnorm(lcv, mu, sigma/sqrt(n)) + pnorm(ucv, mu, sigma/sqrt(n), lower = FALSE)
+
+DF <- data.frame(mu, Power)
+
+```
+
+```{r eval = TRUE, webex.hide="Plot Solution"}
+ggplot(data = DF, aes(x = n, y = Power)) +
+  geom_line(color = "red") +
+  theme_bw() +
+  labs(x = expression(n), y = expression(Power~(n))) +
+  geom_hline(yintercept = 0.05, color = "blue", lty = "dashed")
+```
+
+
+## **Question 4**
+
+Think about each scenario above and select the correct statements below:
+
+
+Scenario 1 - Varying mean
+
+```{r, echo = FALSE}
+mcq1 <- c("For a fixed value of n and significance level alpha, the power of a test increases as the true mean moves closer from the hypothesized mean.", "For a fixed value of n and significance level alpha, the power of a test decreases as the true mean moves farther from the hypothesized mean.", answer="For a fixed value of n and significance level alpha, the power of a test increases as the true mean moves farther from the hypothesized mean.")
+```
+`r longmcq(mcq1)`
+
+
+Scenario 2 - Varying significance level \(\alpha\)
+
+```{r, echo = FALSE}
+mcq2 <- c(answer = "When the sample size is fixed, the power of a test increases as alpha increases.", "When the sample size is fixed, the power of a test decreases as alpha increases.")
+```
+`r longmcq(mcq2)`
+
+
+Scenario 3 - Varying sample size \(n\)
+
+```{r, echo = FALSE}
+mcq3 <- c(answer = "When the  significance level of the test is fixed, the power of the test increases as the sample size increases.", "When the  significance level of the test is fixed, the power of the test decreases as the sample size increases.")
+```
+`r longmcq(mcq3)`
+
+
+
+<!--chapter:end:Example2.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+library(webexercises)
+```
+# Exercise 1: Plant Height Hypothesis Test
+
+Using the data frame `Fertilize` in the package `PASWR`, which contains the height in inches for plants for cross fertilization and self-fertilization, test if the data suggest that the average height of self-fertilized plants is more than 17 inches. Use \(\alpha = 0.05\).
+
+**a) Does this data fit the required assumption of normality to perform a hypothesis test?**
+
+`r hide()`
+
+We can verify the normality assumption of the data using exploratory data analysis (`EDA()`).
+
+```{r, eval=TRUE, echo=TRUE}
+library(PASWR)
+FERTILIZE <- Fertilize
+EDA(FERTILIZE$self)
+
+```
+
+The results from applying the function `EDA()` to self fertilized plants suggest it is not unreasonable to assume that plant height for self fertilized plants follows a normal distribution. Now, proceed with the five-step procedure.
+`r unhide()`
+
+
+
+**b) Step 1 - select the correct hypothesis:**
+
+
+What are the null and alternative hypotheses for this problem? 
+
+\begin{align} 
+1&. \quad H_0 : \mu = 17 \quad \text{versus} \quad H_1 : \mu < 17\\
+O&R\\
+2&. \quad H_0 : \mu = 17 \quad \text{versus} \quad H_1 : \mu > 17 \\
+O&R\\
+3&. \quad H_0 : \mu = 17 \quad \text{versus} \quad H_1 : \mu \neq 17
+\end{align}
+```{r, echo = FALSE}
+mcqhyp <- c("1",answer="2","3")
+```
+`r mcq(mcqhyp)`
+
+**c) Step 2 - Choose and calculate the test statistic (before standardisation).**
+
+The test statistic \(\bar{X}=\)
+
+
+`r hide()`
+
+The test statistic chosen is \(\bar{X}\) because \(E[\bar{X}] = \mu\).
+
+```{r, eval=TRUE, echo=TRUE}
+xbar <- mean(FERTILIZE$self)
+xbar
+```
+The value of this test statistic is \(\bar{x} = \frac{\sum^n_{i=1}x_i}{n} = 17.575\)
+
+`r unhide()`
+
+
+**d) Step 3a - Finding rejection region \(t_{obs} > t_{1-0.05; df}\).**
+
+i) Find the degrees of freedom.
+
+ii) Find the critical value \(t_{1-0.05; df} =\)
+
+`r hide()`
+i) As the sample size is 15, the standardised test statistic is distributed \(t_{14}\). Moreover, since \(H_1\) is an upper one-sided hypothesis, the rejection region is the \(t_{obs} > t_{1-0.05; 14} = t_{0.95; 14}.\)
+
+ii) From the statistical table, the $t$-value that corresponds to the chosen significance level (i.e., the critical value) is \( t_{0.95; 14} = 1.7613\). Remember this is positive because we are discussing the upper tail of the $t$-distribution.
+
+This same $t$-value can be found in R by using:
+```{r, eval=TRUE, echo=TRUE}
+RR <- qt(0.95, df = 14)
+RR
+```
+`r unhide()`
+
+
+
+**e) Step 3b - Finding the standardised test statistic and $p$-value for our data.**
+
+i) Calculate the value of the standardisied test statistic.
+
+ii) Calculate the $p$-value that corresponds to our standardised test statistic.
+
+`r hide("Hint")`
+The standardised test statistic under the assumption that \(H_0\) is true and its distribution are \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} \sim t_{df}\).
+`r unhide()`
+
+`r hide()`
+i) Our standardised test statistic is given by  \(\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = \frac{17.575−17}{S/\sqrt{n}}\).
+The standard deviation \(S\) and the sample size \(n\) can be obtained in R by using:
+
+```{r, eval=TRUE, eval=TRUE}
+S <- sd(FERTILIZE$self)
+S
+
+n <- length(FERTILIZE$self)
+n
+```
+
+This gives the value of our standardised test statistic \(t_{obs}=\frac{\bar{X}−\mu_0}{S/\sqrt{n}} = 1.0854\):
+
+```{r, eval=TRUE, echo=TRUE}
+sta.test.stat <- (17.575-17)/(S/sqrt(n))
+sta.test.stat
+```
+**OR**
+
+The standardised test statistic can be found using:
+```{r}
+Test <- t.test(FERTILIZE$self, mu = 17, alternative = "greater")
+Test
+```
+
+
+ii)
+```{r, eval=TRUE, echo=TRUE}
+pvalue <- 1-pt(1.085437, df=14)
+pvalue
+```
+
+Graphically this could be shown:
+```{r, eval=TRUE, echo=FALSE}
+library(latex2exp)
+
+alpha <- 0.05
+critical_value <- -1*qt(alpha, df = Inf)
+x <- seq(-4, 4, length.out = 1000)
+t_dist <- data.frame(x = x, y = dt(x, df = Inf))
+
+# Create t distribution plot and alpha below in the funtion is transparency of the region
+t_plot <- ggplot(t_dist, aes(x)) +
+  geom_line(aes(y = y), size = 1) +
+  geom_area(data = subset(t_dist, x > critical_value), aes(y = y), fill = "red", alpha=0.2) +
+  geom_area(data = subset(t_dist, x > sta.test.stat), aes(y = y), fill = "blue", alpha=0.1) +
+  labs(title = TeX("$t$-Distribution with Rejection Region for One-tail test with $\\alpha = 0.05$"),
+       x = "T-Score",
+       y = "Probability Density") +
+annotate("text", x = critical_value + 0.2, y = 0.02, label = TeX("$\\alpha = 0.05$"), size = 2.5, colour="red") +
+annotate("text", x = 1.9, y = -0.02, label = TeX("1.7613"), vjust = 0.4, size=3) +
+annotate("text", x = sta.test.stat-0.5, y = 0.1, label = TeX("$\\p = 0.1480328$"), size = 2.5, colour="blue") +
+annotate("text", x = 0.8, y = -0.02, label = "1.0854", vjust = 0.4, size=3) +
+theme_minimal()
+
+# Display the plot
+print(t_plot)
+
+```
+
+The value of our standardised test statistic is greater than  the critical value and outside the rejection region. The $p$-value is greater than \(\alpha\)
+
+
+**OR**
+
+The $p$-value can be found using:
+```{r}
+Test <- t.test(FERTILIZE$self, mu = 17, alternative = "greater")
+Test
+```
+`r unhide()`
+
+
+**f) Step 4 - Statistical Conclusion**
+
+Do we reject our null hypothesis?
+
+`r hide()`
+
+I. From the rejection region, we fail to reject \(H_0\) because the standardised test statistic is less than the critical value and hence outside the rejection region i.e \(t_{obs} = 1.0854 < 1.7613\).
+
+OR
+
+II. From the $p$-value, we fail to reject \(H_0\) because the $p$-value is \( 0.1480 > 0.05\).
+
+
+Whichever method we use, we fail to reject \(H_0\).
+
+`r unhide()`
+
+**g) Step 5 - English Conclusion**
+
+Is there statistical evidence to suggest a mean greater than 17?
+
+```{r, echo = FALSE}
+mcqconc <- c("There is sufficient evidence to suggest the average height of self-fertilized plants is more than 17 inches", "We cannot conclude if there is sufficient evidence to suggest the average height of self-fertilized plants is more than 17 inches.",
+answer = "There is not sufficient evidence to suggest the the average height of self-fertilized plants is more than 17 inches.",
+"There is sufficient evidence to suggest the average height of self-fertilized plants is less than 17 inches.")
+```
+`r longmcq(mcqconc)`
+
+
+<!--chapter:end:Exercise1.Rmd-->
+

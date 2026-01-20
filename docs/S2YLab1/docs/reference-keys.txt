@@ -19,3 +19,7 @@ question-2
 question-3
 question-4
 exercise-1-plant-height-hypothesis-test
+exam-style-questions
+example-1
+example-2
+exercise-1

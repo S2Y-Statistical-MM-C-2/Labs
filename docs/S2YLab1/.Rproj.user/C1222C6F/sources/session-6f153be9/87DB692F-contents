@@ -1,0 +1,29 @@
+# Exam Style Questions
+
+This section shows how previous examples and exercises may be formulated in a written exam. 
+
+## Example 1
+
+Hand et al. (1994) conducted an experiment to investigate how the resistance of rubber to abrasion is affected by the hardness of the rubber and its tensile strength. A sample of 30 rubbers were collected, which measures abrasion loss in grams/hour, the hardness in degrees shore, and the tensile strength in \(kg/cm^2\). 
+
+a) The figure below presents the histogram of abrasion loss. Comment on the suitability of a normal model for these data.
+
+```{r echo=FALSE}
+hist(RUBBER$loss, main="Histogram of abrasion loss", xlab="Abrasion loss")
+```
+
+b) Perform a hypothesis test to determine whether the population mean for abrasion loss is smaller than 170 grams/hour at a significance level of 5%. Comment on what this hypothesis test tells you about the population mean for abrasion loss. 
+
+## Example 2
+
+A cell phone provider has estimated that it needs revenues of €2 million per day in order to make a profit and remain in the market. If revenues are less than €2 million per day, the company will go bankrupt. Likewise, revenues greater than €2 million per day cannot be handled without increasing staff. Assume that revenues follow a normal distribution with \(\sigma =\) €0.5 million and a mean of \(\mu\).
+
+Calculate the power for testing \(H_0 : \mu = 2\) versus \(H_1 : \mu \neq 2\) if \(n = 150\) and \(\alpha = 0.05\) when \(\mu_1=2.1\), where \(\mu_1\) denotes the true mean value under the alternative hypothesis. 
+
+## Exercise 1
+
+A botanist is interested in whether the mean height of self-fertilized plants is more than 17 inches. To investigate this, they measured the height of 15 self-fertilized plants and found that the sample average height is 17.575 inches.
+
+a) State the assumptions that need to be verified before conducting a hypothesis test to determine whether the mean height of self-fertilized plants is more than 17 inches.
+
+b) Perform a hypothesis test for the mean height of self-fertilized plants at a significance level of 5%. Comment on what this hypothesis test tells you about the mean height. 
