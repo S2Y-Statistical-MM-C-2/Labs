@@ -64,7 +64,9 @@ Means <- with(data = REFRIGERATOR, tapply(kilowatts, group, mean))
 Means
 ```
 
-The value of this test statistic is \(1.5358 − 1.7601 = −0.2243\). The standardised test statistic under the assumption that \(H_0\) is true and its approximate distribution are:
+The value of this test statistic is \(1.5358 − 1.7601 = −0.2243\). 
+
+From the boxplot, we notice that the two samples have unequal variances. Therefore, we are comparing two independent samples from normal distributions without assuming they have equal variances, i.e. performing a Welch test. The standardised test statistic under the assumption that \(H_0\) is true and its approximate distribution are:
 
 
 $$ \frac{\left[ (\bar{X}-\bar{Y}) - \delta_0 \right]}{\sqrt{\left( \frac{S^2_X}{n_X}+\frac{S^2_Y}{n_Y} \right)} }\quad \dot{\sim} \quad t_\nu.
@@ -80,6 +82,13 @@ The degrees of freedom for this test are:
 
 $$ \nu = \frac{\left( \frac{s^2_X}{n_X} + \frac{s^2_Y}{n_Y} \right)^2}{\frac{s^2_X/n_X}{n_X-1} + \frac{s^2_Y/n_Y}{n_Y-1}} = 54.7888
 $$
+
+
+```{r}
+Vars <- with(data = REFRIGERATOR, tapply(kilowatts, group, var))
+nu <- (Vars[1] / 30 + Vars[2] / 30)^2 / ((Vars[1]/30)^2/29 + (Vars[2]/30)^2/29)
+nu
+```
 
 Because the standardised test statistic is distributed \(t_\nu\) and \(H_1\) is a lower one-sided hypothesis, the rejection region is the \(t_{obs} < t_{0.05; 54.7888}\).
 
@@ -103,17 +112,25 @@ To reject a null hypothesis in this case we need our standardisd test statistic 
 
 Our standardised test statistic   \(=\frac{\bar{x}−\bar{y}-\delta_0}{\sqrt{\frac{s^2_X}{n_X}+\frac{s^2_Y}{n_Y} }} = -2.5128\).
 
-We should use R to find the corresponding $p$-value.
+```{r}
+(Means[1] - Means[2]) / sqrt(Vars[1]/30 + Vars[2]/30)
+```
 
-The test we are actually running here is a Welch test as we are comparing two independent samples from normal distributions without assuming they have equal variances. In R this is automatically chosen within the `t.test()` function:
+
+To find the corresponding $p$-value, we could use:
+
+```{r}
+pt(-2.518, df=54.7888)
+```
+
+In fact, in R the Welch test is automatically chosen within the `t.test()` function:
 
 ``` {r, eval=TRUE, echo=TRUE}
 TR <- t.test(kilowatts ~ group, data = REFRIGERATOR, alternative = "less")
 TR
 ```
 
-This gives again $t = -2.5128$ and the $p$-value as 0.0075.
-
+We can check that the observed test statistic (`t = -2.5128`), the degrees of freedom in the $t$-distribution (`df = 54.789`) and the $p$-value (`p-value = 0.007475`) all match our previous calculations. 
 
 
 `r hide("Learn More")` 
@@ -141,6 +158,9 @@ OR
 
 II. From the $p$-value, we reject \(H_0\) because the $p$-value \( 0.0075 < 0.05\).
 
+OR
+
+III. From the R output, 0 does not lie in the 95% confidence interval and thus we reject \(H_0\).
 
 Whichever method we use, we reject \(H_0\).
 

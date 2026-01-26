@@ -114,6 +114,9 @@ OR
 
 II. From the $p$-value, we fail to reject \(H_0\) because the $p$-value \( 0.6078 > 0.1\).
 
+OR
+
+III. From the R output, 0 lies in the 95% confidence interval and thus we fail to reject \(H_0\).
 
 Whichever method we use, we fail to reject \(H_0\).
 

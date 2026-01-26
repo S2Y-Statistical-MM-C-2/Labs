@@ -1,0 +1,35 @@
+# Exam Style Questions
+
+This section shows how previous examples and exercises may be formulated in a written exam. Please refer to the corresponding examples and exercises for solution. 
+
+## Example 1
+
+The research and development department of an appliance company suspects the energy consumption required of their 18-cubic-foot refrigerator can be reduced by a slight modification to the current motor. Sixty 18-cubic-foot refrigerators were randomly selected from the company’s warehouse. The motors of the first 30 refrigerators were modified. Their 24-hour energy consumption had a mean of 1.54 kilowatts with a sample variance of 0.091. The remaining 30 refrigerators were left unmodified, and their energy consumption had a mean of 1.76 kilowatts with a sample variance of 0.385. The figure below presents a side-by-side boxplot comparing the energy consumption of the two samples.
+
+```{r echo=FALSE}
+library(PASWR2)
+REFRIGERATOR <- REFRIGERATOR
+ggplot(data = REFRIGERATOR, aes(x = group, y = kilowatts, fill = group)) +
+  geom_boxplot() +
+  theme_bw()
+```
+
+(a) Comment on the suitability of a normal model for these data.
+
+(b) Perform a hypothesis test to for the population mean difference at a significance level of 5%. Comment on what this hypothesis test indicates about the difference in energy consumption between the modified and original refrigerators.
+
+## Example 2
+The Yonalasee Tennis Club has two systems for measuring the speed of a tennis ball. The local tennis pro suspects that one system (speed1) consistently records faster speeds than the other system (speed2). To test this suspicion, she sets up both systems and records the speeds of 12 serves. The mean difference between the two systems (speed1 − speed2), averaged over the 12 serves, is −1.32 kilometres per hour, with a sample standard deviation of 16.4208. Assuming that the differences between speed1 and speed2 follow a normal distribution, perform a hypothesis test to determine whether the evidence supports the tennis pro’s suspicion at a 10% significance level.
+
+## Exercise 1
+
+The Hubble Space Telescope was put into orbit on April 25, 1990. Unfortunately, on June 25, 1990, a spherical aberration was discovered in Hubble’s primary mirror. To correct this, astronauts had to work in space. To prepare for the mission, two teams of astronauts practiced making repairs under simulated space conditions. Each team of astronauts went through 15 identical scenarios. The time taken to complete each scenario was recorded in days, and summary statistics are reported in the table below.
+
+|                          | Team 1| Team 2|Team 1 $-$ Team 2|
+|:-------------------------|------:|------:|--------------:|
+|Sample mean               |   2.22|   2.32|           -0.1|
+|Sample standard deviation |  0.800|  0.981|          1.499|
+
+a) Perform a hypothesis test to determine if one team better than the other. State the assumptions that need to be verified before conducting this hypothesis test.
+
+b) Perform a hypothesis test to determine if team 1 can complete the mission in less than 3 days. State the assumptions that need to be verified before conducting this hypothesis test.

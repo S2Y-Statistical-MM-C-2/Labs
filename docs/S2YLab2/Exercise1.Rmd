@@ -113,6 +113,15 @@ Find the value of standardised test statistic and $p$-value using `t.test()`.
 
 `r hide()`
 
+```{r}
+Diff <- HUBBLE$team1 - HUBBLE$team2
+t.obs <- mean(Diff) / (sd(Diff)/sqrt(length(Diff)))
+t.obs
+p.value <- 2*pt(t.obs, df=length(Diff)-1)
+p.value
+```
+Or use `t.test()` directly:
+
 ```{r, eval}
 TR <- t.test(Diff)
 TR
@@ -219,7 +228,15 @@ RR
 
 
 `r hide()`
-2av) Our standardised test statistic \(= \frac{\bar{x}−\mu_0}{s/\sqrt{n}}\).
+Our standardised test statistic \(= \frac{\bar{x}−\mu_0}{s/\sqrt{n}}\).
+
+```{r}
+t.obs <- (mean(HUBBLE$team1)-3)/(sd(HUBBLE$team1)/sqrt(length(HUBBLE$team1)))
+t.obs
+p.value <- pt(t.obs, df=length(HUBBLE$team1)-1)
+p.value
+```
+
 
 ```{r}
 TR <- with(data = HUBBLE, t.test(team1, mu = 3, alternative = "less"))
@@ -235,7 +252,7 @@ This gives the value of standardised test statistic as $-3.7757$ and the $p$-val
 Do we reject our null hypothesis?
 
 ```{r, echo = FALSE}
-mcq6 <- c(answer = "From the rejection region, we reject the null hypothesis because the observed $t$-value −3.7753 is less than -1.7613.", "From the rejection region, we fail to reject the null hypothesis because the observed $t$-value −3.7753 is less than -1.7613.")
+mcq6 <- c(answer = "From the rejection region, we reject the null hypothesis because the observed $t$-value −3.7753 is less than −1.7613.", "From the rejection region, we fail to reject the null hypothesis because the observed $t$-value −3.7753 is less than −1.7613.")
 ```
 `r longmcq(mcq6)`
 
