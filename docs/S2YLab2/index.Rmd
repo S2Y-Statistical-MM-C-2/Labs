@@ -37,10 +37,10 @@ knitr::write_bib(c(
 Intended Learning Outcomes:
 
 1. Conduct a Welch test for the difference in the means in `R` with a step-by-step guide.
-2. Conduct a paired $t$-test for the difference in the means in R with a step-by-step guide.
+2. Conduct a paired $t$-test for the difference in the means in `R` with a step-by-step guide.
 3. Conduct a paired $t$-test test for the difference in the means with the built-in function.
 
-## A Summary of the type of the hypothesis test used today 
+## A summary of the type of the hypothesis test used today 
 
 ![](Images/welch.png)
 ![](Images/paired.png)

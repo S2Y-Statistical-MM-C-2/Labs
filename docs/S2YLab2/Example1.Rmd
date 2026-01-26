@@ -74,7 +74,7 @@ This is what will be used to complete the test.
 
 ## **Step 3 - Hypothesis Test Calculations**
 
-### Finding your Rejection Region
+### Finding the Rejection Region
 
 The degrees of freedom for this test are:
 
@@ -99,7 +99,7 @@ The probability of observing our test statistic (difference in sample means) or 
 To reject a null hypothesis in this case we need our standardisd test statistic to be less than our critical value and hence our $p$-value < 0.05.
 `r unhide()`
 
-### Finding your standardised test statistic and $p$-value
+### Finding the standardised test statistic and $p$-value
 
 Our standardised test statistic   \(=\frac{\bar{x}−\bar{y}-\delta_0}{\sqrt{\frac{s^2_X}{n_X}+\frac{s^2_Y}{n_Y} }} = -2.5128\).
 
@@ -117,7 +117,7 @@ This gives again $t = -2.5128$ and the $p$-value as 0.0075.
 
 
 `r hide("Learn More")` 
-Last week we saw this graphically.You may want to revisit if you need help make a visual comparison between the value of test statistic and the rejection region we found above.
+Last week we saw this graphically. You may want to revisit if you need help make a visual comparison between the value of test statistic and the rejection region we found above.
 `r unhide()`
 
 

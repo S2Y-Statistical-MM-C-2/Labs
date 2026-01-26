@@ -60,7 +60,7 @@ This is what will be used to complete the test.
 
 ## **Step 3 - Hypothesis Test Calculations**
 
-### Finding your Rejection Region
+### Finding the Rejection Region
 
 Before we analyse our data we must find the rejection region:
 
@@ -79,7 +79,7 @@ RR
 This gives us the critical value which makes up the rejection region (what we will compare our result to).
 
 
-### Finding your standardised test statistic and $p$-value
+### Finding the standardised test statistic and $p$-value
 
 The test we are running here is a paired $t$-test, which can be seen as a one-sample $t$-test on the differences. In R this is:
 
