@@ -1,8 +1,6 @@
 welcome-to-lab-3
 a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today
 written-tasks
-question-1
-question-2
 example-1-diode-diameter-hypothesis-test
 verifying-normality
 step-1---hypotheses

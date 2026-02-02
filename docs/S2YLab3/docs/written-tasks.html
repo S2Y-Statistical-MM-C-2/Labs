@@ -53,6 +53,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -140,11 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today"><i class="fa fa-check"></i><b>1.1</b> A summary of the type of the hypothesis test and R commands used today</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="written-tasks.html"><a href="written-tasks.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question 1</a></li>
-<li class="chapter" data-level="2.2" data-path="written-tasks.html"><a href="written-tasks.html#question-2"><i class="fa fa-check"></i><b>2.2</b> Question 2</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a></li>
 <li class="chapter" data-level="3" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html"><i class="fa fa-check"></i><b>3</b> Example 1: Diode Diameter Hypothesis Test</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>3.1</b> Verifying normality</a></li>
@@ -190,29 +187,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="written-tasks" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">2</span> Written Tasks<a href="written-tasks.html#written-tasks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="question-1" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Question 1<a href="written-tasks.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A pasta company wants to determine whether the average weight of macaroni in their one-pound boxes is equal to 454 grams (1 pound <span class="math inline">\(\approx\)</span> 454 grams). A sample of 14 boxes is selected, and their weights (in grams) are recorded as follows:</p>
+<p>A medical researcher wishes to compare the average recovery times of patients treated with two different antiviral drugs. Previous large-scale clinical studies have established that the population standard deviations may be taken as known, with <span class="math inline">\(\sigma_A = 4\)</span> days and <span class="math inline">\(\sigma_B = 5\)</span> days. Independent random samples are taken: 40 patients treated with Drug A and 50 patients treated with Drug B. The sample mean recovery times are
+<span class="math display">\[
+\bar{X}_A = 18.2 \text{ days}, \qquad \bar{X}_B = 16.9 \text{ days}.
+\]</span></p>
 <ol style="list-style-type: lower-alpha">
-<li><p>State the assumptions that need to be verified before conducting a hypothesis test to answer the company's question.</p></li>
-<li><p>Assuming the necessary assumptions are met, perform the appropriate hypothesis test at a significance level of 10%. Some summary statistics are provided below:
-<span class="math display">\[\text{sample mean: } 459.21, \quad \text{sample variance: } 11.57\]</span></p></li>
-<li><p>Describe the steps to compute the power of the hypothesis test when the true mean weight is 453.592 grams, assuming the true variance of the box weights is 12. Your description should clearly state the test statistic, its associated parameters (e.g. degrees of freedom for a <span class="math inline">\(t\)</span>-distributed random variable), and the critical values. The exact numerical value of the power is not required.</p></li>
+<li><p>Assume that recovery times in both populations are normally distributed. Using a 5% significance level, test whether the mean recovery time for patients treated with Drug A differs from that of patients treated with Drug B.</p></li>
+<li><p>Calculate the power of the test in (a) if the true difference in means is <span class="math inline">\(\mu_A - \mu_B = 2\)</span> days.</p></li>
 </ol>
-</div>
-<div id="question-2" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Question 2<a href="written-tasks.html#question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In a packing plant, a machine packs cartons with jars. It is supposed that a new machine will pack faster on the average than the machine currently used. To test that hypothesis, the times it takes each machine to pack ten cartons are recorded (in seconds). The results, as well as the sample mean (<span class="math inline">\(\bar{\cdot}\)</span>) and sample standard deviation (<span class="math inline">\(s_\cdot\)</span>), are shown in the tables below.</p>
-<p><img src="Images/pack_data.png" /></p>
-<p>The figures below show the boxplots and normal quantile-quantile (Q-Q plot) for the new and old machines.</p>
-<p><img src="Images/pack_boxplot.png" width="25%" /><img src="Images/pack_qqnew.png" width="25%" /><img src="Images/pack_qqold.png" width="25%" /></p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Comment on the suitability of a normal model for data on the new machine and old machine.</p></li>
-<li><p>Perform a hypothesis test to determine whether the new machine will pack faster on the average than the machine currently used using a significance level of 5%.</p></li>
-</ol>
-<p><em>Solution will be available on Moodle after Wednesday 4pm.</em></p>
 
-</div>
 </div>
 <script>
 

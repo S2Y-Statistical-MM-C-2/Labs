@@ -53,6 +53,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -140,11 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today"><i class="fa fa-check"></i><b>1.1</b> A summary of the type of the hypothesis test and R commands used today</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="written-tasks.html"><a href="written-tasks.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question 1</a></li>
-<li class="chapter" data-level="2.2" data-path="written-tasks.html"><a href="written-tasks.html#question-2"><i class="fa fa-check"></i><b>2.2</b> Question 2</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a></li>
 <li class="chapter" data-level="3" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html"><i class="fa fa-check"></i><b>3</b> Example 1: Diode Diameter Hypothesis Test</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>3.1</b> Verifying normality</a></li>
@@ -211,11 +208,11 @@ Reminder of how to access data
 <span id="cb3-3"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-3" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(<span class="fu">density.default</span>(<span class="at">x =</span> LEDDIODE<span class="sc">$</span>diameter)<span class="sc">$</span>x), </span>
 <span id="cb3-4"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-4" tabindex="-1"></a>       <span class="fu">max</span>(<span class="fu">density.default</span>(<span class="at">x =</span> LEDDIODE<span class="sc">$</span>diameter)<span class="sc">$</span>x)) <span class="sc">+</span></span>
 <span id="cb3-5"><a href="example-1-diode-diameter-hypothesis-test.html#cb3-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="example-1-diode-diameter-hypothesis-test.html#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LEDDIODE, <span class="fu">aes</span>(<span class="at">sample =</span> diameter, <span class="at">color =</span> supplier)) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="example-1-diode-diameter-hypothesis-test.html#cb4-2" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
 <span id="cb4-3"><a href="example-1-diode-diameter-hypothesis-test.html#cb4-3" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <p>Based on the density plots and quantile-quantile normal plots, it seems reasonable to assume the LED diode widths from both suppliers follow normal distributions. Therefore, proceed with the five-step procedure.</p>
 </div>
 <div id="step-1---hypotheses" class="section level2 hasAnchor" number="3.2">
@@ -298,8 +295,8 @@ Solution
 <h2><span class="header-section-number">3.6</span> <strong>Step 5 - English Conclusion</strong><a href="example-1-diode-diameter-hypothesis-test.html#step-5---english-conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What does the previous statistical conclusion mean for the data and the purpose of the test?</p>
 <p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
-<div id="radio_NAZTWQDXWQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value="answer"></input> <span>There is evidence to suggest the variability of the width of LED diodes from supplier A is not equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value=""></input> <span>There is evidence to suggest the variability of the width of LED diodes from supplier A is equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value=""></input> <span>There is insufficient evidence to suggest the variability of the width of LED diodes from supplier A is equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_NAZTWQDXWQ" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the variability of the width of LED diodes from supplier A is not equal to the variance for the width of LED diodes from supplier B.</span></label>
+<div id="radio_CCXKDBOGVM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CCXKDBOGVM" value="answer"></input> <span>There is evidence to suggest the variability of the width of LED diodes from supplier A is not equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_CCXKDBOGVM" value=""></input> <span>There is evidence to suggest the variability of the width of LED diodes from supplier A is equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_CCXKDBOGVM" value=""></input> <span>There is insufficient evidence to suggest the variability of the width of LED diodes from supplier A is equal to the variance for the width of LED diodes from supplier B.</span></label><label><input type="radio" autocomplete="off" name="radio_CCXKDBOGVM" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the variability of the width of LED diodes from supplier A is not equal to the variance for the width of LED diodes from supplier B.</span></label>
 </div>
 
 </div>

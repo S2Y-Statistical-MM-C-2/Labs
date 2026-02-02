@@ -53,6 +53,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -140,11 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today"><i class="fa fa-check"></i><b>1.1</b> A summary of the type of the hypothesis test and R commands used today</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="written-tasks.html"><a href="written-tasks.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question 1</a></li>
-<li class="chapter" data-level="2.2" data-path="written-tasks.html"><a href="written-tasks.html#question-2"><i class="fa fa-check"></i><b>2.2</b> Question 2</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="written-tasks.html"><a href="written-tasks.html"><i class="fa fa-check"></i><b>2</b> Written Tasks</a></li>
 <li class="chapter" data-level="3" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html"><i class="fa fa-check"></i><b>3</b> Example 1: Diode Diameter Hypothesis Test</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="example-1-diode-diameter-hypothesis-test.html"><a href="example-1-diode-diameter-hypothesis-test.html#verifying-normality"><i class="fa fa-check"></i><b>3.1</b> Verifying normality</a></li>
@@ -198,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To solve this problem, start by selecting the data we are interested in and then verify the reasonableness of the normality assumption.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="example-2-vitoria-apartment-costs.html#cb15-1" tabindex="-1"></a>Greater90 <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> VIT2005, <span class="at">subset =</span> area <span class="sc">&gt;=</span> <span class="dv">90</span>)</span>
 <span id="cb15-2"><a href="example-2-vitoria-apartment-costs.html#cb15-2" tabindex="-1"></a><span class="fu">with</span>(<span class="at">data =</span> Greater90, <span class="fu">eda</span>(totalprice))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <pre><code>##     Size (n)      Missing      Minimum       1st Qu         Mean       Median 
 ## 9.400000e+01 0.000000e+00 1.780000e+05 2.922500e+05 3.358840e+05 3.335000e+05 
 ##       TrMean       3rd Qu          Max        Stdev          Var      SE Mean 
@@ -293,8 +290,8 @@ Solution
 <p>Is there statistical evidence to suggest the variance for
 the appraised price of <span class="math inline">\(90m^2\)</span> or larger pisos is greater than <span class="math inline">\(60,000^2\text{€}^2\)</span>?</p>
 <p><strong>QUESTION</strong>: Which of the following is the correct conclusion of our test?</p>
-<div id="radio_NJBTAMZEXP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NJBTAMZEXP" value=""></input> <span>There is evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.</span></label><label><input type="radio" autocomplete="off" name="radio_NJBTAMZEXP" value="answer"></input> <span>There is insufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.</span></label><label><input type="radio" autocomplete="off" name="radio_NJBTAMZEXP" value=""></input> <span>There is sufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is less than 3.6 billion Euros squared.</span></label><label><input type="radio" autocomplete="off" name="radio_NJBTAMZEXP" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.</span></label>
+<div id="radio_PDUIYZIFCA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PDUIYZIFCA" value=""></input> <span>There is evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.</span></label><label><input type="radio" autocomplete="off" name="radio_PDUIYZIFCA" value="answer"></input> <span>There is insufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.</span></label><label><input type="radio" autocomplete="off" name="radio_PDUIYZIFCA" value=""></input> <span>There is sufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is less than 3.6 billion Euros squared.</span></label><label><input type="radio" autocomplete="off" name="radio_PDUIYZIFCA" value=""></input> <span>We cannot conclude if there is sufficient evidence to suggest the variance for the appraised price of 90 meteres squared or larger pisos is greater than 3.6 billion Euros squared.</span></label>
 </div>
 
 </div>
