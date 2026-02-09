@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis</title>
-  <meta name="description" content="Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
+  <title>5 Exercise 1: Chi-squared test for association | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis</title>
+  <meta name="description" content="5 Exercise 1: Chi-squared test for association | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
+  <meta property="og:title" content="5 Exercise 1: Chi-squared test for association | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
+  <meta name="twitter:title" content="5 Exercise 1: Chi-squared test for association | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="exercise-2-chi-squared-test-for-association.html"/>
 
-<link rel="next" href="example-1-dependent-children.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -194,55 +194,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis</h1>
-</div>
-<div id="welcome-to-lab-4" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 4<a href="index.html#welcome-to-lab-4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Intended Learning Outcomes:</p>
-<ol style="list-style-type: decimal">
-<li>Conduct a hypothesis test for the population proportion in <code>R</code> with a step-by-step guide.</li>
-<li>Conduct a goodness-of-fit test in <code>R</code> with a step-by-step guide.</li>
-<li>Conduct hypothesis test of independence or homogeneity in <code>R</code> with a step-by-step guide.</li>
+<div id="exercise-1-chi-squared-test-for-association" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Exercise 1: Chi-squared test for association<a href="exercise-1-chi-squared-test-for-association.html#exercise-1-chi-squared-test-for-association" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The sinking of the Titanic occurred on the 15th of April in 1912. The data frame <code>TITANIC3</code> in the <code>PASWR2</code>package contains information regarding class, sex, and survival as well as several other variables.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="exercise-1-chi-squared-test-for-association.html#cb51-1" tabindex="-1"></a>TITANIC3 <span class="ot">&lt;-</span> TITANIC3</span></code></pre></div>
+<div id="contingency-tables-1" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Contingency tables<a href="exercise-1-chi-squared-test-for-association.html#contingency-tables-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to analyse the associations between these variables we should make contingency tables.</p>
+<p>For example for a contingency table for passenger class versus survival we can use the code:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="exercise-1-chi-squared-test-for-association.html#cb52-1" tabindex="-1"></a>TABLE1 <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> pclass <span class="sc">+</span> survived, <span class="at">data =</span> TITANIC3)</span>
+<span id="cb52-2"><a href="exercise-1-chi-squared-test-for-association.html#cb52-2" tabindex="-1"></a>TABLE1</span></code></pre></div>
+<pre><code>##       survived
+## pclass   0   1
+##    1st 123 200
+##    2nd 158 119
+##    3rd 528 181</code></pre>
+<p><strong>Question</strong> Using <code>xtabs()</code> and other tools you have learnt such as <code>subset()</code> (or <code>[]</code> and <code>$</code>), subset your data and create contingency tables of:</p>
+<ol style="list-style-type: lower-roman">
+<li>male passengers’ class versus survival, and</li>
+<li>female passengers’ class versus survival.</li>
 </ol>
-<div id="a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> A summary of the type of the hypothesis test and R commands used today<a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Test for population proportions</strong></p>
-<p><img src="Images/binom.png" />
-The exact Binomial test can be implemented in R by using <code>binom.test</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>,</span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>           <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<ul>
-<li><code>x</code>: number of successes</li>
-<li><code>n</code>: number of trials</li>
-<li><code>p</code>: hypothesized probability of success, i.e. <span class="math inline">\(\pi\)</span> under <span class="math inline">\(H_0\)</span></li>
-<li><code>alternative</code> and <code>conf.level</code>: same as explained in the <code>var.test</code> function.</li>
-</ul>
-<p><br></p>
-<p><img src="Images/binomnorm.png" /></p>
-<p>Testing the proportion of successes in a Binomial experiment with normal approximation can be performed by using <code>prop.test</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a>          <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a>          <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>All arguments are the same as in the <code>binom.test()</code> function.</p>
-<p><br></p>
-<p><strong>Goodness-of-fit test</strong></p>
-<p>The test criterion for testing <span class="math inline">\(H_0: F_X(x) = F_0(x)\)</span> for all <span class="math inline">\(x\)</span> against the alternative <span class="math inline">\(H_1: F_X(x) \neq F_0(x)\)</span> for some <span class="math inline">\(x\)</span> when the null hypothesis is completely specified is
-<span class="math display">\[\chi^2_\text{obs} = \sum_{k=1}^K \frac{(O_k-E_k)^2}{E_k},\]</span>
-where <span class="math inline">\(K\)</span> is the total number of categories.</p>
-<p>For large <span class="math inline">\(n\)</span>, provided all expected categories are at least 5, <span class="math inline">\(\chi^2_\text{obs}\)</span> is distributed approximately <span class="math inline">\(\chi^2_{K-1}\)</span>.</p>
-<p>The test can be performed by using <code>chisq.test</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="fu">chisq.test</span>(x, p)</span></code></pre></div>
-<ul>
-<li><code>x</code>: a vector of observed counts in each category</li>
-<li><code>p</code>: a vector of probabilities for the observations falling into each category</li>
-</ul>
-<p><br></p>
-<p><strong>Test of independence and test of homogeneity</strong></p>
-<p>The test criterion for test of independence, i.e. <span class="math inline">\(H_0: F_X(x) = F_0(x)\)</span> for all <span class="math inline">\(x\)</span> vs <span class="math inline">\(H_1: F_X(x) \neq F_0(x)\)</span> for some <span class="math inline">\(x\)</span>, and the test criterion for test of homogeneity, i.e., when the null hypothesis is completely specified is
-<span class="math display">\[\chi^2_\text{obs} = \sum_{i=1}^I\sum_{j=1}^J \frac{(O_{ij}-E_{ij})^2}{E_{ij}},\]</span>
-where <span class="math inline">\(I\)</span> is the total number of rows and <span class="math inline">\(J\)</span> is the total number of columns. As the test criterion has the same form as the goodness-of-fit test, the same R command can be used to perform the test: <code>chisq.test(data)</code>, where <code>data</code> is the <span class="math inline">\(I \times J\)</span> contingency table collected from the experiment.</p>
+<p><em>At the time of data collection in 1912, passenger gender was recorded as 'sex' and separated only into 'male' or 'female'.</em></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="exercise-1-chi-squared-test-for-association.html#cb54-1" tabindex="-1"></a>TABLE2 <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> pclass <span class="sc">+</span> survived, <span class="at">data =</span> <span class="fu">subset</span>(TITANIC3, sex <span class="sc">==</span> <span class="st">&quot;male&quot;</span>))</span>
+<span id="cb54-2"><a href="exercise-1-chi-squared-test-for-association.html#cb54-2" tabindex="-1"></a>TABLE3 <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> pclass <span class="sc">+</span> survived, <span class="at">data =</span> <span class="fu">subset</span>(TITANIC3, sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>))</span>
+<span id="cb54-3"><a href="exercise-1-chi-squared-test-for-association.html#cb54-3" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="exercise-1-chi-squared-test-for-association.html#cb54-4" tabindex="-1"></a><span class="co">#OR </span></span>
+<span id="cb54-5"><a href="exercise-1-chi-squared-test-for-association.html#cb54-5" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="exercise-1-chi-squared-test-for-association.html#cb54-6" tabindex="-1"></a>MEN <span class="ot">&lt;-</span> TITANIC3[TITANIC3<span class="sc">$</span>sex<span class="sc">==</span><span class="st">&quot;male&quot;</span>,]</span>
+<span id="cb54-7"><a href="exercise-1-chi-squared-test-for-association.html#cb54-7" tabindex="-1"></a>TABLE2 <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> pclass <span class="sc">+</span> survived, <span class="at">data =</span> MALES)</span>
+<span id="cb54-8"><a href="exercise-1-chi-squared-test-for-association.html#cb54-8" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="exercise-1-chi-squared-test-for-association.html#cb54-9" tabindex="-1"></a>WOMEN <span class="ot">&lt;-</span> TITANIC3[TITANIC3<span class="sc">$</span>sex<span class="sc">==</span><span class="st">&quot;female&quot;</span>,]</span>
+<span id="cb54-10"><a href="exercise-1-chi-squared-test-for-association.html#cb54-10" tabindex="-1"></a>TABLE3 <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> pclass <span class="sc">+</span> survived, <span class="at">data =</span> WOMEN)</span>
+<span id="cb54-11"><a href="exercise-1-chi-squared-test-for-association.html#cb54-11" tabindex="-1"></a></span>
+<span id="cb54-12"><a href="exercise-1-chi-squared-test-for-association.html#cb54-12" tabindex="-1"></a><span class="co">#To view the tables</span></span>
+<span id="cb54-13"><a href="exercise-1-chi-squared-test-for-association.html#cb54-13" tabindex="-1"></a>TABLE2</span></code></pre></div>
+<pre><code>##       survived
+## pclass   0   1
+##    1st 118  61
+##    2nd 146  25
+##    3rd 418  75</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="exercise-1-chi-squared-test-for-association.html#cb56-1" tabindex="-1"></a>TABLE3</span></code></pre></div>
+<pre><code>##       survived
+## pclass   0   1
+##    1st   5 139
+##    2nd  12  94
+##    3rd 110 106</code></pre>
+</div>
+</div>
+<div id="hypothesis-testing-1" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Hypothesis testing<a href="exercise-1-chi-squared-test-for-association.html#hypothesis-testing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To test if there is an association between class and survival generally for all passengers or for men and/or women, we should complete Chi-Squared Hypothesis Tests.</p>
+<p>This can be done using:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="exercise-1-chi-squared-test-for-association.html#cb58-1" tabindex="-1"></a>TEST1 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(TABLE1)</span>
+<span id="cb58-2"><a href="exercise-1-chi-squared-test-for-association.html#cb58-2" tabindex="-1"></a>TEST1</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  TABLE1
+## X-squared = 127.86, df = 2, p-value &lt; 2.2e-16</code></pre>
+<p>With a <span class="math inline">\(p\)</span>-value of less than 0.05, this suggests there is a significant association between class and survival of passengers generally.</p>
+<p><strong>Question</strong> Test if there is an association between class and survival for men and women on the titanic:</p>
+<div id="radio_JYIMDEWPTF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JYIMDEWPTF" value="answer"></input> <span>The p-values for both tests were less than 0.05 meaning there is an association between class and survival for men and for women.</span></label><label><input type="radio" autocomplete="off" name="radio_JYIMDEWPTF" value=""></input> <span>The p-value for the test on male passengers was less than 0.05 while it was greater than 0.05 for women meaning there is an association between class and survival for men but not for women</span></label><label><input type="radio" autocomplete="off" name="radio_JYIMDEWPTF" value=""></input> <span>The p-value for the test on male passengers was greater than 0.05 while it was less than 0.05 for women meaning there is an association between class and survival for women but not for men</span></label><label><input type="radio" autocomplete="off" name="radio_JYIMDEWPTF" value=""></input> <span>The p-values for both tests were gretter than 0.05 meaning there was no evidence of an association between class and survival for men nor for women.</span></label>
+</div>
+<div class="webex-solution">
+<button>
+Solution Code
+</button>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="exercise-1-chi-squared-test-for-association.html#cb60-1" tabindex="-1"></a>TEST2 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(TABLE2)</span>
+<span id="cb60-2"><a href="exercise-1-chi-squared-test-for-association.html#cb60-2" tabindex="-1"></a>TEST2</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  TABLE2
+## X-squared = 33.033, df = 2, p-value = 6.714e-08</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="exercise-1-chi-squared-test-for-association.html#cb62-1" tabindex="-1"></a>TEST3 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(TABLE3)</span>
+<span id="cb62-2"><a href="exercise-1-chi-squared-test-for-association.html#cb62-2" tabindex="-1"></a>TEST3</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  TABLE3
+## X-squared = 115.7, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
 
 </div>
 </div>
@@ -457,8 +494,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
+<a href="exercise-2-chi-squared-test-for-association.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="example-1-dependent-children.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

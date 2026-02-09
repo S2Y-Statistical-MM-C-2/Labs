@@ -18,6 +18,9 @@ step-1---hypotheses-2
 step-2---choosing-a-test-statistic-2
 step-3---hypothesis-test-calculations
 step-4-5---statistical-and-english-conclusion-1
-exercise-1-chi-squared-test-for-association
+exercise-2-chi-squared-test-for-association
 contingency-tables
 hypothesis-testing
+exercise-1-chi-squared-test-for-association
+contingency-tables-1
+hypothesis-testing-1

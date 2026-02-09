@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis</title>
-  <meta name="description" content="Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
+  <title>Page not found | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis</title>
+  <meta name="description" content="Page not found | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
+  <meta property="og:title" content="Page not found | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
+  <meta name="twitter:title" content="Page not found | Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis" />
   
   
   
@@ -29,7 +29,7 @@
   
   
 
-<link rel="next" href="example-1-dependent-children.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -194,57 +194,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lab 4 - Hypothesis testing for proportion, goodness-of-fit, and categorical data analysis</h1>
-</div>
-<div id="welcome-to-lab-4" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome to Lab 4<a href="index.html#welcome-to-lab-4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Intended Learning Outcomes:</p>
-<ol style="list-style-type: decimal">
-<li>Conduct a hypothesis test for the population proportion in <code>R</code> with a step-by-step guide.</li>
-<li>Conduct a goodness-of-fit test in <code>R</code> with a step-by-step guide.</li>
-<li>Conduct hypothesis test of independence or homogeneity in <code>R</code> with a step-by-step guide.</li>
-</ol>
-<div id="a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> A summary of the type of the hypothesis test and R commands used today<a href="index.html#a-summary-of-the-type-of-the-hypothesis-test-and-r-commands-used-today" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Test for population proportions</strong></p>
-<p><img src="Images/binom.png" />
-The exact Binomial test can be implemented in R by using <code>binom.test</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">binom.test</span>(x, n, <span class="at">p =</span> <span class="fl">0.5</span>,</span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>           <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<ul>
-<li><code>x</code>: number of successes</li>
-<li><code>n</code>: number of trials</li>
-<li><code>p</code>: hypothesized probability of success, i.e. <span class="math inline">\(\pi\)</span> under <span class="math inline">\(H_0\)</span></li>
-<li><code>alternative</code> and <code>conf.level</code>: same as explained in the <code>var.test</code> function.</li>
-</ul>
-<p><br></p>
-<p><img src="Images/binomnorm.png" /></p>
-<p>Testing the proportion of successes in a Binomial experiment with normal approximation can be performed by using <code>prop.test</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">p =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a>          <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a>          <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>All arguments are the same as in the <code>binom.test()</code> function.</p>
-<p><br></p>
-<p><strong>Goodness-of-fit test</strong></p>
-<p>The test criterion for testing <span class="math inline">\(H_0: F_X(x) = F_0(x)\)</span> for all <span class="math inline">\(x\)</span> against the alternative <span class="math inline">\(H_1: F_X(x) \neq F_0(x)\)</span> for some <span class="math inline">\(x\)</span> when the null hypothesis is completely specified is
-<span class="math display">\[\chi^2_\text{obs} = \sum_{k=1}^K \frac{(O_k-E_k)^2}{E_k},\]</span>
-where <span class="math inline">\(K\)</span> is the total number of categories.</p>
-<p>For large <span class="math inline">\(n\)</span>, provided all expected categories are at least 5, <span class="math inline">\(\chi^2_\text{obs}\)</span> is distributed approximately <span class="math inline">\(\chi^2_{K-1}\)</span>.</p>
-<p>The test can be performed by using <code>chisq.test</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="fu">chisq.test</span>(x, p)</span></code></pre></div>
-<ul>
-<li><code>x</code>: a vector of observed counts in each category</li>
-<li><code>p</code>: a vector of probabilities for the observations falling into each category</li>
-</ul>
-<p><br></p>
-<p><strong>Test of independence and test of homogeneity</strong></p>
-<p>The test criterion for test of independence, i.e. <span class="math inline">\(H_0: F_X(x) = F_0(x)\)</span> for all <span class="math inline">\(x\)</span> vs <span class="math inline">\(H_1: F_X(x) \neq F_0(x)\)</span> for some <span class="math inline">\(x\)</span>, and the test criterion for test of homogeneity, i.e., when the null hypothesis is completely specified is
-<span class="math display">\[\chi^2_\text{obs} = \sum_{i=1}^I\sum_{j=1}^J \frac{(O_{ij}-E_{ij})^2}{E_{ij}},\]</span>
-where <span class="math inline">\(I\)</span> is the total number of rows and <span class="math inline">\(J\)</span> is the total number of columns. As the test criterion has the same form as the goodness-of-fit test, the same R command can be used to perform the test: <code>chisq.test(data)</code>, where <code>data</code> is the <span class="math inline">\(I \times J\)</span> contingency table collected from the experiment.</p>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
 <script>
 
@@ -458,7 +412,7 @@ window.onload = function() {
         </div>
       </div>
 
-<a href="example-1-dependent-children.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
