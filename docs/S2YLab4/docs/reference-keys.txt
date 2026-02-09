@@ -21,6 +21,3 @@ step-4-5---statistical-and-english-conclusion-1
 exercise-2-chi-squared-test-for-association
 contingency-tables
 hypothesis-testing
-exercise-1-chi-squared-test-for-association
-contingency-tables-1
-hypothesis-testing-1
