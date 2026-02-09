@@ -87,6 +87,10 @@ chisq.test(x, p)
 
 **Test of independence and test of homogeneity**
 
-The test criterion for test of independence, i.e. $H_0: F_X(x) = F_0(x)$ for all $x$ vs $H_1: F_X(x) \neq F_0(x)$ for some $x$, and the test criterion for test of homogeneity, i.e., when the null hypothesis is completely specified is
+The test criterion for test of independence, i.e. 
+$$H_0: \pi_{ij} = \pi_{i\bullet} \pi_{\bullet j} \text{ vs } H_1: \pi_{ij} \neq \pi_{i\bullet} \pi_{\bullet j} \text{ for at least one } i,j,$$
+and the test criterion for test of homogeneity, i.e. 
+$$H_0: \pi_{1j} = \pi_{2j} = \cdots = \pi_{Ij} \text{ for all $j$ vs } H_1: \pi_{ij} \neq \pi_{i',j} \text{ for some } (i,i',j),$$
+is
 \[\chi^2_\text{obs} = \sum_{i=1}^I\sum_{j=1}^J \frac{(O_{ij}-E_{ij})^2}{E_{ij}},\]
 where $I$ is the total number of rows and $J$ is the total number of columns. As the test criterion has the same form as the goodness-of-fit test, the same R command can be used to perform the test: `chisq.test(data)`, where `data` is the $I \times J$ contingency table collected from the experiment.

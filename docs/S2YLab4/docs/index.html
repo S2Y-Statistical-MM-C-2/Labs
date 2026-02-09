@@ -235,7 +235,11 @@ where <span class="math inline">\(K\)</span> is the total number of categories.<
 </ul>
 <p><br></p>
 <p><strong>Test of independence and test of homogeneity</strong></p>
-<p>The test criterion for test of independence, i.e. <span class="math inline">\(H_0: F_X(x) = F_0(x)\)</span> for all <span class="math inline">\(x\)</span> vs <span class="math inline">\(H_1: F_X(x) \neq F_0(x)\)</span> for some <span class="math inline">\(x\)</span>, and the test criterion for test of homogeneity, i.e., when the null hypothesis is completely specified is
+<p>The test criterion for test of independence, i.e.
+<span class="math display">\[H_0: \pi_{ij} = \pi_{i\bullet} \pi_{\bullet j} \text{ vs } H_1: \pi_{ij} \neq \pi_{i\bullet} \pi_{\bullet j} \text{ for at least one } i,j,\]</span>
+and the test criterion for test of homogeneity, i.e.
+<span class="math display">\[H_0: \pi_{1j} = \pi_{2j} = \cdots = \pi_{Ij} \text{ for all $j$ vs } H_1: \pi_{ij} \neq \pi_{i&#39;,j} \text{ for some } (i,i&#39;,j),\]</span>
+is
 <span class="math display">\[\chi^2_\text{obs} = \sum_{i=1}^I\sum_{j=1}^J \frac{(O_{ij}-E_{ij})^2}{E_{ij}},\]</span>
 where <span class="math inline">\(I\)</span> is the total number of rows and <span class="math inline">\(J\)</span> is the total number of columns. As the test criterion has the same form as the goodness-of-fit test, the same R command can be used to perform the test: <code>chisq.test(data)</code>, where <code>data</code> is the <span class="math inline">\(I \times J\)</span> contingency table collected from the experiment.</p>
 

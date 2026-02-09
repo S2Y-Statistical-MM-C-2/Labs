@@ -52,7 +52,7 @@ The null and alternative hypotheses for using the chi-square
 goodness-of-fit test to test the hypothesis that the number of dependent children follows a Poisson distribution with $\lambda = 2$ are: 
 \[
 \begin{split}
-&H_0: F_X(x) = F_0(x) \sim Pois(\lambda = 2.5) \text{ for all } x \textit{ versus}\\
+&H_0: F_X(x) = F_0(x) \sim Pois(\lambda = 2) \text{ for all } x \textit{ versus}\\
 &H_1: F_X(x) \neq F_0(x) \text{ for some }x.
 \end{split}\]
 
@@ -68,7 +68,7 @@ Reject $H_0$ if $\chi^2_\text{obs} > \chi^2_{1-\alpha;K-1}$, where $K$ denotes t
 
 Find the value of the test statistic. $\chi^2_\text{obs}$=`r fitb(c(1.33502,1.335,1.34))`
 
-Find the critical value. $\chi^2_{1-\alpha;k-1}$=`r fitb(c(9.487729,9.48773,9.4877,9.488,9.49))`
+Find the critical value. $\chi^2_{1-\alpha;K-1}$=`r fitb(c(9.487729,9.48773,9.4877,9.488,9.49))`
 
 Find the $p$-value. $p$-value=`r fitb(c(0.8554064,0.855406,0.85541,0.8554,0.855,0.856))`
 
